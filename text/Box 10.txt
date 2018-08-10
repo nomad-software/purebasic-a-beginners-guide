@@ -1,0 +1,3 @@
+What Are Those Square Brackets Within The Syntax Examples?
+
+The square brackets shown in syntax examples are never used when using these commands. They are only included in the examples to show what parameters (if any) are optional, when using these commands. Square brackets are only ever used in actual code when you are using Static Arrays. For more information about static arrays see Chapter 5 (Arrays).

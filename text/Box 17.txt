@@ -1,0 +1,3 @@
+Why Are The Window Position Parameters Set At ‘0’?
+
+When opening a window using the ‘OpenWindow()’ command the second and third parameters of this command determine the coordinates where this window will be drawn on screen. However, if you use the ‘#PB_Window_ScreenCentered’ or ‘#PB_Window_WindowCentered’ flags in the same command call the position parameters are ignored. This is because PureBasic is over-riding these position parameters to center the window on the screen or over another window. If this is the case you can safely use ‘0’ for both the position parameters or use the ‘#PB_Ignore’ constant to explicitly show in your source code that these two parameters are been ignored because of the flags passed.

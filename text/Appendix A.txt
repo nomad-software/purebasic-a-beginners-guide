@@ -1,0 +1,49 @@
+A
+
+Useful Internet Links
+
+The following pages contain many useful web address from the Internet that you will want to take a look at when starting out with PureBasic. These websites contain lots of useful information, such as code snippets, tool and utilities, where to get technical support and where to ask questions.
+
+PureBasic Beginners
+http://www.pb-beginners.co.uk
+The website associated to this book. Most of the code, images and sounds used in the examples contained in this book can be downloaded from this website along with other useful tools and utilities, including the elusive ‘Win32.hlp’ help file.
+
+Official PureBasic Website
+http://www.purebasic.com
+The official website of PureBasic. This is where you buy and download the full PureBasic package. You can also find the latest development news on PureBasic and access support via the website’s menu.
+
+Official PureBasic Forums
+http://forums.purebasic.com
+Hopefully this will be one of your first stops when using PureBasic. All you need to do is register with the forum and you can ask as many questions as you like. This online forum is monitored closely by the PureBasic team who regularly contribute to discussions and answer questions relating to PureBasic. The wealth of information regarding PureBasic stored on this site should not be underestimated. Not only do you have access to the shared knowledge of hundreds of PureBasic programmers willing to help you, but every post is archived and fully searchable, meaning you literally have years worth of PureBasic knowledge at your fingertips detailing almost any programming task you may encounter.
+
+PureArea
+http://www.purearea.net
+This site contains lots of PureBasic related material including, thousands of PureBasic code examples contained in the downloadable Code Archive, downloadable third party user libraries and links to hundreds of freeware and shareware utilities written in PureBasic. There is also an online PureBasic reference manual.
+
+The PureBasic Visual Designer
+http://www.purebasic.be
+This site contains news and updated builds of the new official PureBasic visual designer. Everything to do with the development of the visual designer is contained on this site.
+
+PureProject
+http://pureproject.reelmedia.org
+More PureBasic code snippets including games and applications and more downloadable third party user libraries. There’s also a Windows API section too.
+
+PureVision
+http://purevision.reelmedia.org
+A third party commercial replacement for the standard PureBasic visual designer. This professional visual designer also has full support for GUI skinning.
+
+Microsoft Windows API Documentation
+http://msdn.microsoft.com/library
+Microsoft’s Windows API website detailing all the Windows Application Programming Interface. Use the search box on the webpage to quickly find information.
+
+API-Guide
+http://www.allapi.net/agnet/apiguide.shtml
+A program called ‘API-Guide’ that allows you to explore the commands available in the Win32 API. Details of all commands and parameters are given with examples for nearly all commands. Note: The examples are coded for VisualBasic but can easily be converted to PureBasic.
+
+The OGRE Engine
+http://www.ogre3d.org/
+The website of the OGRE 3D engine, this is the one that PureBasic uses to provide 3D graphics.
+
+Housemarque Audio System
+http://www.s2.org/hmqaudio/
+This is the sound system that PureBasic uses to play modules. You will need to download the ‘midas11.dll’ file to provide module playback capabilities in your programs. This file is part of the Housemarque ‘Standard distribution package’. For more information see Chapter 12 (Module Files).

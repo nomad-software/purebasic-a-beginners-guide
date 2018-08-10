@@ -1,0 +1,949 @@
+9
+
+Creating User Interfaces
+
+In this chapter I’ll explain how to create graphical user interfaces for your programs. PureBasic makes this task very easy by distilling complex application programming interfaces into simple, easy to learn commands. I explain fully how to code the graphical interface, complete with menus and sometimes with graphics. I also cover how to handle events from your program’s interface, such as, when the user presses a button or selects a menu item. Hopefully after reading this chapter you will be well equipped to create user interfaces for any program you decide to develop.
+
+Console Programs
+
+To begin with, we shouldn’t run before we can walk, so first I’ll introduce to you what is known as a Console Program. Console programs, as the name suggests, are programs that use a console as their user interface. A console is a text based interface that can accept typed input and display output using text characters. On some operating systems the console can display simple graphics by substituting some of the ASCII character set for graphical symbols instead of characters.
+
+Console interfaces are usually used in programs where a fully blown user interface is not needed. These types of programs are usually command line tools that are run from other consoles or things like CGI programs that run in the background on web servers, etc. Basically, a console is used to display basic output information from the program and to accept basic text input from the user. Commands that create and work with a console interface are grouped inside the ‘Console’ library (Helpfile:Reference Manual->General Libraries->Console). This library offers PureBasic programmers various commands to print text, accept user input, clear the console and even change its colors. Here is an example of how to create a console program in PureBasic:
+
+If OpenConsole()
+	Print("This is a test console program, press return to exit...")
+	Input()
+	CloseConsole()
+EndIf
+End
+
+In this example I’ve used the ‘OpenConsole()’ and ‘CloseConsole()’ commands to open and close the actual console window, these are self explanatory. The second command I’ve used is the ‘Print()’ command which accepts one String parameter that is printed to the console interface. This command is almost identical to the other console library command ‘PrintN()’. The ‘PrintN()’ will also print a line of text but it will append an end-of-line character on the end to move to a new line after the text has been printed. This is very similar behavior to the file writing commands ‘WriteString()’ and ‘WriteStringN()’ as mentioned in Chapter 7 (Handling Files).
+
+The last command used in the above example is ‘Input()’. This command halts the program’s execution until the Return key is pressed on the keyboard. This command then returns any characters (as a String) that were entered into the console before the Return key was finally pressed. Because in my example, I’m not dealing with any return value from this command, it’s used here purely to keep the console open so people can read the text I’ve printed to it. If this command was omitted, then the console would almost immediately close as soon as it had opened. Using ‘Input()’ like this, can provide a simple way to keep the console open while we read what is printed there, as long as we inform the user that to continue the program execution he or she must press Return.
+
+Reading User Input
+Sometimes in your console programs you may want to read user input, this could be a simple number or a String of text. Although it is pretty straightforward to gather any user input you must always remember that the ‘Input()’ command only returns Strings. This next piece of code shows this, while introducing some new console commands:
+
+If OpenConsole()
+
+	EnableGraphicalConsole(#True)
+
+	Repeat
+
+		ConsoleColor(10, 0)
+		PrintN("TIMES TABLES GENERATOR")
+		PrintN("")
+		ConsoleColor(7, 0)
+		PrintN("Please enter a number, then press Return...")
+		PrintN("")
+
+		Number.q = ValQ(Input())
+		If Number = 0
+			ClearConsole()
+			Continue
+		Else
+			Break
+		EndIf
+
+	ForEver
+
+	PrintN("")
+	
+	For x.l = 1 To 10
+		PrintN(Str(x) + " x " + StrQ(Number) + " = " + StrQ(x * Number))
+	Next x
+	PrintN("")
+
+	Print("Press Return to exit...")
+	Input()
+	CloseConsole()
+EndIf
+End
+
+This example looks rather complicated but it’s not really if you read it a line at a time. The first new command I’ve used here is the ‘EnableGraphicalConsole()’ command. This enables or disables the graphical capabilities of the console program by passing either the ‘#True’ or ‘#False’ constants as a parameter. Because we later use ‘ClearConsole()’ which only works with a graphical console, we set ‘EnableGraphicalConsole()’ to true.
+
+<<Box 16>>
+
+I’ve also changed the console text color in some places by using the ‘ConsoleColor()’ command. The first parameter is the text color and the second is the text background color. The parameters are numbers that range from ‘0’ to ‘15’ which represent different color presets, see the helpfile to see what color is associated with each number (Helpfile:Reference Manual->General Libraries->Console->ConsoleColor).
+
+Also in this example I’ve used a loop to handle verifying user input, this is used as a way of almost re-running the program if the user entered an incorrect value. I want a number to be entered so I use the ‘ValQ()’ command to change the String returned from the ‘Input()’ command into a Quad. This returned value is then tested, if it is equal to ‘0’ then the user must have typed a non-numeric String or the number ‘0’. If this is the case I clear the console of all output by using the ‘ClearConsole()’ command and force the loop to continue from the beginning, totally redrawing the original text and requesting user input again. If the user input is a number above ‘0’ then I ‘Break’ from the loop and continue with the rest of the program which draws the times table for that number.
+
+Reading User Input In Realtime
+The last example showcased the ‘Input()’ command which is fine if you need to enter a String or such but its only limitation is that you have to press the Return key in order for the input to be passed to the program. What if you wanted to get user input in realtime to detect immediately when a key was pressed in order to trigger an action? Well, this can be achieved by using the ‘Inkey()’ and ‘RawKey()’ commands. Look at this next piece of code for an example on the usage of both:
+
+Procedure DisplayTitle()
+	ConsoleColor(10, 0)
+	PrintN("KEY CODE FINDER")
+	PrintN("")
+	ConsoleColor(7, 0)
+EndProcedure
+
+Procedure DisplayEscapeText()
+	PrintN("")
+	ConsoleColor(8, 0)
+	PrintN("Press another key or press Escape to exit")
+	ConsoleColor(7, 0)
+EndProcedure
+
+If OpenConsole()
+
+	EnableGraphicalConsole(#True)
+	DisplayTitle()
+	PrintN("Press a key...")
+	Repeat
+		KeyPressed.s = Inkey()
+		RawKeyCode.l = RawKey()
+
+		If KeyPressed <> ""
+
+			ClearConsole()
+			DisplayTitle()
+			PrintN("Key Pressed: " + KeyPressed)
+			PrintN("Key Code: " + Str(RawKeyCode))
+			DisplayEscapeText()
+
+		ElseIf RawKeyCode
+
+			ClearConsole()
+			DisplayTitle()
+			PrintN("Key Pressed: " + "Non-ASCII")
+			PrintN("Key Code: " + Str(RawKeyCode))
+			DisplayEscapeText()
+
+		Else
+
+			Delay(1)
+
+		EndIf
+
+	Until KeyPressed = #ESC$
+	CloseConsole()
+EndIf
+End
+
+This example is similar to the one before in that we are opening a console and switching it to graphical mode then printing some text to it. The main difference is the ‘Repeat’ loop is continuously calling two commands to determine which key, if any, has been pressed. These two commands are ‘Inkey()’ and ‘RawKey()’.
+
+The first command, ‘Inkey()’ returns a one character String of the key held down when this command was called. So if I held down the ‘D’ key on the keyboard while this command is called, then ‘Inkey()’ would return the String ‘d’. Although this command is simple to understand you must remember that the keys on a standard keyboard are usually printed in uppercase, while the ‘Inkey()’ command returns them as lowercase unless the Shift key is held down at the same time. If a non-ASCII key is held down while this command is called then ‘Inkey()’ will return an empty String until an ASCII key is held down.
+
+The second command for gathering information on what key has been pressed is a companion to the ‘Inkey()’ command, its name is ‘RawKey()’. This command, as the name suggests, returns a numeric raw key code of the key being held down while this command is called. In the above example, you can see how to use both commands to extract information about which key is being held down during the loop. This is a great way to read user input in realtime and react accordingly when a particular key is being pressed.
+
+Delaying Things A Little
+You may notice that in the above example I’ve also used a ‘Delay()’ command to tell the program to delay itself for ‘1’ millisecond. While this looks a little strange and unnecessary, the ‘Delay()’ command is there for a reason. Because you will be using a multitasking operating system to run your programs, it’s good programming practice not to monopolize CPU time if you can help it. Using the ‘Delay()’ command gives other programs a chance to use the CPU while your program is delayed. Even a delay of ‘1’ millisecond allows the operating system to free up the CPU long enough to let other programs have a chance to run. This command is especially useful when using loops to perform the same action over and over again. If a ‘Delay()’ command is not used within such a loop then your program will take up all the CPU’s resources until it has quit, leaving no processing power available for other programs to run. This can sometimes make these other programs appear to ‘freeze’ and not respond as normal.
+
+Compiling A True Console Program
+Running the console program examples in the IDE will build programs that look and act like real console programs but won’t be console programs in the true sense until you compile them using the ‘Console’ executable format.
+
+<<Fig 25>>
+
+Fig.25 shows a diagram of where the executable format option is in the ‘Compiler Options’ dialog box (Menu:Compiler->Compiler Options...). Once this is selected, click ‘Ok’ and compile your program using ‘Create Executable...’ (Menu:Compiler->Create Executable...) to compile your final executable. The PureBasic compiler will now build a true console program.
+
+The main difference between these executable formats is that the IDE defaults to compile all programs using the native operating system’s executable format. These programs when run either by double clicking or evoking them from a command line interface will always open a new console window before proceeding. Using the ‘Console’ executable format you can explicitly declare that this program should be compiled as a true console program, meaning that the program will run as normal if double clicked but when it’s run from a command line interface it doesn’t open a new console window, it acts correctly as a tool within the currently opened command line interface.
+And that’s all there is to programming interfaces in console programs really. They are not supposed to be used for complicated interfaces (although in the past, games have been written using the graphical console mode). These interfaces are really used nowadays for displaying simple output from command line tools.
+
+Creating Native User Interfaces
+
+In this next section I’m going to show you how to create user interfaces that have the same native look and feel as all the programs currently running on your operating system. These are called ‘Native’ interfaces because PureBasic uses the underlying operating system’s API to draw the interface components. For an example of such an interface, look at the PureBasic IDE, this has been completely written from scratch using PureBasic which in turn uses the operating system’s API.
+
+All this talk of the operating system’s API may dishearten you, making you think that this all sounds very complicated, but don’t panic. The good news is that you don’t have to know anything about ‘what goes on under the hood’ because PureBasic handles this automatically and hides any complicated issues from you. Just using PureBasic’s built-in libraries you can build powerful applications that rival any other programming language. On average PureBasic programs prove to be faster and compile to a smaller executable size than many industrial strength languages. This has been proved many times through small competitions created by members of PureBasic’s official online forums.
+
+So, let’s get going and create our first native user interface with PureBasic.
+
+Hello World
+As is customary in the programming world, the first example of any programming language’s interface commands is usually a ‘Hello World’ program. This consists of a simple window that says hello to the user and provide a way of closing the program. Start a new file in the IDE and type this in:
+
+#WINDOW_MAIN = 1
+
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+If OpenWindow(#WINDOW_MAIN, 0, 0, 300, 200, "Hello World", #FLAGS)
+	Repeat
+		Event.l = WaitWindowEvent()
+	Until Event = #PB_Event_CloseWindow
+EndIf
+End
+
+If you run this piece of code you will see a window similar to Fig.26. To close this window click the close button in the top right hand corner. Even though this example only consists of a blank window and a close button in the title bar, this is the start of all native user interfaces in PureBasic.
+
+<<Fig 26>>
+
+In the above example, I use the ‘OpenWindow()’ command to actually open the window and define what features it should have. If you open the helpfile and refer to the ‘OpenWindow()’ command (Helpfile:Reference Manual->General Libraries->Window->OpenWindow) then look at the syntax example, you can see I’ve used the ‘#PB_Window_SystemMenu’ and ‘#PB_Window_ScreenCentered’ window flags to define that this window should have a functioning system menu, complete with close button and be centered on the screen when it’s opened. When using multiple flags like this, you join them together using the bitwise ‘OR’ operator as shown in the code above. This operator combines the value of any flags used at the binary level (for a more complete explanation see Chapter 3).
+
+After the ‘OpenWindow()’ command is used I’ve then used a ‘Repeat’ loop to act as the Main Loop to process any events that this window may encounter.
+
+<<Box 17>>
+
+The Main Loop
+The main loop in a program is what keeps the program ‘alive’. It allows the program to continually keep running while redrawing the interface (if it’s moved around the desktop) and handle any events that the interface may generate. Thankfully PureBasic handles all redrawing of the interface automatically so we only need to use a main loop to keep the program running and to process other events.
+
+In my little ‘Hello World’ program I’ve used a ‘Repeat’ loop as my main loop, this gives me the ability to keep the loop going forever until a particular condition is met, in this case, until I have encountered an event of ‘#PB_Event_CloseWindow’ type, which is the event triggered when you click the close button. Once this event is received, the loop then exits thus ending the program.
+
+Understanding Events
+
+Every program you write using any programming language will use roughly the same way of handling events. This involves detecting an event during the main loop then directing the program to run another piece of code depending on what the event was. So what kinds of events are there? Well, an event can be triggered by many actions within your programs, an event might be triggered by clicking on a gadget, pressing a button on the keyboard, selecting an item from a menu or just by moving or closing the program. The trick is knowing what event has happened so you can deal with it properly. To do this we use the ‘WaitWindowEvent()’ and ‘WindowEvent()’ commands.
+
+<<Box 18>>
+
+These two commands are almost identical because they both return an event identifier in the form of a Long type number when an event occurs. The difference between these two is that the ‘WaitWindowEvent()’ command halts your program until an event is detected, then returns the event identifier and lets the program continue normally until it’s called again. (This is great for use in graphical user interfaces as it allows the program to use as little of the CPU as possible, only utilizing it when an event actually occurs.) The ‘WindowEvent()’ command however, does not halt the program at all, it just tests to see if there are any events to return. If there is, this command will return its identifier. This command is very seldom used in user interfaces as it can make them very CPU ‘hungry’, hogging the processing power of the computer on which they run. The ‘WindowEvent()’ command is often used when you need to keep the main loop running at all cost, for example, if you are displaying a dynamic graphic in your program that needs to be continually redrawn, etc. If this is the case and you must use the ‘WindowEvent()’ command, good programming style dictates that you try to use the ‘Delay(1)’ trick with it (as explained in the console program section) to make sure your program is CPU friendly. If no events are detected use ‘Delay(1)’ to let other programs get a chance to use the CPU.
+
+In the ‘Hello World’ program I’ve used a ‘WaitWindowEvent()’ command during the ‘Repeat’ loop to halt the program until an event is triggered. Once an event is triggered the ‘WaitWindowEvent()’ command returns its identifier which is stored in a Long type variable called ‘Event’. The loop is then coded to exit if ‘Event’ equals the value of ‘#PB_Event_CloseWindow’, which is a built-in constant that contains the identifier of a ‘close window’ event from the interface. If these two are equal then a ‘close window’ event must of occurred so the loop exits and the program is ended.
+
+Events Happen All The Time
+Even though no other events are handled in this small example, it doesn’t mean that they aren’t occurring. If we take the same ‘Hello World’ program and add another line containing a ‘Debug’ command it will now display identifiers of events in the Debug Output window during runtime.
+Run the following piece of code, then move and click in and around the window. You will see many events occurring.
+
+#WINDOW_MAIN = 1
+
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+If OpenWindow(#WINDOW_MAIN, 0, 0, 300, 200, "Hello World", #FLAGS)
+	Repeat
+		Event.l = WaitWindowEvent()
+		Debug Event
+	Until Event = #PB_Event_CloseWindow
+EndIf
+End
+
+This is the ‘WaitWindowEvent()’ command returning identifiers for all triggered events, even if they are not handled by your program. This is completely normal and won’t noticeably slow your program down in the slightest.
+
+Adding Gadgets
+
+So far we’ve seen a simple window created which displayed ‘Hello World’ in the title bar, although this is a nice introduction to user interfaces it really doesn’t show any form of interaction with the user other than being able to close the window. In this next section I’ll show you how you can add gadgets to your program’s window to increase functionality and interactivity.
+
+In this next piece of code I’ve added two buttons and demonstrated how to detect events from them.
+
+Enumeration
+	#WIN_MAIN
+	#BUTTON_INTERACT
+	#BUTTON_CLOSE
+EndEnumeration
+
+Global Quit.b = #False
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+
+If OpenWindow(#WIN_MAIN, 0, 0, 300, 200, "Interaction", #FLAGS)
+	If CreateGadgetList(WindowID(#WIN_MAIN))
+
+		ButtonGadget(#BUTTON_INTERACT, 10, 170, 100, 20, "Click me")
+		ButtonGadget(#BUTTON_CLOSE, 190, 170, 100, 20, "Close window")
+		Repeat
+
+			Event.l = WaitWindowEvent()
+			Select Event
+				Case #PB_Event_Gadget
+					Select EventGadget()
+
+						Case #BUTTON_INTERACT
+							Debug "The button was pressed."
+						Case #BUTTON_CLOSE
+							Quit = #True
+					EndSelect
+			EndSelect
+
+		Until Event = #PB_Event_CloseWindow Or Quit = #True
+
+	EndIf
+EndIf
+End
+
+If you read through this code it should be pretty straightforward for you to understand, so I’ll just run through some of the key areas that will be new to you. Fig.27 shows you what this window looks like.
+
+<<Fig 27>>
+
+In this example after the main window has been created I’ve used the ‘CreateGadgetList()’ command. This is needed to tell your window that you would like to draw gadgets on it. This command only takes one parameter which is the OS identifier of the main interface window so I use the ‘WindowID()’ command to retrieve it, like this:
+
+...
+CreateGadgetList(WindowID(#WIN_MAIN))
+...
+
+OS identifiers were discussed in detail in Chapter 7 (PB Numbers And OS Identifiers).
+
+After we create a gadget list within the main window we can draw gadgets upon it. I’ve created two buttons using the ‘ButtonGadget()’ command. If you open the helpfile and refer to the ‘ButtonGadget()’ page (Helpfile:Reference Manual->General Libraries->Gadget->ButtonGadget) you will be able see in the syntax example exactly what parameters are expected by this command.
+Using the position parameters in the ‘ButtonGadget()’ command, I’ve placed the buttons along the bottom edge of the window.
+
+To highlight another key area, if you look at the main loop, after an event identifier has been returned from the ‘WaitWindowEvent()’ command and assigned to the ‘Event’ variable, I’ve used a ‘Select’ statement to test its value, like this:
+
+...
+Select Event
+	Case #PB_Event_Gadget
+		...
+EndSelect
+...
+
+You will notice that the first ‘Case’ statement tests for a value of ‘#PB_Event_Gadget’. This is a special global event value, used to test an identifier to determine if it’s from a gadget, in other words, if ‘Event’ is equal to ‘#PB_Event_Gadget’ then ‘Event’ must hold an event identifier from a gadget.
+
+Once we know that an event comes from a gadget we then have to distinguish what gadget it is from. We do this using the ‘EventGadget()’ command which returns the PB number of the originating gadget. So in this example I test the return value of ‘EventGadget()’ by using another ‘Select’.
+
+...
+Select EventGadget()
+	Case #BUTTON_INTERACT
+		Debug "The button was pressed."
+	Case #BUTTON_CLOSE
+		Quit = #True
+EndSelect
+...
+
+Here, I have two ‘Case’ statements, one testing for ‘#BUTTON_INTERACT’ and one testing for ‘#BUTTON_CLOSE’. If the return value from ‘EventGadget()’ equals ‘#BUTTON_INTERACT’ then the ‘Click me’ button has been pressed. This we know because this gadget’s PB number has been returned from ‘EventGadget()’. Then I type some code that I want executing when this button is pressed on the next line after the ‘Case’ statement.
+
+The same theory applies to the next ‘Case’ statement too. If the return value equals ‘#BUTTON_CLOSE’ then the ‘Close window’ button has been pressed. If so, I assign a true value to the ‘Quit’ variable which makes the main loop exit and eventually ends the program.
+
+This is why using a constant ‘Enumeration’ block is so incredibly helpful. After defining numeric constants for all gadgets at the start of the source code, I can then refer to each of them by a constant name instead of a number, which makes the source code infinitely more clear and readable.
+
+Accepting Text Input
+Let’s expand the last example a bit more and add a String gadget so we can enter some text that the program can use. String gadgets are very handy as they provide a simple way of allowing your program to accept strings of text. This next example is to show you how you can retrieve the value of the String gadget, i.e. retrieve the text, and use it in your program. Let’s create one that is the full width of the window. Fig.28 overleaf, shows what this compiled program should look like, here’s the code:
+
+Enumeration
+	#WIN_MAIN
+	#TEXT_INPUT
+	#STRING_INPUT
+	#BUTTON_INTERACT
+	#BUTTON_CLOSE
+EndEnumeration
+
+Global Quit.b = #False
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+
+If OpenWindow(#WIN_MAIN, 0, 0, 300, 200, "Interaction", #FLAGS)
+	If CreateGadgetList(WindowID(#WIN_MAIN))
+
+		TextGadget(#TEXT_INPUT, 10, 10, 280, 20, "Enter text here:")
+		StringGadget(#STRING_INPUT, 10, 30, 280, 20, "")
+		ButtonGadget(#BUTTON_INTERACT, 10, 170, 120, 20, "Echo text")
+		ButtonGadget(#BUTTON_CLOSE, 190, 170, 100, 20, "Close window")
+		SetActiveGadget(#STRING_INPUT)
+		Repeat
+
+			Event.l = WaitWindowEvent()
+			Select Event
+				Case #PB_Event_Gadget
+					Select EventGadget()
+						Case #BUTTON_INTERACT
+							Debug GetGadgetText(#STRING_INPUT)
+						Case #BUTTON_CLOSE
+							Quit = #True
+					EndSelect
+			EndSelect
+
+		Until Event = #PB_Event_CloseWindow Or Quit = #True
+
+	EndIf
+EndIf 
+End
+
+In this updated version I’ve added a couple more constants to the ‘Enumeration’ block so I can add a few more gadgets easily. The first new gadget I’ve added is a text gadget which literally displays a non-editable text string on the window, I use one to display the String: ‘Enter text here:’. The second new gadget I’ve used is a String gadget which creates an input field upon the window which allows you to enter your own text. If you open the PureBasic helpfile on the ‘StringGadget()’ page (Helpfile:Reference Manual->General Libraries->Gadget->StringGadget) you can see the parameters that this gadget can accept. I’ve used the position and size parameters to align a String gadget to the top of the window, just below the text gadget. For the ‘Content$’ parameter I’ve passed a blank String, which is expressed through two sets of double quotation marks with nothing between. This is still a String but a String that has no content. I’ve done this because the ‘Content$’ parameter sets an initial text value for the String gadget and I want the String gadget to start off with none entered.
+
+<<Fig 28>>
+
+Once this program is running you will notice that the text cursor is immediately flashing in the String gadget. This is not the default behavior, normally you would have to click on the gadget to give it focus for the cursor to appear there. In my program I have set that gadget to be the active one on startup by using the ‘SetActiveGadget()’ command. This command takes one PB number as a parameter of the gadget you want to give focus to, making it the currently active gadget. I’ve done this in this little example to help the user and to save him or her a mouse click.
+
+To test the interactivity of this program, enter some text in the String gadget once the program is running and then press the ‘Echo text’ button. You will now see that text echoed to the Debug Output window. This is because I’ve changed the ‘#BUTTON_INTERACT’ ‘Case’ statement to alter what happens once the ‘Echo text’ button is pressed. This line of code has been altered to now read ‘Debug GetGadgetText(#STRING_INPUT)’.
+
+The ‘GetGadgetText()’ command takes one parameter which is the PB number of the gadget you want to retrieve text from, here I use it to retrieve text from the String gadget. This command can be used with many gadgets in PureBasic but with a String gadget it simply returns the text as a String which I then immediately echo using a ‘Debug’ command.
+
+Displaying Text
+Let’s expand this program even further and instead of echoing the text from the String gadget to the Debug Output window, let’s add a gadget to display the text actually inside our program. In this next example I’ve added a list view gadget to display the input text in a list of non-editable Strings. A list view gadget is a great way to display lists of Strings because each String has its own line within the gadget.
+
+PureBasic offers a lot of commands to work with list view gadgets, ranging from adding and removing  to counting and sorting of items contained within this type of gadget. In the following small example I’ve only used the ‘AddGadgetItem()’ command to add new Strings to mine. Fig.29 overleaf, shows the new program running, here is the code:
+
+Enumeration
+	#WIN_MAIN
+	#TEXT_INPUT
+	#STRING_INPUT
+	#LIST_INPUT
+	#BUTTON_INTERACT
+	#BUTTON_CLOSE
+EndEnumeration
+
+Global Quit.b = #False
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+
+If OpenWindow(#WIN_MAIN, 0, 0, 300, 200, "Interaction", #FLAGS)
+	If CreateGadgetList(WindowID(#WIN_MAIN))
+
+		TextGadget(#TEXT_INPUT, 10, 10, 280, 20, "Enter text here:")
+		StringGadget(#STRING_INPUT, 10, 30, 280, 20, "")
+		ListViewGadget(#LIST_INPUT, 10, 60, 280, 100)
+		ButtonGadget(#BUTTON_INTERACT, 10, 170, 120, 20, "Enter text")
+		ButtonGadget(#BUTTON_CLOSE, 190, 170, 100, 20, "Close window")
+		SetActiveGadget(#STRING_INPUT)
+		Repeat
+
+			Event.l = WaitWindowEvent()
+			Select Event
+				Case #PB_Event_Gadget
+					Select EventGadget()
+						Case #BUTTON_INTERACT
+							AddGadgetItem(#LIST_INPUT, -1, GetGadgetText(#STRING_INPUT))
+							SetGadgetText(#STRING_INPUT, "")
+							SetActiveGadget(#STRING_INPUT)
+						Case #BUTTON_CLOSE
+							Quit = #True
+					EndSelect
+			EndSelect
+	
+		Until Event = #PB_Event_CloseWindow Or Quit = #True
+
+	EndIf
+EndIf
+End
+
+This example is very similar to the last one, in fact the only real difference is the inclusion of the list view gadget. Reading the PureBasic helpfile on the ‘ListViewGadget()’ page (Helpfile:Reference Manual->General Libraries->Gadget->ListViewGadget) will give you a good overview of this gadget and what you can achieve using it. Reading the syntax example contained here also lets you know exactly what parameters this gadget accepts. I’ve used the position and size parameters to put the list view gadget in the middle of the main window, above the buttons but under the String gadget.
+
+<<Fig 29>>
+
+Once this program is running, enter some text into the String gadget and press the ‘Enter text’ button. This will take the text from the String gadget and add it to the list view gadget. Once this is done the program clears the String gadget to be ready for more input.
+
+This is all achieved because once again, I have changed the ‘#BUTTON_INTERACT’ ‘Case’ statement to alter what happens once the renamed ‘Enter text’ button is pressed. Here are the three new lines I have added to the ‘#BUTTON_INTERACT’ ‘Case’ statement:
+
+...
+Case #BUTTON_INTERACT
+	AddGadgetItem(#LIST_INPUT, -1, GetGadgetText(#STRING_INPUT))
+	SetGadgetText(#STRING_INPUT, "")
+	SetActiveGadget(#STRING_INPUT)
+...
+
+The first line after the ‘Case’ statement adds an item to the list view gadget. If you open the page in the helpfile on ‘AddGadgetItem()’ (Helpfile:Reference Manual->General Libraries->Gadget-> AddGadgetItem) you will see the parameters that this command accepts. The first parameter is the PB number of the gadget you would like to add an item to, in our case it is ‘#LIST_INPUT’ which is a constant that holds our gadget’s number. The second parameter is what position in the list (of existing or non existing values) you would like this new entry to be added, remembering that indices start at ‘0’. In the above example, I want this text to be added to the end of the list regardless of what that index that may be, so I specify this parameter as ‘-1’. This tells the command not to bother with inserting it at a particular index, just add it to the end of the current list no matter how big it may be.
+
+The third parameter is the actual String you want to add to the gadget. I’ve used the ‘GetGadgetText()’ command here to return the current value of the String gadget; ‘#STRING_INPUT’ and to pass it as a parameter. ‘AddGadgetItem()’ takes more parameters than I’ve used here but the others are optional and therefore not necessary so I haven’t used them.
+
+The second line of code after the ‘Case’ statement uses the ‘SetGadgetText()’ command to set the String gadget’s value to nothing by using a blank String. This is because, once text has been entered into the list view gadget, I want to clear the String gadget ready for a new String to be entered.
+
+The last line uses the ‘SetActiveGadget()’ command again to give the ‘#STRING_INPUT’ String gadget focus so the text cursor appears there ready for more input saving a mouse click or two from the user.
+
+What Have We Learned So Far?
+Hopefully the last few examples have been a good introduction to native graphical user interfaces and provide a good starting point for further learning. In this book I can’t give you examples of every interface you are likely wanting to build, all I can do is give you the basic building blocks of an interface and let you build upon them.
+
+The beginnings of every native interface in PureBasic is the same. First you must open a window using the ‘OpenWindow()’ command. Secondly, if you want to place gadgets upon this window you must create a gadget list using the ‘CreateGadgetList()’ command and Third, you must have a main loop to keep the program running and handle any events that may occur. All events that do occur are returned from a ‘WaitWindowEvent()’ or ‘WindowEvent()’ command within the main loop.
+
+Read The Gadget Section In The Helpfile
+If you have understood what has been written so far you are on your way to fully grasping how to build native interfaces in PureBasic. Once you have understood the basics, the rest is learning about what gadgets are available and learning how to use them. This can be achieved by reading through the PureBasic helpfile in the ‘Gadget’ section (Helpfile:Reference Manual->General Libraries->Gadget). I recommend reading this section from front to back to understand what is available for you to use and to understand what commands work with each gadget.
+
+Take for example, the ‘SetGadgetText()’ command, this can be used with many different gadgets. If you look at the ‘SetGadgetText()’ page in the helpfile (Helpfile:Reference Manual->General Libraries->Gadget->SetGadgetText) it lists all the gadgets that this command works with along with any special instructions for use with a particular gadget.
+
+To cover all gadgets and the commands that work with them would take far too long here and probably be another book in itself. So I think it’s perhaps a better idea to familiarize yourself with the ‘Gadget’ section in the helpfile.
+
+Meanwhile, if you need a quick reference of what gadgets are available for use with PureBasic, then have a look at Appendix B (Helpful Charts) for a full list of all gadgets and a brief description of each one.
+
+Adding A Menu
+
+Adding a native menu to an interface is very easy in PureBasic and very similar to adding gadgets. When menu items are selected they trigger events just like gadgets and these events are handled in the main loop alongside gadget events.
+
+All menu items are defined with their own PB number like gadgets and these are used later to distinguish which menu item has triggered an event. Here is a small example:
+
+Enumeration
+	#WINDOW_MAIN
+	#MENU_MAIN
+	#MENU_QUIT
+	#MENU_ABOUT
+EndEnumeration
+
+Global Quit.b = #False
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+
+If OpenWindow(#WINDOW_MAIN, 0, 0, 300, 200, "Menu Example", #FLAGS)
+	If CreateMenu(#MENU_MAIN, WindowID(#WINDOW_MAIN))
+
+		MenuTitle("File")
+			MenuItem(#MENU_QUIT, "Quit")
+		MenuTitle("Help")
+			MenuItem(#MENU_ABOUT, "About...")
+		Repeat
+
+			Event.l = WaitWindowEvent()
+			Select Event
+				Case #PB_Event_Menu
+					Select EventMenu()
+						Case #MENU_QUIT
+							Quit = #True
+						Case #MENU_ABOUT
+							MessageRequester("About", "This is where you describe your program.")
+					EndSelect
+			EndSelect
+
+		Until Event = #PB_Event_CloseWindow Or Quit = #True
+
+	EndIf
+EndIf
+End
+
+This small example shows a native menu added to an empty window. There are two menu titles and each title contains one menu item. If you look at the above example, you can see how to create such a menu.
+
+First, you need to open a window, which I guess is common sense but we need one here because the menu will be attached to this window. Once the window has been created, we create the menu framework by using the ‘CreateMenu()’ command. This command takes two parameters, the first is the PB number of this menu object and the second is the OS identifier of the window it is to be attached to. This is very similar to the ‘CreateGadgetList()’ command’s syntax and I’ve also used the ‘WindowID()’ command here to provide the OS identifier of the main window.
+
+After the menu framework has been created successfully then you can populate it with the actual menu titles and items themselves. To do this, I begin with using a ‘MenuTitle()’ command. This command creates a menu title that is displayed at the top of the window (or in the case of Mac OS X, at the top of the screen). This command takes one String parameter which is the name of the title.
+
+Once a menu title has been defined any menu items created from then on in your program will appear beneath this title. Menu items are created by using the ‘MenuItem()’ command. This command takes two parameters, the first is the PB number that this item will be associated with, and the second is the String that you would like to display in the menu for this item.
+
+In my example, I’ve defined one menu item under the ‘File’ menu title called ‘Quit’ then I’ve used the ‘MenuTitle()’ command again to create another menu title called ‘Help’. Once another menu title is created like this, then again, all subsequent menu items are created beneath this new title, just like the newly created ‘About...’ menu item.
+
+Detecting Menu Events
+Once the menu has been created, including all menu titles and items, we then detect events being triggered by them in the main loop. Almost exactly like detecting event from gadgets we use a global event value called ‘#PB_Event_Menu’.
+
+If the event returned from the ‘WaitWindowEvent()’ command is equal to ‘#PB_Event_Menu’, then this event is from a menu item. I’ve used this command in a ‘Select’ statement like this:
+
+...
+Select Event
+	Case #PB_Event_Menu
+		Select EventMenu()
+			Case #MENU_QUIT
+				Quit = #True
+			Case #MENU_ABOUT
+				MessageRequester("About", "This is where you describe your program.")
+		EndSelect
+EndSelect
+...
+
+To determine exactly which menu item triggered this event we have to use the ‘EventMenu()’ command. This command returns the PB number of the menu item that triggered the event. I’ve used this command in another ‘Select’ statement to handle multiple cases of events, so I can elegantly handle events from any menu item. In this ‘Select’ statement, if the value returned by the ‘EventMenu()’ command equals ‘#MENU_QUIT’ then the ‘Quit’ menu item has been selected and I assign a true value to the ‘Quit’ variable which makes the main loop exit, thus ending the program. If the value returned by the ‘EventMenu()’ command equals ‘#MENU_ABOUT’ then the ‘About...’ menu item has been selected and I display a message requester displaying information about my program.
+
+Sub Menu Items
+So far I have demonstrated how to create standard menus but you can also create what is known as sub menus. These are menus which branch out from a parent menu into another connected child menu. Providing a tree-like menu structure kind of like the ‘Start’ menu on Microsoft Windows. All menu items inside these new child menus trigger events in exactly the same way as any other menu item and can be caught in the same way in the main loop. Here’s an example:
+
+Enumeration
+	#WINDOW_MAIN
+	#MENU_MAIN
+	#MENU_CHILD
+	#MENU_QUIT
+	#MENU_ABOUT
+EndEnumeration
+
+Global Quit.b = #False
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+
+If OpenWindow(#WINDOW_MAIN, 0, 0, 300, 200, "Menu Example", #FLAGS)
+	If CreateMenu(#MENU_MAIN, WindowID(#WINDOW_MAIN))
+		MenuTitle("File")
+			OpenSubMenu("Parent Menu Item")
+				MenuItem(#MENU_CHILD, "Sub Menu Item")
+			CloseSubMenu()
+			MenuBar()
+			MenuItem(#MENU_QUIT, "Quit")
+		MenuTitle("Help")
+			MenuItem(#MENU_ABOUT, "About...")
+		Repeat
+			Event.l = WaitWindowEvent()
+			Select Event
+				Case #PB_Event_Menu
+					Select EventMenu()
+						Case #MENU_CHILD
+							Debug "Sub menu item selected."
+						Case #MENU_QUIT
+							Quit = #True
+						Case #MENU_ABOUT
+							MessageRequester("About", "This is where you describe your program.")
+					EndSelect
+			EndSelect
+		Until Event = #PB_Event_CloseWindow Or Quit = #True
+	EndIf
+EndIf
+End
+ 
+A sub menu is created by using the ‘OpenSubMenu()’ command after a ‘MenuTitle()’ command. This is so the sub menu is related to a menu title just like any other menu item. The ‘OpenSubMenu()’ command takes one parameter which is the String that is displayed in the menu in front of the sub menu arrow. Once a ‘OpenSubMenu()’ command is used then all subsequently used ‘MenuItem()’ commands will place new menu items within the sub menu. To close this sub menu to be able to add more items to the main menu, you have to call the ‘CloseSubMenu()’ command. This switches menu item creation back to the parent menu.
+
+New menu items that are added to sub menus trigger events that can be caught in the main loop in the same way as any other menu item. If you look at the ‘EventMenu()’ ‘Select’ statement, you can see I’ve added a new value to be handled; ‘#MENU_CHILD’. If the return value from ‘EventMenu()’ equals the value of ‘#MENU_CHILD’ then the child menu item must of been selected, so I echo some text to the Debug Output window to show this.
+
+Separating Menu Items
+If you take a closer look at the above example I’ve added another new command too. This command draws a nice graphical separator bar in the menu which is useful to separate certain menu items. This new command is the ‘MenuBar()’ command. It takes no parameters and is used wherever you would like to place a separator in the current menu. Usually one is placed to separate the ‘Quit’ menu item from the rest of the menu items in the ‘File’ menu, so that’s what I have done in this example.
+
+Combining Gadgets And Menus In The Same Program
+Including menus and gadgets in the same program is easy. First, you open a window and create a menu. Then you create a gadget list and draw your gadgets, it’s that simple. Here’s a code example:
+
+Enumeration
+	#WINDOW_MAIN
+	#MENU_MAIN
+	#MENU_QUIT
+	#MENU_ABOUT
+	#TEXT_INPUT
+	#STRING_INPUT
+	#LIST_INPUT
+	#BUTTON_INTERACT
+	#BUTTON_CLOSE
+EndEnumeration
+
+Global Quit.b = #False
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+
+If OpenWindow(#WINDOW_MAIN, 0, 0, 300, 222, "Interaction", #FLAGS)
+	If CreateMenu(#MENU_MAIN, WindowID(#WINDOW_MAIN))
+		MenuTitle("File")
+			MenuItem(#MENU_QUIT, "Quit")
+		MenuTitle("Help")
+			MenuItem(#MENU_ABOUT, "About...")
+		If CreateGadgetList(WindowID(#WINDOW_MAIN))
+			TextGadget(#TEXT_INPUT, 10, 10, 280, 20, "Enter text here:")
+			StringGadget(#STRING_INPUT, 10, 30, 280, 20, "")
+			ListViewGadget(#LIST_INPUT, 10, 60, 280, 100)
+			ButtonGadget(#BUTTON_INTERACT, 10, 170, 120, 20, "Enter text")
+			ButtonGadget(#BUTTON_CLOSE, 190, 170, 100, 20, "Close window")
+			SetActiveGadget(#STRING_INPUT)
+			Repeat
+				Event.l = WaitWindowEvent()
+				Select Event
+					Case #PB_Event_Menu
+						Select EventMenu()
+							Case #MENU_QUIT
+								Quit = #True
+							Case #MENU_ABOUT
+								MessageRequester("About", "This is your program description.")
+						EndSelect
+					Case #PB_Event_Gadget
+						Select EventGadget()
+							Case #BUTTON_INTERACT
+								AddGadgetItem(#LIST_INPUT, -1, GetGadgetText(#STRING_INPUT))
+								SetGadgetText(#STRING_INPUT, "")
+								SetActiveGadget(#STRING_INPUT)
+							Case #BUTTON_CLOSE
+								Quit = #True
+						EndSelect
+				EndSelect
+			Until Event = #PB_Event_CloseWindow Or Quit = #True
+		EndIf
+	EndIf
+EndIf
+End
+
+To handle events from either menu items or gadgets you can use the different global event constants. In the above example, I’ve used both in the same ‘Select’ statement which tests the ‘Event’ variable, like this:
+
+...
+Select Event
+	Case #PB_Event_Menu
+		Select EventMenu()
+			...
+			;Menu events are handled here
+			...
+		EndSelect
+		...
+	Case #PB_Event_Gadget
+		Select EventGadget()
+			...
+			;Gadget events are handled here
+			...
+		EndSelect
+EndSelect
+...
+If an event is triggered from a menu item then it is handled in the ‘#PB_Event_Menu’ ‘Case’ statement and the exact menu item can be determined by using the ‘EventMenu()’ command. If an event is triggered from a gadget then it is handled in the ‘#PB_Event_Gadget’ ‘Case’ statement and the exact gadget can be determined by using the ‘EventGadget()’ command. This allows you to handle all menu and gadget events from one nested ‘Select’ statement, as shown in the snippet on the previous page.
+
+<<Box 19>>
+
+Menu Keyboard Shortcuts
+
+Most pieces of software nowadays have some form of keyboard shortcuts available for selecting menu items. These shortcuts are just key combinations that you can press on the keyboard to trigger menu items so you don’t physically have to select them from the menu. PureBasic can insert these into you program with ease.
+
+To demonstrate this we need to create a window with a menu. In this menu we define our menu items but this time we’ll define them with Accelerators. An accelerator is a computer term for the String on the end of a menu item describing what shortcut you need to press in order to trigger it, Fig.30 shows the accelerators defined in the PureBasic IDE’s file menu. Looking at this you can see that if you want to create a new document in the PureBasic IDE you can press ‘Ctrl+N’ which is the ‘Control’ key and the ‘N’ key at the same time on the keyboard, etc.
+
+<<Fig 30>>
+
+You will also notice in Fig.30, that the accelerators are aligned to the right hand side of the menu. This is to make sure they are clearly marked and to keep the menu itself uncluttered.
+
+In this next piece of code I’m going to extend the previous menu example and add accelerators and keyboard shortcuts, run it and try them for yourself.
+
+Enumeration
+	#WIN_MAIN
+	#MENU_MAIN
+	#M_QUIT
+	#M_ABOUT
+EndEnumeration
+
+Global Quit.b = #False
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+
+If OpenWindow(#WIN_MAIN, 0, 0, 300, 200, "Menu Example", #FLAGS)
+	If CreateMenu(#MENU_MAIN, WindowID(#WIN_MAIN))
+
+		MenuTitle("File")
+			MenuItem(#M_QUIT, "Quit" + #TAB$ + "Ctrl+Q")
+		MenuTitle("Help")
+			MenuItem(#M_ABOUT, "About..." + #TAB$ + "Ctrl+A")
+
+		AddKeyboardShortcut(#WIN_MAIN,#PB_Shortcut_Control|#PB_Shortcut_Q,#M_QUIT)
+		AddKeyboardShortcut(#WIN_MAIN,#PB_Shortcut_Control|#PB_Shortcut_A,#M_ABOUT)
+		
+		Repeat
+
+			Event.l = WaitWindowEvent()
+			Select Event
+				Case #PB_Event_Menu
+					Select EventMenu()
+						Case #M_QUIT
+							Quit = #True
+						Case #M_ABOUT
+							MessageRequester("About", "This is where you describe your program.")
+					EndSelect
+			EndSelect
+
+		Until Event = #PB_Event_CloseWindow Or Quit = #True
+
+	EndIf
+EndIf
+End
+If you run the example, you will see that besides the menu items there are now accelerators. These are defined by using a tab character within the menu item String, like this:
+
+...
+MenuItem(#M_QUIT, "Quit" + #TAB$ + "Ctrl+Q")
+...
+
+This command still takes two parameters, but the second String parameter is being made up of three parts. The first part is the menu item String, which in this case is ‘Quit’. Then we concatenate a tab character to the end using the built-in ‘#TAB$’ String constant. This constant has the ASCII value of ‘9’ in String form. Then we concatenate a further String which is the menu accelerator; ‘Ctrl+Q’.
+
+A tab is used here instead of a space so that the accelerators are always aligned to the right of the menu regardless of the lengths of the menu item Strings.
+
+Once the accelerators have been entered alongside the menu items then that’s the visual part done, the accelerators are after all just for the user to refer to visually. To add the shortcut functionality of the accelerators we must use the ‘AddKeyboardShortcut()’ command. I’ve used these commands in my code like this:
+
+...
+AddKeyboardShortcut(#WIN_MAIN,#PB_Shortcut_Control|#PB_Shortcut_Q,#M_QUIT)
+AddKeyboardShortcut(#WIN_MAIN,#PB_Shortcut_Control|#PB_Shortcut_A,#M_ABOUT)
+...
+
+This command takes three parameters, the first is the PB number of the window that this shortcut is associated with, in this case it’s ‘#WIN_MAIN’. The second parameter is a value that represents the actual keyboard shortcut. This value is made up of built-in constants that represent different key combinations on the keyboard. On the first line in the above snippet, I’ve combined the constants ‘#PB_Shortcut_Control’ and ‘#PB_Shortcut_Q’ to specify that I want the shortcut to be ‘Control+Q’ on the keyboard. These constants are combined in the usual way by using the bitwise ‘Or’ operator (‘|’). All shortcut constants available for use to create all other key combinations are listed in the PureBasic helpfile on the ‘AddKeyboardShortcut()’ page (Helpfile:Reference Manual->General Libraries->Window->AddKeyboardShortcut). The third parameter is the menu item’s PB number that you wish to associate this shortcut to. On the first line in the above snippet, I’ve used ‘#M_QUIT’ which is the same PB number I used to create the ‘Quit’ menu item earlier on. This means that once this shortcut is pressed on the keyboard it will trigger an event with the same value as if the ‘Quit’ menu item was selected.
+
+On the next line of the snippet I’ve repeated this command but with different parameters to provide a keyboard shortcut for the ‘About’ menu item.
+
+These events triggered from keyboard shortcuts are handled in exactly the same way as if they were triggered from selecting a menu item and there is absolutely no difference in the main loop as you can see from the shortcut example.
+
+Keyboard Shortcuts Without A Menu
+Using the same keyboard shortcut commands you can create keyboard shortcuts without having a menu to base them on. All you have to do, is use the ‘AddKeyboardShortcut()’ command to create a shortcut associated to your window and instead of mirroring a menu item’s PB number in the third parameter, just use a unique value. You then test for this value as a menu event in the main loop even though there is no menu. Here’s an example:
+
+#WIN_MAIN = 1
+#SC_EVENT = 2
+
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+
+If OpenWindow(#WIN_MAIN, 0, 0, 300, 200, "Hello World", #FLAGS)
+	AddKeyboardShortcut(#WIN_MAIN,#PB_Shortcut_Control|#PB_Shortcut_Z, #SC_EVENT)
+	Repeat
+		Event.l = WaitWindowEvent()
+		Select Event
+			Case #PB_Event_Menu
+				Select EventMenu()
+					Case #SC_EVENT
+						Debug "The shortcut was pressed"
+				EndSelect
+		EndSelect
+	Until Event = #PB_Event_CloseWindow
+EndIf
+End
+
+While the above example is running, press ‘Control+Z’ on your keyboard and you should see the text ‘The shortcut was pressed’ echoed to the Debug Output window. This example works because the ‘AddKeyboardShortcut()’ command triggers a menu event that is handled correctly in the main loop even though there is no physical menu attached to the window. This is a handy trick to know if you ever want to add keyboard shortcuts to your programs even though you don’t want a menu.
+
+Including Graphics In Your Program
+
+Sometimes in your programs you might like to include certain images and PureBasic makes this very easy. In this next section I’ll show you how to add images to your interfaces in one of two ways. First, you can load them from an external source, for example, the image may be in the same directory as your program. Second you can embed the image directly into your program so you only have one executable file. Both ways achieve the same thing but it depends how you want to handle the image file itself. Both these methods require an image gadget to be placed on your window to display the image. This is placed upon your window in the same way as any other gadget and conforms to the same rules.
+
+Loading Images Into Your Program
+This method of loading images for use in your interface is reliant on external images. Unlike embedding images, this method requires you to distribute any images used along with your executable file. Here is an example:
+Enumeration
+	#WIN_MAIN
+	#IMAGE_FILE
+	#IMAGE_DISPLAY
+	#BUTTON_CLOSE
+EndEnumeration
+
+Global Quit.b = #False
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+
+If OpenWindow(#WIN_MAIN, 0, 0, 300, 200, "Image Example", #FLAGS)
+	If CreateGadgetList(WindowID(#WIN_MAIN))
+		If LoadImage(#IMAGE_FILE, "image.bmp")
+
+			ImageGadget(#IMAGE_DISPLAY, 10, 10, 280, 150, ImageID(#IMAGE_FILE))
+			ButtonGadget(#BUTTON_CLOSE, 100, 170, 100, 20, "Close window")
+			Repeat
+
+				Event.l = WaitWindowEvent()
+				Select Event
+					Case #PB_Event_Gadget
+						Select EventGadget()
+							Case #BUTTON_CLOSE
+								Quit = #True
+						EndSelect
+				EndSelect
+
+			Until Event = #PB_Event_CloseWindow Or Quit = #True
+
+		EndIf
+	EndIf
+EndIf
+End
+
+For this example to work properly, you will need a ‘280’ by ‘150’ pixel image and save it in Bitmap format inside the same directory as the source code or final compiled executable. Once this is in place the program (once run) will look something like Fig.31 overleaf.
+
+In this example, I’ve used the ‘LoadImage()’ command to load the image from a place on the hard drive into memory ready for displaying in the program, like this:
+
+...
+LoadImage(#IMAGE_FILE, "image.bmp")
+...
+
+If you look at the ‘LoadImage()’ command in the PureBasic helpfile (Helpfile:Reference Manual->General Libraries->Image->LoadImage) you can see this command takes three parameters, the first is the PB number that will be associated with this loaded image and the second is the place on the hard drive where this image will be loaded from. If no file path information is included in the second parameter the file location is assumed to be relative to the program itself. I’ve not used the third optional parameter in this example. As usual I’ve tested the return value of this command with an ‘If’ statement to make sure it has loaded correctly before continuing with the rest of the program.
+
+Once the image has been loaded correctly you can then display it in your interface using an image gadget. If you look at the image gadget example, after I’ve created a gadget list, I’ve used the ‘ImageGadget’ command, like this:
+
+...
+ImageGadget(#IMAGE_DISPLAY, 10, 10, 280, 150, ImageID(#IMAGE_FILE))
+...
+
+‘ImageGadget()’ is a simple command to understand, the first parameter is the PB number that is associated to this gadget, not the loaded image. The next four parameters deal with the position and size of this gadget, similar to other gadgets. The fifth parameter is where we specify what image this gadget will display, so this parameter must be an OS identifier of a previously loaded image. Because we have loaded a suitable image already we can use the ‘ImageID()’ command to retrieve its OS identifier. In the above code I’ve used the ‘ImageID()’ command to retrieve the OS identifier of the ‘#IMAGE_FILE’ image which was loaded previously using the ‘LoadImage()’ command.
+
+<<Fig 31>>
+
+This way of loading images to display them in an image gadget is a simple way of doing things, but you must remember that when including images in your interfaces like this, you must always distribute the images used along with your final executable file. Because your program will always look for the external images to load, even when it’s compiled. If you want to embed your images within your program completely, read on.
+
+Embedding Images In Your Program
+The previous method of loading images is fine but sometimes you need to create a completely stand-alone executable file with all used images completely embedded so it doesn’t rely on any other external media. This method uses what is known as a data section where you can embed binary files for the executable to use when needed. Here is an example:
+
+Enumeration
+	#WIN_MAIN
+	#IMAGE_MEMORY
+	#IMAGE_DISPLAY
+	#BUTTON_CLOSE
+EndEnumeration
+
+Global Quit.b = #False
+
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+
+If OpenWindow(#WIN_MAIN, 0, 0, 300, 200, "Image Example", #FLAGS)
+	If CreateGadgetList(WindowID(#WIN_MAIN))
+		If CatchImage(#IMAGE_MEMORY, ?Image)
+			ImageGadget(#IMAGE_DISPLAY, 10, 10, 280, 150, ImageID(#IMAGE_MEMORY))
+			ButtonGadget(#BUTTON_CLOSE, 100, 170, 100, 20, "Close window")
+			Repeat
+				Event.l = WaitWindowEvent()
+				Select Event
+					Case #PB_Event_Gadget
+						Select EventGadget()
+							Case #BUTTON_CLOSE
+								Quit = #True
+						EndSelect
+				EndSelect
+			Until Event = #PB_Event_CloseWindow Or Quit = #True
+		EndIf
+	EndIf
+EndIf
+End
+
+DataSection
+	Image:
+		IncludeBinary "image.bmp"
+EndDataSection
+
+This example is very similar to the previous one, except this one is embedding the image into a data section when compiled. Once this program is run, the image is read from the data section instead of being read from the hard drive. If you look at the example you can see the data section at the bottom of the source code, it looks like this:
+
+...
+DataSection
+	Image:
+		IncludeBinary "image.bmp"
+EndDataSection
+
+The commands ‘DataSection’ and ‘EndDataSection’ are the start and finish of the section. You are then able to embed binary files within it using the ‘IncludeBinary’ command. This command doesn’t use any brackets, it just uses a String after it to define a file to embed.
+In this case I’ve embedded the file called ‘image.bmp’. You will also notice that I’ve used a label before the ‘IncludeBinary’ command, very similar to a subroutine definition. This label enables your program to find the start of this image in memory once loaded with this program. Once an image has been embedded like this then we can easily use it in our main code.
+
+In the main code, we no longer use the ‘LoadImage()’ command to load the image into memory. Once it’s placed within a data section, it’s already loaded once the program is running. So we use the ‘CatchImage()’ command to retrieve the image from the data section, like this:
+
+...
+CatchImage(#IMAGE_MEMORY, ?Image)
+...
+
+If you look at the ‘CatchImage()’ command in the PureBasic helpfile (Helpfile:Reference Manual->General Libraries->Image->CatchImage) you can see this command takes three parameters, the first is the PB number that will be associated with this image. The second parameter is the memory address where this image resides. If you remember, I’ve used a label in the data section to show this so I need to get the memory address of this label. I do this using a question mark in front of the label when I use it as a parameter. This question mark is a special one character function that returns the memory address of any label. This is explained in more detail later in Chapter 13 (Pointers). I’ve not used the third parameter in this example because it is optional.
+
+Displaying an image loaded with the ‘CatchImage()’ command is exactly the same as using the ‘LoadImage()’ command. Again, we use an image gadget and populate its parameters in the same way as before:
+
+...
+ImageGadget(#IMAGE_DISPLAY, 10, 10, 280, 150, ImageID(#IMAGE_MEMORY))
+...
+
+Once you run this example it should look like Fig.31 again. This is because it is the same program, but now it no longer needs the external ‘image.bmp’ file.
+
+What Image Formats Can Be Used?
+In the last few examples I’ve loaded and embedded images which are in Bitmap (*.bmp) format but you are not limited to this one single format.
+
+As standard, PureBasic can load and display Bitmap (*.bmp) and Icon (*.ico) format files but sometimes these can be restrictive. If you need to use other formats you can use optional decoder commands to give further functionality to PureBasic’s image loading commands. These other decoders are extremely simple to use, you just use the decoder command at the start of your source code and from then on in your program all the image loading commands have full support of the image format decoder used. You can find more information on the decoders in the PureBasic helpfile (Helpfile:Reference Manual->General Libraries->ImagePlugin).
+
+Here are the other decoder commands:
+
+‘UseJPEGImageDecoder()’
+This decoder adds support for the Jpeg image (*.jpg/*.jpeg) file format.
+
+‘UsePNGImageDecoder()’
+This decoder adds support for the Png image (*.png) file format.
+
+‘UseTIFFImageDecoder()’
+This decoder adds support for the TIFF image (*.tif/*.tiff) file format.
+
+‘UseTGAImageDecoder()’
+This decoder adds support for the Targa image (*.tga) file format.
+
+As stated before, using these decoder commands is simplicity itself. Let’s take the last image embedding example and add Jpeg support to it so we can embed a Jpeg file instead of a Bitmap file:
+
+UseJPEGImageDecoder()
+
+Enumeration
+	#WIN_MAIN
+	#IMAGE_MEMORY
+	#IMAGE_DISPLAY
+	#BUTTON_CLOSE
+EndEnumeration
+
+Global Quit.b = #False
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+
+If OpenWindow(#WIN_MAIN, 0, 0, 300, 200, "Image Example", #FLAGS)
+	If CreateGadgetList(WindowID(#WIN_MAIN))
+		If CatchImage(#IMAGE_MEMORY, ?Image)
+
+			ImageGadget(#IMAGE_DISPLAY, 10, 10, 280, 150, ImageID(#IMAGE_MEMORY))
+			ButtonGadget(#BUTTON_CLOSE, 100, 170, 100, 20, "Close window")
+			Repeat
+
+				Event.l = WaitWindowEvent()
+				Select Event
+					Case #PB_Event_Gadget
+						Select EventGadget()
+							Case #BUTTON_CLOSE
+								Quit = #True
+						EndSelect
+				EndSelect
+
+			Until Event = #PB_Event_CloseWindow Or Quit = #True
+
+
+		EndIf
+	EndIf
+EndIf
+End
+
+DataSection
+	Image:
+		IncludeBinary "image.jpg"
+EndDataSection
+
+In this example the only difference I’ve made to the source code to make it able to support Jpeg files is I’ve added the ‘UseJPEGImageDecoder()’ command as the first line in the code and then changed the image in the data section to a Jpeg format one. This program now embeds a Jpeg image instead of a Bitmap.
+
+All other decoders are used in the same way, just add the decoder command at the top of your source code to add support for these further file formats.
+
+A First Look At The New Visual Designer
+
+Included with PureBasic is a powerful Visual Designer to enable you to build interfaces visually and dynamically. This means in plain speak, that you can literally draw your gadgets upon a window to create your interface and all the underlying PureBasic code is generated for you automatically and in realtime.
+
+Using a tool like this can save you considerable time when designing interfaces, adjusting the look and feel of an interface while seeing immediate results. You should also be able to load the code back in again at a later date if you need to add something or provide further functionality in your program. There is currently one limitation regarding loading existing sources, code not written by the visual designer might not be loaded correctly if you open it for re-editing. This is because the visual designer generates code in a certain way and if a hand written file deviates from this format the designer might have a hard time reading it in. The visual designer, like other tools provided, is written entirely from the ground up using PureBasic and is colorfully referred to as the ‘VD’ by the PureBasic community.
+
+Why Haven’t You Mentioned This Earlier?
+I thought it was very important for you to learn how things work in PureBasic regarding gadgets, menus and events, to give you a more solid grounding of the code generated by the VD. So I thought I would mention it last within this chapter.
+
+The Main Window
+When you start the visual designer up it will look something like Fig.32. The main window is a multiple document interface containing all the tools you will need to design your interface. The visual designer consists of a menu at the top and a toolbar beneath. To the left of the screen there is a long tool panel containing the Gadget Tool Box and the Properties panel. In the center will be the current interface being designed and below that, the automatically generated code.
+
+Using The Visual Designer
+If you look at Fig.32 you will see the interface that is in progress indicated by an arrow to the right. This window is easy to spot because it is covered in tiny dots. These dots are a ‘snap grid’ that allow placed gadgets to snap to a set grid to make aligning them much quicker and easier. These dots do not appear on the finished program.
+
+<<Fig 32>>
+
+Once the interface’s window has been resized to the desired dimensions you can then start placing gadgets on it. To do this, pick a tool from the Gadget Tool Box and draw on the interface using that tool. You will now be drawing a dynamically resizing gadget of the selected tool type directly on the window. Once you have drawn the gadget, you will see that it is surrounded by big blue dots. These are handles allowing you to resize and move the gadget after it has been drawn. While you are adding gadgets to your interface you will notice that the PureBasic code is automatically generated in the Code Viewer near the bottom of the screen.
+
+Once all gadgets are placed and you have finished designing your user interface you can save your project by clicking the disk button in the Toolbar. This allows you to save the automatically generated code to a standard PureBasic file so you can open, edit and compile it as normal in the PureBasic IDE.
+
+Pro’s and Con’s Of The Visual Designer
+While the visual designer is a great tool to quickly and easily throw together user interfaces the format of the code generated cannot be changed. Therefore, you have to accept the way the program has been coded and if tweaks are needed by hand in the IDE then you have to conform to this format. This is not really a problem if you are experienced with PureBasic but for the novice user, the exported code can be quite complicated and advanced.
+
+The real plus point about using the visual designer is speed. You can throw together a useful user interface in seconds and see how it looks and then just as easily move and resize the gadgets until you get it just right. This cannot be overstated. The amount of time you could save designing a user interface using the VD is staggering, simply because you are negating the need to compile the program to see how it looks.
+
+Some people like visual designers and some don’t, it’s as simple as that. Some say that it’s best to handle all the code yourself so you truly know what’s going on ‘under the hood’ while others argue that in today’s competitive world you need a fast solution to designing interfaces. The argument will rage on I’m sure but it’s up to you what you feel like using. The tools are there it’s up to you if you want to use them.
+
+Learning More About The Visual Designer
+The PureBasic Visual Designer comes complete with an extensive helpfile which covers all the workings of the VD in a similar style to the IDE helpfile. To view it press ‘F1’ within the visual designer and the helpfile will load. I recommend reading through this helpfile fully at least once.
+
+The new version of the visual designer which is (shown in Fig.32) being currently developed, can be read about, and downloaded from the PureBasic visual designer website. There is an Internet link given for this in Appendix A (Useful Internet Links).

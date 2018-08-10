@@ -1,0 +1,614 @@
+11
+
+3D Graphics
+
+In this chapter I’m going to talk about 3D graphics and how PureBasic uses the OGRE engine to draw these to the screen. 3D graphics uses imaginary 3D models to create believable worlds that give the impression of width, height and depth, and the computer monitor is usually considered a window through which you can view these 3D worlds. This of course is a little inaccurate, while even I like to think that I’m viewing a 3D world through my monitor (especially when playing 3D games) I know for a fact that it’s sophisticated math routines drawing these imaginary 3D models on my computer’s monitor to give me the impression of three dimensions. Luckily, PureBasic takes care of all the mathematics that are needed to draw 3D graphics on screen by using the OGRE 3D engine. This allows you to call simple, high level commands that perform complicated 3D graphical effects. This makes programming 3D graphics in PureBasic quick, fun and very easy.
+
+This chapter, unfortunately, will not be an exhaustive text on programming 3D graphics using PureBasic as this would be a whole book in itself, but this chapter is really a primer to using the commands and a few solutions to common problems that beginners may face.
+
+An Overview Of The OGRE Engine
+
+To make it possible to draw three dimensional graphics on screen, as I said before, you have to use complicated math routines to calculate the model shapes, model textures, positions and lighting, etc. and this can be very time-consuming and very hard on the brain. Thankfully for users of PureBasic, the OGRE 3D engine is used to take care of all this tedious stuff so you can concentrate on coding your program. OGRE (Open source GRaphics Engine) is an open source realtime 3D rendering engine created and developed by Torus Knot Software Limited. This engine is provided freely on the Internet and available for anybody to use, free of charge, for any purpose.
+
+After looking at the source code of the OGRE engine, the lead developer of PureBasic, Frédéric Laboureur, decided that it was of such fantastic quality he incorporated it into PureBasic’s command set. The engine itself is included with PureBasic as a dynamic linked library (DLL) and PureBasic’s built-in 3D library is a wrapper to it. The only drawback with this, is that the OGRE engine has an application programming interface (API) that contains many hundreds of commands and PureBasic doesn’t support all of them. This is due to some incompatibilities with the language that OGRE was programmed in and the time it takes the PureBasic team to implement and test new commands. More commands may be added in future, as the PureBasic team has expressed an interest in increasing the OGRE command set available to PureBasic users, so I guess only time will tell. You can view the current OGRE command set in the helpfile under the ‘3D Games Libraries’ section (Helpfile:Reference Manual->3D Games Libraries). 
+
+The OGRE Mesh Format
+To use OGRE to manipulate and display 3D models in your program, you will need these models to be in a particular format. This is the OGRE ‘Mesh’ format and these model files will have the file extension of ‘*.mesh’.
+
+If you look on the OGRE website, in the downloads section, you will find many third party tools and plugins that provide extra functionality to leading 3D modeling packages. These tools enable these packages to save and export loaded and newly created models into the correct mesh format. In fact, it is probably a good idea to look here first before deciding which 3D modeling package to use for your mesh creation.
+
+<<Box 23>>
+
+OGRE Texture Formats
+Every model that is displayed using a 3D engine needs a texture. These textures are nothing more than images which are wrapped around models to provide a skin on which to draw detail. In fact some people do indeed refer to textures as ‘skins’. Sometimes models have more than one texture to provide a greater array of textures or to provide a more detailed finish.
+
+When using textures to provide skins for your 3D models, you must use the correct image format, otherwise the textures will not appear once your program is compiled. This is important to remember because most 3D modeling packages have the ability to load and use multiple types of image formats that aren’t supported by OGRE. The OGRE engine used by PureBasic uses Png, Tga or Jpg files. If you use these image formats as textures for your models, you know everything will work as expected.
+
+OGRE’s 3D Coordinate System
+When drawing and manipulating objects in 3D space you need a good coordinate system to track an object’s position in that space. OGRE uses a standard right handed ‘x, y, z’ coordinate system, but for those of you who don’t know what that is, let me explain. In a coordinate system like this, the three dimensions are assigned a different letter and this is where the ‘x, y, z’ comes from. Knowing which letter is assigned to what dimension is essential to use this system. Fig.39 shows the dimensions and what letter is assigned to them. This diagram also shows how three dimensional space can easily be divided and referred to using three values. If you imagine that an entire 3D scene is inside this invisible box, then any point within that scene can be described by a set of three ‘x, y, z’ values.
+
+<<Fig 39>>
+
+The coordinates themselves are pretty simple to understand, each dimension can be referred to using a positive or negative number and the OGRE engine enumerates these in a particular way. The box on the left in Fig.39 shows this using ‘+’ and ‘-’ characters. If you imagine the bottom left corner of your computer monitor as existing at 3D coordinates; ‘0, 0, 0’. The ‘x’ coordinate number will increase numerically the further to the right of your monitor you travel and the ‘y’ coordinate will increase numerically the further up the monitor screen you go. The ‘z’ coordinate is a little bit different, in that it increases in value the further away from the screen, towards you, that you travel. This is again demonstrated in the right hand box if you look at the numbers along the sides.
+
+Some people like to use the coordinates ‘0, 0, 0’ as the center of any given 3D space, and then coordinates that refer to other objects within that world can either be positive or negative depending on which way from the center, the point that you need to describe is. Hopefully this simple diagram should give you an understanding how ‘x, y, z’ coordinates are handled.
+
+OGRE API Identifiers
+While using PureBasic and OGRE to produce 3D visuals, you are effectively using the OGRE API (application programming interface) to handle things behind the scenes. PureBasic doesn’t expose any of this raw OGRE API to you, but instead wraps the API commands into much more friendly basic commands. On occasion however, you will still need to refer to some OGRE objects by their OGRE identifier. These identifiers are just Long type values and are very similar to OS identifiers which are also needed by an API (Win32 API). To get the OGRE identifiers of various objects you can use these PureBasic commands:
+
+‘MaterialID(#MATERIAL)’
+Returns the OGRE identifier of the material specified (as a PB number) in the parameter.
+
+‘MeshID(#MESH)’
+Returns the OGRE identifier of the mesh specified (as a PB number) in the parameter.
+
+‘TextureID(#TEXTURE)’
+Returns the OGRE identifier of the texture specified (as a PB number) in the parameter.
+
+A Gentle Beginning
+
+In the following example I’m going to show you how to initialize the 3D environment, load a 3D mesh, apply a texture to it and display it onscreen. To make things a little bit more exciting, I’ve made the model spin around and I’ve included a light, so the model doesn’t look too flat when being displayed.
+
+Enumeration
+	#MESH
+	#TEX
+	#MAT
+	#ENTITY_INVADER
+	#LIGHT
+	#CAMERA_ONE
+EndEnumeration
+
+;Set the width, height and bit depth of the screen
+;Abbreviated variables are used here due to page width constraints :(
+Global ScrW.l = 1024
+Global ScrH.l = 768
+Global ScrD.l = 32
+;Other global variables
+Global Quit.b = #False
+
+;Simple error checking procedure
+Procedure HandleError(Result.l, Text.s)
+	If Result = 0
+		MessageRequester("Error", Text, #PB_MessageRequester_Ok)
+		End
+	EndIf
+EndProcedure
+
+;Initialize environment
+HandleError(InitEngine3D(), "InitEngine3D() command failed.")
+HandleError(InitSprite(), "InitSprite() command failed.")
+HandleError(OpenScreen(ScrW, ScrH, ScrD, ""), "Could not open screen.")
+HandleError(InitKeyboard(), "InitKeyboard() command failed.")
+SetFrameRate(60)
+
+Add3DArchive("Data\", #PB_3DArchive_FileSystem)
+
+HandleError(LoadMesh(#MESH, "Invader.mesh"), "Can't load mesh")
+HandleError(LoadTexture(#TEX, "Invader.png"), "Can't load texture")
+HandleError(CreateMaterial(#MAT, TextureID(#TEX)), "Can't create Material")
+CreateEntity(#ENTITY_INVADER, MeshID(#MESH), MaterialID(#MAT))
+
+CreateLight(#LIGHT, RGB(255,255,255), 0, 5, 0)
+
+CreateCamera(#CAMERA_ONE, 0, 0, 100, 100)
+CameraLocate(#CAMERA_ONE, 0, 1, 2.5)
+RotateCamera(#CAMERA_ONE, -15, 0, 0)
+
+;Main loop
+Repeat
+
+	y.l + 2
+	RotateEntity(#ENTITY_INVADER, 0, y, 0)
+	
+	RenderWorld()
+	FlipBuffers()
+
+	ExamineKeyboard()
+	If KeyboardReleased(#PB_Key_Escape)
+		Quit = #True
+	EndIf
+
+Until Quit = #True
+End
+
+This example should be quite useful to you as it shows all the necessary steps you must perform to display a 3D model on the screen. As always, the code should be pretty easy to follow but I’ll go through the main points just so you don’t miss anything.
+
+Once the constants, variables and procedures have been declared, you will see I’ve used the ‘InitEngine3D()’ command to initialize the 3D environment. This command call is necessary to load the that contains the 3D engine from the compilers directory. This DLL file contains the OGRE engine in a pre-compiled form, which like this, can be used easily in your programs.
+
+Once the 3D environment has been initialized then a screen can be created in the normal manner. First initializing the sprite engine and then opening a screen. This has to be done in this order or a compiler error will occur and the IDE will start complaining. If this happens you may have to kill the program and rearrange the initializations into the correct order before running again.
+
+<<Box 24>>
+
+Create A 3D Archive To Contain Media
+After all the initializations are done we can start using the 3D commands and the very first thing we must do is specify a ‘3D Archive’. This is a path in which OGRE looks for external files when loading media such as models, textures, maps, etc. You must have at least one 3D archive specified in your 3D program or else the compiler will raise an error. To specify such an archive you must use the ‘Add3DArchive()’ command (Helpfile:Reference Manual->3D Games Libraries->Engine3D->Add3DArchive). This command takes two parameters, the first is a String specifying a file path and the second is a built-in constant that tells the compiler what sort of path it is. The built-in constants are:
+
+‘#PB_3DArchive_FileSystem’
+This tells the compiler that the path specified is a normal folder.
+
+‘#PB_3DArchive_Zip’
+This tells the compiler that the path specified is a compressed ZIP file.
+
+In my Invader example I’ve created a 3D archive using a relative path, this tells OGRE to look inside the same directory as my program and look inside the folder called ‘Data\’. Once specified like this, all required media must be in this folder. This, then allows the use of simple commands like:
+
+...
+LoadMesh(#MESH, "Invader.mesh")
+...
+
+When a command like this is encountered in our program that needs to load external media, OGRE will look inside all specified 3D archives for this file, in this case OGRE will look in the ‘Data\’ folder for the ‘Invader.mesh’ file.
+
+If you want to order your media into a more strict filing system and include further subdirectories in the ‘Data\’ folder, than you can do by all means. You will then have to load this media from their new locations like this:
+
+...
+LoadMesh(#MESH, "Meshes\Invader.mesh")
+LoadTexture(#TEX, "Textures\Invader.png")
+...
+
+Again this will search the original 3D archive (‘Data\’) for these folders (‘Meshes\’ and ‘Textures\’) and load the media from inside them. If this syntax looks a little clumsy, then instead of defining the folder names in the loading commands you could just as easily add further 3D archives for OGRE to look in when requesting media, like this:
+
+...
+Add3DArchive("Data\", #PB_3DArchive_FileSystem)
+Add3DArchive("Data\Meshes\", #PB_3DArchive_FileSystem)
+Add3DArchive("Data\Textures\", #PB_3DArchive_FileSystem)
+...
+
+Now we can use simpler loading commands like this:
+
+...
+LoadMesh(#MESH, "Invader.mesh")
+LoadTexture(#TEX, "Invader.png")
+...
+
+OGRE will now search the folders, ‘Data\’, ‘Data\Meshes\’ and ‘Data\Textures\’ for these files.
+
+You can also use ZIP files for 3D archives if you want. This can help a lot when distributing a program, because all of your media is enclosed within a single compressed file. If you wish to do this, you must specify that this 3D archive is a ZIP file when you create it. This is achieved using the ‘#PB_3DArchive_Zip’ built-in constant as the type parameter in the ‘Add3DArchive()’ command. If you have subdirectories within your ZIP file, you can access these in loading commands by using the standard format:
+
+...
+Add3DArchive("Data.zip", #PB_3DArchive_Zip)
+LoadMesh(#MESH, "Meshes\Invader.mesh")
+LoadTexture(#TEX, "Textures\Invader.png")
+...
+
+Creating A 3D Entity
+When you have created a 3D archive you are ready to create an object that’s able to use your media. This object is going to be displayed on screen and can be manipulated in three dimensions using various built-in commands. OGRE calls these 3D objects, ‘Entities’.
+
+An entity is an object which is a building block of any game or demo, they are the 3D models displayed on screen that use a mesh as a structure and a texture as a skin. Entities can be anything that is modeled in 3D, they can be game maps or the characters that populate them.
+
+<<Fig 40>>
+
+Knowing how to properly create these entities is essential to display any 3D model on the screen. Fig.40 shows the process of correctly creating a 3D entity and in what order the steps must be done. I have followed this flow diagram precisely in the previous Invader example. Here is what it looks like in code:
+
+...
+HandleError(LoadMesh(#MESH, "Invader.mesh"), "Can't load mesh")
+HandleError(LoadTexture(#TEX, "Invader.png"), "Can't load texture")
+HandleError(CreateMaterial(#MAT, TextureID(#TEX)), "Can't create Material")
+CreateEntity(#ENTITY_INVADER, MeshID(#MESH), MaterialID(#MAT))
+...
+
+The commands used to complete this process are simple. The first one is the ‘LoadMesh()’ command (Helpfile:Reference Manual->3D Games Libraries->Mesh->LoadMesh) which takes two parameters. The first is the PB number that will be associated to this mesh and the second is the actual mesh file to load from the 3D archive. The next command is ‘LoadTexture()’ (Helpfile:Reference Manual->3D Games Libraries->Texture->LoadTexture) which also takes two parameters. The first is the PB number associated to the newly loaded texture and the second is the name of the image to be used as this texture. When using images for textures, one thing to note is the image size in pixels. Older computer graphics cards can only support textures that are square and have an image size which is a power of ‘2’. For maximum compatibility with older cards, I suggest you use these sizes too. Fig.41 shows the standard texture image sizes you can use to create materials safely.
+
+<<Fig 41>>
+
+The next command doesn’t load anything, it merely creates a material. This material is a special OGRE format texture that can have many different properties. Because we are creating one from a texture this is the simplest form of material. I will talk about the more advanced materials a little later.
+
+To create a material you use the ‘CreateMaterial()’ command (Helpfile:Reference Manual->3D Games Libraries->Material->CreateMaterial) which takes two parameters. The first is the PB number that this material will be associated with, and the second is the OGRE identifier of a texture. This identifier can be returned by using the ‘TextureID()’ command, which uses a PB number of a texture as a parameter.
+
+Once we have the necessary ‘ingredients’ we can then create our entity. This is done using the ‘CreateEntity()’ command (Helpfile:Reference Manual->3D Games Libraries->Entity->CreateEntity), like this:
+
+...
+CreateEntity(#ENTITY_INVADER, MeshID(#MESH), MaterialID(#MAT))
+...
+
+As you can see from this line this command takes three parameters. The first is the PB number that this entity will be associated with. The second is the OS identifier of the mesh we want to make this entity out of, and the third is the OGRE identifier of the material that we want to cover the mesh with. These last two OGRE identifiers can be returned by using the ‘MeshID()’ and ‘MaterialID()’ command respectively. These two commands take a PB number as a parameter and return an OGRE identifier.
+
+Once a 3D entity has been created it then is queued, ready to be drawn onto the screen at the coordinates ‘0, 0, 0’ in three dimensional space. Until then we’ll carry on with our breakdown of the Invader example.
+
+Lighting The Way
+After the entity has been created, I’ve created a light to illuminate the scene better. This light provides a bright illumination source, that can be any color, to make this entity stand out better. When you create a 3D environment it already contains a default amount of ambient light but this light is not actually emitted from any one point, but instead as the name suggests it’s ambient. This can make the entity look flat because it can’t calculate which sides should shine and which sides should have shadow. When you add a light to a scene, you allow the entity to change it’s facial lighting to simulate shine and shade depending on where the light is located in relation to the mesh used. To create a light I’ve used the ‘CreateLight()’ command. (Helpfile:Reference Manual->3D Games Libraries->Light->CreateLight)
+
+...
+CreateLight(#LIGHT, RGB(255,255,255), 0, 5, 0)
+...
+
+This command takes five parameters, the first of which is the PB number that will be associated to this light. The second is the color of light that should be emitted which should be entered as a 24 bit color value (the ‘RGB()’ command can be used for this). The third, forth and fifth parameters are optional and specify the position of the light in 3D space using the ‘x, y, z’ coordinate system. If these parameters are not used, then the light is created at a position of ‘0, 0, 0’, which is the center of the 3D space. In the Invader example I’ve used the position of ‘0, 5, 0’, which elevates the light off the floor by ‘5’ units. See Fig.39 for a graphical representation of 3D space using the ‘x, y, z’ coordinate system.
+
+The Camera Is Rolling
+Now that the 3D elements are in place, we need to create a viewport through which to look at our 3D scene. OGRE calls these viewports, Cameras, but really we need to distinguish between the two to avoid confusion. A viewport is a 2D viewport that exists on the currently opened screen and displays what the 3D camera is looking at. Once a camera viewport is created it automatically creates a 3D camera positioned at coordinates ‘0, 0, 0’ and the newly created viewport displays what the 3D camera is looking at. The 3D camera can be positioned and rotated at will but the viewport is always locked in the same position on-screen.
+
+To create a camera viewport and automatically create a 3D camera in the current 3D world, you use the ‘CreateCamera()’ command. (Helpfile:Reference Manual->3D Games Libraries->Camera->CreateCamera) This command takes five parameters and as usual the first is the PB number that will be associated to this camera object. The second and third parameters are the ‘x’ and ‘y’ positions of the top left hand corner of the viewport on the 2D screen. The forth and fifth parameters are the width and height of the viewport through which the 3D scene is viewed. When using this command it is very important to understand the values it uses because they are very different to most PureBasic commands. The parameter values that the ‘CreateCamera()’ command uses are not in pixels, but in percentages of the currently opened screen. In the Invader example I create a camera like this:
+ 
+...
+CreateCamera(#CAMERA_ONE, 0, 0, 100, 100)
+...
+
+To understand this fully, let’s break down this command call on an individual parameter basis. The first parameter is the PB number which is easy enough to understand so we’ll skip quickly past this one. The second parameter has been defined as a ‘0’. This means that this will be calculated as zero percent of the screen width (‘1024’) which is ‘0’. The third parameter is defined as ‘0’ too. This is also a percentage but a percentage of the screen height (‘768’) so this also equates to ‘0’. The forth parameter has been defined as ‘100’. This equates to one hundred percent of the screen width, which in this case is ‘1024’. The fifth parameter is also defined as ‘100’, and this will equate to one hundred percent of the screen height, which is ‘768’. This gives us overall screen coordinates for this camera viewport as being ‘x=0, y=0, width=1024, height=768’, this completely covers the screen to give us a full screen camera viewport into the 3D world.
+
+Percentages are used for this command instead of pixels, so that camera viewport positions are completely independent of the screen size. This is an easy way to support camera positions across different screen resolutions. For example, if I create a camera viewport half of the screen width and height, this viewport will always be half of the screen width and height regardless of what screen resolution used.
+
+Multiple Camera Viewports
+Using percentages is also a good way of supporting multiple camera viewports. Imagine if you need to code a game in split or quad screen, you will need a good way to calculate the viewport size for each given screen resolution (if it’s user selectable). This is all done for you in PureBasic using percentages by always ensuring that each camera viewport always takes up the same screen space regardless of the screen resolution used. Also, when creating multiple cameras, the creation order is very important. All viewports created later in your code will always appear over the top of viewports created earlier. For example, look at this code:
+
+...
+CreateCamera(#CAMERA_ONE, 0, 0, 100, 100)
+CreateCamera(#CAMERA_ONE, 75, 0, 25, 25)
+...
+
+Here, I create one camera viewport taking up the full screen and another camera viewport over the top of it, in the top right hand corner. This smaller viewport would be positioned three quarters of the width of the screen across and it’s width and height would be a quarter of the current screen. If the smaller viewport was created first then it would be hidden by the bigger camera viewport.
+
+Each multiple camera created can also be independently moved and rotated in the 3D world to give users more views of your world on-screen. For example, you might use a second camera as a rear view mirror in a 3D first person driving game. This camera viewport could be positioned at the top of the 2D screen and have it’s 3D camera pointing towards the rear of the car.
+Moving And Rotating Cameras
+Once you have created a viewport you also automatically create a 3D camera which can rotate and move around at will in the 3D scene. You can move and position this 3D camera wherever, and whenever you want by using positional commands in the main loop. In my Invader example I’ve used two commands to fine tune the position of the camera, like this:
+
+...
+CameraLocate(#CAMERA_ONE, 0, 1, 2.5)
+RotateCamera(#CAMERA_ONE, -15, 0, 0)
+...
+
+The first command, ‘CameraLocate()’ moves the camera to an absolute position within the 3D scene and takes four parameters. The first parameter is the PB number of the camera you want to move, while the second, third and forth parameters are ‘x, y, z’ coordinates of where you would like to move it to. The second command used is ‘RotateCamera()’, this rotates the camera around a specified axis. This command also takes four parameters, with the first being the PB number of the camera you wish to rotate. The second, third and forth parameters are relative rotation angles along each of the ‘x, y, z’ axis.
+
+<<Fig 42>>
+
+If you look at Fig.42 you will see what axis refer to what type of rotation. For example, if I wanted my camera to twist from side to side then I would use rotation on the ‘y’ axis. When specifying numbers for the ‘x, y, z’ coordinates in any 3D rotation command, number can be negative as well as positive, this allow for the rotation to be reversed. If you look at the rotation arrows in Fig.42 these show the direction that the rotation will occur if positive numbers are used. If negative numbers are used then this rotation will be reversed. As a small example, if I wanted to twist my camera forty five degrees to the left I would enter ‘45’ for the ‘y’ rotation parameter. If I wanted to twist my camera forty five degrees to the right, I would use ‘-45’ for the ‘y’ rotation.
+
+All move and rotation commands can be used either inside or outside the main loop to rotate and move cameras or other entities. Using these commands outside the main loop is good for when you need to set up the position of static objects. Using these commands inside your main loop provides a way of moving and rotating your entities in realtime, often reacting to user input.
+
+All commands in PureBasic that use 3D rotations will use the same ‘x, y, z’ system. If you look inside the main loop of the Invader example, I have used the ‘RotateEntity()’ command (Helpfile:Reference Manual->3D Games Libraries->Entity->RotateEntity) to rotate the invader entity during runtime. Again, this command uses the same set of rotation axis as described in Fig.42. When using any command that uses 3D rotation, Fig.42 can provide a reference for what rotation might be needed.
+
+You can learn more about the commands available to use with OGRE cameras in the PureBasic helpfile. (Helpfile:Reference Manual->3D Games Libraries->Camera)
+
+Rendering The 3D World To The Screen
+When using the 3D commands to create a 3D world, unlike the 2D commands, your meshes, lights and particles, etc. aren’t drawn to the screen immediately. Instead they exist in memory, ready to be captured and drawn. Once everything is in place in your 3D scene, you must use the ‘RenderWorld()’ command (Helpfile:Reference Manual->3D Games Libraries->Engine3D->RenderWorld) to tell all currently existing 3D cameras to each take a snapshot of what they are pointing at. These snapshots are then drawn onto the backbuffer, scaled and positioned to the size and position of the related camera’s viewport. Then, once the ‘FlipBuffers()’ command is called, the backbuffer is flipped to the front and the 3D scene is drawn to the computer screen. You can see this in action in the Invader example. If you do not use the ‘RenderWorld()’ command, no 3D graphics will be drawn onto the back buffer. Hopefully this is the Invader example fully explained now, so you should be able to load and display models of your own using this example as a reference.
+
+A Simple First Person Camera
+
+After running the Invader example you are probably eager to write your own 3D program or even have a go at writing a game. The first thing I thought of when seeing the 3D capabilities of PureBasic is, I wonder if I could make a first person shooter game? I came up with this next piece of code as an example of how to code a first person camera within a 3D world. Granted, it’s not a full game, far from it, but it can be used as a learning example for beginners. This code will show you how to create a terrain and move the camera around using the cursor keys and mouse:
+
+Enumeration
+	#TEXTURE_GLOBAL
+	#TEXTURE_DETAIL
+	#MATERIAL_TERRAIN
+	#CAMERA_ONE
+EndEnumeration
+
+#MOVEMENT_SPEED = 1
+
+;Set the width, height and bit depth of the screen
+;Abbreviated variables are used here due to page width constraints :(
+Global ScrW.l = 1024
+Global ScrH.l = 768
+Global ScrD.l = 32
+
+;Other global variables
+Global Quit.b = #False
+Global MouseXRotation.f,MouseYRotation.f,KeyX.f,KeyZ.f,DesiredCameraHeight.f
+Global CurrentCamXPos.f = 545
+Global CurrentCamZPos.f = 280
+
+;Simple error checking procedure
+Procedure HandleError(Result.l, Text.s)
+	If Result = 0
+		MessageRequester("Error", Text, #PB_MessageRequester_Ok)
+		End
+	EndIf
+EndProcedure
+
+;Initialize environment
+HandleError(InitEngine3D(), "InitEngine3D() command failed.")
+HandleError(InitSprite(), "InitSprite() command failed.")
+HandleError(OpenScreen(ScrW, ScrH, ScrD, ""), "Could not open screen.")
+HandleError(InitMouse(), "InitMouse() command failed.")
+HandleError(InitKeyboard(), "InitKeyboard() command failed.")
+SetFrameRate(60)
+
+;Set 3D Archive
+Add3DArchive("Data\", #PB_3DArchive_FileSystem)
+
+;Create Terrain
+HandleError(LoadTexture(#TEXTURE_GLOBAL, "Global.png"), "Can't load texture")
+HandleError(LoadTexture(#TEXTURE_DETAIL, "Detail.png"), "Can't load texture")
+CreateMaterial(#MATERIAL_TERRAIN, TextureID(#TEXTURE_GLOBAL))
+AddMaterialLayer(#MATERIAL_TERRAIN,TextureID(#TEXTURE_DETAIL),#PB_Material_Add)
+CreateTerrain("Terrain.png", MaterialID(#MATERIAL_TERRAIN), 1, 2, 1)
+
+;Create Viewport and 3D Camera
+CreateCamera(#CAMERA_ONE, 0, 0, 100, 100)
+DesiredCameraHeight.f = TerrainHeight(CurrentCamXPos, CurrentCamZPos) + 10
+CameraLocate(#CAMERA_ONE,CurrentCamXPos,DesiredCameraHeight,CurrentCamZPos)
+
+;Main loop
+Repeat
+	
+	;Update Mouse
+	If ExamineMouse()
+		MouseYRotation = -MouseDeltaX() / 10
+		MouseXRotation = MouseDeltaY() / 10
+	EndIf
+	RotateCamera(#CAMERA_ONE, MouseXRotation, MouseYRotation, 0)
+	;Update Key Presses and position the Camera accordingly
+	If ExamineKeyboard()
+		If KeyboardPushed(#PB_Key_Left) : KeyX = -#MOVEMENT_SPEED : EndIf
+		If KeyboardPushed(#PB_Key_Right) : KeyX = #MOVEMENT_SPEED : EndIf
+		If KeyboardPushed(#PB_Key_Up) : KeyZ = -#MOVEMENT_SPEED : EndIf
+		If KeyboardPushed(#PB_Key_Down) : KeyZ = #MOVEMENT_SPEED : EndIf
+		MoveCamera(#CAMERA_ONE, KeyX, 0, KeyZ)
+		KeyX = 0
+		KeyZ = 0
+		CurrentCamXPos.f = CameraX(#CAMERA_ONE)
+		CurrentCamZPos.f = CameraZ(#CAMERA_ONE)
+		DesiredCameraHeight.f = TerrainHeight(CurrentCamXPos, CurrentCamZPos) + 10
+		CameraLocate(#CAMERA_ONE,CurrentCamXPos,DesiredCameraHeight,CurrentCamZPos)
+	EndIf
+
+	RenderWorld()
+	FlipBuffers()
+
+	If KeyboardReleased(#PB_Key_Escape)
+		Quit = #True
+	EndIf
+
+Until Quit = #True
+End
+
+This example is similar to the Invader example in that it sets up the 3D environment in the same way, so you should be familiar with this now. The main difference here in this example is that I’ve created a terrain to provide a floor on which to walk about on.
+
+Terrains
+To create a terrain you have to create a multi-layered material first, to be used as the terrain’s surface. To create a multi-layered material you need to create a normal material then apply another material layer to it. If you look at the FPS example you will see the following lines in the code:
+
+...
+HandleError(LoadTexture(#TEXTURE_GLOBAL, "Global.png"), "Can't load texture")
+HandleError(LoadTexture(#TEXTURE_DETAIL, "Detail.png"), "Can't load texture")
+...
+
+These two commands load in two Png format images as standard textures using the ‘LoadTexture()’ command. The first image, ‘Global.png’, is going to be the main material which is applied as a huge blanket that covers the new terrain’s surface. The second image, ‘Detail.png’, is a secondary texture that is blended with the first and is tiled across the terrain to provide more detail across it. To actually create the multi-layered material I’ve used these two commands:
+
+...
+CreateMaterial(#MATERIAL_TERRAIN, TextureID(#TEXTURE_GLOBAL))
+AddMaterialLayer(#MATERIAL_TERRAIN,TextureID(#TEXTURE_DETAIL),#PB_Material_Add)
+...
+
+The first line creates a standard, one layer material as explained in the Invader example. The second command loads another texture to add as a second layer to the previously created material. The ‘AddMaterialLayer()’ command (Helpfile:Reference Manual->3D Games Libraries->Material->AddMaterialLayer) takes three parameters. The first is the PB number of the material that you wish to add a layer to. The second is the OGRE identifier of the texture you wish to add as another layer. The third parameter is the blending mode of the new texture with the existing material. This blending mode can be defined as one of four built-in constants:
+
+‘#PB_Material_Add’
+Blends the new material layer with the existing one using an ‘Add’ operation.
+
+‘#PB_Material_Replace’
+Blends the new material layer with the existing one using a ‘Replace’ operation.
+
+‘#PB_Material_AlphaBlend’
+Blends the new material layer with the existing one using an ‘Add’ operation. This mode will also use any alpha channel information found in the texture. Only Png and Tga image format textures are supported.
+
+‘#PB_Material_Modulate’
+Blends the new material layer with the existing one using a ‘Modulate’ operation.
+
+Once you have created a multi-layered material then you are ready to create a terrain using the ‘CreateTerrain()’ command (Helpfile:Reference Manual->3D Games Libraries->Terrain->CreateTerrain). In the FPS example, I’ve created one like this:
+
+...
+CreateTerrain("Terrain.png", MaterialID(#MATERIAL_TERRAIN), 1, 2, 1)
+...
+
+The ‘CreateTerrain()’ command takes six parameters. The first parameter is the name of an image that will be used as a height map for the terrain. The second is an OGRE identifier of a multi-layered material to be used as the terrain surface. The third, forth and fifth are optional and can be used to scale the terrain on the ‘x’, ‘y’ or ‘z’ axis. These values are multiplication values, meaning that if a value of ‘1’ is used then the terrain will remain the same size on that axis. If a value of ‘2’ is used then that axis will be doubled, etc. The sixth and final parameter is an optional terrain quality value which ranges from ‘1’ to ‘20’. The lower, the value passed, the higher, the terrain render quality and higher the CPU usage to draw it. Higher values have the opposite effect.
+
+Terrain Height Map Details
+When using a height map image to create a terrain there are a few rules you must follow when creating the height map image. First this image must be square, as OGRE in PureBasic can only create square terrains (although you can scale them during creation). Secondly, the image must be saved in an 8 bit grayscale format to provide ‘256’ levels of gray. Pure black will be treated as a height of ‘0’ while full white will be treated as a height of ‘255’. Thirdly this image must be of a certain size because it will also define the number of triangles (polygons) used in the terrain’s mesh. The size of a height map image should be that of a normal texture size but plus one pixel on each dimension. This is to ensure that the terrain height is calculated correctly from the image. Fig.43 shows recommended sizes of height map images and how many triangles (polygons) will be used to generate that terrain’s mesh.
+
+<<Fig 43>>
+
+Looking at Fig.43 you can see how the triangle count goes up when a higher resolution height map image is used. A higher resolution height map can improve the rendering accuracy of the terrain to the height map but at the cost of slowing performance. Large height map resolutions, such as ‘1025 x 1025’ are not normally used because of the high polygon count of the newly created terrain.
+
+Terrains And Automatic ‘Level Of Detail’
+All terrains created in PureBasic using OGRE have automatic and dynamic levels of detail. This means that when a terrain is not shown through a camera or some terrain features hide others (such as hills) the hidden portions of the terrain are not drawn. Also when the camera has traveled a certain distance from a terrain feature, that feature will automatically lower its complexity, lowering the polygon count on screen to ease drawing a larger scene. This is easily demonstrated in the FPS example by focusing on any particular hill and moving backwards away from it and watching its structure. You will see the hill lower its complexity when being far away from the camera.
+
+First Person Perspective
+Once the terrain is created and the FPS example is running, I’ve used different commands to gather information from the mouse and keyboard and then positioned the camera accordingly. The mouse commands are:
+
+‘MouseDeltaX()’
+(Helpfile:Reference Manual->2D Games Libraries->Mouse-> MouseDeltaX)
+This command returns the number of pixels the mouse has moved on the ‘X’ screen axis (left to right) since the last iteration of the main loop.
+
+‘MouseDeltaY()’
+(Helpfile:Reference Manual->2D Games Libraries->Mouse-> MouseDeltaY)
+This command returns the number of pixels the mouse has moved on the ‘Y’ screen axis (up and down) since the last iteration of the main loop.
+These two returned values are then placed in the ‘x’ and ‘y’ parameters of the ‘RotateCamera()’ command to rotate the 3D camera by whatever value the mouse moves. Here is the actual code:
+
+...
+If ExamineMouse()
+	MouseYRotation = -MouseDeltaX() / 10
+	MouseXRotation = MouseDeltaY() / 10
+EndIf
+RotateCamera(#CAMERA_ONE, MouseXRotation, MouseYRotation, 0)
+...
+
+This creates our mouse controlled camera. Notice the minus sign in front of the ‘MouseDeltaX()’ command. This is there to invert the value returned by this command, because if you remember from earlier, you need positive values to turn left and negative values to turn right. The ‘MouseDeltaX()’ command returns these inverted due to it returning 2D screen coordinates instead of rotation angles.
+
+To move the camera around in the 3D world and to make it appear as if we are traveling over the terrain, I have used code like this:
+
+...
+If ExamineKeyboard()
+		If KeyboardPushed(#PB_Key_Left) : KeyX = -#MOVEMENT_SPEED : EndIf
+		If KeyboardPushed(#PB_Key_Right) : KeyX = #MOVEMENT_SPEED : EndIf
+		If KeyboardPushed(#PB_Key_Up) : KeyZ = -#MOVEMENT_SPEED : EndIf
+		If KeyboardPushed(#PB_Key_Down) : KeyZ = #MOVEMENT_SPEED : EndIf
+		MoveCamera(#CAMERA_ONE, KeyX, 0, KeyZ)
+		KeyX = 0
+		KeyZ = 0
+		CurrentCamXPos.f = CameraX(#CAMERA_ONE)
+		CurrentCamZPos.f = CameraZ(#CAMERA_ONE)
+		DesiredCameraHeight.f = TerrainHeight(CurrentCamXPos, CurrentCamZPos) + 10
+		CameraLocate(#CAMERA_ONE,CurrentCamXPos,DesiredCameraHeight,CurrentCamZPos)
+	EndIf
+...
+
+Here, I use the ‘KeyboardPushed()’ command to test wether or not a key is being held down. If it is I assign a value to the relevant variables, then use these as parameters in the ‘MoveCamera()’ command. This will move the camera throughout the 3D world but doesn’t take into consideration the height of the terrain.
+
+To move the camera up and down so it is always a set distance away from the terrain, I use the ‘CameraLocate()’ command. Because this command uses absolute values, I need to retrieve the current ‘x’ and ‘z’ coordinates of the camera so I can set these again when altering the ‘y’ value. To get the current camera coordinates I use the ‘CameraX()’ and ‘CameraZ()’ commands (Helpfile:Reference Manual->3D Games Libraries->Camera). These two command have only one parameter which is the PB number of a camera to get the values from. Once I have these values I need to find out what the terrain height is at these coordinates. To retrieve this I use the ‘TerrainHeight()’ command (Helpfile:Reference Manual->3D Games Libraries->Terrain->TerrainHeight). This command takes two parameters. These are the ‘x’ and ‘z’ coordinates of the point of the terrain we wish to know the height of. Once I have this value, I add ‘10’ to raise the camera off the ground slightly and now I have my three 3D coordinates needed for the ‘CameraLocate()’ command. During every main loop iteration a new ‘y’ coordinate is calculated to adjust the camera height when moving over the terrain.
+
+A Little More Advanced
+
+In this next section, I’ll talk about slightly more advanced features of OGRE and PureBasic. These features include particles and a material scripts. Particles are used in 3D engines for a variety of different things, mainly to produce visuals for random effects such as snow, rain, fire and smoke. I’ve used them in the following example to simulate fire. Material scripts are a way to encapsulate all material properties into one material script file, to make your PureBasic source code a lot cleaner and easier to read. Material scripts allow you to load a mesh containing a reference to a material and if that material appears in a script file, then the mesh uses that material negating the need to do anything further in your source code. This allows for ease of use and further customizability, because certain advanced material properties are only available by using scripts. In the following example, I’ve used a material script to specify that the loaded mesh uses sphere texture mapping, something that is otherwise unavailable. Here is the code:
+
+Enumeration
+	#MESH
+	#TEXTURE
+	#MATERIAL
+	#ENTITY
+	#CAMERA_ONE
+	#LIGHT_ONE
+	#LIGHT_TWO
+	#PARTICLE_ONE
+EndEnumeration
+
+;Set the width, height and bit depth of the screen
+;Abbreviated variables are used here due to page width constraints :(
+Global ScrW.l = 1024
+Global ScrH.l = 768
+Global ScrD.l = 32
+;Other global variables
+Global Quit.b = #False
+
+;Simple error checking procedure
+Procedure HandleError(Result.l, Text.s)
+	If Result = 0
+		MessageRequester("Error", Text, #PB_MessageRequester_Ok)
+		End
+	EndIf
+EndProcedure
+
+;Convert Degrees to Radians
+Procedure.f DegToRad(Angle.f)
+	ProcedureReturn Angle.f * #PI / 180
+EndProcedure
+
+;Initialize environment
+HandleError(InitEngine3D(), "InitEngine3D() command failed.")
+HandleError(InitSprite(), "InitSprite() command failed.")
+HandleError(OpenScreen(ScrW, ScrH, ScrD, ""), "Could not open screen.")
+HandleError(InitKeyboard(), "InitKeyboard() command failed.")
+SetFrameRate(60)
+
+Add3DArchive("Data\", #PB_3DArchive_FileSystem)
+Parse3DScripts()
+CreateEntity(#ENTITY, LoadMesh(#MESH, "Statue.mesh"), #PB_Material_None)
+
+LoadTexture(#TEXTURE, "Flame.png")
+	CreateMaterial(#MATERIAL, TextureID(#TEXTURE))
+	DisableMaterialLighting(#MATERIAL, 1)
+	MaterialBlendingMode(#MATERIAL, #PB_Material_Add)
+
+CreateParticleEmitter(#PARTICLE_ONE, 2, 2, 0,#PB_Particle_Point,12.9, 69, 15.7)
+	ParticleSize(#PARTICLE_ONE, 5, 5)
+	ParticleMaterial(#PARTICLE_ONE, MaterialID(#MATERIAL))
+	ParticleEmissionRate(#PARTICLE_ONE, 50)
+	ParticleTimeToLive(#PARTICLE_ONE, 0.25, 0.25)
+	ParticleColorRange(#PARTICLE_ONE, RGB(255, 0, 0), RGB(255, 200, 0))
+	ParticleVelocity(#PARTICLE_ONE, 1, 10)
+
+CreateLight(#LIGHT_ONE, RGB(255,255,255))
+CreateLight(#LIGHT_TWO, RGB(255, 200, 0), 12.9, 72, 15.7)
+CreateCamera(#CAMERA_ONE, 0, 0, 100, 100)
+
+;Main loop
+Repeat
+
+	Angle.f + 0.5
+	PosX.f = 75 * Sin(DegToRad(Angle))
+	PosY.f = (50 * Sin(DegToRad(Angle / 2))) + 65
+	PosZ.f = 75 * Cos(DegToRad(Angle))
+	LightLocate(#LIGHT_ONE, PosX, PosY + 100, PosZ)
+	LightColor(#LIGHT_TWO, RGB(255, Random(200), 0))
+	CameraLocate(#CAMERA_ONE, PosX, PosY, PosZ)
+	CameraLookAt(#CAMERA_ONE, 0, 60, 0)
+	RenderWorld()
+	FlipBuffers()
+
+	ExamineKeyboard()
+	If KeyboardReleased(#PB_Key_Escape)
+		Quit = #True
+	EndIf
+Until Quit = #True
+End
+
+This example should be straightforward as it follows the style of the last few 3D examples. First we initialize the environment, open a screen and specify a 3D archive. Once this is done, I use a new command, ‘Parse3DScripts()’. This command, when called, will look inside all specified 3D archives and read all script files that it finds in them. There are many types of OGRE script files, but at this moment in time, PureBasic only supports material scripts.
+
+Material Scripts
+Once the ‘Parse3DScripts()’ command is called, all material scripts are read and parsed from all specified 3D archives. This means that each script is read to see what material definitions it contains and then each material’s properties are read into memory. If a mesh is loaded later on which uses a material that has the same name as one specified in a material script, it will use the textures and properties as defined in the script. Used material names can be saved with the mesh when saving from a 3D modeling program. This allows you to specify the material when you are creating your mesh and then easily load it into a PureBasic 3D program, retaining all material properties.
+
+Material scripts can be written by hand using a simple text editor or they can be exported from some 3D modeling programs along with the mesh. The syntax of material scripts is described on the OGRE website which can be found in Appendix A (Useful Internet Links). Here is the material script that I used for the statue model in the Statue example, this script file is called ‘Statue.material’:
+
+material Statue
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture SphereMap.png
+				env_map spherical
+				filtering trilinear
+			}
+		}
+	}
+}
+
+This simple file describes the ‘Statue’ material, more precisely, it tells OGRE to use the image, ‘SphereMap.png’ as a texture, use spherical texture mapping and use trilinear filtering. To enable the Statue mesh to use this material, I specified it’s name in my 3D modeling program.
+
+If you look at the Statue example you can see I create an entity, fully textured using one line of code as opposed to the Invader example where I had to use multiple lines to load textures and create materials etc. This line is:
+
+...
+CreateEntity(#ENTITY, LoadMesh(#MESH, "Statue.mesh"), #PB_Material_None)
+...
+
+This loads the ‘Statue.mesh’ file and uses the material defined in the material script. Because we are using a material script to define the material, when using the ‘CreateEntity()’ command, the material ID parameter must be ‘#PB_Material_None’. This built-in constant ensures that this entity is not assigned a material, other than the one defined in the script.
+
+Particle Effects
+Creating particles can be quite a complicated affair, especially when so many effects can be produced by using them. Currently, PureBasic supports eighteen commands to customize particles in nearly every way imaginable.
+
+<<Box 25>>
+
+Particles, like meshs need a material assigned to them to display properly and I’ve created one in the Statue example using the ‘Flame.png’ image as a texture. This image will be used for every single particle that leaves the emitter. A particle emitter is a coordinate in 3D space that will be the point that all particles are emitted from. I’ve defined this in my example like this:
+
+...
+CreateParticleEmitter(#PARTICLE_ONE, 2, 2, 0,#PB_Particle_Point,12.9, 69, 15.7)
+...
+
+The ‘CreateParticleEmitter’ command (Helpfile:Reference Manual->3D Games Libraries->Particle->CreateParticleEmitter) takes eight parameters. The first, as usual is the PB number that will be associated to this particle emitter. The second, third and forth parameters are how far from the center point the particles are emitted along the ‘x’, ‘y’ and ‘z’ axis. The fifth is the particle mode. This can either be ‘#PB_Particle_Point’ or ‘#PB_Particle_Box’. Emitter points are usually used for fire and smoke, etc. when the particles emanate from a particular point, while emitter boxes are usually used for area effects such as rain or snow. The last three parameters are coordinates in the 3D world that define where this emitter will be placed. These last three are also optional and if not used the emitter will be placed at ‘0, 0, 0’. You can later move the emitter by using the ‘ParticleEmitterLocate()’ command.
+
+The other particle commands used in the Statue example are all to do with configuring the particle emitter to produce the desired effect. These other commands are:
+
+...	
+ParticleSize(#PARTICLE_ONE, 5, 5)
+ParticleMaterial(#PARTICLE_ONE, MaterialID(#MATERIAL))
+ParticleEmissionRate(#PARTICLE_ONE, 50)
+ParticleTimeToLive(#PARTICLE_ONE, 0.25, 0.25)
+ParticleColorRange(#PARTICLE_ONE, RGB(255, 0, 0), RGB(255, 200, 0))
+ParticleVelocity(#PARTICLE_ONE, 1, 10)
+...
+
+All these commands are self explanatory and are capable of producing thousands of different effects. They can all be read about in more detail in the PureBasic helpfile (Helpfile:Reference Manual->3D Games Libraries->Particle).
+
+Looking At A Particular Point
+In the Statue example I’ve used another new camera command which can very useful. This is the ‘CameraLookAt()’ command. (Helpfile:Reference Manual->3D Games Libraries->Camera) Using this, it is possible to angle the camera to look at any point in 3D space with one command. In my example I’ve used it like this:
+
+...
+CameraLookAt(#CAMERA_ONE, 0, 60, 0)
+...
+
+The first parameter is the PB number of the camera that you want to rotate. The second, third and forth are the ‘x, y, z’ coordinates that you want this camera to look at. In my example this makes the camera look directly at the center of the statue while the camera rotates around it.
+
+Dynamic Lighting
+In the Statue example I’ve also used a couple of lighting tricks to help enhance the scene. The first one is to have a white light always following the camera. This makes sure the statue mesh is always fully lit. The second lighting trick I’ve used is to have a flickering light positioned just above the particle emitter and have it change color on every iteration of the main loop. I do this by placing this command in the main loop:
+
+...
+LightColor(#LIGHT_TWO, RGB(255, Random(200), 0))
+...
+
+This command changes the specified light’s color whenever it is used. In the main loop of the Statue example, I randomize the green component of this light’s color between the values of ‘0’ to ‘200’. Because the light already has the red component set to ‘255’ and the blue component set to ‘0’ this means that this light will flicker from red to yellow. Once this program is running you can set the color flickering on the statue’s face.
+
+Using a few tricks like material scripts to build more complex materials and using particles to create cool effects will help lift your game or demo above the rest in terms of quality and style. I’ve only given you a brief demonstration of what is possible with these commands the rest is up to you. To learn more about these commands try coding your own 3D programs and experiment with a few settings, especially with the particle commands.
+
+What’s Next?
+
+Hopefully this has been a helpful, albeit brief chapter on programming 3D graphics using PureBasic. I hope that you have been inspired to learn more about what PureBasic can achieve using the OGRE engine. I would recommend reading through the entire ‘3D Games Libraries’ section in the PureBasic helpfile to understand fully what PureBasic has to offer. This chapter has not covered every command that is contained there because of space and time constraints, but hopefully I’ve given you a good primer on how to start, the rest now is up to you.
+
+Learning how to program 3D graphics can be quite tricky as sometimes it relies on complicated math routines and 3D modeling skills. The mathematics used in the examples in this chapter is quite elementary and is something which I think every college student will probably know. Saying that though, the one piece of advice I would give to all beginners of 3D programming is to learn your maths. There will be times when programming 3D graphics that you will be stopped dead in your tracks because your math ability has fallen behind your programming ability, so it’s best to be prepared.
+
+Take a look on the Internet, as there are hundreds of 3D math tutorials you can work through and a myriad of books you can read that cover this very topic in detail.

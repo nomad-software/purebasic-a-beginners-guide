@@ -1,0 +1,71 @@
+PureBasic - A Beginner’s Guide To Computer Programming
+by Gary Willoughby
+
+Copyright © 2006 Gary Willoughby
+This book and all included source materials such as diagrams, photos and PureBasic source code is distributed under the Creative Commons Attribution Non-Commercial Share Alike License. More details can be found here: http://creativecommons.org/about/licenses/
+
+PureBasic is a registered trademark of Fantaisie Software. PureBasic and all provided tools and components contained within the PureBasic package are Copyright © 2006 Fantaisie Software.
+
+Fantaisie Software
+10, rue de Lausanne
+67640 Fegersheim
+France
+www.purebasic.com
+
+
+Published 2006, by Aardvark Global Publishing.
+
+Editor
+Gary Willoughby
+
+Print History
+July 2006  -  First Edition
+
+
+Disclaimer
+While every precaution has been taken in the preparation of this book and the programs contained within it, the author and publisher assumes no responsibility whatsoever for errors, omissions, or for damages resulting from the use of the information or programs contained herein. The author or publisher shall not be liable if incidental or consequential damages occur in connection with, or arising from, the furnishings, performance, or use of the programs, associated instructions, and/or claims of productivity gains. All information contained herein is considered accurate at time of publication but because PureBasic is a language in a constant state of refinement and development, some information over time may be rendered out-of-date. For up to date news and information regarding PureBasic please refer to www.purebasic.com.
+
+Trademarks
+Trademarked names appear throughout this book. Rather than list the names and entities that own the trademarks or insert a trademark symbol with each mention of the trademarked name, the publisher states that it is using the names for editorial purposes only and to the benefit of the trademark owner, with no intention of infringing on that trademark.
+
+Dedication
+Dedicated to my girlfriend, Sara Jane Gostick and her dog ‘Stella’ for putting up with many lonely nights while I wrote this book and for the encouragement (and chicken dinners) she always gives me.
+
+
+
+Acknowledgments
+Thanks to Fred and the Purebasic team for the Purebasic language, keep up the good work, it rocks!
+Thanks to Paul Dixon for clarifying some of the details regarding binary encoding of floating point numbers.
+Thanks to Timo Harter for helping to choose what Purebasic data types would best substitute the Win32 API types, and for demonstrating how to retrieve different strings from memory via the different Win32 API String pointer types. 
+
+
+
+“With great power there must also come great responsibility!”
+--Ben Parker (Spiderman’s Uncle)
+
+
+
+Code examples contained in this book can be downloaded freely from
+www.pb-beginners.co.uk
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ISBN 1-4276-0428-2   19/7/2006

@@ -1,0 +1,5 @@
+Particle Scripts?
+
+Like material scripts, particle scripts are a way of encapsulating complicated properties under a simple name. Then, when you next create a particle emitter you can specify the particle property name and all the properties defined under that name are applied to the emitter. This makes testing and creating particle effects quicker and easier.
+
+At the moment, PureBasic does not support particle scripts but the OGRE engine does. When asked, the PureBasic team said that particle script support will be added to PureBasic in the near future. So maybe when you are reading this, PureBasic already has this support. For more information refer to the OGRE website and the online PureBasic forums, both addresses can be found in Appendix A (Useful Internet Links).

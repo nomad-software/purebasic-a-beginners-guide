@@ -1,0 +1,18 @@
+material Statue
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture SphereMap.png
+				env_map spherical
+				filtering trilinear
+			}
+
+		}
+
+	}
+
+}

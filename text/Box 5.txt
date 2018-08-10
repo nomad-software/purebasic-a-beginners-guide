@@ -1,0 +1,5 @@
+Manually Stopping Never Ending Loops
+
+Sometimes when you are using loops in your program you may run into the problem of unintended continuous loops. This can cause problems in your programs because these loops can stop everything else from working until they exit. One of the main headaches of unintended continuous loops is that programs containing them are notoriously difficult to quit.
+
+The PureBasic IDE makes this easy for you. If you need to stop the running program manually then just hit the ‘Kill Program’ button on the IDE toolbar, it’s the one that looks like a skull or use the menu command (Menu:Debugger->Kill Program). This not only ends the loop but also quits the whole program straight away.

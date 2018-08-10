@@ -1,0 +1,5 @@
+A Brief Overview of The Assembly Language
+
+Assembly language or simply Assembly, is a human-readable notation for the machine language that a specific computer architecture uses. Machine language, a pattern of bits encoding machine operations, is made readable by replacing the raw values with symbols called mnemonics. 
+
+Programming in machine code, by supplying the computer with the numbers of the operations it must perform can be quite a burden, because for every operation the corresponding number must be looked up or remembered. Therefore a set of mnemonics was devised. Each number was represented by an alphabetic code. For example, instead of entering the number corresponding to addition to add two numbers together you can enter ‘add’. Assembly is compiled using an Assembler.

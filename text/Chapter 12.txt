@@ -1,0 +1,505 @@
+12
+
+Sound
+
+At some point while programming, you may need sounds to be played by a program. It might be an audible chime that lets the user know that a task has finished or it might be a sound effect in a game. However you use sound, you will need to know how to load and playback particular sound files. This chapter explains how to load various different sound files and gives examples on how to play those sound files from within a program.
+
+Wave Files
+
+Wave files are one of the most common sound formats on personal computers, due to their creation by a join effort between Microsoft and IBM. Wave files, which usually have the file extension of ‘*.wav’, are the native sound format used by all PCs. Although this format has no native compression for the sound data, it’s still used for every day purposes.
+
+The following example loads a wave file called ‘Intro.wav’ and plays it:
+
+#SOUND_FILE = 1
+If InitSound()
+
+	LoadSound(#SOUND_FILE, "Intro.wav")
+	PlaySound(#SOUND_FILE)
+
+	StartTime.l = ElapsedMilliseconds()
+	Repeat
+		Delay(1)
+	Until ElapsedMilliseconds() > StartTime + 8000
+	End
+EndIf
+
+This example would probably not be used in a real program but it shows you the correct steps needed to play a wave file. First, we have to initialize the sound environment using the ‘InitSound()’ command. This correctly initializes all the hardware and software needed to play your file. If this returns true, we know that it has initialized properly and we can continue. There’s no point continuing with sound if the sound initialization fails, the computer probably doesn’t have a sound card installed.
+
+Once the initialization is done and checked we load the sound file using the ‘LoadSound()’ command (Helpfile:Reference Manual->2D Games Libraries->Sound->LoadSound). This loads the sound into memory ready for us to play it. The ‘LoadSound()’ command takes two parameters, the first is the PB number that you wish to be associated to this sound file and the second is a String containing the filename of the sound you wish to load.
+
+Once the wave file has been loaded you can play it at any time in your program by using the ‘PlaySound()’ command (Helpfile:Reference Manual->2D Games Libraries->Sound->PlaySound). This command takes one parameter, which is the PB number of the sound file you wish to play.
+
+If you take a closer look at the wave file example you will see I’ve used quite an elaborate loop on the end of the program. This is to stop this example program exiting too soon. When this program exits, all sound currently being played by it will stop and be unloaded from memory. I don’t want this to happen straight away, so I’ve coded this loop to give the program eight seconds to play the file and then exit. You will probably never see this on a real program because it will probably have a main loop to keep the program ‘alive’ while the sound is playing.
+
+Embedding Wave Files
+Sometimes in your programs you may not want to load external wave files, but have the files actually contained within your program so the whole thing can be distributed as one file. This can be done by embedding your wave file inside a ‘DataSection’, similar to embedding an image, as explained in Chapter 9 (Including Graphics In Your Program). There is one difference however, instead of using the ‘CatchImage()’ command to load the file from the ‘DataSection’ we use the ‘CatchSound()’ command instead, here is an example:
+
+#SOUND_FILE = 1
+If InitSound()
+
+	CatchSound(#SOUND_FILE, ?SoundFile)
+	PlaySound(#SOUND_FILE)
+
+	StartTime.l = ElapsedMilliseconds()
+	Repeat
+		Delay(1)
+	Until ElapsedMilliseconds() > StartTime + 8000
+	End
+EndIf
+
+DataSection
+	SoundFile:
+		IncludeBinary "Intro.wav"
+EndDataSection
+
+The sound file is embedded in the ‘DataSection’ by using the ‘IncludeBinary’ command in exactly the same way as an image, and the label, ‘SoundFile:’ marks the start of the file in memory. To load this sound from the ‘DataSection’ when the program is running, we use the ‘CatchSound()’ command (Helpfile:Reference Manual->2D Games Libraries->Sound->CatchSound). This command takes two parameters, the first is the PB number that will be associated to this sound and the second is the address in memory where this sound file should be loaded from. This address will be the label’s address because this marks where the sound file is in memory. To retrieve the address of any label we use a question mark in front of its name, like this: ‘?SoundFile’. Notice we don’t need the colon after the label name though. Once a wave file is ‘caught’ in this way, you can use it like you would any other wave file, in this case, I play the sound by using the ‘PlaySound()’ command again. Many wave files can be embedded like this in the same program, you just need to give all of them unique labels ready for ‘catching’.
+
+Altering Sounds In Realtime
+Using the sound commands in the PureBasic sound library, it’s possible to do some cool volume changes, sound pans and frequency shifts. Volume increases or decreases the loudness of the sound, panning means moving the sound from one speaker to another, usually to the left or right and changing the frequency will in effect speed up, or slow down the playback of a wave file while it is playing. To demonstrate these effects, I’ve created a small sound player program that uses realtime volume, panning and frequency controls. Try it for yourself, open it up, load a wave file, press play and slide the trackbars about.
+
+Enumeration
+	#WINDOW_ROOT
+	#SOUND_FILE
+	#TEXT_FILE
+	#BUTTON_CHOOSE_FILE
+	#TEXT_VOLUME
+	#TRACKBAR_VOLUME
+	#TEXT_PAN
+	#TRACKBAR_PAN
+	#TEXT_FREQUENCY
+	#TRACKBAR_FREQUENCY
+	#BUTTON_PLAY_FILE
+	#BUTTON_STOP_FILE
+EndEnumeration
+
+Global FileName.s = ""
+
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+If OpenWindow(#WINDOW_ROOT, 0, 0, 500, 250, "Sound Player", #FLAGS)
+	If CreateGadgetList(WindowID(#WINDOW_ROOT))
+		TextGadget(#TEXT_FILE, 10, 10, 480, 20, "", #PB_Text_Border)
+		ButtonGadget(#BUTTON_CHOOSE_FILE, 10, 40, 150, 20, "Choose Wave File...")
+		
+		TextGadget(#TEXT_VOLUME, 10, 70, 480, 20, "Volume")
+		TrackBarGadget(#TRACKBAR_VOLUME, 10, 90, 480, 20, 0, 100)
+		SetGadgetState(#TRACKBAR_VOLUME, 100)
+		
+		TextGadget(#TEXT_PAN, 10, 120, 480, 20, "Pan")
+		TrackBarGadget(#TRACKBAR_PAN, 10, 140, 480, 20, 0, 200)
+		SetGadgetState(#TRACKBAR_PAN, 100)
+
+		TextGadget(#TEXT_FREQUENCY, 10, 170, 480, 20, "Frequency")
+		TrackBarGadget(#TRACKBAR_FREQUENCY, 10, 190, 480, 20, 100, 10000)
+		SetGadgetState(#TRACKBAR_FREQUENCY, 4400)
+
+		ButtonGadget(#BUTTON_PLAY_FILE, 10, 220, 100, 20, "Play File")
+		ButtonGadget(#BUTTON_STOP_FILE, 130, 220, 100, 20, "Stop Sound")
+		
+		If InitSound()
+			Repeat
+				Event.l = WaitWindowEvent()
+				Select Event
+					Case #PB_Event_Gadget
+					
+						Select EventGadget()
+							Case #BUTTON_CHOOSE_FILE
+								FileName=OpenFileRequester("Choose","","Wave File (*.wav)|*.wav",0)
+								If filename <> ""
+									SetGadgetText(#TEXT_FILE, GetFilePart(FileName))
+									LoadSound(#SOUND_FILE, filename)
+								EndIf
+								
+							Case #TRACKBAR_VOLUME
+								If filename <> ""
+									SoundVolume(#SOUND_FILE, GetGadgetState(#TRACKBAR_VOLUME))
+								EndIf
+
+							Case #TRACKBAR_PAN
+								If filename <> ""
+									SoundPan(#SOUND_FILE, GetGadgetState(#TRACKBAR_PAN) - 100)
+								EndIf
+			
+							Case #TRACKBAR_FREQUENCY
+								If filename <> ""
+									SoundFrequency(#SOUND_FILE,GetGadgetState(#TRACKBAR_FREQUENCY) * 10)
+								EndIf
+			
+							Case #BUTTON_PLAY_FILE
+								If filename <> ""
+									PlaySound(#SOUND_FILE)
+								EndIf
+			
+							Case #BUTTON_STOP_FILE
+								If filename <> ""
+									StopSound(#SOUND_FILE)
+								EndIf
+						EndSelect
+			
+				EndSelect
+			Until Event = #PB_Event_CloseWindow
+		EndIf
+	EndIf
+EndIf
+End
+
+This example introduces three new sound commands:
+
+‘SoundVolume()’
+This command is used to control the ‘loudness’ of the loaded sound. It doesn’t change the original sound file in any way, it merely changes the volume of the sound when it’s played back. To use this command you must pass it two parameters, the first is the PB number of the sound you wish to change and the second is the volume level you wish to change it to. The volume level is a number between ‘0’ and ‘100’. With ‘0’ being silent and ‘100’ being the loudest setting.
+
+‘SoundPan()’
+This command pans the sound to and from the left and right channel. To use this command you need to pass two parameters. The first is the PB number of the sound you wish to pan and the second parameter is the pan value. This pan value is a number which ranges from ‘-100’ to ‘100’. If you use a value of ‘-100’, then the sound is fully panned to the left. If you use a value of ‘100’, then the sound is fully panned to the right.
+
+‘SoundFrequency()’
+This command changes the frequency of the sound to be played. The frequency of a sound file is measured in Hertz and is explained as the number of times a particular waveform is read per second. For example, all music stored on a compact disc is sampled at a rate of 44.1kHz (kilohertz). This means that the waveform containing the sound information on a CD is read forty four thousand, one hundred times a second. This makes sure that there is necessary resolution within the waveform to encode even the slightest variation of sound. If a sound is encoded at 44.1kHz and you use this command to change its frequency to 22,050Hz, then once this sound is played back, it will play back at half the speed of the original. To use this command in PureBasic to change the frequency of a loaded sound, you pass it two parameters. The first is the PB number of the sound you want to alter and the second is a number that expresses the new frequency in Hertz. This second parameter must be between ‘1000’ to ‘100000’.
+
+To learn more about the commands that manipulate wave files, see the sound library in the PureBasic helpfile (Helpfile:Reference Manual->2D Games Libraries->Sound).
+
+Module Files
+
+These types of files use formats that represents music using digital patterns. Internally, they store several patterned pages of music data in a form similar to that of a spreadsheet. These patterns contain note numbers, instrument numbers, and controller messages which tell the program reading the file when to play notes, using what samples and for how long. Module files also hold a list which defines the order in which to play the patterns. The number of notes that can be played simultaneously depends on how many tracks there are per pattern. Early programs which were available allowed users to create their own modules using four tracks. The biggest advantage of modules over standard sound files is that modules include their own audio samples and should sound the same from one player to another.
+
+Module files are often called tracker modules, and the art of composing modules is known as tracking, simply because the first ever program that allowed users to create modules was called ‘Soundtracker’. This program, although originally poorly received, was eventually released into the public domain and was cloned many times, sporting better features and different names such as ‘Noisetracker’ or ‘Protracker’, these became extremely popular especially with Commodore Amiga game and demo creators. Programs that can create module files are today collectively known as trackers.
+
+Module files can have many different file extensions because they come in many different formats, these extensions usually reveal the file’s creator program. Module file types which are supported by PureBasic are:
+
+	FastTracker (‘*.xm’)
+	Scream Tracker (‘*.s3m’)
+	Protracker (‘*.mod’)
+	Impulse Tracker (‘*.it’)
+
+These different types of modules are treated in the same way when loading and playing in your PureBasic program. Here is an example showing how to load and play any of the above types of module:
+
+#MODULE_FILE = 1
+
+If InitSound()
+	If InitModule()
+
+		LoadModule(#MODULE_FILE, "Eighth.mod")
+		PlayModule(#MODULE_FILE)
+
+		StartTime.l = ElapsedMilliseconds()
+		Repeat
+			Delay(1)
+		Until ElapsedMilliseconds() > StartTime + 15000
+
+		StopModule(#MODULE_FILE)
+
+		End
+	EndIf
+EndIf
+
+First, we need to initialize the sound environment just like the wave file example by using the ‘InitSound()’ command. Next, we need to initialize the module playing capabilities of PureBasic by using the ‘InitModule()’ command. Both of these commands should be tested to ensure that both are initialized correctly. Once the environment is set up we can load a module by using the ‘LoadModule()’ command (Helpfile:Reference Manual->2D Games Libraries->Module->LoadModule). This command takes two parameters, the first is the PB number that you wish to be associated with this module and the second is the filename of the module to be loaded.
+
+Once it’s loaded we can play this module at any time using the ‘PlayModule()’ command (Helpfile:Reference Manual->2D Games Libraries->Module->PlayModule). Just like the ‘PlaySound()’ command, this one takes one parameter, which is the PB number of the module you want to play. To stop the module from playing you can use the ‘StopModule()’ command.
+
+The Downsides Of Using Modules
+There are two big downsides of using modules in your PureBasic programs. The first is that there is no easy way to embed and load from memory any modules that need to be played. This means that you have to distribute all the used module files along with your executable. There are however, ways of storing the module in your executable, and then writing it to disk before loading and playing it, but this is a little bit cumbersome. The second downside is that you have to distribute the ‘Midas11.dll’ file along with your program. This dynamic linked library is loaded by the command; ‘InitModule()’ and will error if it doesn’t find it. You may think that this isn’t too bad but the license connected to using this ‘Midas’ library forbids the use of it for any commercial purposes. This license also prevents the ‘Midas11.dll’ file being included within the PureBasic package, so you have to download it for yourself from the ‘Housemarque Audio System’ website, which can be found in Appendix A (Useful Internet Links).
+
+To learn about other commands that can be used to manipulate module files, see the module library in the PureBasic helpfile (Helpfile:Reference Manual->2D Games Libraries->Module).
+
+Mp3’s
+
+MP3 files are quickly becoming the most popular sound file format of all time, largely due to the fact that the MP3 file format is the de-facto standard for nearly all downloadable music on the Internet. MP3 is an anacronym that stands for ‘MPEG-1 Audio Layer 3’ which is quite a mouthful, so you will probably understand why it was shortened.
+
+MP3 files are handled a little bit differently in PureBasic and in order to play them we must use the commands from the ‘Movie’ library (Helpfile:Reference Manual->General Libraries->Movie). It may seem a little odd using the movie commands to play mp3 files but the movie commands are capable of much more than just playing movies. The ‘Movie’ library provides a convenient way to load and play nearly all media that has a codec installed on the host computer. Not only can you play movie formats using these commands, but you can also play audio file formats.
+
+Here is a list of the more popular file formats that the ‘Movie’ library is able to play as long as the required plugins and/or codecs are installed first. You may even be able to play more formats than what is shown on this list:
+
+Movie Files:
+	Audio Video Interleave (‘*.avi’)
+	MPEG Video (‘*.mpg’)
+
+Audio Files:
+	Midi Files (‘*.mid’)
+	MP3 Files (‘*.mp3’)
+	Ogg Vorbis (‘*.ogg’)
+	Wave Files (‘*.wav’)
+
+The ‘Movie’ library may seem like a ‘one stop shop’ for all your media playing needs and some people have even asked for it to be renamed to the ‘Media’ library, but the one thing to remember is that if something loads and plays on your computer, it might not load and play on another person’s computer. This is because there might be different plugins and/or codecs installed, (or not) on other machines. However, saying this, the list above seems to be pretty standard on most machines, but don’t quote me on that.
+
+In this next example I’ve used the movie commands to create a simple MP3 player and provide simple volume and pan controls. It may not rival WinAmp but it gives you an idea of how easy media players are to create in PureBasic.
+
+Enumeration
+	#WINDOW_ROOT
+	#SOUND_FILE
+	#TEXT_FILE
+	#BUTTON_CHOOSE_FILE
+	#TEXT_VOLUME
+	#TRACKBAR_VOLUME
+	#TEXT_PAN
+	#TRACKBAR_PAN
+	#BUTTON_PLAY_FILE
+	#BUTTON_PAUSE_FILE
+	#BUTTON_STOP_FILE
+EndEnumeration
+
+Global FileName.s = ""
+Global FilePaused.b = #False
+
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+If OpenWindow(#WINDOW_ROOT, 0, 0, 500, 215, "MP3 Player", #FLAGS)
+	If CreateGadgetList(WindowID(#WINDOW_ROOT))
+		TextGadget(#TEXT_FILE, 10, 10, 480, 20, "", #PB_Text_Border)
+		ButtonGadget(#BUTTON_CHOOSE_FILE, 10, 40, 150, 20, "Choose MP3 File...")
+		TextGadget(#TEXT_VOLUME, 10, 70, 480, 20, "Volume")
+		TrackBarGadget(#TRACKBAR_VOLUME, 10, 90, 480, 20, 0, 100)
+		SetGadgetState(#TRACKBAR_VOLUME, 100)
+		TextGadget(#TEXT_PAN, 10, 120, 480, 20, "Pan")
+		TrackBarGadget(#TRACKBAR_PAN, 10, 140, 480, 20, 0, 200)
+		SetGadgetState(#TRACKBAR_PAN, 100)
+		ButtonGadget(#BUTTON_PLAY_FILE, 10, 180, 100, 20, "Play")
+		ButtonGadget(#BUTTON_PAUSE_FILE, 130, 180, 100, 20, "Pause")
+		ButtonGadget(#BUTTON_STOP_FILE, 250, 180, 100, 20, "Stop")
+		
+		If InitMovie()
+			Repeat
+				Event.l = WaitWindowEvent()
+				Select Event
+					Case #PB_Event_Gadget
+					
+						Select EventGadget()
+							Case #BUTTON_CHOOSE_FILE
+								FileName=OpenFileRequester("Choose","","MP3 File (*.mp3)|*.mp3",0)
+								If filename <> ""
+									SetGadgetText(#TEXT_FILE, GetFilePart(FileName))
+									LoadMovie(#SOUND_FILE, filename)
+								EndIf
+								
+							Case #TRACKBAR_VOLUME, #TRACKBAR_PAN
+								If filename <> ""
+									Volume.l = GetGadgetState(#TRACKBAR_VOLUME)
+									Balance.l = GetGadgetState(#TRACKBAR_PAN) - 100
+									MovieAudio(#SOUND_FILE, Volume, Balance)
+								EndIf
+			
+							Case #BUTTON_PLAY_FILE
+								If filename <> ""
+									PlayMovie(#SOUND_FILE, #Null)
+									FilePaused = #False
+									SetGadgetText(#BUTTON_PAUSE_FILE, "Pause")
+								EndIf
+								
+							Case #BUTTON_PAUSE_FILE
+								If filename <> ""
+									If FilePaused = #False
+										PauseMovie(#SOUND_FILE)
+										FilePaused = #True
+										SetGadgetText(#BUTTON_PAUSE_FILE, "Resume")
+									Else
+										ResumeMovie(#SOUND_FILE)
+										FilePaused = #False
+										SetGadgetText(#BUTTON_PAUSE_FILE, "Pause")
+									EndIf
+								EndIf
+			
+							Case #BUTTON_STOP_FILE
+								If filename <> ""
+									StopMovie(#SOUND_FILE)
+									FilePaused = #False
+									SetGadgetText(#BUTTON_PAUSE_FILE, "Pause")
+								EndIf
+						EndSelect
+			
+				EndSelect
+			Until Event = #PB_Event_CloseWindow
+		EndIf
+	EndIf
+EndIf
+End
+
+Looking at this small example, you can see that to use the movie commands, you must initialize the environment properly just like wave files and modules. To initialize the movie commands you use the ‘InitMovie()’ command. After this has been called you are free to use the other ‘Movie’ library commands. As with other initialization commands it must be tested and if it fails, you won’t be able to continue using the movie commands.
+
+To load a movie (or in this case a MP3 file) we use the ‘LoadMovie()’ command (Helpfile:Reference Manual->General Libraries->Movie->LoadMovie). This command takes two parameters. The first one is the PB number that you want associated to the media about to be loaded and the second parameter is a String containing the filename of the actual media to load.
+
+Once the media has been loaded we can play it back using the ‘PlayMovie()’ command (Helpfile:Reference Manual->General Libraries->Movie->PlayMovie). This command takes two parameters to be able to support movies as well as audio media. The first parameter is the PB number of the media you want to play, while the second parameter is an OS identifier of a window. This OS identifier is required if you are playing back a movie because this window is where the movie display will be rendered. If you are playing back a file that only consists of audio data (such as a MP3) then you can use the built-in constant ‘#Null’ as an OS identifier, this doesn’t then associate any window to the playback of the file:
+
+...
+PlayMovie(#SOUND_FILE, #Null)
+...
+
+Also in the example I’ve used the ‘PauseMovie()’ and ‘ResumeMovie()’ commands, these are simple to use, they both take one parameter which is the PB number of the media you want to pause or resume.
+
+To enable you to stop the playback of your files, I’ve also used the ‘StopMovie()’ command in this example. Again, this is a simple one to use, as you only need to pass it one parameter. This is the PB number of the media you wish to stop playing.
+
+Even though this is a skeleton of a media player and it only supports MP3’s, it would be a trivial task to convert this code to make your own media player capable of handling all of the formats listed above. Why don’t you try?
+
+CD Audio
+
+Playing an audio CD is a good way to provide high quality music for any game or application that would need music. There are many free tools available on the Internet, for composing and burning your music onto a CD. Using CD’s to provide music is a great idea because playing them requires very little system resources and the quality is fantastic. Here is an example which uses the PureBasic  ‘AudioCD’ library, to create a very simple CD player:
+
+Enumeration
+	#WINDOW_ROOT
+	#BUTTON_PREVIOUS
+	#BUTTON_PLAY
+	#BUTTON_STOP
+	#BUTTON_NEXT
+	#BUTTON_EJECT
+	#TEXT_STATUS
+	#PROGRESS_SONG
+	#LIST_TRACKS
+EndEnumeration
+
+;Global variables, etc.
+Global NumberOfTracks.l
+Global CurrentTrack.l
+
+;Convert seconds into a String containing minutes
+Procedure.s ConvertToMin(Seconds.l)
+	ProcedureReturn Str(Seconds / 60) + ":" + Str(Seconds % 60)
+EndProcedure
+
+;Set the current track
+Procedure UpdateStatusText(Track.l)
+	If NumberOfTracks > 0
+		TrackLength.l = AudioCDTrackLength(Track)
+		TrackLengthString.s = ConvertToMin(TrackLength)
+		TrackTimings.s = " (" + TrackLengthString + ")"
+		SetGadgetText(#TEXT_STATUS, "Track: " + Str(Track) + TrackTimings)
+		SetGadgetState(#PROGRESS_SONG, 0)
+		If AudioCDStatus() > 0
+			TimeElapsed.l = AudioCDTrackSeconds()
+			TrackTimings.s=" ("+ConvertToMin(TimeElapsed)+" / "+TrackLengthString+")"
+			SetGadgetText(#TEXT_STATUS, "Track: " + Str(Track) + TrackTimings)
+			Progress.f = (100 / TrackLength) * TimeElapsed
+			SetGadgetState(#PROGRESS_SONG, Progress)
+		EndIf
+		SetGadgetState(#LIST_TRACKS, Track - 1)
+	Else
+		SetGadgetText(#TEXT_STATUS, "Please insert an Audio CD")
+	EndIf
+EndProcedure
+
+;Move to next track
+Procedure NextTrack()
+	If CurrentTrack < NumberOfTracks
+		CurrentTrack + 1
+		UpdateStatusText(CurrentTrack)
+		If AudioCDStatus() > 0
+			PlayAudioCD(CurrentTrack, NumberOfTracks)
+		EndIf
+	EndIf
+EndProcedure
+
+;Move to previous track
+Procedure PreviousTrack()
+	If CurrentTrack > 1
+		CurrentTrack - 1
+		UpdateStatusText(CurrentTrack)
+		If AudioCDStatus() > 0
+			PlayAudioCD(CurrentTrack, NumberOfTracks)
+		EndIf
+	EndIf
+EndProcedure
+
+;Populate the list to show all tracks on a disc
+Procedure PopulateTrackListing()
+	ClearGadgetItemList(#LIST_TRACKS)
+	NumberOfTracks = AudioCDTracks()
+	If NumberOfTracks > 0
+		For x.l = 1 To NumberOfTracks
+			TrackLength.s = ConvertToMin(AudioCDTrackLength(x))
+			AddGadgetItem(#LIST_TRACKS, -1, "Track "+Str(x)+" ("+TrackLength+")")
+		Next x
+		If CurrentTrack = 0
+			CurrentTrack = 1
+		EndIf
+	Else
+		CurrentTrack = 0
+	EndIf
+EndProcedure
+
+#FLAGS = #PB_Window_SystemMenu | #PB_Window_ScreenCentered
+If OpenWindow(#WINDOW_ROOT, 0, 0, 320, 250, "CD Player", #FLAGS)
+	If CreateGadgetList(WindowID(#WINDOW_ROOT))
+		ButtonGadget(#BUTTON_PREVIOUS, 10, 10, 60, 20, "Previous")
+		ButtonGadget(#BUTTON_PLAY, 70, 10, 60, 20, "Play")
+		ButtonGadget(#BUTTON_STOP, 130, 10, 60, 20, "Stop")
+		ButtonGadget(#BUTTON_NEXT, 190, 10, 60, 20, "Next")
+		ButtonGadget(#BUTTON_EJECT, 250, 10, 60, 20, "Eject")
+		TextGadget(#TEXT_STATUS, 10, 40, 300, 20, "", #PB_Text_Center)
+		ProgressBarGadget(#PROGRESS_SONG,10,65,300,10,0,100,#PB_ProgressBar_Smooth)
+		ListViewGadget(#LIST_TRACKS, 10, 90, 300, 150)		
+
+		If InitAudioCD()
+			PopulateTrackListing()
+			
+			StartTime.l = ElapsedMilliseconds()
+		
+			Repeat
+				Event.l = WindowEvent()
+				Select Event
+					Case #PB_Event_Gadget
+						Select EventGadget()
+							Case #BUTTON_PREVIOUS
+								PreviousTrack()
+							Case #BUTTON_PLAY
+								If NumberOfTracks > 0
+									PlayAudioCD(CurrentTrack, NumberOfTracks)
+								EndIf
+							Case #BUTTON_STOP
+								StopAudioCD()
+							Case #BUTTON_NEXT
+								NextTrack()
+							Case #BUTTON_EJECT
+								EjectAudioCD(#True)
+								PopulateTrackListing()
+							Case #LIST_TRACKS
+								If EventType() = #PB_EventType_LeftDoubleClick
+									CurrentTrack = GetGadgetState(#LIST_TRACKS) + 1
+									UpdateStatusText(CurrentTrack)
+									PlayAudioCD(CurrentTrack, NumberOfTracks)
+								EndIf
+						EndSelect
+				EndSelect
+				
+				CurrentTime.l = ElapsedMilliseconds()
+				If CurrentTime > StartTime + 1000
+					PopulateTrackListing()
+					UpdateStatusText(CurrentTrack)
+					StartTime.l = ElapsedMilliseconds()
+				EndIf
+				Delay(1)
+				
+			Until Event = #PB_Event_CloseWindow
+			StopAudioCD()
+		EndIf
+	EndIf
+EndIf
+End
+
+This example is an extremely simple CD player which provides the bare minimum of functionality to control and play CD’s. All the ‘AudioCD’ library commands that have been used can be read about in more detail in the PureBasic helpfile (Helpfile:Reference Manual->General Libraries->AudioCD).
+To use the ‘AudioCD’ commands you first have to initialize the resources needed to be able to play CD’s. To do this we use the ‘InitAudioCD()’ command. This command must be tested to determine if it was successful or not. As a byproduct, the return value of this command is the number of CD drives connected to the computer and of which are available for use to play music. If the return value is ‘0’ then the computer either doesn’t have a CD drive installed or another problem has been encountered which prevents the CD drive from playing music. As long as the return value is above ‘0’ then all should be well.
+
+Once the CD audio has been initialized, you are then free to use all of the other commands available in the ‘AudioCD’ library.
+
+Here is a list of the ones I’ve used in my CD player example:
+
+‘PlayAudioCD()’
+This command is used to play a track on the current CD which is inserted into your drive. This command takes two parameters. The first is the track to start playing from and the second is the track to stop playing once the end has been reached. So for example, If I called the command like this:
+
+PlayAudioCD(1, 3)
+
+Track ‘1’ would start playing, then continue afterwards to the next track. The play back would then stop after track ‘3’ had finished.
+
+‘StopAudioCD()’
+This command can be used at any time to stop the playback of any track currently playing on the CD.
+
+‘EjectAudioCD()’
+This command will either open or close the tray on the CD drive depending on what parameter is passed to it. This command only takes one parameter and if that parameter is ‘1’ the drive tray will be opened, effectively stopping playback and ejecting the CD. If the parameter is ‘0’ the drive tray is closed, effectively loading any CD that is placed in it.
+
+‘AudioCDStatus()’
+This command doesn’t have any parameters but returns a result that gives us a realtime status of the CD in the drive. If you call this command and it returns ‘-1’ then the drive is not ready, meaning that the drive either contains no CD or that the drive tray is currently open. If this command returns the value ‘0’ then a CD has been detected correctly and is in the drive but the CD is not playing. If this command returns a value which is above ‘0’ then the CD drive is playing a CD track. The number which was actually returned, is the track number which is being played back.
+
+‘AudioCDTracks()’
+This command doesn’t take any parameters and when called, returns the number of tracks on a loaded CD that are available to be played back.
+
+‘AudioCDTrackLength()’
+This command requires one parameter and that is a track number from a loaded CD. With this information, this command will return that track’s length in seconds.
+
+‘AudioCDTrackSeconds()’
+This command doesn’t take any parameters. When called, it will return the amount of time elapsed in seconds that the current track has been playing for.
+
+If you look closer at my CD player example, I’ve also used the command; ‘WindowEvent()’ instead of ‘WaitWindowEvent()’. This means that the main loop will always be running regardless of if an event is detected or not. I needed this particular program to do this because I use a timed procedure call in the main loop to update the status text in the CD player’s graphical user interface. If I didn’t use this command, the status text would only be updated if an event was detected, which could be sometime. 
+
+‘WindowEvent()’ and ‘WaitWindowEvent()’ are covered in more detail in Chapter 9 (Understanding Events).

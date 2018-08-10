@@ -1,0 +1,3 @@
+A Note About Using The Word ‘Point’
+
+In this introduction and explanation of Linked Lists I’ve used the word ‘point’ a lot. When I’m using it here it must not be confused with the computer science term ‘point’ or ‘pointers’. The computer science term means to point to a particular area in memory or in the case of a ‘pointer’, a variable that holds a memory address. When I use it here, especially when I say the Linked List name points to the current element, I use it in a descriptive sense and not literally pointing to the area in memory that this element uses. For a further explanation of pointers (in the computer science sense) refer to Chapter 13 (Pointers).

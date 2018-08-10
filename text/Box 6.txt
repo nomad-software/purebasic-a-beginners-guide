@@ -1,0 +1,3 @@
+The ‘SizeOf()’ Command
+
+This command returns the size of any structure or defined variable in Bytes. It does not work with arrays, linked lists or interfaces. This command is invaluable for Windows programming as some Win32 API functions need the size of a particular structure or variable as a parameter. Read more about the Windows Application Programming Interface (Win32 API) later in Chapter 13.

@@ -1,0 +1,17 @@
+Differences Between Graphical And Non Graphical Console Modes
+
+Using the ‘EnableGraphicalConsole()’ command you can switch between text mode and graphical mode of the current console. Here are the differences for each mode:
+
+Text Mode (Default):
+ASCII control characters work correctly (ASCII range ‘0’ to ‘31’).
+Output redirection using Pipes works correctly (Essential for CGI programs).
+Long Strings of printed text wrap onto a new line if they reach the end of the console window.
+You can read and write data to the console that is not necessarily text based.
+
+Graphical Mode (Changed using ‘EnableGraphicalConsole(#True)’):
+Text characters outside the ACSII range ‘33’ to ‘126’ are displayed as small simple graphics.
+Long Strings of printed text are truncated if they reach the end of the console window.
+‘ClearConsole()’ clears the entire console of any output.
+‘ConsoleLocate()’ Moves the cursor to be able to print text in any position in the console window.
+
+This list contains some advanced topics you might not be familiar with right now but I have included this list here to be used a future reference when you are more comfortable with these things.

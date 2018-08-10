@@ -1,0 +1,11 @@
+II
+
+Graphical User Interfaces
+
+In this next section I’m going to talk about Graphical User Interfaces and how they are created in PureBasic. Nearly all modern operating systems have a built-in graphical user interface available, allowing the user to interact fluidly with programs that choose to use it. The operating system exposes the user interface to programs through an Application Programming Interface (or API) through which a program can tell the operating system how draw its user interface. This sounds extremely complicated but is simply and elegantly handled within PureBasic using the ‘Window’, ‘Menu’ and ‘Gadget’ libraries.
+
+PureBasic creates these graphical interfaces for your programs using the native application programming interface of the system they've been compiled for. In other words, when you code an interface for a program and compile it on a particular system, that program will have the correct look and feel of the operating system it has been compiled for. This is essential for all professional application development.
+
+This section begins with explaining and demonstrating programs that use a console as their user interface, which is arguably the simplest user interface of all. Later, I move on to explain how to create programs with native user interfaces and how to add menus and graphics. In the last section I give you and overview of the PureBasic Visual Form Designer. Using this tool you can design an interface visually as if you were painting it upon a program.
+
+After reading this section you should have a firm grasp on how to create graphical user interfaces for your programs and understand how to handle interaction from the user.

@@ -1,0 +1,84 @@
+
+Preface
+
+About this Book
+
+This book provides a quick introduction to the PureBasic programming language. PureBasic’s popularity has increased significantly in the past few years, being used for many purposes such as rapid software prototyping, creation of commercial applications and games, Internet CGI applications, while some people just use it for small utilities. This book has been written, with the complete novice in mind. We all need to start somewhere and I believe PureBasic is a fantastic first leap into the programming world. With PureBasic becoming more and more widely used, many people are starting out and finding they need the occasional push in the right direction or need an explanation of a certain feature or oddity. This book is to guide novices through their first steps and to give the seasoned programmer a quick overview of the language.
+
+
+This Book’s Scope
+
+Although this book covers the essentials of the PureBasic language, I’ve kept this book’s scope quite narrow to make sure it’s not information overload for new users. Sometimes this text will refer to concepts and syntax in a simplistic way to be used as a stepping stone to more advanced texts or as a complement to the existing PureBasic helpfile.
+
+For example I won’t talk much about how easy it is to use DirectX or OpenGL directly in PureBasic, otherwise this book would be triple in size and although topics such as pointers, threads and the Win32 API is talked about later in this book, don’t expect too many fancy examples as I’ve only given an overview to such advanced topics.
+
+PureBasic raises the bar to not only what a Basic language should be but also what all languages should be. Clean, uncluttered syntax, small compiled executable files and a fantastically active community of programmers. Hopefully this book will give you a clear understanding of the core features of PureBasic and the design goals and philosophies behind its creation and hopefully make you want to learn more.
+
+Despite this books limited scope, I think you will find this a great first book on PureBasic which will also give you a solid grounding on programming in general if you were to migrate to other languages. You will learn everything you need to start writing useful standalone programs. By the time you’ve finished this book, you will have learned not only the essentials of the language itself, but also how to apply that knowledge to day-to-day tasks. You will also be better equipped to tackle more advanced topics as they come your way.
+
+
+This Book’s Structure
+
+Much of this book is designed to introduce you to PureBasic as quickly as possible and is organized by presenting the major language features a section at a time. Each chapter is fairly self contained but later chapters, especially the more advanced ones, use ideas introduced earlier. For example, when we get to graphical user interfaces and graphics, I’ll assume you now understand procedures and structures.
+
+Part I: The Core Language
+This part of the book is a straightforward bottom-up explanation of the major language features, such as types, procedures, structures and so on. Most of the examples given are not really very useful as standalone programs but are there to demonstrate and explain the current topic.
+
+Chapter 1, Getting Started
+He we start with a quick introduction to PureBasic and the history behind the language. An overview on how to run a PureBasic program from the IDE and what the debugger is for.
+
+Chapter 2, Data Types
+In this chapter I start by listing and explaining all the available built-in data types, such as Strings, number types and constants. Usage guidelines are given for all the built-in data types as well as information on memory usage and where applicable, numerical limits.
+
+Chapter 3, Operators
+Here I explain the basic means to actually assign values to variables and explain what operators are needed for calculating data. A full explanation is given for all operators along with diagrams and examples. The ‘Debug’ command is also introduced here as it is one of the most useful commands in the PureBasic language and its importance should be learned early on.
+
+Chapter 4, Conditional Statements And Loops
+In this chapter I explain how PureBasic handles boolean values, the ‘If’ and ‘Select’ statements are introduced and loops are explained and demonstrated. Examples and full explanations are given.
+
+Chapter 5, Other Data Structures
+This chapter reveals how to create and use other methods for storing and organizing data, such as user defined structures, arrays and linked lists. Full explanations and examples are also given.
+
+
+Chapter 6, Procedures And Subroutines
+Procedures and Subroutines are an essential part of programming in any language as they can be used to execute sections of code (along with variable parameters in the case of procedures) from any part of the running program. This makes programming easier as the entire program can then be broken down into easily manageable sections and this modular code can then be reused time and time again.
+
+Chapter 7, Using Built-In Commands
+This chapter demonstrates some of the most widely used built-in commands. It’s not a complete reference or guide to every single command of every library but it will give you a good grounding on how and when to use the built-in libraries. An explanation is given on Handles and IDs, both of which are simple to understand but sometimes easily confused.
+
+Chapter 8, Good Programming Style
+This chapter gives you a guide on good programming practices for use throughout this book and provides an overview on simple error handling. When programming in any language, errors are always a problem, be it a simple typo or a bug in the language itself. This chapter also deals with ways in which you can be more conscious of not introducing errors and how and why you should test for errors in your program and how to react if one is found.
+
+Part II: Graphical User Interfaces
+Nearly every program nowadays has a user interface of some description and here I will show you how to create one. Building on ideas and examples of creating a console application, you will eventually learn how to construct window based applications along with standard controls (gadgets) such as menus, buttons and graphics.
+
+Chapter 9, Creating User Interfaces
+Here I show you how you can built your own user interfaces. Starting off by explaining and demonstrating console applications and then moving on to creating native window based interfaces. Events are also described and examples are given on how to react when an event is detected within your interface. The bundled visual form designer is also given an overview here.
+
+Part III: Graphics And Sound
+Graphics and sound have an important role in nearly every computer system today. This section deals with playing sounds and ways of displaying graphics on the screen and the manipulation of these graphics, be it in 2D or 3D.
+
+Chapter 10, 2D Graphics
+This chapter introduces two dimensional graphics such as lines and shapes and how they are drawn on the screen. It also deals with sprites (images that can be displayed and manipulated) and an explanation of screens and double buffering is also given.
+
+Chapter 11, 3D Graphics
+The three dimensional graphics in PureBasic are provided by the OGRE engine. An overview and a few examples are given to demonstrate what is possible with this engine. The OGRE engine is still undergoing development and is still being integrated fully into PureBasic, but some nice things are still possible.
+
+Chapter 12, Sound
+This chapter covers how to use sound within PureBasic and covers how to load and play familiar sound formats.
+
+Part IV: Advanced Topics
+The last section deals with things which a novice would find very advanced. The topics contained here are not necessary to understand to write fully functioning useful programs but they can achieve some things that ordinary methods cannot. This section is to wet your appetite for knowledge to improve your understanding of PureBasic and programming in general.
+
+Chapter 13, Beyond The Basics
+Here the topics covered are advanced memory management using pointers. Compiler directives are explained and a how-to guide is written for DLL creation. There is also a section on the Windows Application Programming Interface.
+
+Part V: Appendices
+This is the final section of this book and it ends with appendices that direct the reader to useful pages on the Internet, provides helpful charts and includes a comprehensive glossary of words and terms.
+
+
+Prerequisites
+
+I hope that you know how to use a computer, there won’t be much talk on how to use a mouse or what an icon is, but this book assumes you are a complete novice to computer programming, not only with PureBasic, but in general.
+
+All you will need to start programming today is a little bit of time and a copy of PureBasic, available from www.purebasic.com

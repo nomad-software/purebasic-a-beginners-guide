@@ -1,0 +1,5 @@
+Using The Keyboard?
+
+In these examples I’ve used a few keyboard commands to initialize the keyboard and detect keypresses, etc. These can all be found in the ‘Keyboard’ library helpfile page (Helpfile:Reference Manual->General Libraries->Keyboard). This is a very small and easy to use library of commands, so you should be able to pick them up pretty easily.
+
+The ‘InitKeyboard()’ command initializes the keyboard and should be called before any other keyboard command. The ‘ExamineKeyboard()’ command examines the current state of the keyboard to see if any keys are being held down, etc. The ‘KeyboardReleased()’ and ‘KeyboardPushed()’ commands return true if a given key is either released or pushed respectively. These keys can be assigned using built-in constants, of which there is a full list on the helpfile page of each command.

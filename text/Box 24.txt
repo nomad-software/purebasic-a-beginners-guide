@@ -1,0 +1,14 @@
+Including OGRE With Your 3D Program
+
+When you create a 3D program using PureBasic and want to share it with other people, be it commercially or as a freeware program, you must remember to distribute the OGRE 3D engine with it.
+
+PureBasic uses OGRE as a compiled DLL to provide all the 3D functions in a compact and portable way. When you compile your program, the OGRE commands are not embedded into your program like regular built-in PureBasic commands. Instead, all OGRE commands are called from a DLL dynamically. This means that the DLL file must always accompany your executable file in order for it to run correctly.
+
+This is done automatically while developing, because when you hit ‘F5’ from within the IDE to compile and run your program, a temporary executable file in created in the ‘\Compilers’ directory, which is exactly where the OGRE engine is installed. This ensures that testing the 3D commands is always as easy as possible. However, once you compile to an executable file elsewhere, the engine needs to be copied along with it.
+
+The two files that you must distribute with your 3D program for it to initialize and work properly, are:
+
+‘Engine3D.dll’
+‘stlport_vc646.dll’
+
+Both of these files are found in the ‘\Compilers’ directory, within your PureBasic folder. These files must be loose (not in another folder) and must be in the same folder as your program’s executable file.

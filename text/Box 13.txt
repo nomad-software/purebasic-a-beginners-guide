@@ -1,0 +1,3 @@
+The File Access Pointer
+
+Within each opened file there exists an invisible file access pointer. This imaginary position is where you will read from or write to in an open file. When using the ‘ReadFile()’, ‘OpenFile()’ or ‘CreateFile()’ commands the access pointer starts at the beginning of the file ready for the next operation. Once you start reading or writing, the file access pointer starts moving. If you are writing to the file then the access pointer will progress through it, moving to just after the value last written, ready for the next. If you are reading from a file then the access pointer will move after each read operation to the end of the last value read until the end of the file is encountered, and the ‘Eof()’ command returns true.

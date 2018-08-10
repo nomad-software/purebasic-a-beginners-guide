@@ -1,0 +1,3 @@
+The IDE Quick Help
+
+As you are entering built-in library commands into the editor pane, the status bar at the bottom of the editor will show you the completed command along with an example of what parameters (if any) are expected. This can be a very handy reference when you are speed coding (maybe after too much coffee) and searching the helpfile is too much hassle. Built-in Library commands are explained further in Chapter 7.

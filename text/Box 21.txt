@@ -1,0 +1,5 @@
+What Is A Sprite?
+
+Sprites were originally special hardware accelerated images that were used to create composited 2D graphics for computer games. As processing power of computers increased through the years, the special hardware that was used to move and draw these images quickly was no longer needed. However, even today, the name still remains in use to describe 2D images that are drawn on screen to create games and the like.
+
+Today a sprite can be described as a small graphic (usually containing a transparent background) that can be positioned and drawn independently on a screen to simulate animation or to provide static graphics.

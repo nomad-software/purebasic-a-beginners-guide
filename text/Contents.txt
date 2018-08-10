@@ -1,0 +1,120 @@
+Table of Contents
+
+Preface	ix
+
+I.	The Core Language	1
+
+1.	Getting Started	3
+	The History Of PureBasic	3
+	The Development Philosophy Of PureBasic	5
+	A First Look At The IDE	6
+	How To Run PureBasic Programs	7
+	The Debugger	8
+	A Note On Program Structure	8
+	Introducing The PureBasic Help File	9
+
+2.	Data Types	10               
+	Built-In Data Types	10
+	Numbers	10
+	Strings	12
+	Variables And Constants	12
+
+3.	Operators	18               
+	An Introduction To Operators	18
+	Operator Precedence	33
+	Expression Notes	34
+
+4.	Conditional Statements And Loops	37
+	Boolean Logic	37
+	The ‘If’ Statement	38
+	The ‘Select’ Statement	41
+	Loops	43
+
+5.	Other Data Structures	49               
+	Structures	49
+	Arrays	52
+	Linked Lists	62
+	Sorting Arrays And Linked Lists	67
+
+6.	Procedures And  Subroutines	71
+	Why Use Procedures Or Subroutines?	71
+	Subroutines	71
+	Procedure Basics	74
+	Program Scope 	76
+	The ‘Global’ Keyword	78
+	The ‘Protected’ Keyword	79
+	The ‘Shared’ Keyword	80
+	The ‘Static’ Keyword	82
+	Passing Variables To Procedures	83
+	Passing Arrays To Procedures	86
+	Passing Linked Lists To Procedures	88
+	Returning A Value From Procedures	91
+
+7.	Using Built-In Commands	93
+	Using The PureBasic Helpfile	93
+	PB Numbers And OS Identifiers	95
+	Examples Of Common Commands	98
+	Handling Files	104
+	Read The Helpfile	110
+
+8.	Good Programming Style	111
+	Why Bother Formatting Code	111
+	The Value Of Comments	112
+	My Coding Format	113
+	Golden Rules For Writing Easily Readable Code	116
+	How To Minimize And Handle Errors	117
+
+II	Graphical User Interfaces	129
+
+9.	Creating User Interfaces	131
+	Console Programs	131
+	Creating Native User Interfaces	137
+	Understanding Events	139
+	Adding Gadgets	140	
+	Adding A Menu	148
+	Menu Keyboard Shortcuts	153
+	Including Graphics In Your Program	156
+	A First Look At The New Visual Designer	162
+
+III	Graphics And Sound	165
+
+10.	2D Graphics	167
+	2D Drawing Commands	167
+	Saving Images	179	
+	Introducing Screens	181
+	Sprites	192
+
+11.	3D Graphics	203
+	An Overview Of The OGRE Engine	203
+	A Gentle Beginning	206
+	A Simple First Person Camera	215
+	A Little More Advanced	221
+	What’s Next?	226
+
+12.	Sound	227
+	Wave Files	227
+	Module Files	231	
+	Mp3’s	233
+	CD Audio	237 
+
+IV	Advanced Topics	243
+
+13.	Beyond The Basics	245
+	Compiler Directives And Functions	245
+	Advanced Compiler Options	252
+	Parsing Command Line Parameters	259
+	A Closer Look At Numeric Data Types	262
+	Pointers	269
+	Threads	279
+	Dynamic Link Libraries	287	
+	The Windows Application Programming Interface	293
+
+V	Appendices	303
+
+	A.  Useful Internet Links	305
+
+	B.  Helpful Charts	307
+
+	C.  Glossary	317
+
+Index	332

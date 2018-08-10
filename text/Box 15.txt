@@ -1,0 +1,7 @@
+‘OnErrorGoto’ And ‘OnErrorGosub’
+
+These two commands are very similar in that they let you specify a place to jump to if an error occurs so you can handle and describe the error. The main difference between these two commands is wether or not the error handler lets you return back to the normal program flow.
+
+The ‘OnErrorGoto()’ command lets you specify a label that you can jump to when an error occurs but you can’t return from it. Meaning that once an error is handled the program must quit immediately.
+
+The ‘OnErrorGosub()’ command lets you specify a label or a procedure to use as an error handler, giving you the ability to return from these with the appropriate keyword. This means you have the option of resuming normal program execution after an error has been handled.

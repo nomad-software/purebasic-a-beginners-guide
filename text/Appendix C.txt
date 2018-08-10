@@ -1,0 +1,425 @@
+C
+
+Glossary
+
+This glossary is a list of words and terms that you might come into contact with while programming. In this appendix I’ve attempted to be as comprehensive and concise as possible in describing the meaning of these words and terms to make your life a little easier when you come across something your not familiar with.
+
+3D Engine
+A 3D engine is an environment explicitly programmed to provide a construct in which to realize 3D graphics. A 3D engine can be explained as a layer of abstraction to allow artists or developers quickly put together 3D graphics using simplified methods rather than programming all the low level stuff themselves. For example, a 3D engine might provide a 'LoadModel()' command to load a 3D model and display it, making things easier for the user. 3D engines are sometimes provided with other helpful features such as collision detection and physics modeling.
+
+Absolute
+Can relate to a value or a path. An absolute value is a value that stands on it's own and is not relative to another. An absolute path is one that specifies a path in it's entirety. For example, all Internet addresses are absolute paths, as shown in the address bar of an Internet browser. Absolute paths are used so there is no ambiguity as to where a particular file or folder exists.
+
+ActiveX
+A Microsoft specification for reusable software components. ActiveX is based on COM which specifies how components interact and interoperate. ActiveX controls can add further functionality to an application by incorporating further pre-made modules within its interface. Modules can be interchanged but still appear as parts of the original software. On the Internet, ActiveX controls can be included in webpages and downloaded by an ActiveX-compliant browser. ActiveX controls can provide functionality for webpages making them perform task like any other program launched from a server. ActiveX controls can have full system access! In most instances this access is entirely legitimate, but history has shown that this access has been exploited by malicious ActiveX applications.
+
+Algorithm
+An explicit step by step procedure for producing a solution to a given problem.
+
+Alpha Channel
+In an image, a portion of each pixel's data that is reserved for transparency information. Some 32-bit image formats contain four channels, three eight bit channels for red, green, and blue and one eight bit alpha channel. The alpha channel is a mask. It specifies how much of the pixel's color should be merged with another pixel when the two are overlaid, one on top of the other.
+
+Anti-virus Software
+Software that scans a computer's memory and disk drives for viruses. If it finds a virus, the application informs the user and may clean, delete or quarantine any files, directories or disks affected by the malicious code.
+
+API (Application Programming Interface)
+A set of functions that an application uses to request and carry out lower level services performed by a computer's operating system or third party program command library. Simply, an API is any interface that enables one program to use facilities provided by another. The Microsoft Win32 API is probably the most famous of all the different API's.
+
+Applet
+Any miniature application transported over the Internet, especially as an enhancement to a webpage.
+
+Array
+A simple data structure for holding equally sized data elements, generally of the same data type. Individual elements are accessed via an index using a consecutive range of integers. Some arrays are multi-dimensional, meaning they are indexed by a fixed number of integers. Generally speaking, one and two dimensional arrays are the most common.
+
+ASCII (American Standard Code For Information Interchange)
+A character encoding scheme that assigns numerical values to characters such as letters, numbers, punctuation, and other symbols. ASCII allows only 7 bits per character (for a total of 128 characters). The first 32 characters are unprintable control characters (line feed, form feed, etc.) used for controlling hardware devices. Extended ASCII adds an additional 128 characters that vary between computers, programs and fonts. Computers use these extended characters for accented letters, graphical characters or other special symbols.
+
+ASCII Art
+Drawings created using the characters from a standard ASCII character set. Mono-spaced fonts are usually used to make sure each character uses the same space as any other within the drawing.
+
+ASM (Assembly Language)
+A human readable notation for machine code that a specific computer architecture uses. This Machine code is made readable by replacing the raw numeric values with symbols called mnemonics.
+
+Assembler
+A computer program for translating assembly language into object code.
+
+Attributes
+Characteristics assigned to all files and directories. Attributes include: Read Only, Archive, Hidden or System.
+
+Back Door
+A feature programmers often build into programs to allow special privileges normally denied to regular users of the program. Often programmers build back doors so they can fix bugs. If hackers or others learn about a back door, the feature may pose a security risk.
+
+Background Task
+A program executed by the system that generally remains invisible to the user. The system usually assigns background tasks a lower priority on CPU usage than foreground tasks. Often malicious software is executed by a system as a background task so the user does not realize unwanted actions are occurring, e.g. viruses, spyware, etc.
+
+Backup
+A duplicate copy of data made for archiving purposes or for protecting against damage or loss of the original.
+
+Batch files
+Text files containing one MS-DOS command on each line of the file. When run, each line executes in sequential order. One example of this is the Microsoft Windows file 'AUTOEXEC.BAT' which is executed when the computer is booted up.These files have the extension '*.bat'.
+
+Binary
+Refers to the base-two number system. This system contains only two numbers, 0 and 1.
+
+BIOS (Basic Input/Output System)
+A basic operating system that identifies a set of programs needed to initialize and start the computer before locating the operating system boot disk. The BIOS is located in the ROM area of a motherboard and is usually configurable.
+
+BIT (Binary Digit)
+The smallest unit of information a computer can use. A bit is represented as a '0' or '1'.
+
+Bit Depth
+The number of bits used to describe the color of a single pixel in any given digital image or computer display is called it’s bit depth. Common bit depths are 1 bit, 8 bit, 16 bit, 24 bit, and 32 bit.
+
+Boot
+To start (cold boot) or reset (warm boot) the computer so it is ready to run programs for the user. Booting the computer executes various programs to check and prepare the computer for use.
+
+Bug
+An unintentional fault in a program that causes actions neither the user nor the program author intended.
+
+Byte
+A group of eight bits (binary digits). Also the name of an integer that can be expressed using these eight bits.
+
+Cache
+A memory area where frequently accessed data can be temporarily stored for rapid access.
+
+CGI (Common Gateway Interface)
+A standard for the exchange of information between a Web server and computer programs that are external to it. The external programs can be written in any programming language that is supported by the operating system on which the Web server is running. CGI is not a programming language in itself.
+
+Checksum
+An identifying number calculated from file characteristics. The slightest change in a file changes its checksum.
+
+Child
+A window (or object) that is based on or enclosed within another window (or object).
+
+Class
+An OOP template that can be instantiated to create objects with common definitions, properties, methods, operations, and behavior.
+
+Client
+A computer system or piece of software that accesses a remote service provided by another computer using some kind of network. A web browser is a client of a web server.
+
+Code
+A slang term for Source Code.
+
+Coding
+A slang term for computer programming.
+
+Compile Time
+The time when a compiler compiles code written in a programming language into an executable form.
+
+Compiler
+A software development tool that translates high level language program source codes into machine code instructions (object code) that a particular computer architecture can understand and execute.
+
+Constant
+A named item that retains a constant value throughout the execution of a program. Constants can be used anywhere in your code in place of actual values. A constant can be a String or numeric value.
+
+Cookies
+Blocks of text placed in a file on your computer's hard disk. Web sites use cookies to identify users who revisit a site. Cookies might contain login names and passwords or user preferences. When a webpage is viewed that has previously written a cookie, the server can use the information stored in the cookie to customize the Web site for the user.
+
+CPU (Central Processing Unit)
+The main processor responsible for the overall processing of a computer.
+
+Data Member
+In OOP a data member is a variable defined and encapsulated within a class or object. Each instance of an object retains a unique value for each data member in the class, as opposed to the class having one variable that every instantiation shares. This is just another name for a Property.
+
+Data Type
+The characteristics of a variable that describes whether it is numeric, alphabetic, or alphanumeric. It also specifies the range of values that a variable can hold, and how that information is stored in the computer memory.
+
+DirectX
+A set of low level application programming interfaces (API's) provided by Microsoft for creating high performance multimedia applications. DirectX allows programs to interface with, and use built-in high speed 3D graphic routines on graphic cards for faster processing. The DirectX API also allows easy access to computers hardware such as sound cards, joysticks and even network adapters.
+
+DLL (Dynamic Linked Library)
+A file that contains compiled code that can be loaded and executed by programs dynamically. Because several different programs can reuse the same DLL instead of having that code in their own file, this dramatically reduces required storage space for the executable.
+
+DOS (Disk Operating System)
+Generally any computer operating system, though often used as shorthand for 'MS-DOS' the operating system used by Microsoft before Windows was developed.
+
+Double (Double Precision Floating Point Number)
+A floating point number that uses double the memory of a normal floating point number to more accurately calculate and store the information of the numbers beyond the decimal point. Doubles typically use eight Bytes in memory.
+
+Encapsulation
+An OOP scheme used for defining objects. Encapsulation hides detailed internal specifications of an object and publishes only its external interfaces. Thus, users of an object only need to use these interfaces. By encapsulation, the internal data and methods of an object can be changed or updated without changing the way users use the object.
+
+Encryption
+The scrambling of data so it becomes difficult to unscramble and interpret.
+
+EXE (Executable) file
+A file that can be executed, such as a computer program, usually by double-clicking its icon or a shortcut on the desktop, or by entering it's name in a command prompt. Executable files can also be executed from other programs, batch files or various script files. The vast majority of known viruses infect executable files.
+
+Expression
+A combination of values, Strings, operators, commands or procedures, interpreted according to the rules of precedence, which computes and returns a value.
+
+File Extension
+A tag of three or four letters, preceded by a period, which identifies a data file's format or the application used to create the file.
+
+Firewall
+These typically prevent computers on a network from communicating directly with external computer systems. The firewall software analyzes information passing between the two and stops it, if it does not conform it's pre-configured rules.
+
+Floating Point Number (or a Real Number)
+A number which has a decimal portion, even if that decimal portion is zero. A floating point number is also sometimes called a 'real number' which is often shortened to just 'real'. Floating point numbers typically use four Bytes in memory.
+
+Function
+Same as a procedure.
+
+Hexadecimal
+A numbering system which uses a base of 16. The first ten digits are ‘0’ to ‘9’ and the next six are ‘A’ to ‘F’. This enables very large numbers to be expressed using very few characters. ‘FF’ in hexadecimal equals ‘255’ in decimal. Webpages use hexadecimal numbers to express a 24 bit color value.
+
+High Level Programming Language
+A programming language where each instruction corresponds to many machine code instructions. Commands in this language must be translated by a compiler or interpreter before they can be executed by a particular computer architecture. A high level programming language is also more user friendly, more easily readable by humans, often cross-platform, and abstract from low level computer processor operations. PureBasic is a high level language.
+
+HTML (Hypertext Markup Language)
+The authoring software language used on the Internet's world wide web. HTML is used for creating World Wide Webpages.
+
+HTTP (Hypertext Transfer Protocol)
+The underlying protocol used by the world wide web. HTTP defines how messages are formatted and transmitted, and what actions Web servers and browsers should take in response to various commands. For example, when you enter a URL in your browser, this actually sends a HTTP command to the Web server directing it to fetch and transmit the requested webpage.
+
+Hyperlink
+A link in a document that links to information within the same document or a different document. These links are usually represented by highlighted words or images. When a reader selects a hyperlink, the computer display switches to the linked document or portion of the document referenced by the hyperlink.
+
+Inheritance
+The process in OOP, in which objects inherit functionality and data from a deriving class.
+
+Integer
+A number without a decimal point. Integer values can be less than, equal to, or greater than zero.
+
+Internet
+An electronic network of computers that today includes nearly every university, government, and research facility in the world. Initially created in 1969 to provide a backbone of communication in the event of nuclear war, the Internet has seen an explosion in public and commercial use since the development of easy to use software for accessing the information contained within it.
+
+Interpreter
+A program that executes programs written in high level programming languages line by line directly from the source code. This is in contrast to a compiler which does not execute its input (source code) but translates it into executable machine code (object code) which is for later linking and execution.
+
+IP (Internet Protocol) Address
+A number that identifies each sender or receiver of information that is sent across a TCP/IP network. The IP address takes the form of four numbers separated by dots, for example: 127.0.0.1
+
+IRC (Internet Relay Chat)
+A form of instant communication over the Internet. It is mainly designed for group communication in discussion forums called channels, but also allows one to one communication.
+
+JavaScript
+A scripting language that can run wherever there is a suitable script interpreter such as in web browsers.
+
+LAN (Local Area Network)
+A local area network is a computer network covering a local area, like a home, an office or small group of buildings such as a school.
+
+Link Time
+The time during executable compilation when object code is linked with the final executable file.
+
+Linked List
+A data structure that mimics the behavior of what would be a dynamic array. Allowing elements to be inserted and deleted dynamically during runtime. Linked lists can be created using any of the available language's data types. However, unlike an array, each element also holds pointers to the previous and next element in the list, not allowing the list to occupy a sequential area in RAM and thus perform slower than an array while retrieving data.
+
+Linker
+A program that links compiled object code files and other data files to create an executable program. A linker can also have other functions, such as creation of libraries.
+
+Linking
+The process of combining object code files into the final executable file.
+
+Linux
+A free open source operating system based on Unix. Linux was originally created by Linus Torvalds with the assistance of developers from around the globe.
+
+Localhost
+The computer system the user is working on, often assigned the IP address: 127.0.0.1
+
+Long
+An integer that uses four Bytes in memory.
+
+Low Level Programming Language
+A programming language that provides little or no abstraction from a computer's microprocessor. The word 'low' does not imply that the language is inferior to high level programming languages but refers to the reduced amount of abstraction between the language and the hardware it's controlling. Assembly is an example of a low level language.
+
+Mac OS X
+The latest version of the Mac OS, the operating system used for Apple Macintosh computers. Mac OS X, unlike it's predecessors, is based upon a Unix core with an updated user interface.
+
+Malicious Code
+A piece of code designed to damage a system or the data it contains, or to prevent the system from being used in its normal manner.
+
+Malware
+A generic term used to describe malicious software such as: viruses, trojan horses, spyware, adware, etc.
+
+MBR (Master Boot Record)
+The program located in the master boot sector. This program reads the partition table, determines what partition to boot and transfers control to the program stored in the first sector of that partition. There is only one master boot record on each physical hard disk.
+
+MBS (Master Boot Sector)
+The first sector of a hard disk. This sector is located at sector '1', head '0', track '0'. The sector contains the master boot record.
+
+Member Function
+A function or procedure that is a component of an OOP class, that performs some computation, usually related to the data members of the class. This is another name for a Method.
+
+Method
+A function or procedure that is a component of an OOP class, that performs some computation, usually related to the properties of the class.
+
+MS-DOS (Microsoft Disk Operating System)
+The operating system Microsoft developed for the IBM platform before Windows. Windows 3.x, 95 and 98 rely heavily on MS-DOS and can execute most MS-DOS commands.
+
+Newsgroup
+An electronic forum where readers post articles and follow-up messages on a specified topic. An Internet newsgroup allows people from around the globe to discuss common interests. Each newsgroup name indicates the newsgroup's subject.
+
+NTFS (New Technology File System)
+A file system used to organize and keep track of files which is the standard file system of Windows NT and its descendants: Windows 2000, Windows XP and Windows Server 2003.
+
+Object
+An instance of an OOP class. This object inherits all the functionality and data programmed into the originating class.
+
+Object Code
+The output of compilers and assemblers and the input and output of a linker are files containing object code. There are a variety of standardized and proprietary object file formats, meaning that development tools from one vendor can rarely read the object code produced by those of another.
+
+OCX (OLE Control Extension)
+An independent program module that can be accessed by other programs in a Windows environment. OCX controls have now been superseded by ActiveX controls. OCX controls end with a '*.ocx' extension and even though superceded are still compatible with ActiveX, meaning some ActiveX compatible programs can still use these modules.
+
+OLE (Object Linking And Embedding)
+This has been renamed as, and superceded by ActiveX.
+
+OOP (Object Oriented Programming)
+A style of programming that supports encapsulation, inheritance, and polymorphism. Some programming languages are inherently object oriented such as C++, java and Python, and as such allow real or imaginary objects to be modeled effectively using programming language constructs.
+
+Open Source Software
+Refers to any program whose source code is made available for use or modification as users or other developers see fit. Open source software is usually developed as a public collaboration and made freely available.
+
+OpenGL (Open Graphics Library)
+A specification defining a language independent API for writing applications that render 2d and 3d graphics. OpenGL is open source and cross platform, unlike DirectX which is it's closest rival.
+
+Operating System
+The operating system is the underlying software that enables you to interact with the computer. The operating system controls things such as computer storage, communications and task management. Examples of common operating systems include: Mac OS X, Linux and Windows XP.
+
+Parent
+A primary or enclosing window (or object) that creates, and sometimes handles, its child windows (or objects).
+
+Polymorphism
+An OOP term that means allowing a single definition to be used with different types of data. For example, a polymorphic procedure definition can replace several type specific ones, and a single polymorphic operator can act in expressions of various types.
+
+POP (Post Office Protocol)
+An email protocol to allow email clients to retrieve e-mail from a remote server over a TCP/IP connection. Nearly all subscribers to individual Internet service provider email accounts can access their email using client software that uses POP3 (Post Office Protocol version 3).
+
+Port
+(1) An interface through which data is sent and received. (2) To 'Port' can mean the act of re-coding a program's source code (sometimes using another language) to allow it to be compiled or run on another computer platform.
+
+Procedure
+A named sequence of statements executed as a unit by calling it's name. Procedures can also accept parameters to allow user data to be passed into the sequence. Unlike subroutines, procedures can return a calculated value. Procedures can be 'called' several times allowing programs to access the code repeatedly without the procedure's code having been written more than once.
+
+Process
+A running instance of a program. A multitasking operating system switches between processes to give the appearance of simultaneous execution, though in reality only one process at any given time can use the CPU.
+
+Property
+In OOP a Property is a variable defined and encapsulated within a class or object. Each instance of an object retains a unique value for each property in the class, as opposed to the class having one variable that every instantiation shares.
+
+Protocol
+A formal description of message formats and the rules that two computers must follow in order to exchange those messages.
+
+Quad
+An integer that uses eight Bytes in memory.
+
+Radix Point
+In mathematics, the radix point refers to the symbol used in numerical representations to separate the integral part of the number (to the left of the radix) from its fractional part (to the right of the radix). The radix point is usually a small dot, either placed on the baseline or halfway between the baseline and the top of the numerals. In base 10, the radix point is called the decimal point.
+
+Refresh Rate
+The number of times a monitor's image is repainted per second to the screen. The refresh rate is expressed in hertz (Hz) so a refresh rate of 75 means the image is refreshed 75 times a second. The refresh rate for any particular monitor depends on specifications of said monitor and graphics card used.
+
+Registry
+An internal database that Microsoft Windows uses to store hardware and software configuration information, user preferences and setup information.
+
+Relative
+Can relate to a value or a path. A relative value is one that relates to or builds upon another. A relative path is one which is in relation to another. Relative paths are usually used when specifying the location of resources for a program in the source code, which are relative to the executable file. For example, if an image is to be loaded by a program from an 'Images' folder, then the relative path is defined as '\Images' because this folder is in the same directory as the executable, and is therefore relative to the program.
+
+Reset
+To restart a computer without turning it off.
+
+RGB (Red, Green And Blue)
+These are the primary colors of light, which computers use to display images on a computer screen. RGB colors are usually composed of Red, Green And Blue values ranging from '0' to '255'. These colors are then mixed using an additive color model. For example, when all color values are at maximum (255) the color produced is white.
+
+Runtime
+The time when a program is running, or executing.
+
+SDL (Simple DirectMedia Layer)
+An open source, application programming interface (API) for creating high performance multimedia applications. SDL is very simple, it acts as a thin, cross platform wrapper, providing support for 2D pixel operations, sound, file access, event handling, timing, threading, and more. OpenGL is often used with SDL to provide fast 3D rendering. SDL is often thought of as a cross platform version of DirectX, although it lacks some if it's more advanced functionality.
+
+Server
+Any application or computer that serves another, for example, the computers that hold webpages are called servers since they serve web resources to client applications such as web browsers.
+
+Service
+A program that can be automatically started as part of the operating system startup process and that runs continuously as a background task.
+
+Shareware
+Software distributed for evaluation without cost, but that requires payment to the author for full rights of usage. If, after trying the software, you do not intend to use it, you simply delete it. Using unregistered shareware beyond the evaluation period is considered software piracy.
+
+SMTP (Simple Mail Transport Protocol)
+A simple email delivery format for transmitting email messages between servers which is the current standard for e-mail transmission across the Internet.
+
+Software Pirate
+An individual who breaks the law regarding copyright of software. Laws are subject to the country in which the individual lives.
+
+Source Code
+The code that a program consists of before being compiled, i.e. the original building instructions of a program that defines to a compiler what actions a program should perform once compiled to a binary executable file.
+
+Statement
+A programming command that rarely returns any value and can contain other components such as a constant or expression. One or more statements are needed to create a program.
+
+Static Library
+A library whose code is included into an executable at link time and thus becomes static within the program. Once a program is compiled it no longer needs the library, as all code is now inside the executable file.
+
+String
+A consecutive series of letters, numbers, and other characters contained within (double or single) quotation marks.
+
+Subroutine
+A labeled sequence of statements executed as a unit by jumping to the start of the sequence, usually using a 'Goto' or 'GoSub' command. Once the sequence has executed then program flow returns to the origin of the jump, usually using a 'Return' command. Unlike procedures, subroutines cannot return a calculated value. Subroutines can be jumped to several times allowing programs to access the code repeatedly without the subroutine's code having been written more than once.
+
+Syntax
+The rules by which words in a program's source code are combined to form commands that are valid to an interpreter or compiler.
+
+TCP/IP
+This Internet protocol suite is a set of communication protocols that implement a protocol stack on which the Internet and most commercial networks run. It is called the TCP/IP protocol suite, after the two most important protocols in it: the Transmission Control Protocol (TCP) and the Internet Protocol (IP), which were also the first two defined.
+
+Thread (Thread Of Execution)
+A thread is a single sequence of instructions executed as a separate task but still part of the originating process. A process can have several threads running concurrently, each performing a different task, such as waiting for events or performing a time-consuming job that the program doesn't need to complete before moving on to do something else. When a thread has finished its job, the thread is suspended or destroyed. Multi-threaded programs can finish tasks quicker than non-threaded programs if programmed right, because some processors support running two or more threads simultaneously, such as the Intel Hyperthreading family of CPUs.
+
+Trojan Horse
+A malicious program that pretends to be useful and non-harmful but when executed, purposefully does something the user does not expect and sometimes doesn't realize. Trojans are not viruses since they do not replicate, but Trojan horse programs can be just as destructive.
+
+UNC (Universal Naming Convention)
+A standard for identifying servers, printers and other resources on a network, which originated from the Unix community. A UNC path uses double forward-slashes or double back-slashes to precede the name of the computer. The path (disk and directories) within that computer are then separated with single forward-slashes or single back-slashes. Microsoft Windows generally uses back-slashes and Unix (Linux) uses forward-slashes.
+
+Unicode
+A character encoding scheme using 16 bits (2 Bytes) per character to allow all characters of all major world languages, living and dead, to be encoded in a single character set and like ASCII be assigned a unique number. Unicode character sets can contain over 65,000 characters.
+
+Unix
+An operating system co-created by researchers at AT&T. Unix is well known for its hardware independence and portable application interfaces. UNIX is designed to be used by many people at the same time and has TCP/IP networking built-in. It, and it's derivatives (Linux) are the most common operating systems for servers on the Internet.
+
+URL (Uniform Resource Locator)
+A HTTP address used by the world wide web to specify a certain place and file. This is the unique identifier, or address, of a webpage on the Internet.
+
+Usenet
+An informal system of electronic bulletin boards or discussion groups commonly distributed over the Internet. Usenet predates the Internet, although today most Usenet material is distributed over the Internet.
+
+VBS (Visual Basic Script)
+A programming language that can invoke any system function, including starting, using and shutting down other applications even without the users knowledge. VBS programs can be embedded in HTML files and provide active content via the Internet. Visual Basic Script files have the extension '*.vbs'.
+
+Virus
+A computer program file capable of attaching to disks or other files and replicating itself repeatedly, typically without user knowledge or permission. Some viruses attach to files so when the infected file executes, the virus also executes. Other viruses sit in a computer's memory and infect files as the computer opens, modifies or creates the files. Some viruses display symptoms, and some viruses damage files and computer systems, but neither symptoms nor damage is essential in the definition of a virus, a non-damaging virus is still a virus.
+
+VM (Virtual Machine)
+Software that mimics the performance of a hardware device. A virtual machine is a self-contained operating environment that behaves as if it was a separate computer. For example, Java applets run in a Java virtual machine that has no access to the host operating system.
+
+VSync (Vertical Synchronization)
+Vertical Synchronization is an option found in many games that allows the frame rate of the game to be matched to the refresh rate of the monitor. Generally, enabling VSync provides the greatest stability, but turning it off can allow for much higher frame rates. The downside of the greater speed is the potential for visual artifacts like graphics tearing to develop.
+
+W3C (Wide Web Consortium)
+The governing body for world wide web standards.
+
+WAN (Wide Area Network)
+A group of computer networks connected together over long distances. The Internet is a WAN.
+
+Word
+An integer that uses two Bytes in memory.
+
+World Wide Web
+A system for browsing Internet sites. It is named the web because it is made of many sites linked together. Users can travel from one site to another by clicking on hyperlinks.
+
+Worm
+Parasitic computer programs that replicate, but unlike viruses, do not infect other computer program files. Worms can create copies on the same computer, or can send copies to other computers via a network.
+
+Wrapper
+A programming interface between a program and a separate wrapped piece of code. This may be done for compatibility reasons, for example, if the wrapped code is compiled as a DLL or uses different calling conventions. The implication is that the wrapped code can only be accessed via a wrapper.
+
+WSH (Windows Scripting Host)
+A Microsoft integrated module that lets programmers automate operations throughout the Windows desktop.
+
+XML (Extensible Markup Language)
+A standard for creating markup languages which describe the structure of data. It is not a fixed set of elements like HTML but a language for describing languages. XML enables authors to define their own tags.
+
+ZIP File
+An archive that contains compressed collections of other files. ZIP files are popular on the Internet because users can deliver multiple files in a single container which also save disk space and download time.

@@ -1,0 +1,474 @@
+3
+
+Operators
+
+Operators are used to assign values to variables and to manipulate the data that those variables contain. In this chapter I’ll introduce you to all operators that PureBasic supports and for each one I’ll give you a brief example describing its function and use. There are also many diagrams showing how the more advanced operators manipulate data at a binary level. Operator precedence (or operator priority if you prefer) is also explained and notes on PureBasic’s expression evaluation are brought to your attention.
+
+An Introduction To Operators
+
+Operators are a set of functions that can perform arithmetic operations on numerical data, boolean operations on truth values and perform String operations for manipulating strings of text. Some operators are known as Overloaded Operators, meaning that they can be used on more than one type of data and can perform different functions. For example, the equals operator (=) can be used to assign a value to a variable as well as being used as an equality operator to test that two variables or values are equal.
+
+= (Equals)
+This is probably the easiest operator to explain even though it can be used in two ways. First, it can be used to assign a value to a variable like this:
+
+LongVariable.l = 1
+
+Secondly, it can be used to make an equality comparison between two expressions, variables or values, like this:
+
+LongVariable.l = 1
+If LongVariable = 1
+	Debug "Yes, LongVariable does equal 1"
+EndIf
+
+This is the first time you have seen the ‘If’ keyword but don’t worry. This keyword enables a way in your programs to execute code based on if a certain condition is met. In this case, if ‘LongVariable’ equals ‘1’ then echo some text to the Debug Output window.
+
++ (Plus)
+The plus operator is another commonly used one and is used to concatenate Strings as well as for the addition of numbers. First, here is an example of number addition:
+
+NumberOne.l = 50
+NumberTwo.l = 25
+NumberThree.l = NumberOne + NumberTwo
+Debug NumberThree
+
+The number echoed to the Debug Output window should be ‘75’ because we’ve added the value of ‘NumberOne’ to ‘NumberTwo’ (50+25) and stored the resulting value (75) in the ‘NumberThree’ variable, we then echo this value to the Debug Output window. Another way to show this might be:
+
+NumberOne.l = 50 + 25
+Debug NumberOne
+
+You can also use a shortcut when using the plus operator with numbers, if you just need to increment a numeric variable by another value or expression:
+
+NumberOne.l = 50
+NumberOne + 25
+Debug NumberOne
+
+Once an initial value is assigned to ‘NumberOne’ we can use the plus operator to add another value to it, so now the number echoed to the Debug Output window is ‘75’.
+
+Here is an example of String concatenation using the plus operator:
+
+StringOne.s = "Mary had a"
+StringTwo.s = " little lamb"
+StringThree.s = StringOne + StringTwo
+Debug StringThree
+
+The word concatenate basically means to chain or join together and that’s exactly what we are doing with these two Strings. We concatenate ‘StringOne’ and ‘StringTwo’ and store the resulting String in ‘StringThree’, we then echo this value to the Debug Output window. This is another way:
+
+StringOne.s = "Mary had a" + " little lamb"
+Debug StringOne
+
+You can also use the shortcut when using the plus operator with strings, if you just need to concatenate text onto an existing variable:
+
+StringOne.s = "Mary had a"
+StringOne + " little lamb"
+Debug StringOne
+This works kind of like the numeric shortcut but instead of adding the value numerically, the second String is joined to the existing String variable.
+
+- (Minus)
+The minus operator works the exact reverse of the addition operator, in that it subtracts rather than adds. Unlike the addition operator, the minus operator cannot work with Strings. Here is an example of the minus operator in action:
+
+NumberOne.l = 50
+NumberTwo.l = 25
+NumberThree.l = NumberOne - NumberTwo
+Debug NumberThree
+
+The text echoed to the Debug Window should be ‘25’ which is ‘NumberTwo’ subtracted from ‘NumberOne’. Again a shortcut can be used if you need to decrement a variable by a specific amount:
+
+NumberOne.l = 50
+NumberOne - 10
+Debug NumberOne
+
+Here ‘NumberOne’ is assigned the value of ‘50’ then ‘NumberOne’ is decremented by ‘10’ using the minus operator. The new value of ‘NumberOne’ (40) is then echoed to the Debug Output window.
+
+* (Multiplication)
+The multiplication operator is used to multiply two values together and like the minus operator cannot work with Strings. To demonstrate how this operator is used, here is an example:
+
+NumberOne.l = 5
+NumberTwo.l = 25
+NumberThree.l = NumberOne * NumberTwo
+Debug NumberThree
+
+The debug output should be ‘125’ because in this example we’ve multiplied ‘NumberOne’ by ‘NumberTwo’ (5*25=125). Again a shortcut can be used to multiply a variable by a specified number.
+
+NumberOne.l = 50
+NumberOne * 3
+Debug NumberOne
+
+Here ‘NumberOne’ is assigned the value of ‘50’ then ‘NumberOne’ is multiplied by ‘3’ using the multiplication operator. The new value of ‘NumberOne’ (150) is then echoed to the Debug Output window.
+
+/ (Division)
+The division operator is another mathematical operator that works only with numbers and not Strings. You’ve probably guessed how to use it from reading the other examples but here is an example showing its use anyway:
+
+NumberOne.l = 100
+NumberTwo.l = 2
+NumberThree.l = NumberOne / NumberTwo
+Debug NumberThree
+
+Here ‘NumberOne’ is assigned the value of ‘100’ and ‘NumberTwo’ is assigned the value of ‘2’. We then divide ‘NumberOne’ (100) by ‘NumberTwo’ (2) and store the result (50) in ‘NumberThree’. We then echo the value of ‘NumberThree’ to the Debug Output window. As before a shortcut can be used to divide a variable by a specified number:
+
+NumberOne.l = 50
+NumberOne / 5
+Debug NumberOne
+
+Here ‘NumberOne’ is assigned the value ‘50’ then we use the division operator to divide this value by ‘5’. Then we echo the result stored in ‘NumberOne’ (10) to the Debug Output window.
+
+& (Bitwise AND)
+The bitwise operators are a group of operators that manipulate numbers at a binary level. If you are a little unfamiliar with binary and how PureBasic stores numbers using binary you can refer to Chapter 13 (A Closer Look At Numeric Data Types) where a full explanation is given. Bitwise operators cannot be used with Floats or Strings.
+
+The bitwise ‘&’ operator tests two values to see if they are both true on a bit by bit basis, if two bits are compared and are both true (1) then the operator returns true (1) otherwise it returns false (0). This applies to all bits within the two numbers that are to be compared. Here is a diagram to try to explain a little better.
+
+<<Fig 4>>
+
+In Fig.4 you can see the two numbers to be evaluated using the ‘&’ operator are ‘77’ and ‘117’. After the calculation is complete, an end result of ‘69’ is achieved. To explain how this value is achieved you need to look at each column of bits from the top down. If you look at the right most column (which is the column associated with the value of ‘1’ in binary) both bits of the two numbers in this column are set at ‘1’ so the value returned by the ‘&’ operator is ‘1’ (which in PureBasic is true). If we move one column along to the left we can see that both bits of the two numbers are both ‘0’, so the ‘&’ operator returns ‘0’ (false). Remember that when using the ‘&’ operator both bits have to be ‘1’ before the operator will return ‘1’ otherwise it will return ‘0’.
+
+This operator is applied to all the columns of bits starting from the right to the left and when finished the resulting number is returned. In this case the value returned by this calculation is ‘69’. Here is an example to translate Fig.4 into code:
+
+NumberOne.b = 77
+NumberTwo.b = 117
+NumberThree.b = NumberOne & NumberTwo
+Debug NumberThree
+
+In this small example two variables are assigned numbers that are to be evaluated using the ‘&’ operator and the variable ‘NumberThree’ contains the result of this calculation. The value of ‘NumberThree’ is then echoed to the Debug Output window, which in this case should be ‘69’. Just like the other operators the bitwise ‘&’ operator has a shortcut if you just need to ‘&’ a number to a single variable:
+
+NumberOne.b = 77
+NumberOne & 117
+Debug NumberOne
+
+Here ‘NumberOne’ is assigned the value ‘77’ and then in the next line we ‘&’ the value ‘117’ to ‘NumberOne’. This value is then echoed to the Debug Output window.
+
+Fig.5 shows the comparison made between two bits and the result given by the ‘&’ operator.
+
+<<Fig 5>>
+
+| (Bitwise OR)
+The bitwise ‘|’ operator tests two values to see if one or more is true on a bit by bit basis, if two bits are compared and either one or both are true (1) then the operator returns true (1) otherwise it returns false (0). This applies to all bits within the two numbers that are to be compared.
+
+<<Fig 6>>
+
+In Fig.6 you can see the two numbers to be evaluated using the ‘|’ operator are ‘54 and ‘102’. After the calculation is complete, an end result of ‘118’ is achieved. To explain how this value is achieved you need to look at each column of bits from the top down. If you look at the right most column (which is the column associated with the value of ‘1’ in binary) both bits of the two numbers in this column are set at ‘0’ so the value returned by the ‘|’ operator is ‘0’ (false). If we move one column along to the left we can see that both bits of the two numbers are both ‘1’, so the ‘|’ operator returns ‘1’ (true). If we look at the fifth column from the right you will see that the first number has a bit which is set at ‘1’ and the second number has a bit which is set at ‘0’. In this case the ‘|’ operator still returns ‘1’ (true) because as long as one or the other bit is true then the operator will return true. The ‘|’ operator will always return true, unless both bits are ‘0’.
+
+This operator is applied to all the columns of bits in Fig.6 starting from the right to the left and when finished the resulting number is returned. In this case the value returned by this calculation is ‘118’. Here is an example to translate Fig.6 into code:
+
+NumberOne.b = 54
+NumberTwo.b = 102
+NumberThree.b = NumberOne & NumberTwo
+Debug NumberThree
+
+In this small example two variables are assigned numbers that are to be evaluated using the ‘|’ operator and the variable ‘NumberThree’ contains the result of this calculation. The value of ‘NumberThree’ is then echoed to the Debug Output window, which in this case should be ‘118’. Just like the other operators the bitwise ‘|’ operator can be used as a shortcut if you just need to ‘|’ a number to a single variable:
+
+NumberOne.b = 54
+NumberOne | 102
+Debug NumberOne
+Here ‘NumberOne’ is assigned the value ‘54’ and then in the next line we ‘|’ the value ‘102’ to ‘NumberOne’. This value is then echoed to the Debug Output window.
+
+Fig.7 shows the comparison made between two bits and the result given by the ‘|’ operator.
+
+<<Fig 7>>
+
+! (Bitwise XOR)
+The bitwise ‘!’ operator tests two values to see if one of them is true on a bit by bit basis, if the two bits are compared and either one is true (1) then the operator returns true (1) otherwise it returns false (0). This applies to all bits within the two numbers that are to be compared. Here is a diagram to try to explain a little better:
+
+<<Fig 8>>
+
+In Fig.8 you can see the two numbers to be evaluated using the ‘!’ operator are ‘38 and ‘74’. After the calculation is complete, an end result of ‘108’ is achieved. To explain how this value is achieved you need to look at each column of bits from the top down again. If you look at the right most column (which is the column associated with the value of ‘1’ in binary) both bits of the two numbers in this column are set at ‘0’ so the value returned by the ‘!’ operator is ‘0’ (false). If we move one column along to the left we can see that both bits of the two numbers are both ‘1’, so the ‘!’ operator still returns ‘0’ (false). This is because when two bits are compared the ‘!’ operator will only return ‘1’ (true) if only one bit is set to ‘1’. If both bits are set to ‘1’ or ‘0’ then the ‘!’ operator will return ‘0’ (false).
+
+This operator is applied to all the columns of bits in Fig.8 starting from the right to the left and when finished the resulting number is returned. In this case the value returned by this calculation is ‘108’. Here is an example to translate Fig.8 into code:
+
+NumberOne.b = 38
+NumberTwo.b = 74
+NumberThree.b = NumberOne ! NumberTwo
+Debug NumberThree
+
+In this small example two variables are assigned numbers that are to be evaluated using the ‘!’ operator and the variable ‘NumberThree’ contains the result of this calculation. The value of ‘NumberThree’ is then echoed to the Debug Output window, which in this case should be ‘108’.
+
+Just like the other operators the bitwise ‘!’ operator has a shortcut if you just need to ‘!’ a number to a single variable:
+
+NumberOne.b = 38
+NumberOne ! 74
+Debug NumberOne
+
+Here ‘NumberOne’ is assigned the value ‘38’ and then in the next line we ‘!’ the value ‘74’ to ‘NumberOne’. This value is then echoed to the Debug Output window.
+
+Fig.9 shows the comparison made between two bits and the result given by the ‘!’ operator:
+
+<<Fig 9>>
+
+~ (Bitwise NOT)
+The bitwise ‘~’ operator is an easier operator to explain in that it simply returns a number who’s bits have been inverted using an input number or expression as a source.
+
+The bitwise ‘~’ operator is known as an Unary operator meaning that it uses one value or expression to return a value. This can be demonstrated with this piece of code:
+
+NumberOne.b = 43
+NumberTwo.b = ~NumberOne
+Debug NumberTwo
+
+Here the variable ‘NumberOne’ is assigned the value of ‘43’ then we create a variable ‘NumberTwo’ and assign it the value of ‘NumberOne’ which is inverted at a binary level using the ‘~’ operator. This value (which should be ‘-44’) is then echoed to the Debug Output window.
+
+<<Fig 10>>
+
+In Fig.10 you can see the ‘~’ operator simply inverts the bits of the source number then returns that new value. To understand better how numbers are represented in binary within PureBasic, especially negative (signed) numbers, see chapter 13 (A Closer Look At Numeric Data Types). 
+
+<< (Bit shift left)
+The bit shift operators are similar to the bitwise operators in that they manipulate numbers at a binary level. As their name suggests they shift all bits to the left or right depending on which operator is used. Here is some code demonstrating the use of the ‘<<’ operator:
+
+NumberOne.b = 50
+NumberTwo.b = NumberOne << 1
+Debug NumberTwo
+
+In this example we assign ‘NumberOne’ the value of ‘50’. Then we create a variable called ‘NumberTwo’ and assign it the value of ‘NumberOne’ which has been bit shifted to the left by one place. This resulting value (which should be ‘100’) is then echoed to the Debug Output window. You can understand the function of this operator more clearly looking at Fig.11.
+
+<<Fig 11>>
+
+As you can see the resulting value simply has its binary digits (bits) shifted to the left from their original position, in this case by one place. When shifting bits to the left like this, zeros are created and shifted in to fill the gap on the right, while the bits on the left will be shifted ‘off the end’ of the number (in this case a Byte) and will be lost forever.
+
+>> (Bit shift right)
+The ‘>>’ operator is exactly the same as the ‘<<’ operator but works in the opposite direction. Here is some code demonstrating the use of the ‘>>’ operator:
+
+NumberOne.b = 50
+NumberTwo.b = NumberOne >> 1
+Debug NumberTwo
+
+In this example we assign ‘NumberOne’ the value of ‘50’. Then we create a variable called ‘NumberTwo’ and assign it the value of ‘NumberOne’ which has been bit shifted to the right by one place. This resulting value (which should be ‘25’) is then echoed to the Debug Output window. You can understand the function of this operator more clearly in this diagram:
+
+<<Fig 12>>
+
+As you can see the resulting value simply has its binary digits (bits) shifted to the right from their original position, in this case by one place. When shifting bits to the right like this it is important to understand what bits are used to fill the gap that is created on the left hand side of the binary number. If the number is a positive number, the left most bit (sometimes called the most significant bit) is set to zero. In this case the gap will be filled with bits set to zero. If the source number is a negative (signed) number then the left most bit will be one. In this case the gap will be filled with bits set to one. The bits on the right will be shifted ‘off the end’ of the number (in this case a Byte) and will be lost forever.
+
+< (Less than)
+The ‘<’ operator is used in comparisons of two variables or expressions. If the value on the left hand side of this operator is less than the value on the right hand side then this operator will return true (1) otherwise it will return false (0). Here is a code snippet demonstrating its usage:
+
+NumberOne.l = 1
+NumberTwo.l = 2
+
+If NumberOne < NumberTwo
+	Debug "1: NumberOne is less than NumberTwo"
+Else
+	Debug "2: NumberTwo is less than NumberOne"
+EndIf
+
+Here in the ‘If’ statement we test to see if ‘NumberOne’ is less than ‘NumberTwo’, which of course it is, so the first debug statement is executed. If we change the value of ‘NumberOne’ to ‘3’, like this:
+
+NumberOne.l = 3
+NumberTwo.l = 2
+
+If NumberOne < NumberTwo
+	Debug "1: NumberOne is less than NumberTwo"
+Else
+	Debug "2: NumberTwo is less than NumberOne"
+EndIf
+
+We now see in the Debug Output window that the second debug statement has been executed because now ‘NumberOne’ is no longer less than ‘NumberTwo’.
+
+> (More than)
+The ‘>’ operator is used in comparisons of two variables or expressions. If the value on the left hand side of this operator is more than the value on the right hand side then this operator will return true (1) otherwise it will return false (0). Here is a code snippet demonstrating its usage:
+
+NumberOne.l = 2
+NumberTwo.l = 1
+
+If NumberOne > NumberTwo
+	Debug "1: NumberOne is more than NumberTwo"
+Else
+	Debug "2: NumberTwo is more than NumberOne"
+EndIf
+
+Here in the ‘If’ statement we test to see if ‘NumberOne’ is more than ‘NumberTwo’, which of course it is, so the first debug statement is executed. If we change the value of ‘NumberOne’ to ‘0’, like this:
+
+NumberOne.l = 0
+NumberTwo.l = 1
+
+If NumberOne > NumberTwo
+	Debug "1: NumberOne is more than NumberTwo"
+Else
+	Debug "2: NumberTwo is more than NumberOne"
+EndIf
+
+We now see in the Debug Output window that the second debug statement has been executed because now ‘NumberOne’ is no longer more than ‘NumberTwo’.
+
+<= (Less than or equal to)
+The ‘<=’ operator is used in comparisons of two variables or expressions. If the value on the left hand side of this operator is less than or equal to the value on the right hand side then this operator will return true (1) otherwise it will return false (0). Here is a code snippet demonstrating its usage:
+
+NumberOne.l = 0
+NumberTwo.l = 1
+
+If NumberOne <= NumberTwo
+	Debug "1: NumberOne is less than or equal to NumberTwo"
+Else
+	Debug "2: NumberOne is NOT less than or equal to NumberTwo"
+EndIf
+
+Here in the ‘If’ statement we test to see if ‘NumberOne’ is less than or equal to ‘NumberTwo’, which of course it is, so the first debug statement is executed. If we change the value of ‘NumberOne’ to ‘1’ then the ‘If’ statement will still return true (1) because ‘NumberOne’ is still less than or equal to ‘NumberTwo’.
+
+To demonstrate the second debug statement being executed we have to make sure that the ‘If’ statement is given a false result from the ‘<=’ operator. This is achieved easily by making sure the value of ‘NumberOne’ is NOT less than or equal to the value of ‘NumberTwo’, like this:
+
+NumberOne.l = 2
+NumberTwo.l = 1
+
+If NumberOne <= NumberTwo
+	Debug "1: NumberOne is less than or equal to NumberTwo"
+Else
+	Debug "2: NumberOne is NOT less than or equal to NumberTwo"
+EndIf
+
+>= (More than or equal to)
+The ‘>=’ operator is used in comparisons of two variables or expressions. If the value on the left hand side of this operator is more than or equal to the value on the right hand side then this operator will return true (1) otherwise it will return false (0). Here is a code snippet demonstrating its usage:
+
+NumberOne.l = 2
+NumberTwo.l = 1
+
+If NumberOne >= NumberTwo
+	Debug "1: NumberOne is more than or equal to NumberTwo"
+Else
+	Debug "2: NumberOne is NOT more than or equal to NumberTwo"
+EndIf
+
+Here in the ‘If’ statement we test to see if ‘NumberOne’ is more than or equal to ‘NumberTwo’, which of course it is, so the first debug statement is executed. If we change the value of ‘NumberOne’ to ‘1’ then the ‘If’ statement will still return true (1) because ‘NumberOne’ is still more than or equal to ‘NumberTwo’.
+
+To demonstrate the second debug statement being executed we have to make sure that the ‘If’ statement is given a false result from the ‘>=’ operator. This is achieved easily by making sure the value of ‘NumberOne’ is NOT more than or equal to the value of ‘NumberTwo’, like this:
+
+NumberOne.l = 0
+NumberTwo.l = 1
+
+If NumberOne >= NumberTwo
+	Debug "1: NumberOne is more than or equal to NumberTwo"
+Else
+	Debug "2: NumberOne is NOT more than or equal to NumberTwo"
+EndIf
+
+<> (Not equal to)
+The ‘<>’ operator is used in comparisons of two variables or expressions which works in the exact opposite way of the comparison (not assignment) function of the ‘=’ operator. If the value on the left hand side of this operator is not equal to the value on the right hand side then this operator will return true (1) otherwise it will return false (0). Here is a code snippet demonstrating its usage:
+
+NumberOne.l = 0
+NumberTwo.l = 1
+
+If NumberOne <> NumberTwo
+	Debug "1: NumberOne does not equal NumberTwo"
+Else
+	Debug "2: NumberOne does equal NumberTwo"
+EndIf
+
+Here in the ‘If’ statement we test to see if ‘NumberOne’ is not equal to ‘NumberTwo’, which of course it isn’t, so the first debug statement is executed. If we change the value of ‘NumberOne’ to ‘1’, like this:
+
+NumberOne.l = 1
+NumberTwo.l = 1
+
+If NumberOne <> NumberTwo
+	Debug "1: NumberOne does not equal NumberTwo"
+Else
+	Debug "2: NumberOne does equal NumberTwo"
+EndIf
+
+We now see in the Debug Output window that the second debug statement has been executed because ‘NumberOne’ is now equal to ‘NumberTwo’ and the ‘<>’ operator returns false.
+
+And (Logical AND)
+The logical operators are used to combine the logical true or false results of the comparison operators to provide a more robust solution to comparing values of multiple expressions.
+
+The ‘And’ operator is used for checking two expressions to make sure both evaluate as true. Look at this piece of code:
+
+StringOne.s = "The quick brown fox"
+NumberOne.l = 105
+
+If StringOne = "The quick brown fox" And NumberOne = 105
+	Debug "1: Both expressions evaluate to true (1)"
+Else
+	Debug "2: One or both of the expressions evaluate as false (0)"
+EndIf
+
+We can see here that the ‘If’ statement is testing to make sure that the String variable, ‘StringOne’ equals ‘The quick brown fox’ and that the Long variable ‘NumberOne’ equals ‘105’. Because both do so the ‘And’ operator returns true and the first debug statement is executed. If either of the two expressions on the right and left hand side of the ‘And’ operator return a false result, the ‘And’ operator itself returns a false result. This operator is optimized in such a way that if the first of the expressions return a false result then the ‘And’ operator immediately returns false and doesn’t bother to evaluate the next expression. This is handy when you want to write code that runs very quickly.
+
+Not (Logical NOT)
+The ‘Not’ operator is used to perform a logical negation on an expression or a boolean value. In other words anything that evaluates to true on the right hand side of this operator is returned as false and vice versa. See this example:
+
+One.l = 1
+Two.l = 2
+
+If Not One = 5
+	Debug "1: One = 5 is evaluated as true (1)"
+Else
+	Debug "2: One = 5 is evaluated as false (0)"
+EndIf
+
+If Not Two = 2
+	Debug "1: Two = 2 is evaluated as true (1)"
+Else
+	Debug "2: Two = 2 is evaluated as false (0)"
+EndIf
+
+We can see here that the first ‘If’ statement is testing to make sure that the Long variable, ‘One’ equals ‘5’ which it doesn’t and the expression returns false. Because we have the ‘Not’ operator in front of ‘One = 5’ this inverts the false return value to a true value. Opposite values are shown in the second ‘If’ statement. The expression here returns true but because of the ‘Not’ operator it inverts it to a false value.
+
+Or (Logical OR)
+The ‘Or’ operator is used for checking two expressions to make sure one or the other evaluate as true. Look at this piece of code:
+
+StringOne.s = "The quick brown fox"
+NumberOne.l = 105
+
+If StringOne = "The quick brown fox" Or NumberOne = 100
+	Debug "1: One or more expressions evaluate to true (1)"
+Else
+	Debug "2: Both of the expressions evaluate as false (0)"
+EndIf
+
+Here we can see that the ‘If’ statement is testing to make sure that the String variable, ‘StringOne’ equals ‘The quick brown fox’ or that the Long variable ‘NumberOne’ equals ‘100’. You will notice that the second expression in the ‘If’ statement actually returns false because ‘NumberOne’ does not equal ‘100’.
+
+Because one of the expressions returns a true result, the ‘Or’ operator returns true and the first debug statement is executed. The ‘Or’ operator will only return a false result if both expressions on the right and left hand side return a false result themselves. This operator is also optimized in such a way that if the first expression returns a true result then the ‘Or’ operator immediately returns true and doesn’t bother to evaluate the next expression. This is handy when you want to write code that runs very quickly.
+
+XOr (Logical XOR)
+The ‘XOr’ operator is used for checking two expressions to make sure only one evaluates as true. Look at this piece of code:
+
+StringOne.s = "The quick brown fox"
+NumberOne.l = 105
+If StringOne = "The quick brown fox" XOr NumberOne = 105
+	Debug "1: Only one expression is true (1)"
+Else
+	Debug "2: The expressions are either both true (1) or both false (0)"
+EndIf
+
+The ‘If’ statement is testing both expressions using the ‘XOr’ operator to make sure only one expression is evaluating as true. If both are evaluating as true or false then the ‘If’ statement itself will return false and execute the second debug statement, which is the case here. If this example was changed to make sure only one expression returned a true value, then the ‘If’ would return true and execute the first debug statement.
+
+% (Modulo)
+The ‘%’ operator divides the number on the left hand side by the number on the right hand side and then returns the remainder of this division. Here is an example:
+
+NumberOne.l = 20 % 8
+Debug NumberOne
+
+Here we divide the number ‘20’ by ‘8’ using the ‘%’ operator. In which there are two ‘8’s in ‘20’, this leaves ‘4’ as a remainder. This remaining number is assigned to the variable ‘NumberOne’. We then echo this value to the Debug Output window.
+
+( ) (Brackets)
+Brackets are not really an operator in themselves because they never return any result. They are used to determine the execution order of nested expressions. The general rule of thumb is that the expression within brackets is evaluated first. In the case of nested brackets the inner-most set is evaluated first, then the next set and so on until the final set is reached. Here is an example:
+
+NumberOne.l = 2 * 5 + 3
+Debug NumberOne
+
+Here the value of ‘NumberOne’ is ‘13’ because the order of evaluation is, ‘2 * 5’ then ‘+ 3’, if we add brackets like this:
+
+NumberOne.l = 2 * (5 + 3)
+Debug NumberOne
+
+Then the order of evaluation is changed to ‘5 + 3’ then ‘* 2’ which returns the value of ‘16’ which in turn in assigned to ‘NumberOne’ and echoed to the Debug Output window.
+
+Operator Precedence
+
+Operator precedence is a term that means the order in which operators are evaluated during compile time. If you look at Fig.13 you can see the order in which operators are evaluated based on their individual priority.
+
+<<Fig 13>>
+
+This priority is shown in the left hand column, the lowest number (1) means these operators are evaluated first while the higher the number means that these operators will be evaluated later.
+
+In this example:
+
+Debug 3 + 10 * 2
+
+the multiplication operator is evaluated first before the addition operator because it has a greater priority even though it appears after the addition operator in this expression. The result echoed to the Debug Output window should be ‘23’.
+
+To customize the operator precedence, use brackets to encapsulate portions of code to make them execute with a higher priority. For example, if we wanted the addition operator to execute first we would write the expression like this:
+
+Debug (3 + 10) * 2
+
+Now the value echoed to the Debug Output window would be ‘26’.
+
+Expression Notes
+
+When PureBasic’s compiler evaluates an expression between Integers and Floats, it sometimes changes the data type of the expression’s components to evaluate it properly. If the expression contains a Float then each part of the expression is converted to a Float before the expression is evaluated and a result returned. Fig.14 shows examples of how PureBasic evaluates these expressions under certain conditions.
+
+If you find that strange results are being returned from operators or expressions or that the number returned is not of the expected type, it’s a good idea to re-check the expression to make sure the compiler is not following these rules.
+
+<<Fig 14>>
+
+<<Fig 15>>

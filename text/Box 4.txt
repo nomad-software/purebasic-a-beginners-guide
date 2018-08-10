@@ -1,0 +1,3 @@
+Everything Is True?
+
+As you have read earlier on, and generally in PureBasic, ‘1’=True and ‘0’=False. While this is correct, ‘If’ statements are a special case regarding what they recognized as true. In ‘If’ statements everything equals true unless the value returned is ‘0’ (zero) and then it equals false (unless you are making specific comparisons). This is handy when using an ‘If’ statement to test if a variable, command or expression returns any value other than ‘0’.

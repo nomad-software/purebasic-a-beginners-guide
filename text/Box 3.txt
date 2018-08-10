@@ -1,0 +1,5 @@
+The ‘Debug’ Command
+
+The ‘Debug’ command is very useful to quickly print useful text into the Debug Output window. Any data type can be used with this command, making it invaluable for quickly printing helpful numbers, memory addresses, returned Strings and/or values of calculations.
+
+Any ‘Debug’ commands used within your code are ignored and will not be compiled when you disable the debugger or compile your final executable using (Menu:Compiler->Create Executable...).

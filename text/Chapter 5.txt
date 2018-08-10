@@ -1,0 +1,679 @@
+5
+
+Other Data Structures
+
+In this chapter I’ll explain how to create and use other methods for storing and organizing data, such as user defined structures, arrays and linked lists. Data structures such as these are essential for programing applications and games as they allow for easier and faster access to multiple values of related and non-related data. As always, full explanations and multiple examples are given.
+
+Structures
+
+Earlier in Chapter 2, I introduced to you the built-in types, Byte, Character, Word, Long, Quad, Float, Double and String. Using the ‘Structure’ keyword you are able to define your own structured type and then assign that type to a variable. Creating your own structured variable is handy if you need to group lots of common variable names under one structure name. Confused? Then let’s look at an example of a structure that contains several fields:
+
+Structure PERSONALDETAILS
+	FirstName.s
+	LastName.s
+	Home.s
+EndStructure
+
+Me.PERSONALDETAILS
+
+Me\FirstName = "Gary"
+Me\LastName = "Willoughby"
+Me\Home = "A House"
+
+Debug "First Name: " + Me\FirstName
+Debug "Last Name: " + Me\LastName
+Debug "Home: " + Me\Home
+
+Here the structure ‘PERSONALDETAILS’ is created using the ‘Structure’ keyword. After that the components of the structure are then defined in exactly the same way as defining normal variables. The ‘EndStructure’ keyword is used to define the end of the new structure. After the structure is declared it is immediately ready for use. We assign this structured type in exactly the same way as we assign any type to a variable, like this:
+
+Me.PERSONALDETAILS
+
+Here the variable name is ‘Me’ and its type is ‘PERSONALDETAILS’. To assign values to the individual variables (sometimes called fields) within the new ‘Me’ structured variable, we use the ‘\’ character. If you look at the larger example, the ‘\’ character is also used to retrieve data from the individual fields too, like this:
+
+Father.PERSONALDETAILS
+Father\FirstName = "Peter"
+Debug Father\FirstName
+
+Here in this little example, we create a new structured variable called ‘Father’ with a user defined structured type of ‘PERSONALDETAILS’. We assign the value of ‘Peter’ to the ‘FirstName’ field within ‘Father’. We then echo this value to the Debug Output window.
+
+It might not of hit you yet but structures are incredibly useful things. In applications they can help to define anything from personal records to window coordinates, in games they can be used to help define bullets, spaceships along with all associated values.
+
+Memory Considerations
+The size in memory of a structured variable depends on the field variables used within the initial structure definition. In the ‘PERSONALDETAILS’ structure there are defined three field variables of the String type, each having a size of 4 Bytes (see Fig.3 earlier in Chapter 2 for sizes of String types). So the newly declared variable ‘Me’ takes up 12 Bytes (3 x 4 Bytes) in memory. We can test this by echoing the output returned by the ‘SizeOf()’ command.
+
+Structure PERSONALDETAILS
+	FirstName.s
+	LastName.s
+	Home.s
+EndStructure
+Debug SizeOf(PERSONALDETAILS)
+
+Here ‘SizeOf()’ returns the value of ‘12’ which is how many Bytes this structure uses in memory.
+
+<<Box 6>>
+
+Inheriting Fields From Another Structure
+Structures can also inherit fields from another structure by using the optional ‘Extends’ keyword.
+
+Structure PERSONALDETAILS
+	FirstName.s
+	LastName.s
+	Home.s
+EndStructure
+
+Structure FULLDETAILS Extends PERSONALDETAILS
+	Address.s
+	Country.s
+	ZipCode.s
+EndStructure
+
+User.FULLDETAILS
+
+User\FirstName = "John"
+User\LastName = "Smith"
+User\Home = "A House"
+User\Address = "A Street"
+User\Country = "UK"
+User\ZipCode = "12345"
+
+Debug "Users First Name: " + User\FirstName
+Debug "Users Last Name: " + User\LastName
+Debug "Users Home: " + User\Home
+Debug "Users Address: " + User\Address
+Debug "Users Country: " + User\Country
+Debug "Users Zip Code: " + User\ZipCode
+
+In this example the ‘FULLDETAILS’ structure is extending the ‘PERSONALDETAILS’ structure during its creation, inheriting all the fields from the ‘PERSONALDETAILS’ structure. These fields then appear first in our new structure. We assign this newly created structured type to the variable ‘User’, then proceed to assign values to all its fields. These are then tested by echoing their values to the Debug Output window.
+
+Structure Unions
+Structure unions are a way of conserving memory by forcing groups of variables within a structure to share the same memory address. This is maybe a little too advance to introduce this to you now but I’ve included it here for completeness. You may want to read Chapter 13 (Pointers) to understand better how unions work. Here is a simple example:
+
+Structure UNIONSTRUCTURE
+	StructureUnion
+		One.l
+		Two.l
+		Three.l
+	EndStructureUnion
+EndStructure
+Debug SizeOf(UNIONSTRUCTURE)
+
+UnionVariable.UNIONSTRUCTURE
+
+UnionVariable\One = 123
+Debug UnionVariable\One
+
+UnionVariable\Three = 456
+Debug UnionVariable\One
+
+When we declared the ‘UNIONSTRUCTURE’ we have used the ‘StructureUnion’ and ‘EndStructureUnion’ keywords to encapsulate the variables we want to use the same memory area. When we run this small program, the first debug statement echoes ‘4’ (Bytes) to the Debug Output window. This is because there are three variables inside this structure, that all share the same place in memory so only the size of one Long variable is returned.
+
+Further on in the program we assign the ‘UnionVariable’ the type of ‘UNIONSTRUCTURE’ and assign the value of ‘123’ to ‘UnionVariable\One’, then it’s echoed. We then assign a completely new value of ‘456’ to ‘UnionVariable\Three’ but because this field shares the same place in memory as the other fields, we can access this value using any other field name, in this case we again echo the value of ‘UnionVariable\One’ to the Debug Output window and it predictably displays the shared value of ‘UnionVariable\Three’.
+
+Structures can also contain what are known as Static Arrays but I’ll need to explain Arrays before we can apply that knowledge to structures. Arrays and Static Arrays are explained fully in the next section.
+
+Arrays
+
+In PureBasic, An Array can hold a user defined amount of variables of the same data type. Individual variables within the array are accessed by an index using a consecutive range of integers (whole numbers). Arrays can also be defined to contain structured variables instead of the standard PureBasic variable types. This section will teach you all you need to know about arrays in PureBasic.
+
+The ‘Dim’ Keyword
+Arrays in PureBasic are created by using the ‘Dim’ keyword, like this example:
+
+Dim LongArray.l(2)
+
+Let me explain this line of code a little more clearly, first we use the ‘Dim’ keyword to tell the compiler we are about to define an array. Then we give this new array a name, In this case, I’ve imaginatively called it ‘LongArray’. After the name, we then assign the array type in a similar way as variable types via a type suffix. Here I’ve used the ‘.l’ suffix to define that this is an array whose type is Long. After the type is defined then we have to define how many indices this array is to hold. We use brackets to define the last index number. In the above example we’ve used a ‘2’ to define the last index, so this actually gives our new array three indices, this is because array indices always start at zero. Once this array has been created, each index contains a Long variable.
+This simple array is sometimes referred to as a One Dimensional array because it requires only one index to assign and return all values within it. In this more complete example we define an array and assign values to its indices:
+
+Dim LongArray.l(2)
+
+LongArray(0) = 10
+LongArray(1) = 25
+LongArray(2) = 30
+
+Debug LongArray(0) + LongArray(1)
+Debug LongArray(1) * LongArray(2)
+Debug LongArray(2) - LongArray(0)
+
+After the values are assigned, we then echoed some tests to the Debug Output window using the values stored in the array indices. For example, the first return value to be echoed is from ‘10 + 25’, which are the values stored in indices ‘0’ and ‘1’. The results of ‘25 * 30’ and ‘30 - 10’ are then echoed too. Array indices can also be expressed using variables or expressions.
+
+LastIndex.l = 2
+FirstIndex.l = 0
+Dim StringArray.s(LastIndex)
+
+StringArray(FirstIndex) = "One is one and all alone"
+StringArray(FirstIndex + 1) = "Two, two, the lily-white boys"
+StringArray(FirstIndex + 2) = "Three, three, the rivals"
+
+Debug StringArray(FirstIndex)
+Debug StringArray(FirstIndex + 1)
+Debug StringArray(FirstIndex + 2)
+
+Here we’ve defined an array with three indices each containing a String variable (note the ‘.s’ suffix attached to the array name while using the ‘Dim’ command). We used the variable ‘LastIndex’ to assign the last index of the new array. Then we used the variable ‘FirstIndex’ to assign a String to the first index of the array and in later assignments we use an expression using the addition operator. This same technique (using an expression as an index) is used to return results from the different array indices to the Debug Output window. See Fig.16 for a graphical representation of the above array.
+
+<<Fig 16>>
+
+Because arrays are neatly ordered into indices, this makes it possible to iterate through them using loops very quickly. Just to wet your appetite, here is an example of an array with a thousand indices having each index assigned a value using a ‘For’ loop and then each index’s value is echoed to the Debug Output window using a second ‘For’ loop.
+
+Dim TestArray.l(999)
+
+For x = 0 To 999
+	TestArray(x) = x
+Next x
+
+For x = 0 To 999
+	Debug TestArray(x)
+Next x
+
+Run it and take a look at the Debug Output window. As you can see, with arrays it’s very fast to set and get even a thousand values.
+
+Multi-dimensional Arrays
+The best way of describing multi-dimensional arrays are in terms of tables holding columns and rows. To create multi-dimensional arrays simply specify the number of columns and rows you want the array to have. In the following example, we will create an array called ‘Animals’ which contains three indices, each of which contain a further three indices.
+
+Dim Animals.s(2, 2)
+Animals(0, 0) = "Sheep"
+Animals(0, 1) = "4 Legs"
+Animals(0, 2) = "Baaa"
+
+Animals(1, 0) = "Cat"
+Animals(1, 1) = "4 Legs"
+Animals(1, 2) = "Meow"
+
+Animals(2, 0) = "Parrot"
+Animals(2, 1) = "2 Legs"
+Animals(2, 2) = "Screech"
+
+Debug Animals(0, 0) + " has " + Animals(0, 1) + " And says " + Animals(0, 2)
+Debug Animals(1, 0) + " has " + Animals(1, 1) + " And says " + Animals(1, 2)
+Debug Animals(2, 0) + " has " + Animals(2, 1) + " And says " + Animals(2, 2)
+
+After defining the array, we then assign values to its indices. Because the ‘Animals’ array has two indices from which data is assigned and retrieved it is known as a Two Dimensional array. Two dimensional arrays can easily be understood by representing them in a two dimensional table consisting of rows and columns. Fig.17 shows the ‘Animals’ array in a similar way that Fig.16 shows a one dimensional array. It shows the rows and columns that can be accessed using two indices required by a two dimensional array.
+
+<<Fig 17>>
+
+Using Fig.17 as a reference we can see now how easily it is to assign and retrieve values of the various indices. For example, if I want to echo the value of row index ‘1’ and column index ‘2’ to the Debug Output window, we type:
+
+Debug Animals(1, 2)
+
+This should echo the text ‘Meow’. If you wanted to replace an entire row then we can do so like this:
+
+Animals(0, 0) = "Tripod"
+Animals(0, 1) = "3 Legs"
+Animals(0, 2) = "Oo-la"
+
+This replaces the Strings ‘Sheep’, ‘4 Legs’ and ‘Baaa’ with ‘Tripod’, ‘3 Legs’ and ‘Oo-la’ inside row index ‘0’ within the ‘Animals’ array. Fig.17 now looks like Fig.18, notice the modified first row.
+
+<<Fig 18>>
+
+Another way to explain Multi-dimensional arrays are that they are arrays within arrays. Just think that in each array index is contained another array and you get the idea of multi-dimensional arrays. The number of arrays that are contained within each index of the first dimension is dependent on how the array was first defined.
+
+In this following example, I show how to define one, two, three, four and five dimensional arrays:
+
+Dim Animals.s(5)
+Dim Animals.s(5, 4)
+Dim Animals.s(2, 5, 3)
+Dim Animals.s(1, 5, 4, 5)
+Dim Animals.s(2, 3, 6, 2, 3)
+
+After two dimensions, things start to get a little hard on your head, but if you keep in mind, the array within an array explanation, you should be able to work things out. Even though the maximum number of dimensions that can be assigned to an array is two hundred and fifty five (255), using arrays over two or three dimensions is unusual in everyday programming practices.
+
+Structured Type Arrays
+Until now we have seen how to define different arrays using only the standard PureBasic types but we can also ‘Dim’ an array using a structure. Let’s look at a simple example using a one dimensional array:
+
+Structure FISH
+	Kind.s
+	Weight.s
+	Color.s
+EndStructure
+
+Dim FishInTank.FISH(2)
+
+FishInTank(0)\Kind = "Clown Fish"
+FishInTank(0)\Weight = "4 oz."
+FishInTank(0)\Color = "Red, White and Black"
+
+FishInTank(1)\Kind = "Box Fish"
+FishInTank(1)\Weight = "1 oz."
+FishInTank(1)\Color = "Yellow"
+
+FishInTank(2)\Kind = "Sea Horse"
+FishInTank(2)\Weight = "2 oz."
+FishInTank(2)\Color = "Green"
+
+Debug FishInTank(0)\Kind+" "+FishInTank(0)\Weight+" "+FishInTank(0)\Color
+Debug FishInTank(1)\Kind+" "+FishInTank(1)\Weight+" "+FishInTank(1)\Color
+Debug FishInTank(2)\Kind+" "+FishInTank(2)\Weight+" "+FishInTank(2)\Color
+
+Here after we define the ‘FISH’ structure we define the array using the ‘Dim’ keyword and use ‘FISH’ as the array’s type in exactly the same way as we used the ‘.s’ (String) as the ‘Animals’ array type. I’ve also used ‘2’ as the last index for this array. To assign values to the fields of each of the array’s indices it’s incredibly simple. We just amalgamate the syntax of assignment to arrays and structures like this:
+
+FishInTank(0)\Kind = "Clown Fish"
+
+Let’s break this down into easily understandable chunks. First is the name of the array, in this case it is ‘FishInTank’. Then comes the current index contained within brackets in this case, index ‘0’. Next we use the ‘\’ character to access the field called ‘Kind’ within the ‘FISH’ structure which has been assigned to the ‘FishInTank’ array. We then use the ‘=’ operator to assign a String value to that field. Simple! To retrieve the value we have just assigned, we just use exactly the same syntax but without the assignment part, like this:
+
+Debug FishInTank(0)\Kind
+
+If we need to assign or retrieve a value from another index we do it like an array:
+
+Debug FishInTank(0)\Kind
+Debug FishInTank(1)\Kind
+Debug FishInTank(2)\Kind
+
+This would list the ‘Kind’ fields of all the indices of the ‘FishInTank’ array. To assign or retrieve any of the other fields we just use their names:
+
+Debug FishInTank(1)\Kind
+Debug FishInTank(1)\Weight
+Debug FishInTank(1)\Color
+
+Here we echo all the different fields to the Debug Output window of index ‘1’. To make things more understandable refer to Fig.19 for a graphical representation of the ‘FishInTank’ array.
+
+<<Fig 19>>
+
+As with the standard type arrays you can also specify multi-dimensional arrays using a structure as the array type. This gives you access to the unique fields of a structure within every index available inside multi-dimensional arrays. To define a multi-dimensional structured type array we do it in exactly the same way as one dimension structured type array but we just add more dimensions.
+
+Here is an example of how to define a two dimensional structured type array:
+
+Structure FISH
+	Kind.s
+	Weight.s
+	Color.s
+EndStructure
+
+Dim FishInTank.FISH(2, 2)
+...
+
+I’ll not type anymore code out regarding this two dimensional array because it will be far too long. Instead refer to Fig.20 for a fictional two dimensional structured type array.
+
+<<Fig 20>>
+
+To retrieve a value from this kind of array we need to supply two indices and a field name such as this:
+
+Debug FishInTank(1, 1)\Kind
+
+which would echo the text ‘Angel Fish’ to the Debug Output window. If we wanted to change this or other values we use the same method to access this area in the array:
+
+FishInTank(1, 1)\Kind = “Devil Fish”
+FishInTank(1, 1)\Weight = “6 oz.”
+FishInTank(1, 1)\Color = “Dark Red”
+
+This would change all fields of the ‘FISH’ structure located in the middle area in the array located at indices ‘1, 1’. This is shown in Fig.21.
+
+<<Fig 21>>
+
+As you can see these types of arrays are extremely handy if a little complex (especially when you start going beyond three dimensions), but to know how they work will give you an advantage later on in your programming.
+
+You will probably only use one dimensional structured type arrays in your programs for now but to know how multi-dimensional structured type arrays work will give you a good understanding of more advanced code.
+
+Redefining Arrays Once Created
+Standard arrays in PureBasic are not completely static, meaning they can be redefined in two different ways. The first way is to use the ‘Dim’ command again which redefines the array but in the process destroys all previous data assigned to it. The second way is to use the ‘ReDim’ command which redefines the array but keeps previous data intact. Here are examples showing both these behaviors. First let’s look at redefining an array with the ‘Dim’ command:
+
+Dim Dogs.s(2)
+
+Dogs(0) = "Jack Russell"
+Dogs(1) = "Alaskan Husky"
+Dogs(2) = "Border Collie"
+
+Debug Dogs(0)
+Debug Dogs(1)
+Debug Dogs(2)
+
+Dim Dogs.s(2)
+
+Debug Dogs(0)
+Debug Dogs(1)
+Debug Dogs(2)
+
+Here after the initial array creation and assignment of data I’ve used the ‘Dim’ command again to redefine the array with the same amount of indices as before. After the second definition, you will notice that the ‘Debug’ commands return nothing from the newly defined array. This is because all data has been destroyed during the redefinition. This data destruction can have a good use though. For example, if I needed to free up the memory used by an array, I could just redefine it with zero (0) as the maximum index which would free all memory associated with it. When redefining arrays like this you must always redefine them using the same type or an error will be raised.
+Here is an example of how to keep the data intact while redefining an array using the ‘ReDim’ command:
+
+Dim Dogs.s(2)
+
+Dogs(0) = "Jack Russell"
+Dogs(1) = "Alaskan Husky"
+Dogs(2) = "Border Collie"
+
+For x.l = 0 To 2
+	Debug Dogs(x)
+Next x
+
+Debug ""
+
+ReDim Dogs.s(4)
+
+Dogs(3) = "Yorkshire Terrier"
+Dogs(4) = "Greyhound"
+
+For x.l = 0 To 4
+	Debug Dogs(x)
+Next x
+
+Here I’ve used the ‘ReDim’ command to redefine the array but this time as well as redefining it, I’ve given it two extra indices. The extra two indices (‘3’ and ‘4’) are assigned data and then the whole array has its data echoed to the Debug Output window. Notice that the data from the initial creation is not lost. You must be aware though, if I used the ‘ReDim’ command to redefine an array with fewer indices than it previously had then of course the data within the discarded indices are lost. Also if you are redefining a multi-dimensional array using the ‘ReDim’ command then only the last dimension can be resized. This is standard behavior for a Basic command such as this.
+
+Rules For Using Arrays
+Even though arrays are very flexible they have a few rules to take into account when using them. These rules should be observed when using arrays in your programs.
+
+1). If an array is re-defined using the ‘Dim’ command, its previous data is lost.
+2). If an array is re-defined using the ‘ReDim’ command, its previous data is kept.
+3). Arrays can only be made up of one type of variable (a structured or a standard variable type).
+4). Arrays can be Global, Protected, Static and Shared. See Chapter 6 (Program Scope).
+5). The size of an array is only limited by the current machine’s installed RAM.
+6). Multi-dimensional arrays can have 255 dimensions.
+7). Arrays can be dynamically defined, using a variable or an expression to define dimension size.
+8). When defining dimension size, you define the last index number (all indices start at ‘0’).
+9). Dimensions can be of different sizes in multi-dimensional arrays.
+
+Static Arrays Within Structures
+
+Static arrays within structures are a little bit different from the normal arrays that have been previously described. Static arrays in their very nature are static and therefore cannot be modified once they have been defined. These types of arrays also only exist within structures.
+
+Static arrays also have a different set of rules to take into account when using them:
+
+1). Once a static array is defined its internal structure cannot be modified.
+2). Static arrays (like structures) cannot be redefined.
+3). They can only be made up of one type of variable (a structured or a standard variable type).
+4). The size of an array is only limited by the current machine’s installed RAM.
+5). Static arrays can only have one dimension.
+6). They can be dynamically defined, using a variable or an expression to define dimension size.
+7). When defining dimension size, you define the amount of indices it is to contain, not the last index.
+8). Static arrays can only be accessed through the structure variable within which they are defined.
+
+So now that I’ve given you the main rules, let me give you an example of how they are used:
+
+Structure FAMILY
+	Father.s
+	Mother.s
+	Children.s[2]
+	Surname.s
+EndStructure
+
+Family.FAMILY
+
+Family\Father = "Peter"
+Family\Mother = "Sarah"
+Family\Children[0] = "John"
+Family\Children[1] = "Jane"
+Family\Surname = "Smith"
+
+Debug "Family Members:"
+Debug Family\Father + " " + Family\Surname
+Debug Family\Mother + " " + Family\Surname
+Debug Family\Children[0] + " " + Family\Surname
+Debug Family\Children[1] + " " + Family\Surname
+
+Here in this example, the ‘FAMILY’ structure has a field called ‘Children’ which is a static String array. When we defined this array, we used the number ‘2’. This defines this static array will hold two indices. This behavior is completely different to standard arrays, with which you define the last index on creation. In our new static array we now have two indices, ‘0’ and ‘1’, further on in the example I assign values to all the fields in the ‘Family’ structured variable, including the two indices in the ‘Children’ static array. You will notice that static arrays have a slightly different syntax for assigning and retrieving data, they use square brackets instead of the usual curved ones.
+
+Assigning data to a static String array (using square brackets):
+
+Family\Children[0] = "John"
+
+Assigning data to a standard Long array (using curved brackets):
+
+LongArray(0) = 10
+
+You will also notice that you do not need to use a keyword such as ‘Dim’ when you define a static array. You just add square brackets to the end of a field within a structure. Within the square brackets you define how many indices you wish to give to this newly created static array. In the ‘FAMILY’ structure above, we use the String type to create a static array but you can use any PureBasic built-in type or even use another structure!
+
+Let’s look at another simple example:
+
+Structure EMPLOYEES
+	EmployeeName.s
+	EmployeeClockNumber.l
+	EmployeeAddress.s
+	EmployeeContactNumbers.l[2]
+EndStructure
+
+Dim Company.EMPLOYEES(9)
+
+Company(0)\EmployeeName = "Bruce Dickinson"
+Company(0)\EmployeeClockNumber = 666
+Company(0)\EmployeeAddress = "22 Acacia Avenue"
+Company(0)\EmployeeContactNumbers[0] = 0776032666
+Company(0)\EmployeeContactNumbers[1] = 0205467746
+
+Company(1)\EmployeeName = "Adrian Smith"
+Company(1)\EmployeeClockNumber = 1158
+...
+
+Here I create a user defined structure called ‘EMPLOYEES’ to describe a small company employee record and then create a standard array to contain ten of these records (remember that in a standard array you define the last index and these indices start at ‘0’). Inside the ‘EMPLOYEES’ structure I’ve used a Long static array to store two contact phone numbers. I’ve then started to define the individual employee records starting with ‘Company(0)\...’ and then onto ‘Company(1)\...’, etc. I don’t actually complete this example due to not wanting to waffle on, but you can see where I’m going with it and how everything works.
+
+Linked Lists
+
+Linked Lists are similar to arrays in that they are able to refer to lots of data using one name. They are however different to arrays in that they don’t use an index to assign and retrieve data.
+These lists are like a book where you can flip through the data from start to finish or just turn to a page within and read the data from there. Linked lists are also totally dynamic, meaning that they can grow or shrink depending on how much data you need them to hold. When increasing the size of a linked list you won’t harm or change any of the other data held within it and you can safely add elements to the list in any position necessary.
+
+Linked lists are a great way of storing and organizing data of an unknown length and can be sorted in several ways. There is also a built-in ‘Linked List’ library which provides functions to perform element additions, deletions and element swapping. Inside the built-in ‘Sort’ library there are also two functions that are used purely for sorting linked lists, I shall mention these later. A general overview and an introduction to PureBasic’s built-in commands is given later in Chapter 7.
+
+The ‘NewList’ Keyword
+Linked Lists in PureBasic are created by using the ‘NewList’ keyword as in this example:
+
+NewList Fruit.s()
+
+Defining a linked list is very similar to defining an array using the ‘Dim’ command. First we use the ‘NewList’ keyword to tell the compiler we are about to define a linked list. Next, we define a name for the new list, in this case we’ve called it ‘Fruit’. After a name has been given we then define its type, which again in this case is the String type. Brackets are then used to finish the list definition. You will notice in this small example that there are no indices defined within the brackets. This is because linked lists don’t need them, they are dynamic and will grow as you add elements. Let’s look at how we add elements to our new list, here is a more complete example:
+
+NewList Fruit.s()
+
+AddElement(Fruit())
+Fruit() = "Banana"
+
+AddElement(Fruit())
+Fruit() = "Apple"
+
+Because linked lists don’t have any indices it may at first seem a little strange using them because you might not know where in the list you are. In the above example, I’ve added two new elements to the ‘Fruit()’ list. To do this I used the ‘AddElement()’ function of the built-in Linked List library. When you add a new element using this function, not only does it automatically define a new element but it also makes the linked list name point to that newly created, empty element. So we just use its name to assign a piece of data to the list, notice we still use the brackets:
+
+Fruit() = "Banana"
+
+When we add another element using the ‘AddElement()’ function then exactly the same process takes place. First the new element is created, then the linked list name again points to the newly created empty element. So then we add data to the new element in exactly the same way:
+
+Fruit() = "Apple"
+
+<<Box 7>>
+
+You would think that this is wrong because we are assigning the text ‘Apple’ to the same name as we assigned the text ‘Banana’. Because we added a new element, the linked list name ‘Fruit()’ will point to the new element within the list. We can also check how many elements are in our list at any time using the built-in ‘CountList()’ function, like this:
+
+Debug CountList(Fruit())
+
+If we executed the above code then the number of elements contained within the ‘Fruit()’ list will be echoed to the Debug Output window. In this case it would be ‘2’.
+
+Let’s add a few more elements to this list and then echo all of the element values to the Debug Output window. Here is a full example again:
+
+NewList Fruit.s()
+
+AddElement(Fruit())
+Fruit() = "Banana"
+
+AddElement(Fruit())
+Fruit() = "Apple"
+
+AddElement(Fruit())
+Fruit() = "Pear"
+
+AddElement(Fruit())
+Fruit() = "Orange"
+
+ForEach Fruit()
+	Debug Fruit()
+Next
+
+In this larger example, we create a new linked list called ‘Fruits()’ and within it we create four elements and assign them individual values. We then loop through this list using a ‘ForEach’ loop and echo all of the element’s values to the Debug Output window. The ‘ForEach’ keyword is used to define a loop which is only used for linked lists.
+
+Fig.22 gives a brief overview of the linked list commands available in the built-in ‘Linked List’ library. This diagram is not a complete reference but is included here as a brief guide to see which command to use when the need arises. The more advanced commands can be found in the PureBasic helpfile.
+
+<<Fig 22>>
+
+Structured Linked Lists
+Now that I have explained standard linked lists, let’s move onto structured linked lists. These are very similar to structured type arrays in that they are defined with a structure instead of a built-in variable type. You can then effectively have a dynamically resizing linked list masquerading as a structured type array that grows and shrinks depending on what information you have to store. Let’s take a look at a previous example but this time re-code it to use a structured linked list.
+
+Structure FISH
+	Kind.s
+	Weight.s
+	Color.s
+EndStructure
+
+NewList FishInTank.FISH()
+AddElement(FishInTank())
+FishInTank()\Kind = "Clown Fish"
+FishInTank()\Weight = "4 oz."
+FishInTank()\Color = "Red, White and Black"
+
+AddElement(FishInTank())
+FishInTank()\Kind = "Box Fish"
+FishInTank()\Weight = "1 oz."
+FishInTank()\Color = "Yellow"
+
+AddElement(FishInTank())
+FishInTank()\Kind = "Sea Horse"
+FishInTank()\Weight = "2 oz."
+FishInTank()\Color = "Green"
+
+ForEach FishInTank()
+	Debug FishInTank()\Kind+" "+FishInTank()\Weight+" "+FishInTank()\Color
+Next
+
+You can see from this example that after you create a list it is then very similar to a structured type array to assign and retrieve data. The main difference here though is that array style indices are not used. Remember that when you use the ‘AddElement(FishInTank())’ command you create a new element using the structure from the initial definition. This command then moves the current position of the list to this newly created element. It is then safe to assign data to the new structured element like this:
+
+FishInTank()\Kind = "Clown Fish"
+FishInTank()\Weight = "4 oz."
+FishInTank()\Color = "Red, White and Black"
+
+Because the name ‘FishInTank()’ now points to your new element there is no need to use an index. To access the fields inside this structured element you again use the ‘\’ character. At the end of the example another ‘ForEach’ loop is used to quickly and efficiently echo the data to the Debug Output window.
+
+Pros And Cons Of Linked Lists?
+Linked lists are great for storing data when you don’t know how much of it there is. For example, in the past I’ve written a program to track household expenses, and used a structured linked list to hold the details of these expenses. Using a linked list rather than an array made it easier to add, delete and sort the data.
+
+While writing this program I thought that I must make this program flexible to handle new expenses when they occur and to be able to delete old ones, just in-case I buy a new car and/or pay off a loan, etc. This is handled very nicely by linked lists. When I need to add an entry I use the ‘AddElement()’ function and when I need to delete an entry I use the ‘DeleteElement()’ function. After the adding and deleting is done within the list, I then transfer all this data into a nice Graphical User Interface (GUI) for the user to see and interact with. I will give talk more extensively about GUIs in Chapter 9.
+
+Linked lists are more flexible than arrays in that they can grow and shrink in size more easily but arrays will always use less RAM to store the same amount of data than linked lists. This is because arrays are continuous areas of memory which only use the standard amount of RAM per type for each index. Linked lists are different in the way that each element uses roughly three times the amount of RAM for its particular type. This is because linked lists are not in the same continuous piece of memory and need to store information on where to find the other elements within RAM. This is something to keep in mind when dealing with huge amounts of data as your memory requirements could be triple if you use linked lists.
+
+Sorting Arrays And Linked Lists
+
+Arrays and linked lists are great for storing all sorts of data and these data structures can easily be traversed to quickly retrieve that data. Sometimes though you may need to reorganize the data contained within an array or linked list, so it is sorted alphabetically or numerically. Here are a few examples of how to use the commands of the ‘Sort’ library (Helpfile:Reference Manual->General Libraries->Sort) to sort arrays and linked lists.
+
+Sorting A Standard Array
+Sorting a standard array is extremely simple. First of all you need an array pre-filled with values then use the ‘SortArray()’ command to sort it. Here is the syntax example:
+
+SortArray(Array(), Options [, Start, End])
+
+The first parameter is the array to be sorted, notice the curved brackets after the array name, these are required to correctly pass an array as a parameter. The second parameter is an option, to specify how you would like the array to be sorted. Here are the options for the second parameter:
+
+	‘0’ : Sort the array in ascending order being case sensitive.
+	‘1’ : Sort the array in descending order being case sensitive.
+	‘2’ : Sort the array in ascending order without being case sensitive (‘A’ is the same as ‘a’).
+	‘3’ : Sort the array in descending order without being case sensitive (‘A’ is the same as ‘a’).
+
+The square brackets around the last two parameters indicate that these are optional and don’t need to be specified when using this command. These last two parameters are used to specify an array position range to perform the sort within.
+
+Using the above information, we can sort a full array in ascending order and being case sensitive, using the command like this:
+
+Dim Fruit.s(3)
+
+Fruit(0) = "Banana"
+Fruit(1) = "Apple"
+Fruit(2) = "Pear"
+Fruit(3) = "Orange"
+SortArray(Fruit(), 0)
+
+For x.l = 0 To 3
+	Debug Fruit(x)
+Next x
+
+Sorting A Structured Array
+This is slightly more complicated as it uses a slightly more complicated sort command; ‘SortStructuredArray()’. Here is the syntax example:
+
+SortStructuredArray(Array(), Options, Offset, Type [, Start, End])
+
+The first parameter is the array name complete with brackets. The second is the sort options, these are exactly the same as the ‘SortArray()’ command. The third parameter is an offset (a position within the originating structure) of the field you would like to sort by. This is retrieved using the ‘OffsetOf()’ command. The ‘OffsetOf()’ command returns the number of Bytes that a particular variable field is offset, from the beginning of a structure. The forth parameter defines what type of variable is found at the previously passed offset. You can use built-in constants for the forth parameter to describe what type of variable you are sorting by, these are:
+
+‘#PB_Sort_Byte’	: The field in the structure to sort by, is a Byte (.b)
+‘#PB_Sort_Character’	: The field in the structure to sort by, is a Character (.c) 
+‘#PB_Sort_Word’	: The field in the structure to sort by, is a Word (.w)
+‘#PB_Sort_Long’	: The field in the structure to sort by, is a Long (.l)
+‘#PB_Sort_Quad’	: The field in the structure to sort by, is a Quad (.q)
+‘#PB_Sort_Float’	: The field in the structure to sort by, is a Float (.f)
+‘#PB_Sort_Double’	: The field in the structure to sort by, is a Double (.d)
+‘#PB_Sort_String’	: The field in the structure to sort by, is a String (.s or $)
+
+The last two parameters in this command are optional and don’t need to be specified when using this command. These are used to specify an array position range to perform the sort within. Using the above information, we can sort a full structured array in ascending order and sorting by the ‘Range’ field, like this:
+
+Structure WEAPON
+	Name.s
+	Range.l
+EndStructure
+
+Dim Weapons.WEAPON(2)
+
+Weapons(0)\Name = "Phased Plasma Rifle"
+Weapons(0)\Range = 40
+
+Weapons(1)\Name = "SVD-Dragunov Sniper Rifle"
+Weapons(1)\Range = 3800
+
+Weapons(2)\Name = "HK-MP5 Sub-Machine Gun"
+Weapons(2)\Range = 300
+SortStructuredArray(Weapons(), 0, OffsetOf(WEAPON\Range), #PB_Sort_Long)
+
+For x.l = 0 To 2
+	Debug Weapons(x)\Name + " : " + Str(Weapons(x)\Range)
+Next x
+
+In this example, I’ve chosen the ‘Range’ field to sort the structured array by, so in the sort command I’ve defined this using the offset ‘OffsetOf(WEAPON\Range)’ and telling the sort command it is a Long type variable field by using the ‘#PB_Sort_Long’ constant.
+
+Sorting A Standard Linked List
+Sorting a standard linked list is extremely simple. First of all you need a linked list pre-filled with values then use the ‘SortList()’ command to sort it. Here is the syntax example:
+
+SortList(ListName(), Options [, Start, End])
+
+The first parameter is the linked list to be sorted, notice the curved brackets after the list’s name, these are required to correctly pass the linked list as a parameter. The second is the sort options, these are exactly the same as the ‘SortArray()’ command. The last two parameters are used to specify a linked list position range to perform the sort within.
+
+Using the above information, we can sort a full linked list in ascending order and being case sensitive, using the sort command like this:
+
+NewList Fruit.s()
+
+AddElement(Fruit())
+Fruit() = "Banana"
+
+AddElement(Fruit())
+Fruit() = "Apple"
+
+AddElement(Fruit())
+Fruit() = "Orange"
+
+SortList(Fruit(), 0)
+
+ForEach Fruit()
+	Debug Fruit()
+Next
+
+Sorting A Structured Linked List
+Sorting a structured linked list is slightly more complicated as it uses a slightly more complicated sort command; ‘SortStructuredList()’. Here is this command’s syntax example:
+
+SortStructuredList(List(), Options, Offset, Type [, Start, End])
+
+The first parameter is the linked list name complete with brackets. The second is the sort options, which are exactly the same as the ‘SortArray()’ command. The third parameter is an offset (a position within the originating structure) of the field you would like to sort by. This is retrieved using the ‘OffsetOf()’ command. The forth parameter defines what type of variable is found at the previously passed offset. You can use built-in constants for the forth parameter to describe what type of variable you are sorting by, these are exactly the same as the ‘SortStructuredArray()’ command. The last two parameters are used to specify a linked list position range to perform the sort within.
+
+Using the above information, we can sort a full structured linked list in ascending order and being case sensitive, using the sort command like this:
+
+Structure GIRL
+	Name.s
+	Weight.s
+EndStructure
+
+NewList Girls.GIRL()
+
+AddElement(Girls())
+Girls()\Name = "Mia"
+Girls()\Weight = "8.5 Stone"
+
+AddElement(Girls())
+Girls()\Name = "Big Rosie"
+Girls()\Weight = "19 stone"
+
+AddElement(Girls())
+Girls()\Name = "Sara"
+Girls()\Weight = "10 Stone"
+
+SortStructuredList(Girls(), 0, OffsetOf(GIRL\Name), #PB_Sort_String)
+
+ForEach Girls()
+	Debug Girls()\Name + " : " + Girls()\Weight
+Next
+
+In this example, I’ve chosen the ‘Name’ field to sort this structured linked list by, so in the sort command I’ve defined this using the offset ‘OffsetOf(GIRL\Name)’ and telling the commands it’s a String by using the ‘#PB_Sort_String’ constant.
+
+Sorting Made Easy
+All the previous sorting examples can be used in the same way to sort all numeric fields as well as Strings, it’s just a case of choosing the right sorting option when using the different sort commands. Sorting arrays and linked lists, wether created using a structure or not is just a case of using the right options and offsets. Try some examples yourself to practice sorting using these commands.

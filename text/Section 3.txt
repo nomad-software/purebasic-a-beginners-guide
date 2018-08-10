@@ -1,0 +1,13 @@
+III
+
+Graphics And Sound
+
+Programs that use graphics and sound are a prerequisite now in this world of computer games and interactive applications. When programming such cool stuff you need a computer language that will provide you with the necessary tools to realize your ideas. PureBasic offers simple, powerful and fully featured commands that can create professional quality games, demo’s, screensavers and other interactive programs. In this section I will show you the basics of using graphics and sound within your PureBasic programs.
+
+First I’ll explain the 2D drawing commands that allow you to draw simple shapes, lines and text and then demonstrate how to save these images. Then I’ll move on to show you how to open full size graphical screens to be able to draw graphics onto. Also I will introduce you to sprites and how to use them to create nice graphical effects.
+
+After that, we’ll move onto 3D graphics where I will introduce you to PureBasic’s adopted 3D engine and show you the basics of using 3D graphics in PureBasic. This engine is called OGRE and is a third party professional quality engine capable of producing stunning graphics and effects.
+
+The last chapter in this section deals with sound. The topics covered, are how to load and play sounds, with an emphasis on wav’s, tracker modules, mp3’s and CD audio.
+
+The chapters contained in this section are not complete guides on how to achieve every graphical effect or how to write games, I’ll leave that to other texts. These chapters are here to introduce you to the libraries of commands that make these things possible and to provide a starting point so you can experiment and have some fun. Hopefully this section will give you a taste of what is possible graphically using PureBasic and inspire you to create a cool demo or game.
