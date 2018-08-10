@@ -1,9 +1,9 @@
 Different Ways Of Creating Or Opening Files
 
-When using PureBasic’s file commands to read or write to files, you must choose the right command depending on how you wish to use that file. The below list describes commands that enable any read or write to be catered for.
+When using PureBasic's file commands to read or write to files, you must choose the right command depending on how you wish to use that file. The below list describes commands that enable any read or write to be catered for.
 
-‘ReadFile()’ will open the defined file for reading and prevents any writing to it.
-‘OpenFile()’ will open the defined file for reading or writing and will create it if it doesn't exist.
-‘CreateFile()’ creates an empty file for writing to. If the file already exists, it replaces it with a blank one.
+'ReadFile()' will open the defined file for reading and prevents any writing to it.
+'OpenFile()' will open the defined file for reading or writing and will create it if it doesn't exist.
+'CreateFile()' creates an empty file for writing to. If the file already exists, it replaces it with a blank one.
 
 Each one works in exactly the same way and all share the same two parameters. The first parameter is the PB number to be associated to the file object and the second parameter is the actual file name on disk.

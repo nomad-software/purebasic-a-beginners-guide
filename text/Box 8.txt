@@ -4,4 +4,4 @@ When calling a procedure you must make sure that any defined parameters are call
 
 AddTogether(a.l, b.l)
 
-then only Long variables must be passed as parameters. If String type variables are defined as parameters then you must call the procedure using Strings as values for these parameters. Procedures using arrays and linked lists as parameters must also be called correctly and all parameters must be in the correct order and using the correct type. I know this seems obvious but I think it’s worth pointing out.
+then only Long variables must be passed as parameters. If String type variables are defined as parameters then you must call the procedure using Strings as values for these parameters. Procedures using arrays and linked lists as parameters must also be called correctly and all parameters must be in the correct order and using the correct type. I know this seems obvious but I think it's worth pointing out.

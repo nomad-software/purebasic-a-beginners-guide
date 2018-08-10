@@ -6,11 +6,11 @@ The following pages contain many useful web address from the Internet that you w
 
 PureBasic Beginners
 http://www.pb-beginners.co.uk
-The website associated to this book. Most of the code, images and sounds used in the examples contained in this book can be downloaded from this website along with other useful tools and utilities, including the elusive ‘Win32.hlp’ help file.
+The website associated to this book. Most of the code, images and sounds used in the examples contained in this book can be downloaded from this website along with other useful tools and utilities, including the elusive ï¿½Win32.hlpï¿½ help file.
 
 Official PureBasic Website
 http://www.purebasic.com
-The official website of PureBasic. This is where you buy and download the full PureBasic package. You can also find the latest development news on PureBasic and access support via the website’s menu.
+The official website of PureBasic. This is where you buy and download the full PureBasic package. You can also find the latest development news on PureBasic and access support via the website's menu.
 
 Official PureBasic Forums
 http://forums.purebasic.com
@@ -26,7 +26,7 @@ This site contains news and updated builds of the new official PureBasic visual 
 
 PureProject
 http://pureproject.reelmedia.org
-More PureBasic code snippets including games and applications and more downloadable third party user libraries. There’s also a Windows API section too.
+More PureBasic code snippets including games and applications and more downloadable third party user libraries. Thereï¿½s also a Windows API section too.
 
 PureVision
 http://purevision.reelmedia.org
@@ -34,11 +34,11 @@ A third party commercial replacement for the standard PureBasic visual designer.
 
 Microsoft Windows API Documentation
 http://msdn.microsoft.com/library
-Microsoft’s Windows API website detailing all the Windows Application Programming Interface. Use the search box on the webpage to quickly find information.
+Microsoft's Windows API website detailing all the Windows Application Programming Interface. Use the search box on the webpage to quickly find information.
 
 API-Guide
 http://www.allapi.net/agnet/apiguide.shtml
-A program called ‘API-Guide’ that allows you to explore the commands available in the Win32 API. Details of all commands and parameters are given with examples for nearly all commands. Note: The examples are coded for VisualBasic but can easily be converted to PureBasic.
+A program called 'API-Guide' that allows you to explore the commands available in the Win32 API. Details of all commands and parameters are given with examples for nearly all commands. Note: The examples are coded for VisualBasic but can easily be converted to PureBasic.
 
 The OGRE Engine
 http://www.ogre3d.org/
@@ -46,4 +46,4 @@ The website of the OGRE 3D engine, this is the one that PureBasic uses to provid
 
 Housemarque Audio System
 http://www.s2.org/hmqaudio/
-This is the sound system that PureBasic uses to play modules. You will need to download the ‘midas11.dll’ file to provide module playback capabilities in your programs. This file is part of the Housemarque ‘Standard distribution package’. For more information see Chapter 12 (Module Files).
+This is the sound system that PureBasic uses to play modules. You will need to download the 'midas11.dll' file to provide module playback capabilities in your programs. This file is part of the Housemarque 'Standard distribution package'. For more information see Chapter 12 (Module Files).

@@ -1,10 +1,10 @@
-PureBasic - A Beginner’s Guide To Computer Programming
+PureBasic - A Beginner's Guide To Computer Programming
 by Gary Willoughby
 
-Copyright © 2006 Gary Willoughby
+Copyright Â© 2006 Gary Willoughby
 This book and all included source materials such as diagrams, photos and PureBasic source code is distributed under the Creative Commons Attribution Non-Commercial Share Alike License. More details can be found here: http://creativecommons.org/about/licenses/
 
-PureBasic is a registered trademark of Fantaisie Software. PureBasic and all provided tools and components contained within the PureBasic package are Copyright © 2006 Fantaisie Software.
+PureBasic is a registered trademark of Fantaisie Software. PureBasic and all provided tools and components contained within the PureBasic package are Copyright Â© 2006 Fantaisie Software.
 
 Fantaisie Software
 10, rue de Lausanne
@@ -29,7 +29,7 @@ Trademarks
 Trademarked names appear throughout this book. Rather than list the names and entities that own the trademarks or insert a trademark symbol with each mention of the trademarked name, the publisher states that it is using the names for editorial purposes only and to the benefit of the trademark owner, with no intention of infringing on that trademark.
 
 Dedication
-Dedicated to my girlfriend, Sara Jane Gostick and her dog ‘Stella’ for putting up with many lonely nights while I wrote this book and for the encouragement (and chicken dinners) she always gives me.
+Dedicated to my girlfriend, Sara Jane Gostick and her dog 'Stella' for putting up with many lonely nights while I wrote this book and for the encouragement (and chicken dinners) she always gives me.
 
 
 
@@ -40,8 +40,8 @@ Thanks to Timo Harter for helping to choose what Purebasic data types would best
 
 
 
-“With great power there must also come great responsibility!”
---Ben Parker (Spiderman’s Uncle)
+'With great power there must also come great responsibility!'
+--Ben Parker (Spiderman's Uncle)
 
 
 

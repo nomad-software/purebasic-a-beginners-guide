@@ -19,47 +19,47 @@ When you view a command page in the PureBasic helpfile you are confronted with a
 	An Example
 	Supported Operating Systems
 
-The latter three sections of each helpfile page are mostly self explanatory so let’s concentrate for a minute on the syntax section. The syntax portion at the top of each helpfile page is an example of how the command is actually typed into the IDE and what parameters are expected to be passed to it. For example, let’s look at the ‘SaveImage()’ command in the helpfile. This is how to navigate to the correct page: (Helpfile:Reference Manual->General Libraries->Image->SaveImage). On this page at the very top, under the syntax heading, this syntax example appears:
+The latter three sections of each helpfile page are mostly self explanatory so let's concentrate for a minute on the syntax section. The syntax portion at the top of each helpfile page is an example of how the command is actually typed into the IDE and what parameters are expected to be passed to it. For example, let's look at the 'SaveImage()' command in the helpfile. This is how to navigate to the correct page: (Helpfile:Reference Manual->General Libraries->Image->SaveImage). On this page at the very top, under the syntax heading, this syntax example appears:
 
 SaveImage(#Image, FileName$ [, ImagePlugin [, Flags]])
 
-The first thing on this line is the actual command name, in this case ‘SaveImage’, after that is a pair of brackets and if this certain command can accept parameters they will be shown within these brackets. In the ‘SaveImage()’ syntax example it is shown that this command can accept four parameters and so all four are within the brackets. You will also notice that the last two parameters are shown within square brackets too. This is to signify that these last two parameters are optional and don’t have to be used when you need to call the ‘SaveImage()’ command. If we keep this in mind, the ‘SaveImage()’ command can be properly used like these three examples:
+The first thing on this line is the actual command name, in this case 'SaveImage', after that is a pair of brackets and if this certain command can accept parameters they will be shown within these brackets. In the 'SaveImage()' syntax example it is shown that this command can accept four parameters and so all four are within the brackets. You will also notice that the last two parameters are shown within square brackets too. This is to signify that these last two parameters are optional and don't have to be used when you need to call the 'SaveImage()' command. If we keep this in mind, the 'SaveImage()' command can be properly used like these three examples:
 
 SaveImage(1, "Image.bmp")
 SaveImage(1, "Image.jpg", #PB_ImagePlugin_JPEG)
 SaveImage(1, "Image.jpg", #PB_ImagePlugin_JPEG, 10)
 
-The first example will save an image called ‘Image.bmp’ in the default 24bit Bitmap format. The second example will save the image as JPEG format and use the standard compression value. The third example will save the image as JPEG format and use the maximum compression value of ten (‘10’). Simple!
+The first example will save an image called 'Image.bmp' in the default 24bit Bitmap format. The second example will save the image as JPEG format and use the standard compression value. The third example will save the image as JPEG format and use the maximum compression value of ten ('10'). Simple!
 
 <<Box 10>>
 
-The first thing you may realize while using built-in commands is that they look and act exactly like normal procedure calls. All built-in commands are simply calling pre-written procedures that are defined as part of the PureBasic package. The trick to using them correctly is that when you call a built-in command, you must pass it the correct parameters as defined in that command’s syntax example, otherwise a syntax error will be triggered by the compiler.
+The first thing you may realize while using built-in commands is that they look and act exactly like normal procedure calls. All built-in commands are simply calling pre-written procedures that are defined as part of the PureBasic package. The trick to using them correctly is that when you call a built-in command, you must pass it the correct parameters as defined in that command's syntax example, otherwise a syntax error will be triggered by the compiler.
 
 The structure of the above syntax example is emulated throughout the entire helpfile, so if you understand how to read this one, you will understand how to read all syntax examples for all the other built-in commands.
 
 PB Numbers And OS Identifiers
 
-When using built-in commands it is important to understand the role of PureBasic’s object numbering system and that of operating system identifiers, as these are used directly when controlling what happens in your program. Both are nothing more than numbers but both are used to identify objects within programs. For example, to identify parts of a graphical user interface or different images you have to identify them by a number. Knowing how and when to use them is essential, not only to PureBasic but programming in general.
+When using built-in commands it is important to understand the role of PureBasic's object numbering system and that of operating system identifiers, as these are used directly when controlling what happens in your program. Both are nothing more than numbers but both are used to identify objects within programs. For example, to identify parts of a graphical user interface or different images you have to identify them by a number. Knowing how and when to use them is essential, not only to PureBasic but programming in general.
 
-The PureBasic helpfile is invaluable for the information it contains but it can get a little confusing when first trying to understand PureBasic’s object numbering system and operating system identifiers. This is because sometimes the helpfile refers to both being identifiers. Let me explain exactly what they are so you can understand the helpfile better.
+The PureBasic helpfile is invaluable for the information it contains but it can get a little confusing when first trying to understand PureBasic's object numbering system and operating system identifiers. This is because sometimes the helpfile refers to both being identifiers. Let me explain exactly what they are so you can understand the helpfile better.
 
 PB Numbers Explained
-PureBasic works on a number system to identify each object that you create in your program. A PureBasic object, among others, can be a window, a gadget or even an image. These numbers, we’ll call them PB numbers, are then used by your program to refer to these objects later when you want to perform some action on them.
+PureBasic works on a number system to identify each object that you create in your program. A PureBasic object, among others, can be a window, a gadget or even an image. These numbers, we'll call them PB numbers, are then used by your program to refer to these objects later when you want to perform some action on them.
 
-Many PureBasic commands need either one or two PB numbers passed to them as parameters to function correctly. These are shown in the PureBasic helpfile within the syntax example of any given command. If a command needs a PB number, these are usually shown as a constant, beginning with a hash (#) and ending with the name of the library that the command resides in, e.g. ‘#Image’ is used for an image number, ‘#Window’ is used for a window number, etc.
+Many PureBasic commands need either one or two PB numbers passed to them as parameters to function correctly. These are shown in the PureBasic helpfile within the syntax example of any given command. If a command needs a PB number, these are usually shown as a constant, beginning with a hash (#) and ending with the name of the library that the command resides in, e.g. '#Image' is used for an image number, '#Window' is used for a window number, etc.
 
-Here is an example of a built-in command from the ‘Image’ library that makes use of a PB number: (Helpfile:Reference Manual->General Libraries->Image->CreateImage).
+Here is an example of a built-in command from the 'Image' library that makes use of a PB number: (Helpfile:Reference Manual->General Libraries->Image->CreateImage).
 
 CreateImage(#Image, Width, Height)
 
-As you can see this command expects a PB number to be passed to it as the first parameter, shown by ‘#Image’. Although this is shown as a constant in the syntax example, it doesn’t necessarily mean that a constant must be passed to the command, it just means that constants are usually used. In fact, any integer can be used as a PB number for an object, as long as it is unique amongst others if many of the same objects are used. This number refers to this newly created object from then on throughout your program.
+As you can see this command expects a PB number to be passed to it as the first parameter, shown by '#Image'. Although this is shown as a constant in the syntax example, it doesn't necessarily mean that a constant must be passed to the command, it just means that constants are usually used. In fact, any integer can be used as a PB number for an object, as long as it is unique amongst others if many of the same objects are used. This number refers to this newly created object from then on throughout your program.
 
-The Same Kind Of Objects Can’t Share PB Numbers
-PureBasic numbers provide a great way to refer to anything that PureBasic creates on an individual basis. Because of this you can’t have two of the same object sharing the same PB number. If you create an image with a number of ‘1’ then later in your program you create another image with the number of ‘1’, PureBasic automatically destroys the first and frees the memory it was using before creating the second. This makes sure no two objects from the same library share the same PB number. This feature is also very handy if you want to replace objects at any time.
+The Same Kind Of Objects Can't Share PB Numbers
+PureBasic numbers provide a great way to refer to anything that PureBasic creates on an individual basis. Because of this you can't have two of the same object sharing the same PB number. If you create an image with a number of '1' then later in your program you create another image with the number of '1', PureBasic automatically destroys the first and frees the memory it was using before creating the second. This makes sure no two objects from the same library share the same PB number. This feature is also very handy if you want to replace objects at any time.
 
-PureBasic numbers can be shared across libraries though. For example, you can create a window using ‘1’ as its PB number and then create a button gadget on it using ‘1’ as its PB number too. These two numbers don’t conflict with one another because they refer to objects from two different libraries.
+PureBasic numbers can be shared across libraries though. For example, you can create a window using '1' as its PB number and then create a button gadget on it using '1' as its PB number too. These two numbers don't conflict with one another because they refer to objects from two different libraries.
 
-When using different commands to create objects, things can get confusing when trying to keep track of all the numbers that must be used. To avoid this problem, many PureBasic programmers (including me) use constants for these PB numbers. These constants are usually defined in an enumeration block to keep the numbers sequential. Here’s an example:
+When using different commands to create objects, things can get confusing when trying to keep track of all the numbers that must be used. To avoid this problem, many PureBasic programmers (including me) use constants for these PB numbers. These constants are usually defined in an enumeration block to keep the numbers sequential. Here's an example:
 
 Enumeration
 	#IMAGE_DOG
@@ -70,24 +70,24 @@ CreateImage(#IMAGE_DOG, 100, 100)
 CreateImage(#IMAGE_CAT, 250, 300)
 CreateImage(#IMAGE_BIRD, 450, 115)
 
-After the constants have been defined, I can use these to create the above images (or any other object) and not worry about their values conflicting. Throughout the program I can also use these constants to refer to the images by name. For example, now I can refer to the first image by using the ‘#IMAGE_DOG’ constant. This method of using constants for PureBasic’s numbers guarantees clearly organized and readable code.
+After the constants have been defined, I can use these to create the above images (or any other object) and not worry about their values conflicting. Throughout the program I can also use these constants to refer to the images by name. For example, now I can refer to the first image by using the '#IMAGE_DOG' constant. This method of using constants for PureBasic's numbers guarantees clearly organized and readable code.
 
 Dynamic PB Numbers
 As an alternative to using enumeration blocks to handle PB numbers for newly created objects, you can use a special constant for them all. This constant is:
 
 #PB_Any
 
-This constant can be used wherever a PB number is expected in an object creation command. The value of this constant is the next PB number that is available for use. So for example, the first time it is used its value may be ‘1’, then the second time it is used its value may be ‘2’. This behavior is great for building dynamic programs, where you may or may not know how many objects you will be creating.
+This constant can be used wherever a PB number is expected in an object creation command. The value of this constant is the next PB number that is available for use. So for example, the first time it is used its value may be '1', then the second time it is used its value may be '2'. This behavior is great for building dynamic programs, where you may or may not know how many objects you will be creating.
 
-The only thing to keep in mind while using ‘#PB_Any’ as a PB number, is that in order for you to refer to this object later, you have to know what value ‘#PB_Any’ had during the object’s creation. This is made simple by PureBasic, because you use this special constant as a parameter within a command, that command returns the PB number of this newly created object. Here is an example of using a dynamic PB number in the ‘CreateImage’ command:
+The only thing to keep in mind while using '#PB_Any' as a PB number, is that in order for you to refer to this object later, you have to know what value '#PB_Any' had during the object's creation. This is made simple by PureBasic, because you use this special constant as a parameter within a command, that command returns the PB number of this newly created object. Here is an example of using a dynamic PB number in the 'CreateImage' command:
 
 ImageDog.l = CreateImage(#PB_Any, 100, 100)
 
-Here the ‘CreateImage()’ command now returns the PB number of the newly created image because we have used the ‘#PB_Any’ constant as the PB number parameter. This works in exactly the same way for all object creation commands.
+Here the 'CreateImage()' command now returns the PB number of the newly created image because we have used the '#PB_Any' constant as the PB number parameter. This works in exactly the same way for all object creation commands.
 PB numbers are unique to PureBasic and enable a quick and easy way of referring to different objects within your program. To view them in real working examples, see Chapter 9.
 
 Operating System Indentifiers
-Some objects you create using PureBasic’s built-in commands are also assigned numbers from the operating system. These numbers are how the actual operating system keeps track of such things as windows, fonts and images, etc. The PureBasic helpfile calls these, OS Identifiers or just IDs. While programming in PureBasic you will notice that some commands return OS identifiers while others may need them as parameters.
+Some objects you create using PureBasic's built-in commands are also assigned numbers from the operating system. These numbers are how the actual operating system keeps track of such things as windows, fonts and images, etc. The PureBasic helpfile calls these, OS Identifiers or just IDs. While programming in PureBasic you will notice that some commands return OS identifiers while others may need them as parameters.
 
 Here are a few commands that return an OS identifier of the object defined by the PB number parameter:
 
@@ -95,23 +95,23 @@ WindowOSId.l = WindowID(#Window)
 GadgetOSId.l = GadgetID(#Gadget)
 ImageOSId.l = ImageID(#Image)
 
-I’ve listed three here but there are a few more. Command names that end with ‘...ID()’ usually return OS Identifiers. As mentioned before, here is an example of a command that uses an OS Identifier as a parameter:
+I've listed three here but there are a few more. Command names that end with '...ID()' usually return OS Identifiers. As mentioned before, here is an example of a command that uses an OS Identifier as a parameter:
 
 CreateGadgetList(WindowOSId)
 
-This command is used to create a gadget list within a window and uses an operating system identifier to define where the list is created. An OS identifier is used in this command instead of a PB number for maximum compatibility, just in case the window has been created by the operating system’s native API. If you wanted to use this command to create a gadget list on a window created by using PureBasic’s number system, then we could do something like this:
+This command is used to create a gadget list within a window and uses an operating system identifier to define where the list is created. An OS identifier is used in this command instead of a PB number for maximum compatibility, just in case the window has been created by the operating system's native API. If you wanted to use this command to create a gadget list on a window created by using PureBasic's number system, then we could do something like this:
 
 CreateGadgetList(WindowID(#Window))
 
-Notice we are using the ‘WindowID()’ command as a parameter which returns the OS identifier of a PB numbered window.
+Notice we are using the 'WindowID()' command as a parameter which returns the OS identifier of a PB numbered window.
 
-Every operating system has a native application programming interface or API for short. This is a built-in command-set for all programming languages to use, to control the operating system and draw an interface for it. OS identifiers are used to keep track of, and access all objects that the operating system contains. All OS identifiers are unique for every program and they exist for all objects, even for those not written in PureBasic. For an operating system to track thousands of items, the numbers used can be quite large, so don’t be surprised to see OS identifiers that are over eight digits in length.
+Every operating system has a native application programming interface or API for short. This is a built-in command-set for all programming languages to use, to control the operating system and draw an interface for it. OS identifiers are used to keep track of, and access all objects that the operating system contains. All OS identifiers are unique for every program and they exist for all objects, even for those not written in PureBasic. For an operating system to track thousands of items, the numbers used can be quite large, so don't be surprised to see OS identifiers that are over eight digits in length.
 
-OS identifiers do not have to be used to create full working PureBasic programs but it’s good for beginners to understand what they are even though they probably won’t use them. OS identifiers play a major part when using the API of any operating system, especially the Windows API, which I cover a little more in Chapter 13.
+OS identifiers do not have to be used to create full working PureBasic programs but it's good for beginners to understand what they are even though they probably won't use them. OS identifiers play a major part when using the API of any operating system, especially the Windows API, which I cover a little more in Chapter 13.
 
 Examples Of Common Commands
 
-In this section I’m going to demonstrate some of the most commonly used commands in PureBasic. These commands are usually found in most PureBasic programs and because of this, learning their syntax and purpose is very advantageous. All these commands exist in different libraries and are not necessarily related, they are just very useful for general programming tasks. Here they are presented below in alphabetical order, complete with their helpfile location and examples on usage.
+In this section I'm going to demonstrate some of the most commonly used commands in PureBasic. These commands are usually found in most PureBasic programs and because of this, learning their syntax and purpose is very advantageous. All these commands exist in different libraries and are not necessarily related, they are just very useful for general programming tasks. Here they are presented below in alphabetical order, complete with their helpfile location and examples on usage.
 
 Asc()
 
@@ -121,7 +121,7 @@ Syntax Example:
 
 ASCIIValue.l = Asc(Character.s)
 
-This command returns the associated character’s ASCII value retrieved from a standard ASCII chart. In the standard ASCII character set, numbers from ‘0’ to ‘255’ are used to represent characters and computer control codes. The parameter passed to this command is a String that’s one character long, with which this command retrieves its associated ASCII value.
+This command returns the associated character's ASCII value retrieved from a standard ASCII chart. In the standard ASCII character set, numbers from '0' to '255' are used to represent characters and computer control codes. The parameter passed to this command is a String that's one character long, with which this command retrieves its associated ASCII value.
 
 Text.s = "This is a test"
 
@@ -129,7 +129,7 @@ For x.l = 1 To Len(Text)
 	Debug Mid(Text, x, 1) + "  :  " + Str(Asc(Mid(Text, x, 1)))
 Next x
 
-The above example uses a ‘For’ loop and the built-in ‘Mid()’ command to break up the text contained in the ‘Text’ variable into separate letters. While the loop is running each letter is passed to the ‘Asc()’ command and their associated ASCII value is retrieved. These values along with the associated letters are echoed to the Debug Output window. I’ve used some new commands in this example, but don’t panic, these are explained a little later in this section. See Appendix B (Helpful Charts) for a full ASCII chart, showing all characters and associated numbers from ‘0’ to ‘255’.
+The above example uses a 'For' loop and the built-in 'Mid()' command to break up the text contained in the 'Text' variable into separate letters. While the loop is running each letter is passed to the 'Asc()' command and their associated ASCII value is retrieved. These values along with the associated letters are echoed to the Debug Output window. I've used some new commands in this example, but don't panic, these are explained a little later in this section. See Appendix B (Helpful Charts) for a full ASCII chart, showing all characters and associated numbers from '0' to '255'.
 
 Chr()
 
@@ -139,7 +139,7 @@ Syntax Example:
 
 Character.s = Chr(ASCIIValue.l)
 
-This command returns a one character String, retrieved from a standard ASCII chart. The returned string is the associated ASCII character of the value passed as a parameter. In the standard ASCII character set, numbers from ‘33’ to ‘126’ are actual printable characters that you can find on a standard English keyboard. The parameter passed to this command: ‘ASCIIValue.l’, is the number with which you retrieve the associated character. 
+This command returns a one character String, retrieved from a standard ASCII chart. The returned string is the associated ASCII character of the value passed as a parameter. In the standard ASCII character set, numbers from '33' to '126' are actual printable characters that you can find on a standard English keyboard. The parameter passed to this command: 'ASCIIValue.l', is the number with which you retrieve the associated character. 
 
 Text.s = Chr(84) + Chr(104) + Chr(105) + Chr(115) + Chr(32)
 Text.s + Chr(105) + Chr(115) + Chr(32) 
@@ -147,7 +147,7 @@ Text.s + Chr(97) + Chr(32)
 Text.s + Chr(116) + Chr(101) + Chr(115) + Chr(116)
 Debug Text
 
-The above example constructs the String ‘This is a test’ by concatenating the results from multiple ‘Chr()’ commands. For example, the first command ‘Chr(84)’ returns the ‘T’ character, the rest are then concatenated to the ‘Text’ variable. See Appendix B (Helpful Charts) for a full ASCII chart, showing all characters and associated numbers from ‘0’ to ‘255’.
+The above example constructs the String 'This is a test' by concatenating the results from multiple 'Chr()' commands. For example, the first command 'Chr(84)' returns the 'T' character, the rest are then concatenated to the 'Text' variable. See Appendix B (Helpful Charts) for a full ASCII chart, showing all characters and associated numbers from '0' to '255'.
 
 Delay()
 
@@ -157,13 +157,13 @@ Syntax Example:
 
 Delay(Milliseconds)
 
-This command pauses all program activity for the amount of time specified in the ‘Milliseconds’ parameter. The time is measured in milliseconds (which is a thousandth of a second).
+This command pauses all program activity for the amount of time specified in the 'Milliseconds' parameter. The time is measured in milliseconds (which is a thousandth of a second).
 
 Debug "Start..."
 Delay(5000)
 Debug "This is executed 5 seconds later"
 
-When the above example is run, the second ‘Debug’ statement is executed five seconds after the first one because I’ve used the value of ‘5000’ milliseconds (5 seconds) in the ‘Delay()’ command.
+When the above example is run, the second 'Debug' statement is executed five seconds after the first one because I've used the value of '5000' milliseconds (5 seconds) in the 'Delay()' command.
 
 ElapsedMilliseconds()
 
@@ -180,7 +180,7 @@ StartTime.l = ElapsedMilliseconds()
 Delay(5000)
 Debug "Delayed for "+Str(ElapsedMilliseconds() - StartTime)+" milliseconds."
 
-This command is great for performing any kind of timing operation in your program. For example, if you want to measure any elapsed number of milliseconds, you first record the start time in a Long variable using this command. Then when you want this timer to stop, you record the time again using ‘ElapsedMilliseconds()’. To get the result, subtract the end time from the start time and this leaves you with the number of milliseconds that have elapsed between each command. This is all demonstrated in the above example. When you use this command for the first time you may be shocked at the large numbers returned by it. You have to remember that it’s recording the milliseconds elapsed from system switch on. Don’t panic at the big numbers, just remember that it is providing a good point in time as a reference and you can use the above method to calculate elapsed time from any point.
+This command is great for performing any kind of timing operation in your program. For example, if you want to measure any elapsed number of milliseconds, you first record the start time in a Long variable using this command. Then when you want this timer to stop, you record the time again using 'ElapsedMilliseconds()'. To get the result, subtract the end time from the start time and this leaves you with the number of milliseconds that have elapsed between each command. This is all demonstrated in the above example. When you use this command for the first time you may be shocked at the large numbers returned by it. You have to remember that it's recording the milliseconds elapsed from system switch on. Don't panic at the big numbers, just remember that it is providing a good point in time as a reference and you can use the above method to calculate elapsed time from any point.
 
 FindString()
 
@@ -190,7 +190,7 @@ Syntax Example:
 
 Position.l = FindString(String.s, StringToFind.s, StartPosition.l)
 
-This command tries to find the ‘StringToFind’ parameter within the ‘String’ parameter, starting from the position indicated by the ‘StartPosition’ parameter. If it finds this String it immediately returns the position of the first occurrence. These positions referred to are character counts from the beginning of the ‘String.s’ parameter, starting at ‘1’.
+This command tries to find the 'StringToFind' parameter within the 'String' parameter, starting from the position indicated by the 'StartPosition' parameter. If it finds this String it immediately returns the position of the first occurrence. These positions referred to are character counts from the beginning of the 'String.s' parameter, starting at '1'.
 
 String.s = "I like to go fishing and catch lots of fish"
 StringToFind.s = "fish"
@@ -200,7 +200,7 @@ SecondOccurrence.l = FindString(String, StringToFind, FirstOccurrence + 1)
 Debug "Index of the first occurrence: " + Str(FirstOccurrence)
 Debug "Index of the second occurrence: " + Str(SecondOccurrence)
 
-This example shows how to find a String within another String. The first ‘FindString()’ command tries to find the String ‘fish’ starting from a position of ‘1’, which it does successfully and assigns the position ‘14’ to the ‘FirstOccurrence’ variable. The second ‘FindString()’ command tries to find the same String but from a position of ‘FirstOccurrence + 1’ to make sure we avoid the first occurrence being found again. This returns the position as being ‘40’ which is assigned to the ‘SecondOccurrence’ variable. Both are then echoed to the Debug Output window.
+This example shows how to find a String within another String. The first 'FindString()' command tries to find the String 'fish' starting from a position of '1', which it does successfully and assigns the position '14' to the 'FirstOccurrence' variable. The second 'FindString()' command tries to find the same String but from a position of 'FirstOccurrence + 1' to make sure we avoid the first occurrence being found again. This returns the position as being '40' which is assigned to the 'SecondOccurrence' variable. Both are then echoed to the Debug Output window.
 
 Len()
 
@@ -210,14 +210,14 @@ Syntax Example:
 
 Length.l = Len(String.s)
 
-This command returns the length in characters of the ‘String’ parameter.
+This command returns the length in characters of the 'String' parameter.
 
 Alphabet.s = "abcdefghijklmnopqrstuvwxyz"
 LengthOfString.l = Len(Alphabet)
 
 Debug LengthOfString
 
-This example is very simple because the ‘Len()’ command is very simple itself. The alphabet is assigned to a String variable called ‘Alphabet’. This variable is then passed to the ‘Len()’ command which returns ‘26’ (this is how many characters the ‘Alphabet’ variable contains). This value is assigned to the ‘LengthOfString’ variable which is then echoed to the Debug Output window.
+This example is very simple because the 'Len()' command is very simple itself. The alphabet is assigned to a String variable called 'Alphabet'. This variable is then passed to the 'Len()' command which returns '26' (this is how many characters the 'Alphabet' variable contains). This value is assigned to the 'LengthOfString' variable which is then echoed to the Debug Output window.
 
 MessageRequester()
 
@@ -264,7 +264,7 @@ Select Result
 		Debug "You pressed 'Cancel'"
 EndSelect
 
-This example shows all the different ways that the ‘MessageRequester’ command can be used. It also shows you how to use the return value constants to determine which button was pressed. Using constants like this takes all the worry out of remembering numeric values. You don’t need to know what values are assigned to these constants internally, we are just interested if they are equal (or not) to the return value of the command.
+This example shows all the different ways that the 'MessageRequester' command can be used. It also shows you how to use the return value constants to determine which button was pressed. Using constants like this takes all the worry out of remembering numeric values. You don't need to know what values are assigned to these constants internally, we are just interested if they are equal (or not) to the return value of the command.
 
 Mid()
 
@@ -274,13 +274,13 @@ Syntax Example:
 
 Result.s = Mid(String.s, StartPosition.l, Length.l)
 
-This command returns a cropped String which is extracted from another. The starting String is passed as the ‘String’ parameter. The extracted String can then be taken from any position within the starting String, defined by the ‘StartPosition’ parameter. The length of the new String to be extracted is defined in the ‘Length’ parameter. Here’s an example:
+This command returns a cropped String which is extracted from another. The starting String is passed as the 'String' parameter. The extracted String can then be taken from any position within the starting String, defined by the 'StartPosition' parameter. The length of the new String to be extracted is defined in the 'Length' parameter. Here's an example:
 
 StartingString.s = "Hickory Dickory Dock"
 ExtractedString.s = Mid(StartingString, 17, 4)
 Debug ExtractedString
 
-Here I extract the String ‘Dock’ by specifying the start position as ‘17’, then I extract ‘4’ characters. Like the ‘FindString()’ command, the position within the starting string is measured in characters.
+Here I extract the String 'Dock' by specifying the start position as '17', then I extract '4' characters. Like the 'FindString()' command, the position within the starting string is measured in characters.
 
 Random()
 
@@ -290,11 +290,11 @@ Syntax Example:
 
 Result.l = Random(Maximum.l)
 
-This command is simple to demonstrate because all it does is return a random integer between (and including) ‘0’ and the value defined in the ‘Maximum’ parameter.
+This command is simple to demonstrate because all it does is return a random integer between (and including) '0' and the value defined in the 'Maximum' parameter.
 
 Debug Random(100)
 
-In the above example, the ‘Random()’ command will return a random value between ‘0’ and ‘100’.
+In the above example, the 'Random()' command will return a random value between '0' and '100'.
 
 Str(), StrF(), StrQ(), StrD()
 
@@ -309,14 +309,14 @@ Result.s = StrF(Value.f [, DecimalPlaces.l])
 Result.s = StrQ(Value.q)
 Result.s = StrD(Value.d [, DecimalPlaces.l])
 
-These four commands are essentially the same. Their main use is to turn numeric values into Strings. There are four different commands here to handle four different types of numeric values, ‘Str()’ to handle Byte, Word and Long types, ‘StrF()’ to handle Floats, ‘StrQ()’ to handle Quads and ‘StrD()’ to handle Doubles. You must use the right type of ‘Str()’ function to convert any particular numeric value to a String. In the case of ‘StrF()’ and ‘StrD()’ you will notice that there is also an optional parameter called ‘DecimalPlaces’. If this parameter is used, it defines how many decimal places the value should be cropped to before converting it to a String.
+These four commands are essentially the same. Their main use is to turn numeric values into Strings. There are four different commands here to handle four different types of numeric values, 'Str()' to handle Byte, Word and Long types, 'StrF()' to handle Floats, 'StrQ()' to handle Quads and 'StrD()' to handle Doubles. You must use the right type of 'Str()' function to convert any particular numeric value to a String. In the case of 'StrF()' and 'StrD()' you will notice that there is also an optional parameter called 'DecimalPlaces'. If this parameter is used, it defines how many decimal places the value should be cropped to before converting it to a String.
 
 Debug "Long converted to a String: " + Str(2147483647)
 Debug "Float converted to a String: " +StrF(12.05643564333454646, 7)
 Debug "Quad converted to a String: " +StrQ(9223372036854775807)
 Debug "Double converted to a String: " +StrD(12.05643564333454646, 14)
 
-The above example shows how to convert four different kinds of numeric values into Strings. In each case I’ve concatenated a literal String to the converted one to form complete sentences, I then echo these to the Debug Output window. One important thing to take note of is that if you omit the ‘DecimalPlaces’ parameter in the Float or Double type commands, then they will both default to six decimal places and you may lose a lot of precision.
+The above example shows how to convert four different kinds of numeric values into Strings. In each case I've concatenated a literal String to the converted one to form complete sentences, I then echo these to the Debug Output window. One important thing to take note of is that if you omit the 'DecimalPlaces' parameter in the Float or Double type commands, then they will both default to six decimal places and you may lose a lot of precision.
 
 Val(), ValF(), ValQ(), ValD()
 
@@ -329,7 +329,7 @@ Result.f = ValF(String.s)
 Result.q = ValQ(String.s)
 Result.d = ValD(String.s)
 
-These four commands are essentially the same as one another and the complete opposite of the ‘Str()’ commands. The difference is that these commands take a String as a parameter and return a numeric value depending on which flavor of ‘Val()’ is used. For example, ‘Val()’ returns a Long, ‘ValF()’ returns a Float, ‘ValQ()’ returns a Quad and ‘ValD()’ returns a Double. Here’s a simple example:
+These four commands are essentially the same as one another and the complete opposite of the 'Str()' commands. The difference is that these commands take a String as a parameter and return a numeric value depending on which flavor of 'Val()' is used. For example, 'Val()' returns a Long, 'ValF()' returns a Float, 'ValQ()' returns a Quad and 'ValD()' returns a Double. Here's a simple example:
 
 LongTypeVar.l = Val("2147483647")
 FloatTypeVar.f = ValF("12.05643564333454646")
@@ -341,7 +341,7 @@ Debug FloatTypeVar
 Debug QuadTypeVar
 Debug DoubleTypeVar
 
-In this example I’ve used all four different types of the ‘Val()’ command to convert four Strings into their respective numeric types. You must note however, if you are converting numbers from within Strings that are numerically larger than the resulting type can hold, then some clipping will occur. For example, if you look at the ‘ValF("12.05643564333454646")’ line in the example above, this number is far too large or precise for a normal Float type to hold, so when it’s converted by the ‘ValF()’ command it’s clipped to fit the destination type.
+In this example I've used all four different types of the 'Val()' command to convert four Strings into their respective numeric types. You must note however, if you are converting numbers from within Strings that are numerically larger than the resulting type can hold, then some clipping will occur. For example, if you look at the 'ValF("12.05643564333454646")' line in the example above, this number is far too large or precise for a normal Float type to hold, so when it's converted by the 'ValF()' command it's clipped to fit the destination type.
 
 Handling Files
 
@@ -352,7 +352,7 @@ Using files is a natural way for any program to store and retrieve data. PureBas
 Not all the file commands will explained fully within this section, but I will give you a good grounding on reading and writing files so that the remainder of the commands will become easy to understand, when you use them.
 
 Writing To A File
-Let’s get started with an example on how to write some data to a file, here we’ll write a few Strings to a simple text file.
+Let's get started with an example on how to write some data to a file, here we'll write a few Strings to a simple text file.
 
 #FILE_RHYME = 1
 
@@ -370,17 +370,17 @@ If CreateFile(#FILE_RHYME, "Baa baa.txt")
 	CloseFile(#FILE_RHYME)
 EndIf
 
-To begin with I’ve used the constant ‘#FILE_RHYME’ to be used as the PB number for our new file object and I’ve defined a String array to hold my nursery rhyme. After the Strings have been added to the ‘Rhyme()’ array, we then move on to writing our file. If I wanted to open and write to an existing file, I could use the ‘OpenFile()’ command, but in the above example, I want to create and write to a new file, so I use the ‘CreateFile()’ command instead.
+To begin with I've used the constant '#FILE_RHYME' to be used as the PB number for our new file object and I've defined a String array to hold my nursery rhyme. After the Strings have been added to the 'Rhyme()' array, we then move on to writing our file. If I wanted to open and write to an existing file, I could use the 'OpenFile()' command, but in the above example, I want to create and write to a new file, so I use the 'CreateFile()' command instead.
 
-The ‘CreateFile()’ command takes two parameters, the first is the PB number that this new file object will be associated with, and the second is the actual file name that this file will be named once created. I’ve also used the ‘CreateFile()’ command within an ‘If’ statement to test that the command returns true. If it does, then the file has been created successfully and I can carry on with my program. It’s always a good idea to test file creation, as things could go very wrong if you try to write to an invalid file.
+The 'CreateFile()' command takes two parameters, the first is the PB number that this new file object will be associated with, and the second is the actual file name that this file will be named once created. I've also used the 'CreateFile()' command within an 'If' statement to test that the command returns true. If it does, then the file has been created successfully and I can carry on with my program. It's always a good idea to test file creation, as things could go very wrong if you try to write to an invalid file.
 
-To actually write a String to the file, I’ve used the ‘WriteStringN()’ command. This takes two parameters, the first is the PB number associated with the file object I want to write to, the second is the actual String I wish to write. I’m using a loop to iterate through the array to write all its contents to the file, thus writing the whole nursery rhyme. The ‘WriteStringN()’ command used in this example is an extended version of the ‘WriteString()’ command. In fact the only difference is the ‘N’ before the brackets. This ‘N’ denotes that a 'new line' character is written after the String during the command’s execution. Because I want a new line to start after every String I write to this file, I use the ‘WriteStringN()’ command, otherwise it would all be on the same line.
+To actually write a String to the file, I've used the 'WriteStringN()' command. This takes two parameters, the first is the PB number associated with the file object I want to write to, the second is the actual String I wish to write. I'm using a loop to iterate through the array to write all its contents to the file, thus writing the whole nursery rhyme. The 'WriteStringN()' command used in this example is an extended version of the 'WriteString()' command. In fact the only difference is the 'N' before the brackets. This 'N' denotes that a 'new line' character is written after the String during the command's execution. Because I want a new line to start after every String I write to this file, I use the 'WriteStringN()' command, otherwise it would all be on the same line.
 
-Once I have written all Strings to the file and the loop exits, I close the file using the ‘CloseFile()’ command. This only takes one parameter which is the PB number of the file object you wish to close.
+Once I have written all Strings to the file and the loop exits, I close the file using the 'CloseFile()' command. This only takes one parameter which is the PB number of the file object you wish to close.
 
 <<Box 11>>
 
-This file containing the nursery rhyme should now be somewhere on your hard drive. If you create a file using a relative file name such as ‘Baa baa.txt’, then the newly created file will be in the same directory as your source code file. If you need a file to be created somewhere more specific you must specify an absolute path which should include the drive name, any directories and the file name, something similar this: 
+This file containing the nursery rhyme should now be somewhere on your hard drive. If you create a file using a relative file name such as 'Baa baa.txt', then the newly created file will be in the same directory as your source code file. If you need a file to be created somewhere more specific you must specify an absolute path which should include the drive name, any directories and the file name, something similar this: 
 
 ...
 If CreateFile(#FILE_RHYME, "C:\My Directory\Baa baa.txt")
@@ -391,7 +391,7 @@ When using this method though, you must always make sure that all directories sp
 <<Box 12>>
 
 How Do I Write Other Built-in Type Values?
-Writing the other built-in types to a file is just as easy as writing Strings. Now that you understand how the ‘WriteString()’ command works the others are simple to grasp. Here are syntax examples for writing the other built-in types:
+Writing the other built-in types to a file is just as easy as writing Strings. Now that you understand how the 'WriteString()' command works the others are simple to grasp. Here are syntax examples for writing the other built-in types:
 
 WriteByte(#File, Value.b)
 WriteChar(#File, Value.c)
@@ -401,10 +401,10 @@ WriteQuad(#File, Value.q)
 WriteFloat(#File, Value.f)
 WriteDouble(#File, Value.d)
 
-These can be used to write any built-in type value to a file and all commands can be used as many times as you like. These values, along with Strings can be mixed and matched in a single file over and over again if needed. To make things even more simple, these commands are all used in the same manner as the ‘WriteString()’ command, the first parameter is the file object to write to and the second is the actual value to write.
+These can be used to write any built-in type value to a file and all commands can be used as many times as you like. These values, along with Strings can be mixed and matched in a single file over and over again if needed. To make things even more simple, these commands are all used in the same manner as the 'WriteString()' command, the first parameter is the file object to write to and the second is the actual value to write.
 
 Reading From A File
-Reading from files is just as simple as writing to them. PureBasic makes it extremely simple with powerful file reading commands. If you look at the next example, I read Strings from a file called ‘Report.txt’, and place them into a linked list called ‘FileContents’. The contents of this linked list are then echoed to the Debug Output window, purely to show the String data within. You don’t have to echo this data though, you can go on to manipulate the Strings in any way you see fit during your program.
+Reading from files is just as simple as writing to them. PureBasic makes it extremely simple with powerful file reading commands. If you look at the next example, I read Strings from a file called 'Report.txt', and place them into a linked list called 'FileContents'. The contents of this linked list are then echoed to the Debug Output window, purely to show the String data within. You don't have to echo this data though, you can go on to manipulate the Strings in any way you see fit during your program.
 
 #FILE_REPORT = 1
 
@@ -422,13 +422,13 @@ ForEach FileContents()
 	Debug FileContents()
 Next
 
-At the beginning of the code I’ve used a constant which is to be used as the PB number of the opened file. Then I create a linked list called ‘FileContents’ to hold the Strings we’re going to read. You don’t have to use a linked list to hold these Strings, I find it just makes things a little more organized if done like this. I’ve used a linked list here because they are easy to use and can grow with new items, unlike arrays who’s size is pre-defined.
+At the beginning of the code I've used a constant which is to be used as the PB number of the opened file. Then I create a linked list called 'FileContents' to hold the Strings we're going to read. You don't have to use a linked list to hold these Strings, I find it just makes things a little more organized if done like this. I've used a linked list here because they are easy to use and can grow with new items, unlike arrays who's size is pre-defined.
 
-I open the file using the ‘ReadFile()’ command, this opens it with read-only permission and prevents any writing to the file while it is open. Like the ‘CreateFile()’ command, the first parameter is a PB number that this newly opened file will be associated with, while the second is the name of the file to be read. As before, I’ve use this command within an ‘If’ statement to make sure the command returns true. If it does then I can be sure this file has been opened correctly and I’m able to access it properly.
+I open the file using the 'ReadFile()' command, this opens it with read-only permission and prevents any writing to the file while it is open. Like the 'CreateFile()' command, the first parameter is a PB number that this newly opened file will be associated with, while the second is the name of the file to be read. As before, I've use this command within an 'If' statement to make sure the command returns true. If it does then I can be sure this file has been opened correctly and I'm able to access it properly.
 
-Once the file is open, I need to read the information inside it. I’ve used a ‘While’ loop here, so I don’t have to type out repeated commands to read the Strings within. The loop is constructed using the ‘Eof()’ command, ‘Eof’ stands for ‘End of file’ and this command will return true if you have reached the end of an opened file. In the loop I check to see if this is returning false on each iteration, if it is I know I’m not at the end the file and I can continue reading from it. The ‘Eof()’ command takes one parameter, which is the PB number of the file you want to test.
+Once the file is open, I need to read the information inside it. I've used a 'While' loop here, so I don't have to type out repeated commands to read the Strings within. The loop is constructed using the 'Eof()' command, 'Eof' stands for 'End of file' and this command will return true if you have reached the end of an opened file. In the loop I check to see if this is returning false on each iteration, if it is I know I'm not at the end the file and I can continue reading from it. The 'Eof()' command takes one parameter, which is the PB number of the file you want to test.
 
-While the file is open, I use the ‘ReadString()’ command to read one String at a time from it. The String returned by this command starts at the beginning of the current line and ends when a new line is encountered, this also moves the file access pointer forward one line. Each time I read a String from the file, I create a new element within the ‘FileContents’ linked list and assign the String to it. I continue to do this until the ‘Eof()’ command returns true causing the loop to exit. Once the loop is broken, I then correctly close the open file with the ‘CloseFile()’ command. Closing the file is important and should be done as soon as you’ve finished with it. A simple ‘ForEach’ loop is then used to echo the read data to the Debug Output window.
+While the file is open, I use the 'ReadString()' command to read one String at a time from it. The String returned by this command starts at the beginning of the current line and ends when a new line is encountered, this also moves the file access pointer forward one line. Each time I read a String from the file, I create a new element within the 'FileContents' linked list and assign the String to it. I continue to do this until the 'Eof()' command returns true causing the loop to exit. Once the loop is broken, I then correctly close the open file with the 'CloseFile()' command. Closing the file is important and should be done as soon as you've finished with it. A simple 'ForEach' loop is then used to echo the read data to the Debug Output window.
 
 How Do I Read Other Built-in Type Values?
 While the last example dealt with Strings, you can also read other types values just as easy. PureBasic provides specific commands for each of the built-in types to read them correctly.
@@ -441,12 +441,12 @@ ReadQuad(#File)
 ReadFloat(#File)
 ReadDouble(#File)
 
-To keep things simple all these commands share the same parameter with the ‘ReadString()’ command. This parameter is the PB number of the open file object to read from. The only difference between these commands and ‘ReadString()’ is that these will only read a single value from the file which will contain that type’s associated number of Bytes. Unlike ‘ReadString()’ they won’t keep reading until another line is encountered. For example, if I wanted to read a Long type value from a file, I would use ‘ReadLong()’ which would read ‘4’ Bytes and return the value contained within these Bytes as a Long. This would also move the file access pointer forward ‘4’ Bytes within the file, ready for the next read command.
+To keep things simple all these commands share the same parameter with the 'ReadString()' command. This parameter is the PB number of the open file object to read from. The only difference between these commands and 'ReadString()' is that these will only read a single value from the file which will contain that type's associated number of Bytes. Unlike 'ReadString()' they won't keep reading until another line is encountered. For example, if I wanted to read a Long type value from a file, I would use 'ReadLong()' which would read '4' Bytes and return the value contained within these Bytes as a Long. This would also move the file access pointer forward '4' Bytes within the file, ready for the next read command.
 
 <<Box 13>>
 
 Locating The File Access Pointer?
-At any time while reading or writing to a file you can retrieve the location of the file access pointer by using the ‘Loc()’ command. ‘Loc()’ stands for ‘Location’. The return value is measured in Bytes.
+At any time while reading or writing to a file you can retrieve the location of the file access pointer by using the 'Loc()' command. 'Loc()' stands for 'Location'. The return value is measured in Bytes.
 
 (Helpfile:Reference Manual->General Libraries->File->Loc)
 
@@ -457,7 +457,7 @@ Position.q = Loc(#File)
 This command will return the position of the file access pointer (in Bytes) within the file object specified in the PB number parameter. The position is returned as a Quad value to support large files.
 
 Moving The File Access Pointer?
-The file access pointer can be moved at any time by using the ‘FileSeek()’ command.
+The file access pointer can be moved at any time by using the 'FileSeek()' command.
 
 (Helpfile:Reference Manual->General Libraries->File->FileSeek)
 
@@ -465,10 +465,10 @@ Syntax Example:
 
 FileSeek(#File, NewPosition.q)
 
-This command takes two parameters, the first is the PB number of the file object to be modified and the second is the new position (in Bytes) of the file access pointer. This allows you to read from any position, within in any file at any time. The ‘NewPosition’ parameter type is a Quad for large file support.
+This command takes two parameters, the first is the PB number of the file object to be modified and the second is the new position (in Bytes) of the file access pointer. This allows you to read from any position, within in any file at any time. The 'NewPosition' parameter type is a Quad for large file support.
 
 Finding Out The Current File Size?
-To find out the size of the currently used file, you use the ‘Lof()’ command. ‘Lof()’ stands for ‘Length of file’.
+To find out the size of the currently used file, you use the 'Lof()' command. 'Lof()' stands for 'Length of file'.
 
 (Helpfile:Reference Manual->General Libraries->File->Lof)
 
@@ -479,11 +479,11 @@ Length.q = Lof(#File)
 This command will return the size of the file object specified in the PB number parameter in Bytes. The length is returned as a Quad type, to support large files.
 
 Loc, Lof And FileSeek Example
-In this next snippet I’m going to demonstrate the use of ‘Loc()’, ‘Lof()’ and ‘FileSeek()’ to provide you with a relevant example of these commands. In the code below I’m reading a MP3 music file to discover if it has an ID3(v1) tag embedded inside it. These tags usually contain information such as the artist name, song name and genre, etc.
+In this next snippet I'm going to demonstrate the use of 'Loc()', 'Lof()' and 'FileSeek()' to provide you with a relevant example of these commands. In the code below I'm reading a MP3 music file to discover if it has an ID3(v1) tag embedded inside it. These tags usually contain information such as the artist name, song name and genre, etc.
 
-After reading the specifications of MP3 ID3 tags on the Internet, I discovered that the tag information is always added to the end of a regular MP3 file and this tag is always ‘128’ Bytes long. The specification mentions that the first ‘3’ Bytes of this tag are the characters ‘TAG’, so this is what I will check for. 
+After reading the specifications of MP3 ID3 tags on the Internet, I discovered that the tag information is always added to the end of a regular MP3 file and this tag is always '128' Bytes long. The specification mentions that the first '3' Bytes of this tag are the characters 'TAG', so this is what I will check for. 
 
-Here’s the code:
+Here's the code:
 
 #FILE_MP3 = 1
 
@@ -502,11 +502,11 @@ If ReadFile(#FILE_MP3, MP3File)
 	EndIf
 EndIf
 
-After opening the file using ‘ReadFile()’, I move the file access pointer to the correct place by finding out the length of the file, then back tracking ‘128’ Bytes. Like this:
+After opening the file using 'ReadFile()', I move the file access pointer to the correct place by finding out the length of the file, then back tracking '128' Bytes. Like this:
 
 FileSeek(#FILE_MP3, Lof(#FILE_MP3) - 128)
 
-After this command has finished the file access pointer is now in the correct place. So I use a loop to perform a ‘ReadByte()’ operation three times and I pass each Byte to the ‘Chr()’ command to return a character. These characters are then concatenated to form a String variable called ‘Text’. Once the loop has ended and the is file closed I check the value of ‘Text’. If the String contained within ‘Text’ is equal to ‘TAG’ then an ID3(v1) tag is present in the MP3 file.
+After this command has finished the file access pointer is now in the correct place. So I use a loop to perform a 'ReadByte()' operation three times and I pass each Byte to the 'Chr()' command to return a character. These characters are then concatenated to form a String variable called 'Text'. Once the loop has ended and the is file closed I check the value of 'Text'. If the String contained within 'Text' is equal to 'TAG' then an ID3(v1) tag is present in the MP3 file.
 
 Read The Helpfile
 

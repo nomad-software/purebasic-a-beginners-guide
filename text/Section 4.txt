@@ -2,6 +2,6 @@ IV
 
 Advanced Topics
 
-In this section, I explain things that are a little more advanced than what the rest of this book deals with. This section is for those who have further questions on a particular facet of PureBasic or want to learn a little more about what goes on ‘under the hood’.
+In this section, I explain things that are a little more advanced than what the rest of this book deals with. This section is for those who have further questions on a particular facet of PureBasic or want to learn a little more about what goes on 'under the hood'.
 
-You don’t need to know any of what is contained in this section to write good, solid and feature-rich programs, but I have included it here for those who want to delve a little deeper.
+You don't need to know any of what is contained in this section to write good, solid and feature-rich programs, but I have included it here for those who want to delve a little deeper.

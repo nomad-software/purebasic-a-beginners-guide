@@ -2,19 +2,19 @@
 
 2D Graphics
 
-In this chapter, I am going to explain how to draw 2D graphics using PureBasic. The term ‘2D graphics’ encompasses quite a large subject and many drawing operations fall beneath this descriptive umbrella. When I refer to 2D graphics in this book, I mean simple, two dimensional graphics that can be drawn onto graphical user interfaces, screens, images in RAM or even to a printer. These graphical types can also contain different complexities, from a single pixel right up to a full color image. All 2D graphics are two dimensional as you would guess from their name, unlike 3D graphics, which display 3D models that have a third ‘depth’ dimension.
+In this chapter, I am going to explain how to draw 2D graphics using PureBasic. The term '2D graphics' encompasses quite a large subject and many drawing operations fall beneath this descriptive umbrella. When I refer to 2D graphics in this book, I mean simple, two dimensional graphics that can be drawn onto graphical user interfaces, screens, images in RAM or even to a printer. These graphical types can also contain different complexities, from a single pixel right up to a full color image. All 2D graphics are two dimensional as you would guess from their name, unlike 3D graphics, which display 3D models that have a third 'depth' dimension.
 
-Using 2D graphics, it’s possible to achieve some very impressive visuals and as a result, many games, screensavers and demo’s have been created using PureBasic. Hopefully you will be able to copy, learn from and adapt the examples in this chapter to create cool graphics in your own programs.
+Using 2D graphics, it's possible to achieve some very impressive visuals and as a result, many games, screensavers and demo's have been created using PureBasic. Hopefully you will be able to copy, learn from and adapt the examples in this chapter to create cool graphics in your own programs.
 
 2D Drawing Commands
 
-PureBasic contains commands that allow you to draw primitive shapes and colors in your programs. These simple 2D drawing commands are all contained in the ‘2D Drawing’ library (Helpfile:Reference Manual->General Libraries->2DDrawing). These commands are useful for drawing simple shapes and text in different colors and there is even a couple of commands to draw using a previously created or loaded image.
+PureBasic contains commands that allow you to draw primitive shapes and colors in your programs. These simple 2D drawing commands are all contained in the '2D Drawing' library (Helpfile:Reference Manual->General Libraries->2DDrawing). These commands are useful for drawing simple shapes and text in different colors and there is even a couple of commands to draw using a previously created or loaded image.
 
 What Can I Draw Onto?
 The built-in 2D drawing commands can be used to draw onto various outputs such as, a graphical user interface window, a PureBasic screen, a sprite, a newly created image in memory, a 3D model texture or straight to a printer. These six methods pretty much cover anything you might need to draw onto, and each one is as easy to use as any other. Using these different output methods is a trivial matter in PureBasic because you only need to specify once where you would like the drawing output to go, and then use the drawing commands to draw to it. To simplify things even further, all the output methods share the same drawing command syntax.
 
 Drawing On A Window
-In this first example, I’ll show you how to draw 2D graphics directly onto a window. You probably will never do this in a real world application but it’s a simple exercise for you to understand and learn the syntax from. Look at this piece of code:
+In this first example, I'll show you how to draw 2D graphics directly onto a window. You probably will never do this in a real world application but it's a simple exercise for you to understand and learn the syntax from. Look at this piece of code:
 
 #WINDOW_MAIN = 1
 
@@ -42,44 +42,44 @@ If you run the above example, you will see a window similar to Fig.33 opened, an
 
 <<Fig 33>>
 
-First, you will see I’ve used a new command called ‘StartDrawing()’. This command tells PureBasic that I wish to start drawing using the 2D graphics commands and specifies what the drawing commands should draw on. If you look at the ‘StartDrawing()’ command’s helpfile page (Helpfile:Reference Manual->General Libraries->2DDrawing->StartDrawing) you will see that this command can take six other commands as its parameter to specify the drawing output method. These are:
+First, you will see I've used a new command called 'StartDrawing()'. This command tells PureBasic that I wish to start drawing using the 2D graphics commands and specifies what the drawing commands should draw on. If you look at the 'StartDrawing()' command's helpfile page (Helpfile:Reference Manual->General Libraries->2DDrawing->StartDrawing) you will see that this command can take six other commands as its parameter to specify the drawing output method. These are:
 
-‘WindowOutput()’
+'WindowOutput()'
 Use this to draw onto PureBasic user interface windows. This output method requires a PB number as a parameter to specify what window to draw onto.
 
-‘ScreenOutput()’
+'ScreenOutput()'
 Use this to draw directly onto a PureBasic screen.
 
-‘SpriteOutput()’
+'SpriteOutput()'
 Use this to draw onto a PureBasic sprite. This output method requires a PB number as a parameter to specify what sprite to draw onto.
 
-‘ImageOutput()’
+'ImageOutput()'
 Use this to draw onto a loaded or newly created image in memory. This output method requires a PB number as a parameter to specify what image to draw onto.
 
-‘PrinterOutput()’
+'PrinterOutput()'
 Use this to draw directly to a printer.
 
-‘TextureOutput()’
-Use this to draw onto a 3D model’s texture. This output method requires a PB number as a parameter to specify what texture to draw onto.
+'TextureOutput()'
+Use this to draw onto a 3D model's texture. This output method requires a PB number as a parameter to specify what texture to draw onto.
 
-In my example I’ve specified that I want to start drawing onto a window, like this:
+In my example I've specified that I want to start drawing onto a window, like this:
 
 ...
 StartDrawing(WindowOutput(#WINDOW_MAIN))
 ...
 
-Once I have set up the drawing output like this, I am free to use any of the 2D drawing commands to draw to it. In other words, everything drawn by the 2D drawing commands will now be drawn onto the window as specified in the parameter of the ‘WindowOutput’ command. Once you have used a ‘StartDrawing()’ command you must always use a ‘StopDrawing()’ command to finish off the drawing operations. This tells the PureBasic compiler, I now wish to stop using 2D drawing commands and I want to continue as normal with the rest of my program. This is essential because it may cause bugs in your program if you do not tell the compiler that you have stopped drawing.
+Once I have set up the drawing output like this, I am free to use any of the 2D drawing commands to draw to it. In other words, everything drawn by the 2D drawing commands will now be drawn onto the window as specified in the parameter of the 'WindowOutput' command. Once you have used a 'StartDrawing()' command you must always use a 'StopDrawing()' command to finish off the drawing operations. This tells the PureBasic compiler, I now wish to stop using 2D drawing commands and I want to continue as normal with the rest of my program. This is essential because it may cause bugs in your program if you do not tell the compiler that you have stopped drawing.
 
-Inside the drawing block, I’ve used four 2D drawing commands to actually draw the shapes onto the window. These are ‘Box()’, ‘Circle()’, ‘LineXY()’ and ‘FillArea()’. All these 2D drawing commands are explained in detail through links on the ‘2D Drawing’ helpfile page (Helpfile:Reference Manual->General Libraries->2DDrawing). Nearly all the 2D commands share similar parameters. There is usually parameters for ‘x’ and ‘y’ position and sometimes different size parameters and then usually the last parameter is the color that you would like this shape to be. If we take the ‘Box()’ command for example, the first two parameters are the position of the box on the output. The third and fourth parameters are the width and height of the box and the fifth parameter is its color.
+Inside the drawing block, I've used four 2D drawing commands to actually draw the shapes onto the window. These are 'Box()', 'Circle()', 'LineXY()' and 'FillArea()'. All these 2D drawing commands are explained in detail through links on the '2D Drawing' helpfile page (Helpfile:Reference Manual->General Libraries->2DDrawing). Nearly all the 2D commands share similar parameters. There is usually parameters for 'x' and 'y' position and sometimes different size parameters and then usually the last parameter is the color that you would like this shape to be. If we take the 'Box()' command for example, the first two parameters are the position of the box on the output. The third and fourth parameters are the width and height of the box and the fifth parameter is its color.
 
 Working With Colors
-The colors in PureBasic are specified using a single 24 bit color value. This value is a large number that represents different combinations of red, green, and blue. To get a 24 bit value of a color we need to use the ‘RGB()’ command. This command takes three parameters which specify the values of red, green and blue individually. Each one of these parameters has a value range of ‘0’ to ‘255’. Using these, it’s possible for the ‘RGB()’ command to return over 16.7 million colors as individual 24 bit values. Here’s how I used it in the window drawing example shown in Fig.33:
+The colors in PureBasic are specified using a single 24 bit color value. This value is a large number that represents different combinations of red, green, and blue. To get a 24 bit value of a color we need to use the 'RGB()' command. This command takes three parameters which specify the values of red, green and blue individually. Each one of these parameters has a value range of '0' to '255'. Using these, it's possible for the 'RGB()' command to return over 16.7 million colors as individual 24 bit values. Here's how I used it in the window drawing example shown in Fig.33:
 
 ...
 Box(15, 15, 75, 75, RGB(255, 0, 0))
 ...
 
-Here, I’ve used the ‘RGB()’ command inline as a parameter of the ‘Box()’ command. If you look closely, you can see that I have specified a maximum value for the red parameter and the lowest value of ‘0’ for the green and blue parameters. This means that the ‘RGB()’ command will return a 24 bit value that describes a full red which is not mixed with any green or blue. The same is true for the triangle:
+Here, I've used the 'RGB()' command inline as a parameter of the 'Box()' command. If you look closely, you can see that I have specified a maximum value for the red parameter and the lowest value of '0' for the green and blue parameters. This means that the 'RGB()' command will return a 24 bit value that describes a full red which is not mixed with any green or blue. The same is true for the triangle:
 
 ...
 LineXY(62, 140, 112, 220, RGB(0, 0, 255))
@@ -88,14 +88,14 @@ LineXY(12, 220, 62, 140, RGB(0, 0, 255))
 FillArea(62, 180, RGB(0, 0, 255), RGB(0, 0, 255))
 ...
 
-These four lines make up the blue triangle drawn on the window in Fig.33. The first three are ‘LineXY()’ commands that draw the three sides to the triangle. The last command is a ‘FillArea()’ command that picks a point in the center of the triangle and fills it with the same color as the sides. You can see the color is the same throughout all these four drawing commands. The first and second parameters of the ‘RGB()’ command representing red and green are at ‘0’ while the third parameter representing blue is at ‘255’. This means that the ‘RGB()’ command here will return a 24 bit value that describes a full blue which is not mixed with any red or green. The green circle in Fig.33 is a little bit different because I use all three colors to achieve the desired color, like this:
+These four lines make up the blue triangle drawn on the window in Fig.33. The first three are 'LineXY()' commands that draw the three sides to the triangle. The last command is a 'FillArea()' command that picks a point in the center of the triangle and fills it with the same color as the sides. You can see the color is the same throughout all these four drawing commands. The first and second parameters of the 'RGB()' command representing red and green are at '0' while the third parameter representing blue is at '255'. This means that the 'RGB()' command here will return a 24 bit value that describes a full blue which is not mixed with any red or green. The green circle in Fig.33 is a little bit different because I use all three colors to achieve the desired color, like this:
 
 ...
 Circle(140, 125, 45, RGB(35, 158, 70))
 ...
 
-Here I’ve used a mix of red, green and blue values to give a nice grass green instead of a full bright green. Using colors like this, makes things simple in PureBasic and very easy to understand for beginners. Using the ‘RGB()’ command you can return almost any color that the human eye can distinguish.
-While the ‘RGB()’ command can take red, green and blue values and return a combined 24 bit value, there may be a time when you want to extract the red, green and blue component values from a single 24 bit color value. If this is the case, you can do so using the ‘Red()’, ‘Green()’ and ‘Blue()’ commands. Look at this example:
+Here I've used a mix of red, green and blue values to give a nice grass green instead of a full bright green. Using colors like this, makes things simple in PureBasic and very easy to understand for beginners. Using the 'RGB()' command you can return almost any color that the human eye can distinguish.
+While the 'RGB()' command can take red, green and blue values and return a combined 24 bit value, there may be a time when you want to extract the red, green and blue component values from a single 24 bit color value. If this is the case, you can do so using the 'Red()', 'Green()' and 'Blue()' commands. Look at this example:
 
 ColorValue.l = RGB(35, 158, 70)
 
@@ -104,13 +104,13 @@ Debug "Red: " + Str(Red(ColorValue))
 Debug "Green: " + Str(Green(ColorValue))
 Debug "Blue: " + Str(Blue(ColorValue))
 
-Each one of the ‘Red()’, ‘Green()’ and ‘Blue()’ commands takes one 24 bit color value as a parameter then returns the corresponding color component value. On the first line in the above example, I compose the 24 bit color value using (amongst the others) a red parameter value of ‘35’. If I wanted to retrieve the red component value from this 24 bit color value at a later stage, I could pass this value to the ‘Red()’ command which returns the red component value used to compose it, in this case ‘35’. The other color commands work in exactly the same way.
+Each one of the 'Red()', 'Green()' and 'Blue()' commands takes one 24 bit color value as a parameter then returns the corresponding color component value. On the first line in the above example, I compose the 24 bit color value using (amongst the others) a red parameter value of '35'. If I wanted to retrieve the red component value from this 24 bit color value at a later stage, I could pass this value to the 'Red()' command which returns the red component value used to compose it, in this case '35'. The other color commands work in exactly the same way.
 
 Why Drawing On Windows Is Not Preferred
 Drawing on windows although possible is not necessarily the right way of displaying graphics drawn with the 2D drawing commands. This is mostly because of the way different operating systems handle the refreshing of the window display. For example, on Microsoft Windows, if you draw graphics directly onto a window and then move another window across it, the graphics will be wiped off the original window. This is because of the internal event handling that takes place within Microsoft Windows. It determines wether or not to redraw window contents automatically and sometimes makes the decision not to. You can force the redraw of graphics after a window has passed in front of another but this is advanced stuff and requires the use of API knowledge of the particular operating system you are dealing with. A more elegant way of displaying drawn graphics, would be to create a new image in memory, draw stuff on it, then display this image using an image gadget on your window. Using an image gadget makes sure that the window automatically takes care of any refreshing that may be needed to keep the image visible.
 
 Drawing Onto An Image
-Working with new images in PureBasic is easy, as there is a whole library written purely for creating and manipulating these images. In this next example, I’m going to try to emulate the last program but with a difference. I’m going to create a new image using the ‘CreateImage()’ command, draw the colored shapes onto it then display the finished result in an image gadget. This should then avoid any window refresh issues and behave how we think it should. You can read more about the image commands contained in PureBasic by looking at the ‘Image’ library page in the helpfile (Helpfile:Reference Manual->General Libraries->Image). Here’s our example:
+Working with new images in PureBasic is easy, as there is a whole library written purely for creating and manipulating these images. In this next example, I'm going to try to emulate the last program but with a difference. I'm going to create a new image using the 'CreateImage()' command, draw the colored shapes onto it then display the finished result in an image gadget. This should then avoid any window refresh issues and behave how we think it should. You can read more about the image commands contained in PureBasic by looking at the 'Image' library page in the helpfile (Helpfile:Reference Manual->General Libraries->Image). Here's our example:
 
 Enumeration
 	#WINDOW_MAIN
@@ -145,7 +145,7 @@ If OpenWindow(#WINDOW_MAIN, 0, 0, 200, 240, "Drawing On A New Image", #FLAGS)
 EndIf
 End
 
-The main bulk of this code should be self explanatory because the only difference in this code from the last example is that we are now creating a new image using the ‘CreateImage()’ command and drawing on it instead of a window. The ‘CreateImage()’ command takes four parameters, the first is the PB number associated with this new image. The second and third are the width and height (in pixels) of the new image and the fourth parameter is the new image’s bit depth, which is optional. If the fourth parameter is not used, like in my example, then it uses the same bit depth as your desktop.
+The main bulk of this code should be self explanatory because the only difference in this code from the last example is that we are now creating a new image using the 'CreateImage()' command and drawing on it instead of a window. The 'CreateImage()' command takes four parameters, the first is the PB number associated with this new image. The second and third are the width and height (in pixels) of the new image and the fourth parameter is the new image's bit depth, which is optional. If the fourth parameter is not used, like in my example, then it uses the same bit depth as your desktop.
 
 After a new image has been created, I tell the program that I want to draw on it by using this line:
 
@@ -153,18 +153,18 @@ After a new image has been created, I tell the program that I want to draw on it
 StartDrawing(ImageOutput(#IMAGE_MAIN))
 ...
 
-Here, using the ‘StartDrawing()’ command with the ‘ImageOutput()’ method I’ve specified that all drawing commands should now draw on this image who’s PB number is ‘#IMAGE_MAIN’.
+Here, using the 'StartDrawing()' command with the 'ImageOutput()' method I've specified that all drawing commands should now draw on this image who's PB number is '#IMAGE_MAIN'.
 
 This way of specifying an image to draw onto is not limited to a newly created image. You can just as freely load an image into your program and draw on that too. As long as an image has a PB number associated to it, then you can set the drawing output to draw on it.
 
-Once the image has been created and the drawing output set, I am then free to draw on the image. Because all newly created images in PureBasic start with a black background, the first drawing operation I must make is to color the background with white. I do this using the ‘Box()’ command which draws a white box as big as the new image itself, covering all the black. After this, I draw the square, circle and triangle shapes as before. When I have finished all necessary drawing operations, I call the ever important ‘StopDrawing()’ command.
+Once the image has been created and the drawing output set, I am then free to draw on the image. Because all newly created images in PureBasic start with a black background, the first drawing operation I must make is to color the background with white. I do this using the 'Box()' command which draws a white box as big as the new image itself, covering all the black. After this, I draw the square, circle and triangle shapes as before. When I have finished all necessary drawing operations, I call the ever important 'StopDrawing()' command.
 
-To display this image correctly and avoid the previous refresh problems of drawing directly onto a window, I use an image gadget. This lets the operating system take care of refreshing the gadget’s display if other windows pass over it, etc.
+To display this image correctly and avoid the previous refresh problems of drawing directly onto a window, I use an image gadget. This lets the operating system take care of refreshing the gadget's display if other windows pass over it, etc.
 
 <<Box 20>>
 
 Changing The Drawing Mode
-In this next example, I’ll show you how to change the drawing mode of certain commands including text. Using the ‘DrawingMode()’ command you can switch to outline mode for shape commands, draw text with a transparent background or even mix (XOr) the output from a drawing command with the background. Here’s the drawing mode example:
+In this next example, I'll show you how to change the drawing mode of certain commands including text. Using the 'DrawingMode()' command you can switch to outline mode for shape commands, draw text with a transparent background or even mix (XOr) the output from a drawing command with the background. Here's the drawing mode example:
 
 Enumeration
 	#WINDOW_MAIN
@@ -226,33 +226,33 @@ If OpenWindow(#WINDOW_MAIN,0,0,ImageWidth+20,ImageHeight+20,"Abstract",#FLAGS)
 EndIf
 End
 
-This example is basically an extended version of the last one in which I create a new image, albeit a slightly bigger one, and draw random boxes all over it. With each box I draw, I switch the drawing mode to outline and draw a black outline with the same dimensions over the top. This makes the boxes really stand out. Not only does each box have a random color but each one has a black outline too. To switch modes while drawing you use the ‘DrawingMode()’ command along with one of several different constants that is used as a parameter. Here are these constants and what they achieve:
+This example is basically an extended version of the last one in which I create a new image, albeit a slightly bigger one, and draw random boxes all over it. With each box I draw, I switch the drawing mode to outline and draw a black outline with the same dimensions over the top. This makes the boxes really stand out. Not only does each box have a random color but each one has a black outline too. To switch modes while drawing you use the 'DrawingMode()' command along with one of several different constants that is used as a parameter. Here are these constants and what they achieve:
 
-‘#PB_2DDrawing_Default’
+'#PB_2DDrawing_Default'
 This is the default mode, text is displayed with a solid background color and graphic shapes are filled.
 
-‘#PB_2DDrawing_Outlined’
-This mode enables outline mode for the shape commands such as ‘Box()’, ‘Circle()’ and ‘Ellipse()’.
+'#PB_2DDrawing_Outlined'
+This mode enables outline mode for the shape commands such as 'Box()', 'Circle()' and 'Ellipse()'.
 
-‘#PB_2DDrawing_Transparent’
-This sets the text background to transparent so only the ‘DrawText()’ front color parameter is used.
+'#PB_2DDrawing_Transparent'
+This sets the text background to transparent so only the 'DrawText()' front color parameter is used.
 
-‘#PB_2DDrawing_XOr’
+'#PB_2DDrawing_XOr'
 This mode enables the XOr mode, this means all graphics are XOR'ed with the current background.
 
-Using this command is very easy. When you want to change drawing modes within a ‘StartDrawing()’ command block, all you do is call this command with the constant of your choice as a parameter and the mode is instantly changed. These constants can also be combined using the bitwise ‘Or’ operator. Take a look through the code, you can see I’ve switched modes quite often.
+Using this command is very easy. When you want to change drawing modes within a 'StartDrawing()' command block, all you do is call this command with the constant of your choice as a parameter and the mode is instantly changed. These constants can also be combined using the bitwise 'Or' operator. Take a look through the code, you can see I've switched modes quite often.
 
 Once you run this example you will see a window very similar to Fig.34 showing colorful boxes complete with black outlines and white text in the top left hand corner.
 
 <<Fig 34>>
 
-I used the ‘#PB_2DDrawing_Transparent’ drawing mode when I drew the text on the image, so the text has a transparent background instead of a solid color. To actually draw the text, I used the ‘DrawText()’ command. This takes five parameters, the ‘x’ and ‘y’ position on the output, the String to draw and the front and back color values. Because I’ve used a transparent background, the fifth parameter is ignored. The text outline was achieved by drawing four lots of black text at different offsets then drawing the white text on top. I’ve done this like this because the ‘#PB_2DDrawing_Outlined’ drawing mode does not yet support text.
+I used the '#PB_2DDrawing_Transparent' drawing mode when I drew the text on the image, so the text has a transparent background instead of a solid color. To actually draw the text, I used the 'DrawText()' command. This takes five parameters, the 'x' and 'y' position on the output, the String to draw and the front and back color values. Because I've used a transparent background, the fifth parameter is ignored. The text outline was achieved by drawing four lots of black text at different offsets then drawing the white text on top. I've done this like this because the '#PB_2DDrawing_Outlined' drawing mode does not yet support text.
 
 Drawing Text
-Drawing text onto an output is achieved using the ‘DrawText()’ command (Helpfile:Reference Manual->General Libraries->2DDrawing->DrawText). If you look at the last example, you can see I’ve used this command a few times. The first and second parameter is the ‘x’ and ‘y’ location of the drawn text on the output. The third parameter is the actual string of text to draw. The fourth and fifth parameter are the front and back colors of the text. The front color means the actual text color and the back color means the background color. If the last two optional parameters are not used the color information is taken from the default values, which can be changed using the commands, ‘FrontColor()’ and ‘BackColor()’. These color parameters are 24 bit color values, composed easily using the ‘RGB()’ command.
+Drawing text onto an output is achieved using the 'DrawText()' command (Helpfile:Reference Manual->General Libraries->2DDrawing->DrawText). If you look at the last example, you can see I've used this command a few times. The first and second parameter is the 'x' and 'y' location of the drawn text on the output. The third parameter is the actual string of text to draw. The fourth and fifth parameter are the front and back colors of the text. The front color means the actual text color and the back color means the background color. If the last two optional parameters are not used the color information is taken from the default values, which can be changed using the commands, 'FrontColor()' and 'BackColor()'. These color parameters are 24 bit color values, composed easily using the 'RGB()' command.
 
 Drawing Using An Image
-In the last couple of examples, I’ve demonstrated how to draw simple shapes and lines using the built-in 2D drawing commands but sometimes these can be a bit limiting. In this next example, I’ll show you how you can take an external image and draw it onto another newly created image, in any position you like.
+In the last couple of examples, I've demonstrated how to draw simple shapes and lines using the built-in 2D drawing commands but sometimes these can be a bit limiting. In this next example, I'll show you how you can take an external image and draw it onto another newly created image, in any position you like.
 
 Enumeration
 	#WINDOW_MAIN
@@ -302,13 +302,13 @@ If File
 	End
 EndIf
 
-In the above code, I allow the user to open an image, either in Bitmap or Icon format using the ‘OpenFileRequester()’ command. Once this requester correctly returns an image file name, I load that file using the ‘LoadImage()’ command, very similar to the image gadget example in Chapter 9. Once this file is loaded, I can create a new image to draw onto, and use the ‘DrawImage()’ command to draw the loaded image many times. The resulting image is displayed on a window using an image gadget. If you look at Fig.35 you can see what it looks like after I have loaded a sphere shaped icon which is then randomly drawn all over the new image and then displayed.
+In the above code, I allow the user to open an image, either in Bitmap or Icon format using the 'OpenFileRequester()' command. Once this requester correctly returns an image file name, I load that file using the 'LoadImage()' command, very similar to the image gadget example in Chapter 9. Once this file is loaded, I can create a new image to draw onto, and use the 'DrawImage()' command to draw the loaded image many times. The resulting image is displayed on a window using an image gadget. If you look at Fig.35 you can see what it looks like after I have loaded a sphere shaped icon which is then randomly drawn all over the new image and then displayed.
 
 <<Fig 35>>
 
-If you want to draw a loaded image onto a newly created image, you use the ‘DrawImage()’ command. This command takes five parameters and is very easy to understand. The first is the OS identifier of the image you would like to use to draw with and this can be retrieved by using the ‘ImageID()’ command. The second and third parameters are the horizontal and vertical position of the drawn image in pixels. The fourth and fifth parameters are optional and I haven’t used them here but these are the width and height in pixels of the drawn image. You use these if you need to resize the image dynamically before you draw it. In my example, I’ve randomized most of the parameters to randomly fill the new image with a thousand copies of the loaded image.
+If you want to draw a loaded image onto a newly created image, you use the 'DrawImage()' command. This command takes five parameters and is very easy to understand. The first is the OS identifier of the image you would like to use to draw with and this can be retrieved by using the 'ImageID()' command. The second and third parameters are the horizontal and vertical position of the drawn image in pixels. The fourth and fifth parameters are optional and I haven't used them here but these are the width and height in pixels of the drawn image. You use these if you need to resize the image dynamically before you draw it. In my example, I've randomized most of the parameters to randomly fill the new image with a thousand copies of the loaded image.
 
-Also, I think this is the first time you have seen the ‘OpenFileRequester()’ command so I will explain that a little more clearly too, so there is no confusion. This command opens an operating system standard file requester for users to easily select a file. Once a file has been selected the ‘OpenFileRequester()’ command returns its name as a String. This can be demonstrated by this little stand-alone snippet of code:
+Also, I think this is the first time you have seen the 'OpenFileRequester()' command so I will explain that a little more clearly too, so there is no confusion. This command opens an operating system standard file requester for users to easily select a file. Once a file has been selected the 'OpenFileRequester()' command returns its name as a String. This can be demonstrated by this little stand-alone snippet of code:
 
 Global File.s
 Global RequesterText.s = "Choose an image"
@@ -317,9 +317,9 @@ Global Pattern.s = "Bitmap (*.bmp)|*.bmp|Icon (*.ico)|*.ico"
 File = OpenFileRequester(RequesterText, DefaultFile, Pattern, 0)
 Debug File
 
-If you look at the ‘OpenFileRequester()’ page in the helpfile (Helpfile:Reference Manual->General Libraries->Requester->OpenFileRequester) this command takes four parameters. The first is a String which is the text displayed in the titlebar of the requester when it opens. The second is a String parameter of a file name that this requester may be looking for. If this parameter is specified, this file name is already entered in the selection box once the requesters opens. The third parameter is a file pattern to allow the programmer to determine what files should and shouldn’t be displayed for selection in the requester. The fourth parameter is what file type from the file pattern is first selected once the requester opens. In this snippet, ‘Bitmap’ is first selected because the file pattern index starts at ‘0’.
+If you look at the 'OpenFileRequester()' page in the helpfile (Helpfile:Reference Manual->General Libraries->Requester->OpenFileRequester) this command takes four parameters. The first is a String which is the text displayed in the titlebar of the requester when it opens. The second is a String parameter of a file name that this requester may be looking for. If this parameter is specified, this file name is already entered in the selection box once the requesters opens. The third parameter is a file pattern to allow the programmer to determine what files should and shouldn't be displayed for selection in the requester. The fourth parameter is what file type from the file pattern is first selected once the requester opens. In this snippet, 'Bitmap' is first selected because the file pattern index starts at '0'.
 
-The file pattern looks quite complicated but is very simple once you understand it. The file types are broken down into chunks within the pattern String, divided by pipe characters ‘|’ identical to the bitwise Or operator. These chunks work in pairs to be able to specify a String describing a file extension and then the file extension itself. For example, in the above snippet, the pattern looks like this:
+The file pattern looks quite complicated but is very simple once you understand it. The file types are broken down into chunks within the pattern String, divided by pipe characters '|' identical to the bitwise Or operator. These chunks work in pairs to be able to specify a String describing a file extension and then the file extension itself. For example, in the above snippet, the pattern looks like this:
 
 "Bitmap (*.bmp)|*.bmp|Icon (*.ico)|*.ico"
 
@@ -327,16 +327,16 @@ If we break this into chunks using the pipe characters as separators we can see 
 
 Bitmap (*.bmp)      *.bmp      Icon (*.ico)      *.ico
 
-The first chunk is a String to display in the ‘Files of type’ selection box within the requester, and once this is selected, it uses the next chunk to tell the requester what type of files to display inside the main window, in this case all ‘.bmp’ files. Remember, the asterisk used here is a String wildcard character to signify any name. The third chunk is another String to display in the ‘Files of type’ selection box and when this is selected, the requester will display the files with the extension as specified in the fourth chunk, and so on. If you need to specify many extensions for one particular file type you can use the semi colon to specify more extensions within a chunk, like this:
+The first chunk is a String to display in the 'Files of type' selection box within the requester, and once this is selected, it uses the next chunk to tell the requester what type of files to display inside the main window, in this case all '.bmp' files. Remember, the asterisk used here is a String wildcard character to signify any name. The third chunk is another String to display in the 'Files of type' selection box and when this is selected, the requester will display the files with the extension as specified in the fourth chunk, and so on. If you need to specify many extensions for one particular file type you can use the semi colon to specify more extensions within a chunk, like this:
 
 "JPEG|*.jpg;*.jpeg"
 
-This will now display any files with the extensions of ‘.jpg’ or ‘.jpeg’ when the ‘JPEG’ String is selected in the requester. You must remember, that if you want to load more types of images other than Bitmaps or Icons, you will have to use another image decoder as explained in Chapter 9 (Including Graphics In Your Program).
+This will now display any files with the extensions of '.jpg' or '.jpeg' when the 'JPEG' String is selected in the requester. You must remember, that if you want to load more types of images other than Bitmaps or Icons, you will have to use another image decoder as explained in Chapter 9 (Including Graphics In Your Program).
 
 Drawing Images With Alpha Channels
-Sometimes you may need to draw an image which contains an alpha channel to preserve a drop shadow or maybe parts of the image should be transparent. In Fig.35 I used an icon to draw all over the newly created image, and as standard PureBasic preserves any alpha channel information found inside that icon. But what happens if you need to draw a Png or Tiff format image and preserve its alpha channel? This is where the ‘DrawAlphaImage()’ command is used. This command will preserve any alpha channel found in image formats that support them, such as 32 bit Png or Tiff files.
+Sometimes you may need to draw an image which contains an alpha channel to preserve a drop shadow or maybe parts of the image should be transparent. In Fig.35 I used an icon to draw all over the newly created image, and as standard PureBasic preserves any alpha channel information found inside that icon. But what happens if you need to draw a Png or Tiff format image and preserve its alpha channel? This is where the 'DrawAlphaImage()' command is used. This command will preserve any alpha channel found in image formats that support them, such as 32 bit Png or Tiff files.
 
-The ‘DrawAlphaImage()’ command is used in exactly the same way as the ‘DrawImage()’ command, the only difference being that the ‘DrawAlphaImage()’ command only has three parameters and therefore doesn’t allow dynamic resizing of the image while drawing. Here is an example of how the command could be used:
+The 'DrawAlphaImage()' command is used in exactly the same way as the 'DrawImage()' command, the only difference being that the 'DrawAlphaImage()' command only has three parameters and therefore doesn't allow dynamic resizing of the image while drawing. Here is an example of how the command could be used:
 
 ...
 DrawAlphaImage(ImageID(#IMAGE_PNG), XPos, YPos)
@@ -346,7 +346,7 @@ The above line would display a Png format image and preserve its alpha channel, 
 
 Saving Images
 
-Once you have created an image in your program, you may want to save it to disk. PureBasic makes this task simple by providing the ‘SaveImage()’ command (Helpfile:Reference Manual->General Libraries->Image->SaveImage). This command will save any image in your PureBasic program that has a PB number. The ‘SaveImage()’ command takes four parameters. The first is the PB number of the image you want to save. The second is the file name that you want to save your image as. The third parameter is optional and defines what image format this image should be saved as. The fourth parameter is for specifying an optional value to be used with whatever file format is chosen.
+Once you have created an image in your program, you may want to save it to disk. PureBasic makes this task simple by providing the 'SaveImage()' command (Helpfile:Reference Manual->General Libraries->Image->SaveImage). This command will save any image in your PureBasic program that has a PB number. The 'SaveImage()' command takes four parameters. The first is the PB number of the image you want to save. The second is the file name that you want to save your image as. The third parameter is optional and defines what image format this image should be saved as. The fourth parameter is for specifying an optional value to be used with whatever file format is chosen.
 
 If we wanted to save the image created from the last example, we could add this line of code onto the end of the example code. Once the program finishes it would save our image:
 
@@ -359,52 +359,52 @@ By default, PureBasic will save a Bitmap format image file when you use this com
 Saving Images In Other Formats
 You can save images in other graphical formats by specifying this as a third parameter. This can be one of these three built-in constants:
 
-‘#PB_ImagePlugin_BMP’
-Save the image in Bitmap format. This is the default setting and doesn’t really need specifying.
+'#PB_ImagePlugin_BMP'
+Save the image in Bitmap format. This is the default setting and doesn't really need specifying.
 
-‘#PB_ImagePlugin_JPEG’
-Save the image in Jpeg format. (To work properly, the ‘UseJPEGImageEncoder()’ command must be called before this command is used).
+'#PB_ImagePlugin_JPEG'
+Save the image in Jpeg format. (To work properly, the 'UseJPEGImageEncoder()' command must be called before this command is used).
 
-‘#PB_ImagePlugin_PNG’ 
-Save the image in Png format. (To work properly, the ‘UsePNGImageEncoder()’ command must be called before this command is used).
+'#PB_ImagePlugin_PNG' 
+Save the image in Png format. (To work properly, the 'UsePNGImageEncoder()' command must be called before this command is used).
 
-When saving an image using either ‘#PB_ImagePlugin_JPEG’ or ‘#PB_ImagePlugin_PNG’ you must put the appropriate encoder command at the top of your source code before using the ‘SaveImage()’ command to make sure it knows how to encode that given format. The encoders only need to be called once to add the required functionality throughout your program. Here are they are:
+When saving an image using either '#PB_ImagePlugin_JPEG' or '#PB_ImagePlugin_PNG' you must put the appropriate encoder command at the top of your source code before using the 'SaveImage()' command to make sure it knows how to encode that given format. The encoders only need to be called once to add the required functionality throughout your program. Here are they are:
 
-‘ UseJPEGImageEncoder()’
+' UseJPEGImageEncoder()'
 This encoder adds support for the Jpeg image (*.jpg/*.jpeg) file format.
 
-‘ UsePNGImageEncoder()’
+' UsePNGImageEncoder()'
 This encoder adds support for the Png image (*.png) file format.
 
-When using the ‘ UseJPEGImageEncoder()’ to add Jpeg support, you can optionally use the fourth parameter of the ‘SaveImage()’ command to specify the compression value of the saved image. This is the only image type that currently supports this fourth parameter.
+When using the ' UseJPEGImageEncoder()' to add Jpeg support, you can optionally use the fourth parameter of the 'SaveImage()' command to specify the compression value of the saved image. This is the only image type that currently supports this fourth parameter.
 
-Here are a few examples of using the ‘SaveImage()’ command:
+Here are a few examples of using the 'SaveImage()' command:
 
 SaveImage(#IMAGE_MAIN, "Image.bmp")
 
-This first example will save an image called ‘Image.bmp’ in the default 24bit Bitmap format. Notice that no encoder is needed because PureBasic supports Bitmap format images as standard.
+This first example will save an image called 'Image.bmp' in the default 24bit Bitmap format. Notice that no encoder is needed because PureBasic supports Bitmap format images as standard.
 
 UseJPEGImageEncoder()
 ...
 SaveImage(#IMAGE_MAIN, "Image.jpg", #PB_ImagePlugin_JPEG)
 
-The second example will save an image called ‘Image.jpg’ in JPEG format using a default compression value of ‘7’ because we haven’t specified one ourselves. 
+The second example will save an image called 'Image.jpg' in JPEG format using a default compression value of '7' because we haven't specified one ourselves. 
 
 UseJPEGImageEncoder()
 ...
 SaveImage(#IMAGE_MAIN, "Image.jpg", #PB_ImagePlugin_JPEG, 10)
 
-This third example will save an image called ‘Image.jpg’ in JPEG format and use the maximum compression value of ‘10’ as specified in the fourth parameter.
+This third example will save an image called 'Image.jpg' in JPEG format and use the maximum compression value of '10' as specified in the fourth parameter.
 
 UsePNGImageEncoder()
 ...
 SaveImage(#IMAGE_MAIN, "Image.png", #PB_ImagePlugin_PNG)
 
-This fourth example will save an image called ‘Image.png’ in PNG format.
+This fourth example will save an image called 'Image.png' in PNG format.
 
 Introducing Screens
 
-If you ever wanted to create your own game or write your own screensaver using PureBasic then you will always start by opening a ‘Screen’. This screen is a purely graphical environment, created for the one intention of displaying graphics such as output from 2D drawing, loaded images, loaded sprites and loaded 3D models and worlds.
+If you ever wanted to create your own game or write your own screensaver using PureBasic then you will always start by opening a 'Screen'. This screen is a purely graphical environment, created for the one intention of displaying graphics such as output from 2D drawing, loaded images, loaded sprites and loaded 3D models and worlds.
 
 <<Box 21>>
 
@@ -444,23 +444,23 @@ Repeat
 Until Quit = #True
 End
 
-If you first take a look at the sprite and screen section in the PureBasic helpfile (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen) you’ll find more information regarding all the new command used in this example.
+If you first take a look at the sprite and screen section in the PureBasic helpfile (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen) you'll find more information regarding all the new command used in this example.
 
-This example doesn’t really do anything other than open a blank screen and if you are looking at that now you can exit the program by pressing ‘Esc’ on your keyboard. This example is what all games and the like are born from so let me run through the important bits and explain what’s happening along the way.
+This example doesn't really do anything other than open a blank screen and if you are looking at that now you can exit the program by pressing 'Esc' on your keyboard. This example is what all games and the like are born from so let me run through the important bits and explain what's happening along the way.
 
-To start with I’ve created a simple error checking procedure as explained in Chapter 8 (How To Minimize And Handle Errors) and used this to make sure that the ‘InitSprite()’, ‘InitKeyboard()’ and ‘OpenScreen()’ commands do not return ‘0’. If any of them do, then that particular command is considered to have failed, so I immediately exit the program. If a failure occurs like this for whatever reason, it is always best to close the program and inform the user of the problem. Otherwise, if your program was to continue, major crashes are likely to occur.
+To start with I've created a simple error checking procedure as explained in Chapter 8 (How To Minimize And Handle Errors) and used this to make sure that the 'InitSprite()', 'InitKeyboard()' and 'OpenScreen()' commands do not return '0'. If any of them do, then that particular command is considered to have failed, so I immediately exit the program. If a failure occurs like this for whatever reason, it is always best to close the program and inform the user of the problem. Otherwise, if your program was to continue, major crashes are likely to occur.
 
-The commands needed to initialize the sprite engine and keyboard are just simple command calls, these are ‘InitSprite()’ and ‘InitKeyboard()’, remember that we need to initialize the sprite engine before we open a screen. The ‘OpenScreen()’ command takes four parameters, these are the width, height and bit depth of the screen plus its text caption. This caption is what will be displayed in the taskbar if you were to minimize the screen from view.
+The commands needed to initialize the sprite engine and keyboard are just simple command calls, these are 'InitSprite()' and 'InitKeyboard()', remember that we need to initialize the sprite engine before we open a screen. The 'OpenScreen()' command takes four parameters, these are the width, height and bit depth of the screen plus its text caption. This caption is what will be displayed in the taskbar if you were to minimize the screen from view.
 
 <<Box 22>>
 
-The width, height and bit depth parameters are very important to get right as these define what size and bit depth your screen will be. Whatever computer is going to run this program and open this screen must be capable of supporting whatever size and bit depth is used. The width and height values are collectively known as the resolution and this must be supported wholly by the graphics card and monitor connected to the target computer or else an error will be raised and the ‘OpenScreen()’ command will not succeed. The values I have used in this example are those that most computers are able to support and shouldn’t present any problems. This is worth keeping in mind when writing a program that relies on a screen.
+The width, height and bit depth parameters are very important to get right as these define what size and bit depth your screen will be. Whatever computer is going to run this program and open this screen must be capable of supporting whatever size and bit depth is used. The width and height values are collectively known as the resolution and this must be supported wholly by the graphics card and monitor connected to the target computer or else an error will be raised and the 'OpenScreen()' command will not succeed. The values I have used in this example are those that most computers are able to support and shouldn't present any problems. This is worth keeping in mind when writing a program that relies on a screen.
 
 Fig.36 shows common screen resolutions and bit depths that should work on almost every modern computer. Just like computer games, the higher, the screen resolution, the more crisp the display looks but because there are more pixels to draw, the program may slow down. The higher, the bit depth, the more colors are able to be displayed and more lifelike graphics are able to be represented.
 
 <<Fig 36>>
 
-Of course, instead of hard coding values like these into a program, it’s always best to test the ability of the target computer to use these values. You can list the different resolutions and bit depths that any computer can display, by using this code:
+Of course, instead of hard coding values like these into a program, it's always best to test the ability of the target computer to use these values. You can list the different resolutions and bit depths that any computer can display, by using this code:
 
 InitSprite()
 If ExamineScreenModes()
@@ -472,7 +472,7 @@ If ExamineScreenModes()
 	Wend
 EndIf
 
-Again in this snippet, we initialize the sprite engine before we use the ‘ExamineScreenModes()’ command, this initializes everything correctly to allow us to use these screen based commands. I then use a ‘While’ loop to iterate through each supported screen mode and use the ‘ScreenModeWidth()’, ‘ScreenModeHeight()’ and ‘ScreenModeDepth()’ commands, to construct a String describing each mode. This is then echoed to the Debug Output window for us to examine. This is a simple example and one that you should be able to understand yourself by reading the associated command helpfile pages (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen).
+Again in this snippet, we initialize the sprite engine before we use the 'ExamineScreenModes()' command, this initializes everything correctly to allow us to use these screen based commands. I then use a 'While' loop to iterate through each supported screen mode and use the 'ScreenModeWidth()', 'ScreenModeHeight()' and 'ScreenModeDepth()' commands, to construct a String describing each mode. This is then echoed to the Debug Output window for us to examine. This is a simple example and one that you should be able to understand yourself by reading the associated command helpfile pages (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen).
 
 Double Buffered Rendering
 When using a screen to display graphics you always need a main loop to keep the program running, draw graphics and test for user input, etc. and this too must follow a template when using a screen. Here is the main loop taken from the skeleton screen program on the previous page:
@@ -488,32 +488,32 @@ Repeat
 	EndIf
 Until Quit = #True
 ...
-At first glace you can see it’s very similar to a normal main loop of any other program but there are a few differences. There are two commands in there that are crucial to make a screen draw graphics correctly, these are ‘ClearScreen()’ and ‘FlipBuffers()’. Before I can go into more detail about these two commands I must explain a graphical technique called double buffering.
+At first glace you can see it's very similar to a normal main loop of any other program but there are a few differences. There are two commands in there that are crucial to make a screen draw graphics correctly, these are 'ClearScreen()' and 'FlipBuffers()'. Before I can go into more detail about these two commands I must explain a graphical technique called double buffering.
 
-Double buffering is a graphical technique used by PureBasic screens to avoid corrupted graphics and a flickering display. Because computer monitors constantly redraw the monitor screen usually sixty to seventy (sometimes more) times a second, it’s hard to make changes to the screen, such as moving and drawing new graphics without the display showing changes before you’ve actually completed them. This results in torn, corrupted graphics and other strange visual artifacts. If you wanted to avoid this problem by clearing the screen every time before redrawing the whole screen again, it would cure the corrupted graphic problem but it would make the screen flicker.
+Double buffering is a graphical technique used by PureBasic screens to avoid corrupted graphics and a flickering display. Because computer monitors constantly redraw the monitor screen usually sixty to seventy (sometimes more) times a second, it's hard to make changes to the screen, such as moving and drawing new graphics without the display showing changes before you've actually completed them. This results in torn, corrupted graphics and other strange visual artifacts. If you wanted to avoid this problem by clearing the screen every time before redrawing the whole screen again, it would cure the corrupted graphic problem but it would make the screen flicker.
 
-Using double buffering, PureBasic solves these problems. Once a screen is opened it automatically gets assigned two video buffers in memory, exactly the same size as the opened screen. When you draw graphics onto the screen using PureBasic’s graphics commands you are actually drawing onto the back buffer while the front buffer is being displayed on the screen. When the monitor has finished displaying the front buffer and the drawing operations are complete on the back buffer, both are flipped over (swapped). Now the front becomes the back and the back becomes the front, which is then displayed. When the program draws its graphics again it draws on the newly flipped back buffer. This new back buffer will probably contain old graphics because they have already been displayed, so it is standard procedure to clear the back buffer completely using a single color (usually black) before starting to draw on it again. Fig.37 shows this technique in action showing three cycles of the buffers.
+Using double buffering, PureBasic solves these problems. Once a screen is opened it automatically gets assigned two video buffers in memory, exactly the same size as the opened screen. When you draw graphics onto the screen using PureBasic's graphics commands you are actually drawing onto the back buffer while the front buffer is being displayed on the screen. When the monitor has finished displaying the front buffer and the drawing operations are complete on the back buffer, both are flipped over (swapped). Now the front becomes the back and the back becomes the front, which is then displayed. When the program draws its graphics again it draws on the newly flipped back buffer. This new back buffer will probably contain old graphics because they have already been displayed, so it is standard procedure to clear the back buffer completely using a single color (usually black) before starting to draw on it again. Fig.37 shows this technique in action showing three cycles of the buffers.
 
 <<Fig 37>>
 
-In this diagram you can see at program start (indicated by step 1), that the front buffer (‘Buffer A’) has no graphics drawn on it, so nothing is displayed on screen. When we draw stuff using the PureBasic drawing commands, we draw onto the backbuffer, indicated by ‘Buffer B’. Once all drawing has taken place, we can call the ‘FlipBuffers()’ command and the buffers are flipped. This is shown in step 2. Now, ‘Buffer B’ is displayed on the screen and we continue drawing onto ‘Buffer A’ which is now the new back buffer. Again, once all drawing operation are done, we can flip the buffers again using ‘FlipBuffers()’ and we arrive at step 3, where ‘Buffer A’ is now drawn to the screen and ‘Buffer B’ is once again the back buffer.
+In this diagram you can see at program start (indicated by step 1), that the front buffer ('Buffer A') has no graphics drawn on it, so nothing is displayed on screen. When we draw stuff using the PureBasic drawing commands, we draw onto the backbuffer, indicated by 'Buffer B'. Once all drawing has taken place, we can call the 'FlipBuffers()' command and the buffers are flipped. This is shown in step 2. Now, 'Buffer B' is displayed on the screen and we continue drawing onto 'Buffer A' which is now the new back buffer. Again, once all drawing operation are done, we can flip the buffers again using 'FlipBuffers()' and we arrive at step 3, where 'Buffer A' is now drawn to the screen and 'Buffer B' is once again the back buffer.
 
-When the buffers are flipped using the ‘FlipBuffer()’ command, the buffer that arrives at the back will still have old graphics drawn on it. If we want to create the illusion of movement to animate graphics, we will have to clear these and redraw them in a new position before we flip the buffers again. To clear old graphics we use the ‘ClearScreen()’ command. ‘ClearScreen()’ takes one parameter which is a 24 bit color value of the color you want to clear the screen with. This can be retrieved easily using the ‘RGB()’ command.
+When the buffers are flipped using the 'FlipBuffer()' command, the buffer that arrives at the back will still have old graphics drawn on it. If we want to create the illusion of movement to animate graphics, we will have to clear these and redraw them in a new position before we flip the buffers again. To clear old graphics we use the 'ClearScreen()' command. 'ClearScreen()' takes one parameter which is a 24 bit color value of the color you want to clear the screen with. This can be retrieved easily using the 'RGB()' command.
 
-The ‘FlipBuffers()’ command (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen->FlipBuffers) also has an optional parameter and can take these values:
+The 'FlipBuffers()' command (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen->FlipBuffers) also has an optional parameter and can take these values:
 
-	‘0’ : Disable monitor vertical synchronization 
-	‘1’ : Enable monitor vertical synchronization (default value)
-	‘2’ : Enable monitor vertical synchronization, using CPU saving mode (full screen mode only).
+	'0' : Disable monitor vertical synchronization 
+	'1' : Enable monitor vertical synchronization (default value)
+	'2' : Enable monitor vertical synchronization, using CPU saving mode (full screen mode only).
 
-If ‘0’ is used as a parameter then the ‘FlipBuffers()’ flips the buffer as fast as it can to achieve the highest frame rate of the drawn graphics. The only downside to this is that the monitor refresh rate might not be fast enough to draw the new graphics in realtime so some visual tearing may occur as the monitor tries to keep up with the flipped buffers.
+If '0' is used as a parameter then the 'FlipBuffers()' flips the buffer as fast as it can to achieve the highest frame rate of the drawn graphics. The only downside to this is that the monitor refresh rate might not be fast enough to draw the new graphics in realtime so some visual tearing may occur as the monitor tries to keep up with the flipped buffers.
 
-If ‘1’ is used as a parameter the ‘FlipBuffers()’ command flips the buffers in perfect synchronization with the monitors refresh rate ensuring that all graphics are drawn correctly and smoothly to the monitor. The only downside of this is that the frame rate can never exceed beyond the refresh rate of the monitor. This is the default mode if no parameter is used.
+If '1' is used as a parameter the 'FlipBuffers()' command flips the buffers in perfect synchronization with the monitors refresh rate ensuring that all graphics are drawn correctly and smoothly to the monitor. The only downside of this is that the frame rate can never exceed beyond the refresh rate of the monitor. This is the default mode if no parameter is used.
 
-Using ‘2’ as a parameter will have the same effect as using ‘1’, but will switch to CPU saving mode to ensure it does not run the CPU at a hundred percent so other program don’t have a chance to run.
+Using '2' as a parameter will have the same effect as using '1', but will switch to CPU saving mode to ensure it does not run the CPU at a hundred percent so other program don't have a chance to run.
 
 Drawing To A Screen
-Here is an example of double buffered rendering and animation created by drawing updated graphics between each ‘FlipBuffers()’ command: (exit this program by pressing ‘Esc’ on your keyboard)
+Here is an example of double buffered rendering and animation created by drawing updated graphics between each 'FlipBuffers()' command: (exit this program by pressing 'Esc' on your keyboard)
 
 #IMAGE_MAIN = 1
 ;Set the width, height and bit depth of the screen
@@ -575,15 +575,15 @@ Repeat
 Until Quit = #True
 End
 
-In this example, I’ve created a new image using the ‘CreateImage()’ command and then later drawn this image to the screen using a ‘StartDrawing()’ block. Even though this code looks a little complicated, especially when calculating the ‘x’ and ‘y’ values of the drawn image, this example is purely to demonstrate the flipping of the buffers.
-You can see in the main loop, that the first thing I do is clear the screen using the ‘ClearScreen()’ command. This is to allow me to start on a clear buffer, so no old graphics are left over from any previous drawing operations. After that I use some math to calculate new coordinates for my blob images and use a loop to draw them. After these have been drawn, they are on the back buffer so I have to use the ‘FlipBuffers()’ command to display them on the screen. And so it goes on, clearing, drawing and flipping, and between each flip, I change the position of the graphics.
+In this example, I've created a new image using the 'CreateImage()' command and then later drawn this image to the screen using a 'StartDrawing()' block. Even though this code looks a little complicated, especially when calculating the 'x' and 'y' values of the drawn image, this example is purely to demonstrate the flipping of the buffers.
+You can see in the main loop, that the first thing I do is clear the screen using the 'ClearScreen()' command. This is to allow me to start on a clear buffer, so no old graphics are left over from any previous drawing operations. After that I use some math to calculate new coordinates for my blob images and use a loop to draw them. After these have been drawn, they are on the back buffer so I have to use the 'FlipBuffers()' command to display them on the screen. And so it goes on, clearing, drawing and flipping, and between each flip, I change the position of the graphics.
 
-You might of noticed another new command that I’ve used in this example and that is ‘SetFrameRate()’ (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen->SetFrameRate). This command has one parameter that sets the number of times that ‘FlipBuffers()’ can be executed per second. This is to provide a standard frame rate on other computers that might run this code. This should limit this example to display updated graphics sixty times a second.
+You might of noticed another new command that I've used in this example and that is 'SetFrameRate()' (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen->SetFrameRate). This command has one parameter that sets the number of times that 'FlipBuffers()' can be executed per second. This is to provide a standard frame rate on other computers that might run this code. This should limit this example to display updated graphics sixty times a second.
 
-This is how all animation is produced on computers, very similar to cartoons or films. Nothing actually moves on screen, it’s really a slideshow of different images (buffers) in which graphics are in slightly different positions. Because it all happens very fast (sixty plus times a second) the images appear to move.
+This is how all animation is produced on computers, very similar to cartoons or films. Nothing actually moves on screen, it's really a slideshow of different images (buffers) in which graphics are in slightly different positions. Because it all happens very fast (sixty plus times a second) the images appear to move.
 
 A Simple Starfield
-This is one of the effects that any demo or game programmer will know how to draw. A starfield such as this has been used in hundreds of demo’s and games to give the effect of traveling through space. It is an effect that draws and animates hundreds of pixels on the screen using different shades of color to give the illusion of depth and movement. There are various way of programming this effect, here is my example:
+This is one of the effects that any demo or game programmer will know how to draw. A starfield such as this has been used in hundreds of demo's and games to give the effect of traveling through space. It is an effect that draws and animates hundreds of pixels on the screen using different shades of color to give the illusion of depth and movement. There are various way of programming this effect, here is my example:
 
 #APP_NAME = "Stars v1.0"
 #NUMBER_OF_STARS = 10000
@@ -669,12 +669,12 @@ Repeat
 Until Quit = 1
 End
 
-This example uses the 2D drawing command, ‘Plot()’ to draw a single pixel at a time (Helpfile:Reference Manual->General Libraries->2DDrawing->Plot). This command uses three parameters, of which the third is optional. These parameters define the ‘x’ and ‘y’ position and color of the pixel to be drawn. If the last parameter is not used then this command uses the default foreground color, which is set using the ‘FrontColor()’ command.
+This example uses the 2D drawing command, 'Plot()' to draw a single pixel at a time (Helpfile:Reference Manual->General Libraries->2DDrawing->Plot). This command uses three parameters, of which the third is optional. These parameters define the 'x' and 'y' position and color of the pixel to be drawn. If the last parameter is not used then this command uses the default foreground color, which is set using the 'FrontColor()' command.
 
-In the above example, I’ve used a structure to keep all the information about a single pixel together, then created an array of variables using this structure. Each of the elements in the array describes the position, color and step value of all of the individual pixels. I then loop through the array, drawing each pixel on the screen using the pixel information (position, color, etc.) contained inside each structured array element. Once the drawing is complete, I then flip the buffers and update the pixel positions in the array using the associated step values. Once this is done, I clear the screen and redraw again, ...and so it goes on. Doing things this way makes the code look cleaner, it’s much more easier to read and allows you to update it easily at a later stage.
+In the above example, I've used a structure to keep all the information about a single pixel together, then created an array of variables using this structure. Each of the elements in the array describes the position, color and step value of all of the individual pixels. I then loop through the array, drawing each pixel on the screen using the pixel information (position, color, etc.) contained inside each structured array element. Once the drawing is complete, I then flip the buffers and update the pixel positions in the array using the associated step values. Once this is done, I clear the screen and redraw again, ...and so it goes on. Doing things this way makes the code look cleaner, it's much more easier to read and allows you to update it easily at a later stage.
 
 Opening A Screen On A Window
-Sometimes you might like to open a screen on a window, especially if you want to make a windowed game or demo, etc. You can do this using the ‘OpenWindowedScreen()’ command. To open a screen upon a window, you need to first create a window and then handle the events from that window in the main loop, as well as the drawing. Here is an example of using a windowed screen:
+Sometimes you might like to open a screen on a window, especially if you want to make a windowed game or demo, etc. You can do this using the 'OpenWindowedScreen()' command. To open a screen upon a window, you need to first create a window and then handle the events from that window in the main loop, as well as the drawing. Here is an example of using a windowed screen:
 
 #WINDOW_MAIN = 1
 #IMAGE_MAIN = 1
@@ -747,57 +747,57 @@ If OpenWindow(#WINDOW_MAIN, 0, 0, ScrW, ScrH, "Windowed Screen", #FLAGS)
 EndIf
 End
 
-This example should be pretty straightforward, because most of this code you have seen before. The main difference being the ‘OpenWindowedScreen()’ command which takes eight parameters! The first parameter is the OS identifier of the window it is to be opened on. The second and third parameters are the ‘x’ and ‘y’ position of the new screen on the window. The fourth and fifth parameters are the width and height of the new screen. The sixth parameter is the auto-size or auto-stretch flag. If this parameter is set to ‘0’ then no automatic resizing takes place but if it is set to ‘1’ then the screen with automatically resize itself to the maximum size that the window will allow, disregarding parameters four and five. This means that even if you resize the parent window, the screen will automatically change its size to always fill the full parent window area. The seventh and eight parameters are margins that you can specify for when auto-stretch is enabled. These will pull the auto-sizing screen back a little from the right hand side or from the bottom respectively, to leave room for a status bar or other gadgets on the window.
+This example should be pretty straightforward, because most of this code you have seen before. The main difference being the 'OpenWindowedScreen()' command which takes eight parameters! The first parameter is the OS identifier of the window it is to be opened on. The second and third parameters are the 'x' and 'y' position of the new screen on the window. The fourth and fifth parameters are the width and height of the new screen. The sixth parameter is the auto-size or auto-stretch flag. If this parameter is set to '0' then no automatic resizing takes place but if it is set to '1' then the screen with automatically resize itself to the maximum size that the window will allow, disregarding parameters four and five. This means that even if you resize the parent window, the screen will automatically change its size to always fill the full parent window area. The seventh and eight parameters are margins that you can specify for when auto-stretch is enabled. These will pull the auto-sizing screen back a little from the right hand side or from the bottom respectively, to leave room for a status bar or other gadgets on the window.
 
-It is also very important when using a screen on a window, that you always handle the events properly using the ‘WindowEvent()’ command. If you remember from Chapter 9, this command doesn’t wait for an event to occur before returning, instead it always tries to detect and return any events that need handling. Using this command instead of ‘WaitWindowEvent()’ is a must because you don’t want to halt the drawing and flipping of buffers for any length of time.
+It is also very important when using a screen on a window, that you always handle the events properly using the 'WindowEvent()' command. If you remember from Chapter 9, this command doesn't wait for an event to occur before returning, instead it always tries to detect and return any events that need handling. Using this command instead of 'WaitWindowEvent()' is a must because you don't want to halt the drawing and flipping of buffers for any length of time.
 
 Sprites
 
-Sprites in PureBasic are images that can be drawn in any position on a screen. Unlike images however,  sprites have their own command set, are optimized for speed and can be drawn in several special ways to achieve many special effects. All normal sprite commands appear in the ‘Sprite & Screen’ section in the helpfile (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen) but there are also some other sprite commands located in the ‘Sprite3D’ section too (Helpfile:Reference Manual->2D Games Libraries->Sprite3D). To familiarize yourself fully with what is capable using the sprite commands, I would recommend reading both of these two sections.
+Sprites in PureBasic are images that can be drawn in any position on a screen. Unlike images however,  sprites have their own command set, are optimized for speed and can be drawn in several special ways to achieve many special effects. All normal sprite commands appear in the 'Sprite & Screen' section in the helpfile (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen) but there are also some other sprite commands located in the 'Sprite3D' section too (Helpfile:Reference Manual->2D Games Libraries->Sprite3D). To familiarize yourself fully with what is capable using the sprite commands, I would recommend reading both of these two sections.
 
-The Difference Between Sprites And Sprite3D’s
+The Difference Between Sprites And Sprite3D's
 In PureBasic there are two different types of sprite. The first is what you would consider a normal sprite, which is created from a user drawn or loaded image and which is displayed and manipulated using the standard sprite library.
 
 The second type is almost the same, except PureBasic uses a very small 3D engine to display the sprites. Also, the commands used for drawing and manipulating this type, allow the programmer to achieve graphical effects not possible with normal sprites. These effects include, realtime zooming, 3D transformation and sprite blending. The 3D engine that performs the transformation and displaying of the 3D sprites is not the OGRE engine as mentioned in the next chapter, but a small, self-contained 3D engine specifically created to handle this type of sprite.
 
 Using Normal Sprites
-To create a sprite for use within your program, you can either load one with the ‘LoadSprite()’ command (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen->LoadSprite) or create a new one using the ‘CreateSprite()’ command (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen->CreateSprite).
+To create a sprite for use within your program, you can either load one with the 'LoadSprite()' command (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen->LoadSprite) or create a new one using the 'CreateSprite()' command (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen->CreateSprite).
 
-To load existing images to be used as sprites, the ‘LoadSprite()’ command is very similar to the ‘LoadImage()’ command and has three parameters. The first is the PB number that you wish to associate to this sprite. The second is the file name of the image you want to load as a sprite, remembering of course, to use the correct image decoder if needed. The third is the sprite mode, which determines how this sprite will be used, more on this in a moment.
+To load existing images to be used as sprites, the 'LoadSprite()' command is very similar to the 'LoadImage()' command and has three parameters. The first is the PB number that you wish to associate to this sprite. The second is the file name of the image you want to load as a sprite, remembering of course, to use the correct image decoder if needed. The third is the sprite mode, which determines how this sprite will be used, more on this in a moment.
 
-To create your own sprite so you can draw on it using the 2D drawing commands, we use ‘CreateSprite()’. Being very similar to ‘CreateImage()’, this command takes four parameters. The first parameter, is the PB number that you wish to associate to this sprite. The second and third parameters are the width and height in pixels of the new sprite, and the fourth parameter is the sprite mode.
+To create your own sprite so you can draw on it using the 2D drawing commands, we use 'CreateSprite()'. Being very similar to 'CreateImage()', this command takes four parameters. The first parameter, is the PB number that you wish to associate to this sprite. The second and third parameters are the width and height in pixels of the new sprite, and the fourth parameter is the sprite mode.
 
-Both of these two commands create a new sprite and both have an optional ‘Mode’ parameter. This mode parameter determines the internal sprite format so particular sprites can be displayed properly using other sprite commands. This format parameter is usually defined as a built-in constant, Fig.38 shows these mode constants and a description of each mode.
+Both of these two commands create a new sprite and both have an optional 'Mode' parameter. This mode parameter determines the internal sprite format so particular sprites can be displayed properly using other sprite commands. This format parameter is usually defined as a built-in constant, Fig.38 shows these mode constants and a description of each mode.
 
 <<Fig 38>>
 
 Depending on which sprite command you want to use to display your sprite, you have to use a correctly formatted sprite with it, and this format is set when you create or load that sprite.
 
-Here are examples of how to specify the mode properly for each sprite display command. Where applicable, I’ve given an example of how to create and load a sprite with the correct mode settings, so it will display properly when using the command before it.
+Here are examples of how to specify the mode properly for each sprite display command. Where applicable, I've given an example of how to create and load a sprite with the correct mode settings, so it will display properly when using the command before it.
 
-‘DisplaySprite()’ & ‘DisplayTransparentSprite()’
+'DisplaySprite()' & 'DisplayTransparentSprite()'
 
 ;Default format
 CreateSprite(#PB_NUMBER, Width.l, Height.l)
 LoadSprite(#PB_NUMBER, "Image.bmp")
 
-‘DisplaySprite3D()’
+'DisplaySprite3D()'
 
 ;Without an alpha channel
 CreateSprite(#PB_NUMBER, Width.l, Height.l, #PB_Sprite_Texture )
 LoadSprite(#PB_NUMBER, "Image.bmp", #PB_Sprite_Texture )
 
 ;With an alpha channel
-;NOTE: You can’t create sprites with an alpha channel in PureBasic yet.
+;NOTE: You can't create sprites with an alpha channel in PureBasic yet.
 LoadSprite(#PB_NUMBER,"Image.bmp",#PB_Sprite_Texture|#PB_Sprite_AlphaBlending)
 
-‘DisplayTranslucentSprite()’
+'DisplayTranslucentSprite()'
 
 ;Load in normal RAM for processing by the 'StartSpecialFX()' command
 CreateSprite(#PB_NUMBER, Width.l, Height.l, #PB_Sprite_Memory)
 LoadSprite(#PB_NUMBER, "Image.bmp", #PB_Sprite_Memory)
 
-‘DisplayAlphaSprite()’, ‘DisplayShadowSprite()’ & ‘DisplaySolidSprite()’
+'DisplayAlphaSprite()', 'DisplayShadowSprite()' & 'DisplaySolidSprite()'
 
 ;Load in normal RAM for processing by the 'StartSpecialFX()' command
 ;and specify as an alpha type sprite
@@ -807,10 +807,10 @@ LoadSprite(#PB_NUMBER, "Image.bmp", #PB_Sprite_Memory | #PB_Sprite_Alpha)
 These examples should give you a good idea of how to load and create your own sprites for every display command.
 
 You Can Draw On Sprites Too
-Once you have created or loaded a sprite, you may want to draw on it. Similar to drawing on an image, you can do this by using the standard ‘StartDrawing()’ command and setting the output to ‘SpriteOutput()’. This allows you to use the 2D drawing commands to draw onto the sprite’s surface. You can even draw a sprite onto another sprite. To do this you must switch the sprite drawing output from the back buffer to your target sprite. For this, you need use the ‘UseBuffer()’ command. This command takes one parameter which is the PB number of the sprite you want to direct all sprite output to. Once switched, all further sprite displaying commands draw sprites onto the target sprite. When you have finished, you can return the sprite display output back to the back buffer by using the ‘UseBuffer()’ command again, but this time with a parameter of ‘#PB_Default’.
+Once you have created or loaded a sprite, you may want to draw on it. Similar to drawing on an image, you can do this by using the standard 'StartDrawing()' command and setting the output to 'SpriteOutput()'. This allows you to use the 2D drawing commands to draw onto the sprite's surface. You can even draw a sprite onto another sprite. To do this you must switch the sprite drawing output from the back buffer to your target sprite. For this, you need use the 'UseBuffer()' command. This command takes one parameter which is the PB number of the sprite you want to direct all sprite output to. Once switched, all further sprite displaying commands draw sprites onto the target sprite. When you have finished, you can return the sprite display output back to the back buffer by using the 'UseBuffer()' command again, but this time with a parameter of '#PB_Default'.
 
-‘SpecialFX’ Sprite Commands
-In the mode examples I mentioned ‘SpecialFX’ sprites. These are still normal sprites but work a lot faster if they have the ‘StartSpecialFX()’ commands enclosing them. All sprites that use the special effects like this are capable of producing good looking graphics but because everything is rendered inside the computer’s main RAM these sprites aren’t as quick as sprites3D’s. Here is a brief snippet showing the usage of these commands:
+'SpecialFX' Sprite Commands
+In the mode examples I mentioned 'SpecialFX' sprites. These are still normal sprites but work a lot faster if they have the 'StartSpecialFX()' commands enclosing them. All sprites that use the special effects like this are capable of producing good looking graphics but because everything is rendered inside the computer's main RAM these sprites aren't as quick as sprites3D's. Here is a brief snippet showing the usage of these commands:
 
 ...
 StartSpecialFX()
@@ -821,22 +821,22 @@ StartSpecialFX()
 StopSpecialFX()
 ...
 
-As you can see, the ‘StartSpecialFX()’ command starts the block and ‘StopSpecialFX()’ ends it. All special effects commands must go inside these two commands. This is done to increase the rendering speed of these special effects, otherwise without the ‘StartSpecialFX()’ block the display performance would be very poor.
+As you can see, the 'StartSpecialFX()' command starts the block and 'StopSpecialFX()' ends it. All special effects commands must go inside these two commands. This is done to increase the rendering speed of these special effects, otherwise without the 'StartSpecialFX()' block the display performance would be very poor.
 
-If using these commands, it is very important to understand that these must be used before any other graphics commands. This is because of the way PureBasic handles the internals of the special effects drawing. Otherwise, if you use other graphics commands before a special effect block, they will be over written on the backbuffer once the ‘StartSpecialFX()’ block starts. If you are using a ‘ClearScreen()’ command to clear the buffer before you draw, you should include this in the ‘StartSpecialFX()’ block too. Another important point to make clear is that there should only ever be one ‘StartSpecialFX()’ block in any main loop, as this increases performance even further.
+If using these commands, it is very important to understand that these must be used before any other graphics commands. This is because of the way PureBasic handles the internals of the special effects drawing. Otherwise, if you use other graphics commands before a special effect block, they will be over written on the backbuffer once the 'StartSpecialFX()' block starts. If you are using a 'ClearScreen()' command to clear the buffer before you draw, you should include this in the 'StartSpecialFX()' block too. Another important point to make clear is that there should only ever be one 'StartSpecialFX()' block in any main loop, as this increases performance even further.
 
-The commands that use a ‘StartSpecialFX()’ block are:
+The commands that use a 'StartSpecialFX()' block are:
 
-	‘DisplayAlphaSprite()’
-	‘DisplaySolidSprite()’
-	‘DisplayShadowSprite()’
-	‘DisplayRGBFilter()’
-	‘DisplayTranslucentSprite()’
+	'DisplayAlphaSprite()'
+	'DisplaySolidSprite()'
+	'DisplayShadowSprite()'
+	'DisplayRGBFilter()'
+	'DisplayTranslucentSprite()'
 
-You can read about these commands in more detail in the helpfile, in the ‘Sprite & Screen’ library (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen).
+You can read about these commands in more detail in the helpfile, in the 'Sprite & Screen' library (Helpfile:Reference Manual->2D Games Libraries->Sprite & Screen).
 
 Displaying Normal Sprites
-Normal sprites are the foundations of making a 2D game in PureBasic. This type of sprite has been used over and over again, time after time, to produce cool visuals in many top games. Here is a simple example of creating a new sprite and rendering it all over the screen using the standard ‘DisplayTransparentSprite()’ command:
+Normal sprites are the foundations of making a 2D game in PureBasic. This type of sprite has been used over and over again, time after time, to produce cool visuals in many top games. Here is a simple example of creating a new sprite and rendering it all over the screen using the standard 'DisplayTransparentSprite()' command:
 
 #SPRITE_MAIN = 1
 #NUMBER_OF_BALLS = 500
@@ -923,28 +923,28 @@ Repeat
 Until Quit = #True
 End
 
-The ‘DisplayTransparentSprite()’ command allows you to display a sprite on screen very similar to ‘DisplaySprite()’, but when displaying a sprite using ‘DisplayTransparentSprite()’, it selects a single color within the image and it treats as transparent. This allows the sprite to not always appear square.
+The 'DisplayTransparentSprite()' command allows you to display a sprite on screen very similar to 'DisplaySprite()', but when displaying a sprite using 'DisplayTransparentSprite()', it selects a single color within the image and it treats as transparent. This allows the sprite to not always appear square.
 
-In this example, I’ve created a new sprite and then immediately fill it with white using a ‘Box()’ command. Once this is done, I then draw a shaded green sphere on it using the ‘Circle()’ command within a loop. This leaves me with a green sphere on a white background. After the drawing commands have finished, I set all the white pixels in the new sprite to be flagged as transparent, using the ‘TransparentSpriteColor()’ command. This command takes two parameters, the first is the PB number of the sprite to change and the second is the color that you would like to be flagged as transparent. Once the color has been picked, the next usage of ‘DisplayTransparentSprite()’ displays a sprite, minus the transparent color. Once this example is run, you should see a screen full of green spheres without any white at showing at all. This is a great way to display sprites with a transparency.
+In this example, I've created a new sprite and then immediately fill it with white using a 'Box()' command. Once this is done, I then draw a shaded green sphere on it using the 'Circle()' command within a loop. This leaves me with a green sphere on a white background. After the drawing commands have finished, I set all the white pixels in the new sprite to be flagged as transparent, using the 'TransparentSpriteColor()' command. This command takes two parameters, the first is the PB number of the sprite to change and the second is the color that you would like to be flagged as transparent. Once the color has been picked, the next usage of 'DisplayTransparentSprite()' displays a sprite, minus the transparent color. Once this example is run, you should see a screen full of green spheres without any white at showing at all. This is a great way to display sprites with a transparency.
 
-You will also notice in this example that the command to display a normal sprite doesn’t have to be inside any special enclosing commands such as a ‘StartSpecialFX()’ or ‘StartDrawing()’, etc. You can use the normal sprite displaying commands by themselves. As long as the sprite engine is initialized and a screen has been opened, you can use the standard sprite commands to display a sprite. The standard sprite displaying commands are:
+You will also notice in this example that the command to display a normal sprite doesn't have to be inside any special enclosing commands such as a 'StartSpecialFX()' or 'StartDrawing()', etc. You can use the normal sprite displaying commands by themselves. As long as the sprite engine is initialized and a screen has been opened, you can use the standard sprite commands to display a sprite. The standard sprite displaying commands are:
 
-	‘DisplaySprite()’
-	‘DisplayTransparentSprite()’
+	'DisplaySprite()'
+	'DisplayTransparentSprite()'
 
-Using Sprites3D’s
-PureBasic calls it’s 3D sprites by the slightly mangled name of ‘sprite3D’. Each sprite3D is a 2D surface made up of two polygons. These polygons are drawn using a small 3D engine and can be transformed in 3D but each sprite3D is ultimately drawn in 2D on the screen. Confused? Good, let’s continue.
+Using Sprites3D's
+PureBasic calls it's 3D sprites by the slightly mangled name of 'sprite3D'. Each sprite3D is a 2D surface made up of two polygons. These polygons are drawn using a small 3D engine and can be transformed in 3D but each sprite3D is ultimately drawn in 2D on the screen. Confused? Good, let's continue.
 
-A sprite3D in PureBasic is really a normal sprite that has had 3D support given to it and as such, this different type needs a small 3D engine to display them. To use any sprite3D’s in your program you must initialize the sprite3D engine before using any other sprite3D related commands. This is done by using the ‘InitSprite3D()’ command. This command is however a child command of ‘InitSprite()’, which must also be called before it.
+A sprite3D in PureBasic is really a normal sprite that has had 3D support given to it and as such, this different type needs a small 3D engine to display them. To use any sprite3D's in your program you must initialize the sprite3D engine before using any other sprite3D related commands. This is done by using the 'InitSprite3D()' command. This command is however a child command of 'InitSprite()', which must also be called before it.
 
-Every sprite3D starts life as a normal sprite, either loaded or created but with the ‘#PB_Sprite_Texture’ mode defined. This normal version isn’t displayed at any time, instead, this normal sprite is turned into a 3D version by using the ‘CreateSprite3D()’ command. This command takes two parameters, the first is the PB number that you would like to associate to the new sprite3D. The second is the sprite first created or loaded that you want to turn into a sprite3D.
+Every sprite3D starts life as a normal sprite, either loaded or created but with the '#PB_Sprite_Texture' mode defined. This normal version isn't displayed at any time, instead, this normal sprite is turned into a 3D version by using the 'CreateSprite3D()' command. This command takes two parameters, the first is the PB number that you would like to associate to the new sprite3D. The second is the sprite first created or loaded that you want to turn into a sprite3D.
 
 This is how this conversion procedure appears in PureBasic code:
 
 LoadSprite(#NORMAL_SPRITE, "Image.bmp", #PB_Sprite_Texture)
 CreateSprite3D(#SPRITE_3D, #NORMAL_SPRITE)
 
-Once the sprite3D has been created like this, we can then display this on the screen by using the ‘DisplaySprite3D()’ command. To explain things a little more clearly, here’s an example of displaying and manipulating sprites3D’s:
+Once the sprite3D has been created like this, we can then display this on the screen by using the 'DisplaySprite3D()' command. To explain things a little more clearly, here's an example of displaying and manipulating sprites3D's:
 
 UsePNGImageDecoder()
 
@@ -1062,9 +1062,9 @@ Repeat
 Until Quit = #True
 End
 
-To allow me to use sprite3D’s in my example, I’ve initialized the normal sprite engine and then I’ve initialized the sprite3D engine, using the ‘InitSprite3D()’ command. This is essential to use any sprite3D related commands. After this, I’ve then used the ‘LoadSprite()’ command to load a Png format image. This image which is called ‘Flower.png’, uses an alpha channel to create a transparent background. Loading a Png format image with an alpha channel like this requires you to define the sprite mode correctly in the ‘LoadSprite()’ command. If you look at the example code, I’ve specified the mode as ‘#PB_Sprite_Texture|#PB_Sprite_AlphaBlending’. This tells the compiler I wish to use this sprite as a sprite3D and it contains an alpha channel. After this has been loaded and defined correctly I can then create a sprite3D from it using the ‘CreatSprite3D()’ command and it’s alpha channel is preserved.
+To allow me to use sprite3D's in my example, I've initialized the normal sprite engine and then I've initialized the sprite3D engine, using the 'InitSprite3D()' command. This is essential to use any sprite3D related commands. After this, I've then used the 'LoadSprite()' command to load a Png format image. This image which is called 'Flower.png', uses an alpha channel to create a transparent background. Loading a Png format image with an alpha channel like this requires you to define the sprite mode correctly in the 'LoadSprite()' command. If you look at the example code, I've specified the mode as '#PB_Sprite_Texture|#PB_Sprite_AlphaBlending'. This tells the compiler I wish to use this sprite as a sprite3D and it contains an alpha channel. After this has been loaded and defined correctly I can then create a sprite3D from it using the 'CreatSprite3D()' command and it's alpha channel is preserved.
 
-Once the sprites have been created, it’s time to draw the sprites onto the screen. This is achieved using the ‘DisplaySprite3D()’ command inside a ‘Start3D()’ block. This looks something like this:
+Once the sprites have been created, it's time to draw the sprites onto the screen. This is achieved using the 'DisplaySprite3D()' command inside a 'Start3D()' block. This looks something like this:
 
 ...
 Start3D()
@@ -1072,18 +1072,18 @@ Start3D()
 Stop3D()
 ...
 
-If you look at the flower example, the ‘Start3D()’ block is being checked using a small error checking procedure to make sure it starts properly. If it does, we can continue and draw the sprites. If it doesn’t start correctly, we must not draw any sprite3D’s or there may be serious program crash. A ‘Stop3D()’ command is used to end the sprite3D block. Inside this block you must not use any commands from the normal sprite library, this block is for sprite3D commands only.
+If you look at the flower example, the 'Start3D()' block is being checked using a small error checking procedure to make sure it starts properly. If it does, we can continue and draw the sprites. If it doesn't start correctly, we must not draw any sprite3D's or there may be serious program crash. A 'Stop3D()' command is used to end the sprite3D block. Inside this block you must not use any commands from the normal sprite library, this block is for sprite3D commands only.
 
-To actually display a sprite3D you use the ‘DisplaySprite3D()’ command, which takes four parameters. The first is the PB number of the sprite3D you wish to display. The second and third are the ‘x’ and ‘y’ positions of the sprite on the buffer. The fourth optional parameter is the alpha value of the sprite. This alpha value defines how transparent the whole sprite is rendered on the display. This is an integer which ranges from ‘0’, which is completely transparent, to ‘255’, which is completely opaque.
+To actually display a sprite3D you use the 'DisplaySprite3D()' command, which takes four parameters. The first is the PB number of the sprite3D you wish to display. The second and third are the 'x' and 'y' positions of the sprite on the buffer. The fourth optional parameter is the alpha value of the sprite. This alpha value defines how transparent the whole sprite is rendered on the display. This is an integer which ranges from '0', which is completely transparent, to '255', which is completely opaque.
 
-In the flower example I’ve also used the ‘ZoomSprite3D()’ and ‘RotateSprite3D()’ commands to resize and rotate the sprite3D’s. These commands are very easy to understand and can be read about in more detail in the PureBasic helpfile within the ‘Sprite3D’ section (Helpfile:Reference Manual->2D Games Libraries->Sprite3D).
+In the flower example I've also used the 'ZoomSprite3D()' and 'RotateSprite3D()' commands to resize and rotate the sprite3D's. These commands are very easy to understand and can be read about in more detail in the PureBasic helpfile within the 'Sprite3D' section (Helpfile:Reference Manual->2D Games Libraries->Sprite3D).
 
 Sprite3D Quality
-While using sprite3D’s in your program, it is possible to toggle the rendering quality of the sprites. This is done with the ‘Sprite3DQuality()’ command. This command takes one parameter which is the rendering mode of all sprite3D’s in your program. The parameter is a numeric value which is equal to a particular mode.
+While using sprite3D's in your program, it is possible to toggle the rendering quality of the sprites. This is done with the 'Sprite3DQuality()' command. This command takes one parameter which is the rendering mode of all sprite3D's in your program. The parameter is a numeric value which is equal to a particular mode.
 
 Here are the definitions:
 
 	0 : No filtering (faster, but very pixelated when zooming and rotating)
 	1 : Bilinear filtering (slower, but blends the pixels to look better when zooming and rotating)
 
-In my example I’ve used ‘Sprite3DQuality(1)’ which enables bilinear filtering and gives the sprites a nice smooth look when I’m resizing and rotating them. If this command is not used however, the default quality setting for that program is ‘0’, which doesn’t enable any filtering, leaving sprites3D’s looking pixelated when manipulated.
+In my example I've used 'Sprite3DQuality(1)' which enables bilinear filtering and gives the sprites a nice smooth look when I'm resizing and rotating them. If this command is not used however, the default quality setting for that program is '0', which doesn't enable any filtering, leaving sprites3D's looking pixelated when manipulated.

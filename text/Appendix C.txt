@@ -2,7 +2,7 @@ C
 
 Glossary
 
-This glossary is a list of words and terms that you might come into contact with while programming. In this appendix I’ve attempted to be as comprehensive and concise as possible in describing the meaning of these words and terms to make your life a little easier when you come across something your not familiar with.
+This glossary is a list of words and terms that you might come into contact with while programming. In this appendix I've attempted to be as comprehensive and concise as possible in describing the meaning of these words and terms to make your life a little easier when you come across something your not familiar with.
 
 3D Engine
 A 3D engine is an environment explicitly programmed to provide a construct in which to realize 3D graphics. A 3D engine can be explained as a layer of abstraction to allow artists or developers quickly put together 3D graphics using simplified methods rather than programming all the low level stuff themselves. For example, a 3D engine might provide a 'LoadModel()' command to load a 3D model and display it, making things easier for the user. 3D engines are sometimes provided with other helpful features such as collision detection and physics modeling.
@@ -68,7 +68,7 @@ BIT (Binary Digit)
 The smallest unit of information a computer can use. A bit is represented as a '0' or '1'.
 
 Bit Depth
-The number of bits used to describe the color of a single pixel in any given digital image or computer display is called it’s bit depth. Common bit depths are 1 bit, 8 bit, 16 bit, 24 bit, and 32 bit.
+The number of bits used to describe the color of a single pixel in any given digital image or computer display is called it's bit depth. Common bit depths are 1 bit, 8 bit, 16 bit, 24 bit, and 32 bit.
 
 Boot
 To start (cold boot) or reset (warm boot) the computer so it is ready to run programs for the user. Booting the computer executes various programs to check and prepare the computer for use.
@@ -161,7 +161,7 @@ Function
 Same as a procedure.
 
 Hexadecimal
-A numbering system which uses a base of 16. The first ten digits are ‘0’ to ‘9’ and the next six are ‘A’ to ‘F’. This enables very large numbers to be expressed using very few characters. ‘FF’ in hexadecimal equals ‘255’ in decimal. Webpages use hexadecimal numbers to express a 24 bit color value.
+A numbering system which uses a base of 16. The first ten digits are '0' to '9' and the next six are 'A' to 'F'. This enables very large numbers to be expressed using very few characters. 'FF' in hexadecimal equals '255' in decimal. Webpages use hexadecimal numbers to express a 24 bit color value.
 
 High Level Programming Language
 A programming language where each instruction corresponds to many machine code instructions. Commands in this language must be translated by a compiler or interpreter before they can be executed by a particular computer architecture. A high level programming language is also more user friendly, more easily readable by humans, often cross-platform, and abstract from low level computer processor operations. PureBasic is a high level language.

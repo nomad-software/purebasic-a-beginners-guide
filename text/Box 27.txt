@@ -1,9 +1,9 @@
 Compiling Thread Safe Programs
 
-PureBasic has a compiler setting to create thread safe executables, which is a must for trouble free programming using threads. If you are using the compiler on the command line you can use the ‘/Thread’ compiler option or you can switch on thread safe compilation in the IDE from the ‘Compiler Options’ dialog box (Menu:Compiler->Compiler Options...->Compiler Options->Create Threadsafe Executable).
+PureBasic has a compiler setting to create thread safe executables, which is a must for trouble free programming using threads. If you are using the compiler on the command line you can use the '/Thread' compiler option or you can switch on thread safe compilation in the IDE from the 'Compiler Options' dialog box (Menu:Compiler->Compiler Options...->Compiler Options->Create Threadsafe Executable).
 
 If this mode is not enabled and you are compiling and running your program, your finished executable might not be one hundred percent thread safe. This means, that because the threads contained in your program all use shared resources from within your executable, those resources can sometimes get corrupted. This is especially true regarding String usage. Without the thread safety compiler option being used, you may find that Strings used in your program may get corrupted and may return unexpected results.
 
 Using the thread safe compilation mode comes at a small price though. Because of the extra code automatically included in your executable file to handle thread safety, you may find that your program will run slightly slower than one compiled without the thread safety mode. This is why the decision to use threads must be well thought out.
 
-For all beginners using threads in PureBasic, I would recommend that the ‘Create Threadsafe Executable’ compiler option is always enabled when compiling programs that use threads.
+For all beginners using threads in PureBasic, I would recommend that the 'Create Threadsafe Executable' compiler option is always enabled when compiling programs that use threads.

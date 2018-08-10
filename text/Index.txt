@@ -293,7 +293,7 @@ Text Input	143
 Threads	279-287
 True	38
 Two Dimensional Arrays	55
-Two’s Complement	264-265
+Two's Complement	264-265
 
 U
 Unary operator	25

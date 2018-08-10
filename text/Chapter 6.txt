@@ -2,7 +2,7 @@
 
 Procedures And Subroutines
 
-In this chapter I’ll talk about Procedures and Subroutines. Procedures are an essential part of any programming language and provide a way of neatly structuring code and enabling code re-use. PureBasic is considered a structured programming language and procedures provide the means to create the structure of a program. I will also mention subroutines in this chapter but these are not a major feature in many programming languages. Because they play a part in PureBasic they are mentioned here for the sake of completeness.
+In this chapter I'll talk about Procedures and Subroutines. Procedures are an essential part of any programming language and provide a way of neatly structuring code and enabling code re-use. PureBasic is considered a structured programming language and procedures provide the means to create the structure of a program. I will also mention subroutines in this chapter but these are not a major feature in many programming languages. Because they play a part in PureBasic they are mentioned here for the sake of completeness.
 
 
 Why Use Procedures Or Subroutines?
@@ -24,7 +24,7 @@ This subroutine label can be jumped to at any point in your code by using this c
 
 Gosub Label
 
-Notice in the ‘Gosub’ command that we don’t use a colon when we specify what subroutine label to jump to. After the destination label, you enter normal PureBasic code that you wish this subroutine to execute. After this code you must then specify that you want to jump back to the main code by using this command:
+Notice in the 'Gosub' command that we don't use a colon when we specify what subroutine label to jump to. After the destination label, you enter normal PureBasic code that you wish this subroutine to execute. After this code you must then specify that you want to jump back to the main code by using this command:
 
 Return
 
@@ -41,17 +41,17 @@ Calculation:
 	a = a * 5 + 5
 Return
 
-In this example, we give the variable ‘a’ the value of ‘10’ and echo it to the Debug Output window. We then use the ‘Gosub’ keyword to jump to the ‘Calculation’ label. You can tell it’s a label by the colon after its name and you will probably notice that the IDE colors labels differently too. After we have jumped to this label a small calculation is performed on the ‘a’ variable and we return to the main code using the ‘Return’ keyword. When returning to the main code, we return to the next line just after the original ‘Gosub’ command. In this case we return to the ‘Debug a’ line, which echoes the value of ‘a’ to the Debug Output window again. This value has now changed according to the calculation performed in the subroutine.
+In this example, we give the variable 'a' the value of '10' and echo it to the Debug Output window. We then use the 'Gosub' keyword to jump to the 'Calculation' label. You can tell it's a label by the colon after its name and you will probably notice that the IDE colors labels differently too. After we have jumped to this label a small calculation is performed on the 'a' variable and we return to the main code using the 'Return' keyword. When returning to the main code, we return to the next line just after the original 'Gosub' command. In this case we return to the 'Debug a' line, which echoes the value of 'a' to the Debug Output window again. This value has now changed according to the calculation performed in the subroutine.
 
 A Note Regarding The Position Of Subroutines In Your Code
-One important thing I need to point out here is that if you include subroutines to be used in your program, they must always be after an ‘End’ keyword. The ‘End’ keyword not only immediately terminates a program when it’s executed but also defines the end point of a program during compilation. All subroutines must appear after this point or your program could function incorrectly.
+One important thing I need to point out here is that if you include subroutines to be used in your program, they must always be after an 'End' keyword. The 'End' keyword not only immediately terminates a program when it's executed but also defines the end point of a program during compilation. All subroutines must appear after this point or your program could function incorrectly.
 
 
 
 Jumping From A Subroutine
-This is generally considered very bad coding practice but as I’m talking about subroutines, I may as well follow the style of the rest of this book and describe them in their entirety, as well as mentioning the correct syntax to be able to do it.
+This is generally considered very bad coding practice but as I'm talking about subroutines, I may as well follow the style of the rest of this book and describe them in their entirety, as well as mentioning the correct syntax to be able to do it.
 
-Because all subroutines must contain a ‘Return’ keyword to jump back into your main code, a subroutine must be prematurely returned in order to leave it correctly if you need to jump out at any time. This is achieved by using the ‘FakeReturn’ and ‘Goto’ keywords. Here’s an example:
+Because all subroutines must contain a 'Return' keyword to jump back into your main code, a subroutine must be prematurely returned in order to leave it correctly if you need to jump out at any time. This is achieved by using the 'FakeReturn' and 'Goto' keywords. Here's an example:
 
 a.l = 10
 
@@ -78,20 +78,20 @@ Return
 
 As you can see from this small example, things have started to get complicated and the code jumps around all over the place, as I said before this is bad coding style and makes very ugly code.
 
-This example is pretty straightforward if you follow it carefully. You can see the in the ‘Calculation’ subroutine, that when we need to jump out using the ‘Goto’ command we have to use ‘FakeReturn’ before it. We jump to another label (subroutine) called ‘RunAgain’ which references another almost self-contained program complete with another ‘End’ keyword, which really is not ideal.
+This example is pretty straightforward if you follow it carefully. You can see the in the 'Calculation' subroutine, that when we need to jump out using the 'Goto' command we have to use 'FakeReturn' before it. We jump to another label (subroutine) called 'RunAgain' which references another almost self-contained program complete with another 'End' keyword, which really is not ideal.
 
-I hope these examples give you an overview of subroutines and how to jump around programs, but I do hope you don’t abuse these practices and don’t adopt them as a regular way of coding. I feel you can structure code a lot better using procedures.
+I hope these examples give you an overview of subroutines and how to jump around programs, but I do hope you don't abuse these practices and don't adopt them as a regular way of coding. I feel you can structure code a lot better using procedures.
 
 
 
 
 Procedure Basics
 
-The term ‘Structured Programming’ is a term that clearly defines PureBasic and the ethos behind its creation. PureBasic can be described as a ‘Procedural’ and ‘Structured’ programming language. The architecture behind structured programming is provided by Procedures. They are quite literally the structure in structured programming.
+The term 'Structured Programming' is a term that clearly defines PureBasic and the ethos behind its creation. PureBasic can be described as a 'Procedural' and 'Structured' programming language. The architecture behind structured programming is provided by Procedures. They are quite literally the structure in structured programming.
 
-Procedures (sometimes called ‘Functions’ in other languages) are the most important piece of functionality that PureBasic provides. In their most basic form they are just a holder for a piece of code that can be called (run) at any time in your program, very similar to subroutines. They can be called as many times as you like just like subroutines and they can hold any PureBasic code you like. Unlike subroutines however, procedures can be given multiple starting parameters and they can even return one value of any built-in type.
+Procedures (sometimes called 'Functions' in other languages) are the most important piece of functionality that PureBasic provides. In their most basic form they are just a holder for a piece of code that can be called (run) at any time in your program, very similar to subroutines. They can be called as many times as you like just like subroutines and they can hold any PureBasic code you like. Unlike subroutines however, procedures can be given multiple starting parameters and they can even return one value of any built-in type.
 
-Let’s start with a simple procedure example.
+Let's start with a simple procedure example.
 
 Procedure NurseryRhyme()
 	Debug "Mary had a little lamb, its fleece was white as snow."
@@ -100,15 +100,15 @@ EndProcedure
 
 NurseryRhyme()
 
-In order to use a procedure in your code you have to define it first. Here I’ve defined a procedure called ‘NurseryRhyme’ using the ‘Procedure’ keyword. Code is then entered after this line which the procedure is to contain. The end of the procedure is then defined using the ‘EndProcedure’ keyword. We can call this piece of code contained within this procedure at any time by just using its name, like this:
+In order to use a procedure in your code you have to define it first. Here I've defined a procedure called 'NurseryRhyme' using the 'Procedure' keyword. Code is then entered after this line which the procedure is to contain. The end of the procedure is then defined using the 'EndProcedure' keyword. We can call this piece of code contained within this procedure at any time by just using its name, like this:
 
 NurseryRhyme()
 
 Before we move on, I need to point out a few things in this example that need further explanation. First, you may of noticed that there are a mysterious set of brackets after the procedure name. These are used to hold any parameters that need to be passed to the procedure. Even if you are not passing any parameters, like in this example, you still need to include the brackets. Also, when you call the procedure, you always need to include the brackets as part of the procedure call, parameters or no parameters. I will explain passing of parameters to a procedure later on in this chapter.
 
-One more thing to point out is that the procedure name, e.g. ‘NurseryRhyme()’ must not contain any spaces and should adhere to the same naming guidelines as set out for variables.
+One more thing to point out is that the procedure name, e.g. 'NurseryRhyme()' must not contain any spaces and should adhere to the same naming guidelines as set out for variables.
 
-If you run the above example, you should see in the Debug Output window the nursery rhyme as coded in the ‘NurseryRhyme()’ procedure. If you want to repeat this procedure code at any time in this small example, just call it over and over again using its name.
+If you run the above example, you should see in the Debug Output window the nursery rhyme as coded in the 'NurseryRhyme()' procedure. If you want to repeat this procedure code at any time in this small example, just call it over and over again using its name.
 
 
 
@@ -121,7 +121,7 @@ For x.l = 1 To 5
 	NurseryRhyme()
 Next x
 
-Procedures can be called from anywhere in programs, as in the above example, where I’ve called the ‘NurseryRhyme()’ procedure from a loop. Procedures can also be called from other procedures too.
+Procedures can be called from anywhere in programs, as in the above example, where I've called the 'NurseryRhyme()' procedure from a loop. Procedures can also be called from other procedures too.
 
 Procedure NurseryRhyme2()
 	Debug "And everywhere that Mary went, that lamb was sure to go."
@@ -134,12 +134,12 @@ EndProcedure
 
 NurseryRhyme1()
 
-Here, you can see that ‘NurseryRhyme1()’ contains a call to ‘NurseryRhyme2()’.
+Here, you can see that 'NurseryRhyme1()' contains a call to 'NurseryRhyme2()'.
 
 A Note Regarding The Position Of Procedures In Your Code
-The above example neatly demonstrates why the position of procedures in your code matters. You will notice that I’ve coded ‘NurseryRhyme2()’ first, above ‘NurseryRhyme1()’. This was intentional and was necessary because of the fact that you must always define a procedure before calling it. Because ‘NurseryRhyme1()’ calls ‘NurseryRhyme2()’, the latter had to be defined first. The PureBasic compiler is known as a ‘One Pass’ compiler, which reads the source code from the top to the bottom. It will raise an error if it encounters a procedure call and no procedure has yet been defined. This simple example also demonstrates why procedures are defined at the top of most source codes.
+The above example neatly demonstrates why the position of procedures in your code matters. You will notice that I've coded 'NurseryRhyme2()' first, above 'NurseryRhyme1()'. This was intentional and was necessary because of the fact that you must always define a procedure before calling it. Because 'NurseryRhyme1()' calls 'NurseryRhyme2()', the latter had to be defined first. The PureBasic compiler is known as a 'One Pass' compiler, which reads the source code from the top to the bottom. It will raise an error if it encounters a procedure call and no procedure has yet been defined. This simple example also demonstrates why procedures are defined at the top of most source codes.
 
-As with most things in life though there is an exception to this rule. You can use the ‘Declare’ keyword to alter the position of procedure definitions in your code. The ‘Declare’ keyword doesn’t define a procedure, it merely lets the compiler know what procedures it will be asked to call. This allows any procedures to be defined later on in the source code. Here’s an example:
+As with most things in life though there is an exception to this rule. You can use the 'Declare' keyword to alter the position of procedure definitions in your code. The 'Declare' keyword doesn't define a procedure, it merely lets the compiler know what procedures it will be asked to call. This allows any procedures to be defined later on in the source code. Here's an example:
 
 Declare NurseryRhyme1()
 Declare NurseryRhyme2()
@@ -155,9 +155,9 @@ Procedure NurseryRhyme2()
 	Debug "And everywhere that Mary went, that lamb was sure to go."
 EndProcedure
 
-When using the ‘Declare’ keyword, you just define the first line of the procedure, identically as you would when using the ‘Procedure’ keyword. You are then free to call this procedure at any time after this declaration. Because this is purely a declaration and not a definition, you must also define the procedure as normal somewhere else in your code. The procedure can be defined anywhere now, even at the end of your source code, instead of the top.
+When using the 'Declare' keyword, you just define the first line of the procedure, identically as you would when using the 'Procedure' keyword. You are then free to call this procedure at any time after this declaration. Because this is purely a declaration and not a definition, you must also define the procedure as normal somewhere else in your code. The procedure can be defined anywhere now, even at the end of your source code, instead of the top.
 
-If you look at the above example, you can see I’ve used two declarations using the ‘Declare’ keyword. After that I’m then free to call the ‘NurseryRhyme1()’ procedure. The actual procedure definitions are at the end of the code.
+If you look at the above example, you can see I've used two declarations using the 'Declare' keyword. After that I'm then free to call the 'NurseryRhyme1()' procedure. The actual procedure definitions are at the end of the code.
 
 
 Program Scope
@@ -172,14 +172,14 @@ EndProcedure
 
 DisplayValue()
 
-Here I’ve defined a Long type variable called ‘a’ and assigned to it the numeric value of ‘10’. I’ve also defined a procedure called ‘DisplayValue()’ and in this procedure I’ve written one line of code to echo the value of ‘a’. The last line of this example calls the procedure. Now, if you run this example you would expect that the value of ‘a’ (which is ‘10’) to be echoed to the Debug Output window but this is not the case. You will notice that the value of ‘0’ is echoed instead. This is due to program scope.
+Here I've defined a Long type variable called 'a' and assigned to it the numeric value of '10'. I've also defined a procedure called 'DisplayValue()' and in this procedure I've written one line of code to echo the value of 'a'. The last line of this example calls the procedure. Now, if you run this example you would expect that the value of 'a' (which is '10') to be echoed to the Debug Output window but this is not the case. You will notice that the value of '0' is echoed instead. This is due to program scope.
 
-Let me break down this example even more and explain exactly what is happening. The first thing to remember when using variables in PureBasic is that they are by default Local in scope. This means that in the above example when the first variable definition is made ‘a.l = 10’ this variable is local to the scope in which it is defined, in this case, local to the main source code. Unless this variable is made Global then no procedure will be able to see it or use it.
+Let me break down this example even more and explain exactly what is happening. The first thing to remember when using variables in PureBasic is that they are by default Local in scope. This means that in the above example when the first variable definition is made 'a.l = 10' this variable is local to the scope in which it is defined, in this case, local to the main source code. Unless this variable is made Global then no procedure will be able to see it or use it.
 
-In the ‘DisplayValue()’ procedure we echo the value of ‘a’, but this variable ‘a’ is not the same as the one outside the procedure. They have the same name but are not the same variable. The one inside the procedure is local to the procedure so neither variable is accessible to one another.
+In the 'DisplayValue()' procedure we echo the value of 'a', but this variable 'a' is not the same as the one outside the procedure. They have the same name but are not the same variable. The one inside the procedure is local to the procedure so neither variable is accessible to one another.
 
 
-This can get very confusing especially if both local variables share the same name as in this little example, but I think I’ve neatly demonstrated local scope well.
+This can get very confusing especially if both local variables share the same name as in this little example, but I think I've neatly demonstrated local scope well.
 
 As I said before, if the original variable was made to be a global variable, then all procedures can see it and use it, let me demonstrate how this is done.
 
@@ -191,7 +191,7 @@ EndProcedure
 
 DisplayValue()
 
-Here you will notice the only change I’ve made is that I’ve used the ‘Global’ keyword before the variable definition. This now defines the ‘a’ variable as global and all procedures can now see and use this variable. In the Debug Output window you will now see the correct value of ‘10’ echoed.
+Here you will notice the only change I've made is that I've used the 'Global' keyword before the variable definition. This now defines the 'a' variable as global and all procedures can now see and use this variable. In the Debug Output window you will now see the correct value of '10' echoed.
 
 Conversely, if we define variables within a procedure they too are considered local to that procedure. Take a look at this:
 
@@ -203,7 +203,7 @@ DisplayValue()
 
 Debug a
 
-As expected the last line ‘Debug a’ echoes the value ‘0’ to the Debug Output window. If we want to see and use the ‘a’ variable outside the defining procedure, we need to make it global. Like this:
+As expected the last line 'Debug a' echoes the value '0' to the Debug Output window. If we want to see and use the 'a' variable outside the defining procedure, we need to make it global. Like this:
 
 Procedure DisplayValue()
 	Global a.l = 10
@@ -213,17 +213,17 @@ DisplayValue()
 
 Debug a
 
-Reading through these last few examples you may be thinking why not make all variables global? This might make sense to some people but when programs reach a larger scale, things can get muddled and confusing if all variables are global. You may also find that you’ll start to run out of useful variable names. Using different scopes within your program also enables you to use temporary variable names within procedures for calculations or loops, safe in the knowledge that they won’t effect any variables outside. Some programmers strive to use as little global variables as possible as this makes debugging a program much less effort. Suspect values and variables can be narrowed down more quickly to a particular scope if less global variables are used.
+Reading through these last few examples you may be thinking why not make all variables global? This might make sense to some people but when programs reach a larger scale, things can get muddled and confusing if all variables are global. You may also find that you'll start to run out of useful variable names. Using different scopes within your program also enables you to use temporary variable names within procedures for calculations or loops, safe in the knowledge that they won't effect any variables outside. Some programmers strive to use as little global variables as possible as this makes debugging a program much less effort. Suspect values and variables can be narrowed down more quickly to a particular scope if less global variables are used.
 
 When using arrays and linked lists with procedures, they too can have different scopes within your program exactly like variables. Up until PureBasic v4, all arrays and linked lists were global by default ensuring they all could always be manipulated by procedures. With the arrival of PureBasic v4, arrays and linked lists can be local, global, protected and static in exactly the same way as variables. They even use the same scope keywords.
 
-In the next section I’ve listed all of the scope keywords and given a full explanation for each one along with plenty of examples to demonstrate their usage for variables, arrays and linked lists. 
+In the next section I've listed all of the scope keywords and given a full explanation for each one along with plenty of examples to demonstrate their usage for variables, arrays and linked lists. 
 
 
-The ‘Global’ Keyword
+The 'Global' Keyword
 
 Global Variables
-I’ve already given an example of the ‘Global’ keyword while explaining program scope but here it is again to make this list complete.
+I've already given an example of the 'Global' keyword while explaining program scope but here it is again to make this list complete.
 
 Global a.l = 10
 
@@ -233,7 +233,7 @@ EndProcedure
 
 DisplayValue()
 
-The ‘Global’ keyword is used before a variable definition to make that variable’s scope global. Once a variable has been defined as global then that variable can be seen and modified within all procedures that your source code may contain. The syntax is very simple as you can see from the above example.
+The 'Global' keyword is used before a variable definition to make that variable's scope global. Once a variable has been defined as global then that variable can be seen and modified within all procedures that your source code may contain. The syntax is very simple as you can see from the above example.
 
 Global Arrays
 
@@ -249,7 +249,7 @@ ChangeValues()
 Debug Numbers(0)
 Debug Numbers(1)
 
-In this example, similar to global variables, I’ve used the ‘Global’ keyword in front of the array definition so I’m able to access it within the procedure. Without the ‘Global’ keyword in front of the array, the procedure would not be able to see or use it.
+In this example, similar to global variables, I've used the 'Global' keyword in front of the array definition so I'm able to access it within the procedure. Without the 'Global' keyword in front of the array, the procedure would not be able to see or use it.
 
 
 
@@ -270,13 +270,13 @@ ChangeValue()
 SelectElement(Numbers(), 1)
 Debug Numbers()
 
-In this example, similar to arrays I’ve used the ‘Global’ keyword in front of the linked list definition so I’m able to access it within the procedure. Without the ‘Global’ keyword in front of the linked list, the procedure would not be able to see or use it.
+In this example, similar to arrays I've used the 'Global' keyword in front of the linked list definition so I'm able to access it within the procedure. Without the 'Global' keyword in front of the linked list, the procedure would not be able to see or use it.
 
 
-The ‘Protected’ Keyword
+The 'Protected' Keyword
 
 Protected Variables
-The ‘Protected’ keyword forces a variable to be local in a procedure even if the same variable has been declared as global in the main source code. This is very useful for defining temporary variable names inside procedures or just to make sure procedure variables never interfere with any global variables in the main code.
+The 'Protected' keyword forces a variable to be local in a procedure even if the same variable has been declared as global in the main source code. This is very useful for defining temporary variable names inside procedures or just to make sure procedure variables never interfere with any global variables in the main code.
 
 Global a.l = 10
 
@@ -288,7 +288,7 @@ ChangeValue()
 
 Debug a
 
-You can see that even though the protected variable inside the procedure has the same name as the global variable, they are considered separate variables in two different scopes. If you run the above example the result echoed to the Debug Output window will be ‘10’ because even though we call the ‘ChangeValue()’ procedure the protected variable doesn’t alter the global one. This keyword is essential for writing generic procedures that you intend to use in variety of different source codes so as not to interfere with anything in the main code.
+You can see that even though the protected variable inside the procedure has the same name as the global variable, they are considered separate variables in two different scopes. If you run the above example the result echoed to the Debug Output window will be '10' because even though we call the 'ChangeValue()' procedure the protected variable doesn't alter the global one. This keyword is essential for writing generic procedures that you intend to use in variety of different source codes so as not to interfere with anything in the main code.
 
 Protected Arrays
 
@@ -305,7 +305,7 @@ ChangeValues()
 Debug Numbers(0)
 Debug Numbers(1)
 
-In this example we use the ‘Protected’ keyword in exactly the same way as the protected variable example. If you run this above example, the results echoed to the Debug Output window will be ‘0’ because even though we call the ‘ChangeValues()’ procedure, the protected array doesn’t alter the global one at all. This keyword is great for protecting arrays within procedures so they never interfere with the main code even if they have the same name as global arrays. 
+In this example we use the 'Protected' keyword in exactly the same way as the protected variable example. If you run this above example, the results echoed to the Debug Output window will be '0' because even though we call the 'ChangeValues()' procedure, the protected array doesn't alter the global one at all. This keyword is great for protecting arrays within procedures so they never interfere with the main code even if they have the same name as global arrays. 
 
 Protected Linked Lists
 
@@ -323,13 +323,13 @@ ChangeValue()
 SelectElement(Numbers(), 1)
 Debug Numbers()
 
-Again, If you run the above example, the result echoed to the Debug Output window will be ‘1’ because even though we call the ‘ChangeValue()’ procedure, the protected linked list doesn’t alter the global one. This keyword is great for protecting linked lists within procedures so they never interfere with the main code even if they have the same name as global linked lists.
+Again, If you run the above example, the result echoed to the Debug Output window will be '1' because even though we call the 'ChangeValue()' procedure, the protected linked list doesn't alter the global one. This keyword is great for protecting linked lists within procedures so they never interfere with the main code even if they have the same name as global linked lists.
 
 
-The ‘Shared’ Keyword
+The 'Shared' Keyword
 
 Shared Variables
-Sometimes in your code you may need to access a variable from inside a procedure that hasn’t been defined as global. This is when the ‘Shared’ keyword is used. Here’s an example:
+Sometimes in your code you may need to access a variable from inside a procedure that hasn't been defined as global. This is when the 'Shared' keyword is used. Here's an example:
 a.l = 10
 
 Procedure ChangeValue()
@@ -340,7 +340,7 @@ EndProcedure
 ChangeValue()
 Debug a
 
-Here, even though ‘a’ is originally not defined as global, you can still access it from within a procedure by using the ‘Shared’ keyword. When the above example is run, the ‘ChangeValue()’ procedure changes the value of ‘a’ even thought it isn’t a global variable.
+Here, even though 'a' is originally not defined as global, you can still access it from within a procedure by using the 'Shared' keyword. When the above example is run, the 'ChangeValue()' procedure changes the value of 'a' even thought it isn't a global variable.
 
 Shared Arrays
 
@@ -357,7 +357,7 @@ ChangeValues()
 Debug Numbers(0)
 Debug Numbers(1)
 
-In this example, even though the ‘Numbers()’ array is not defined as global, I can still access it from inside the ‘ChangeValues()’ procedure by using the ‘Shared’ keyword. When specifying what array you want to share, you just need to specify the array name along with brackets on the end, like this: ‘Numbers()’, there’s no need for the type suffix, indices or dimensions to be specified.
+In this example, even though the 'Numbers()' array is not defined as global, I can still access it from inside the 'ChangeValues()' procedure by using the 'Shared' keyword. When specifying what array you want to share, you just need to specify the array name along with brackets on the end, like this: 'Numbers()', there's no need for the type suffix, indices or dimensions to be specified.
 
 Shared Linked Lists
 
@@ -374,13 +374,13 @@ ChangeValue()
 SelectElement(Numbers(), 1)
 Debug Numbers()
 
-In this example even though the ‘Numbers()’ linked list is not defined as global, I can still access it from the ‘ChangeValue()’ procedure using the ‘Shared’ keyword, very similar to the shared array example. When specifying what linked list to share, you just need to specify the linked list name with brackets on the end, like this ‘Numbers()’, there’s no need for the type suffix to be specified.
+In this example even though the 'Numbers()' linked list is not defined as global, I can still access it from the 'ChangeValue()' procedure using the 'Shared' keyword, very similar to the shared array example. When specifying what linked list to share, you just need to specify the linked list name with brackets on the end, like this 'Numbers()', there's no need for the type suffix to be specified.
 
 
-The ‘Static’ Keyword
+The 'Static' Keyword
 
 Static Variables
-Every time a procedure exits, all variable values defined within it are lost. If you would like a procedure to remember a variable’s value after each call, then you need to use the ‘Static’ keyword. See this example:
+Every time a procedure exits, all variable values defined within it are lost. If you would like a procedure to remember a variable's value after each call, then you need to use the 'Static' keyword. See this example:
 
 Procedure ChangeValue()
 	Static a.l
@@ -392,10 +392,10 @@ For x.l = 1 To 5
 	ChangeValue()
 Next x
 
-Here in the ‘ChangeValue()’ procedure I’ve set the ‘a’ variable to be static by using the ‘Static’ keyword. After this I increase the value of ‘a’ by ‘1’ and then echo that value to the Debug Output window. I then call this procedure five times using a standard ‘For’ loop. If you look at the echoed values they are all different and incremented by ‘1’. This is because the value of ‘a’ is remembered between procedure calls.
+Here in the 'ChangeValue()' procedure I've set the 'a' variable to be static by using the 'Static' keyword. After this I increase the value of 'a' by '1' and then echo that value to the Debug Output window. I then call this procedure five times using a standard 'For' loop. If you look at the echoed values they are all different and incremented by '1'. This is because the value of 'a' is remembered between procedure calls.
 
 Static Arrays
-You can also keep array values intact between procedure calls by using the ‘Static’ keyword.
+You can also keep array values intact between procedure calls by using the 'Static' keyword.
 
 Procedure ChangeValue()
 	Static Dim Numbers.l(1)
@@ -409,7 +409,7 @@ For x.l = 1 To 5
 	ChangeValue()
 Next x
 
-In the above example, I’ve used the ‘Static’ keyword to preserve the array’s values between procedure calls in exactly the same as static variables. If you look at the echoed values they are all different and incremented by ‘1’. This is because the static array’s values have all been preserved between the calls.
+In the above example, I've used the 'Static' keyword to preserve the array's values between procedure calls in exactly the same as static variables. If you look at the echoed values they are all different and incremented by '1'. This is because the static array's values have all been preserved between the calls.
 
 Static Linked Lists
 
@@ -427,9 +427,9 @@ For x.l = 1 To 5
 	ChangeValue()
 Next x
 
-In this example I use the ‘Static’ keyword to preserve a linked list’s values between procedure calls in exactly the same as static arrays. If you look at the echoed values they are all different and incremented by ‘1’.
+In this example I use the 'Static' keyword to preserve a linked list's values between procedure calls in exactly the same as static arrays. If you look at the echoed values they are all different and incremented by '1'.
 
-Because this linked list is static and I only wanted to add one element for the purpose of this example, I’ve used an ‘If’ statement in the procedure to test the amount of elements within the list. If the list has no elements then I add one, otherwise I just change the value of the existing element within the static linked list. If I didn’t do things like this, I would keep adding elements with each procedure call which is not what I wanted.
+Because this linked list is static and I only wanted to add one element for the purpose of this example, I've used an 'If' statement in the procedure to test the amount of elements within the list. If the list has no elements then I add one, otherwise I just change the value of the existing element within the static linked list. If I didn't do things like this, I would keep adding elements with each procedure call which is not what I wanted.
 
 
 Passing Variables To Procedures
@@ -444,15 +444,15 @@ AddTogether(10, 5)
 AddTogether(7, 7)
 AddTogether(50, 50)
 
-All parameters that are to be passed to a procedure should be inside the brackets and if multiple parameters are needed then they should be separated by commas. When parameters are included in the definition like this, they all must have their type defined too. Here, I’ve defined two parameters, ‘a’ and ‘b’, both of which are Long type variables.
+All parameters that are to be passed to a procedure should be inside the brackets and if multiple parameters are needed then they should be separated by commas. When parameters are included in the definition like this, they all must have their type defined too. Here, I've defined two parameters, 'a' and 'b', both of which are Long type variables.
 
 Once a procedure is defined like this, you have to remember to include the values you wish to pass as parameters when calling it, like this:
 
 AddTogether(10, 5)
 
-After this particular call, the value ‘10’ is passed into the ‘a’ variable and the value ‘5’ is passed into the ‘b’ variable. The procedure then adds these variables together and displays the result in the Debug Output window. This applies to all of the other calls too, the first parameter value in the call is passed into ‘a’ and the second into ‘b’.
+After this particular call, the value '10' is passed into the 'a' variable and the value '5' is passed into the 'b' variable. The procedure then adds these variables together and displays the result in the Debug Output window. This applies to all of the other calls too, the first parameter value in the call is passed into 'a' and the second into 'b'.
 
-Here’s another example using Strings:
+Here's another example using Strings:
 
 Procedure JoinString(a.s, b.s)
 	Debug a + b
@@ -462,9 +462,9 @@ JoinString("Mary had a little lamb, ", "its fleece was white as snow.")
 JoinString("And everywhere that Mary went, ", "that lamb was sure to go.")
 JoinString("..", "..")
 
-Here we’re using the secondary role of the ‘+’ operator, using it for String concatenation instead of addition. I’ve basically modified the ‘AddTogether(a.l, b.l)’ procedure and replaced the Long type parameters with String types and renamed it to ‘JoinString(a.s, b.s)’. I can now call this procedure from anywhere in my program passing Strings to match the defined parameters.
+Here we're using the secondary role of the '+' operator, using it for String concatenation instead of addition. I've basically modified the 'AddTogether(a.l, b.l)' procedure and replaced the Long type parameters with String types and renamed it to 'JoinString(a.s, b.s)'. I can now call this procedure from anywhere in my program passing Strings to match the defined parameters.
 
-Another point to remember regarding procedures is that their parameters don’t have to be all of the same type, you can mix and match as much as you like.
+Another point to remember regarding procedures is that their parameters don't have to be all of the same type, you can mix and match as much as you like.
 
 Procedure LotsOfTypes(a.b, b.w, c.l, d.f, e.s)
 	Debug "Byte: " + Str(a)
@@ -476,18 +476,18 @@ EndProcedure
 
 LotsOfTypes(104, 21674, 97987897, 3.141590, "Mary had a little lamb")
 
-Here I’ve used a few different variable types as parameters in my ‘LotsOfTypes()’ procedure to demonstrate that parameters don’t all have to be of the same type. The values that are passed in the procedure call are assigned to the defined procedure parameters ‘a’, ‘b’, ‘c’, ‘d’ and ‘e’ respectively. You will also notice that all values passed must match their respective parameter types or else a syntax error will occur.
+Here I've used a few different variable types as parameters in my 'LotsOfTypes()' procedure to demonstrate that parameters don't all have to be of the same type. The values that are passed in the procedure call are assigned to the defined procedure parameters 'a', 'b', 'c', 'd' and 'e' respectively. You will also notice that all values passed must match their respective parameter types or else a syntax error will occur.
 
-You’ve also probably noticed I’ve used two built-in functions that you may not be familiar with. These two functions, ‘Str()’ and ‘StrF()’ will be explained in more detail in Chapter 7 (Examples Of Common Commands), but to explain simply, they convert numeric types into Strings.
+You've also probably noticed I've used two built-in functions that you may not be familiar with. These two functions, 'Str()' and 'StrF()' will be explained in more detail in Chapter 7 (Examples Of Common Commands), but to explain simply, they convert numeric types into Strings.
 
 <<Box 8>>
 
-Even from these simple examples the power of procedures should start to become apparent. Not only are they a great timesaver in respect of typing code but they allow programmers to extend the functionality of PureBasic and then have freedom to use this functionality in any source code from then on. This allows for great code reusability, especially if you’ve written some really helpful generic procedures.
+Even from these simple examples the power of procedures should start to become apparent. Not only are they a great timesaver in respect of typing code but they allow programmers to extend the functionality of PureBasic and then have freedom to use this functionality in any source code from then on. This allows for great code reusability, especially if you've written some really helpful generic procedures.
 
 Optional Variable Parameters
 A new feature in PureBasic v4 was the inclusion of optional procedure parameters. These are very easy to explain and demonstrate and are extremely useful.
 
-Basically you can set an initial value for any parameter in case it isn’t used on the procedure call. Here’s an example:
+Basically you can set an initial value for any parameter in case it isn't used on the procedure call. Here's an example:
 
 Procedure DisplayParameters(a.l, b.l, c.l = 3)
 	Debug a
@@ -497,16 +497,16 @@ EndProcedure
 
 DisplayParameters(1, 2)
 
-If you look at the procedure definition in the above example you will see that the last parameter has been defined differently to the others and has been given the initial value of ‘3’. If the last parameter is not specified within a procedure call then it will have this default value. When I call the procedure in the above example using ‘DisplayParameters(1, 2)’, missing out the last parameter, then you can see this default value recognized and used in the echoed output within the Debug Output window.
+If you look at the procedure definition in the above example you will see that the last parameter has been defined differently to the others and has been given the initial value of '3'. If the last parameter is not specified within a procedure call then it will have this default value. When I call the procedure in the above example using 'DisplayParameters(1, 2)', missing out the last parameter, then you can see this default value recognized and used in the echoed output within the Debug Output window.
 
-Any number of parameters can be optional and defined in this way. You must understand however that all optional parameters must always appear to the right of standard non-optional parameters. This is because all values passed during a procedure call are assigned left to right to parameters and optional ones can’t be skipped.
+Any number of parameters can be optional and defined in this way. You must understand however that all optional parameters must always appear to the right of standard non-optional parameters. This is because all values passed during a procedure call are assigned left to right to parameters and optional ones can't be skipped.
 
 
 Passing Arrays To Procedures.
 
 As an accompaniment to variables, you can also pass arrays and linked lists to procedures as parameters. Their usage is simplicity itself and very easy to demonstrate.
 
-To pass an array as a parameter you must first define an array using the standard ‘Dim’ keyword. Here is a simple one dimensional String array defined with four indices (remember that the indices start at ‘0’) I’ve called it ‘Countries’:
+To pass an array as a parameter you must first define an array using the standard 'Dim' keyword. Here is a simple one dimensional String array defined with four indices (remember that the indices start at '0') I've called it 'Countries':
 
 Dim Countries.s(3)
 
@@ -515,7 +515,7 @@ Countries(1) = "Northern Ireland"
 Countries(2) = "Scotland"
 Countries(3) = "Wales"
 
-Once this array has been defined, let’s then define a procedure to pass it to:
+Once this array has been defined, let's then define a procedure to pass it to:
 
 Procedure EchoArray(MyArray.s(1))
 	For x.l = 0 To 3
@@ -525,20 +525,20 @@ EndProcedure
 
 To define a procedure to accept an array as a parameter you must do so in a very strict way. For starters, you define an array parameter within the same procedure brackets as any other standard parameter. The actual array parameter itself is composed of three parts.
 
-First a name is used to act as the array name within the procedure. Then a suffix of the expected array type is added to this name and brackets are added to the end. These brackets usually contain a number which expresses an array index. But here, this number should be the number of dimensions contained within the array that is to be passed. In the above example I’ve used a one dimensional array, so the full array parameter looks like this:
+First a name is used to act as the array name within the procedure. Then a suffix of the expected array type is added to this name and brackets are added to the end. These brackets usually contain a number which expresses an array index. But here, this number should be the number of dimensions contained within the array that is to be passed. In the above example I've used a one dimensional array, so the full array parameter looks like this:
 
 MyArray.s(1)
 
 Showing an array parameter name, the array type suffix and then between the brackets, the number of dimensions defined in the expected array.
 
-You will notice that I’ve used ‘MyArray’ as the array parameter name, this is not essential and you can call your parameters whatever you like. You must however, always adhere to the same naming guidelines as set out for variables, i.e. no spaces, no keyword names, etc.
+You will notice that I've used 'MyArray' as the array parameter name, this is not essential and you can call your parameters whatever you like. You must however, always adhere to the same naming guidelines as set out for variables, i.e. no spaces, no keyword names, etc.
 
-Inside this procedure you are now able to use the ‘MyArray()’ as any other normal array, getting and setting values to and from it using standard indices. In the above example, I’ve used a simple ‘For’ loop to iterate through this array and echo its values to the Debug Output window. You can however, be as creative as you like, in finding ways to process arrays.
-Once the procedure has been correctly defined you can call it, passing the ‘Countries’ array like this:
+Inside this procedure you are now able to use the 'MyArray()' as any other normal array, getting and setting values to and from it using standard indices. In the above example, I've used a simple 'For' loop to iterate through this array and echo its values to the Debug Output window. You can however, be as creative as you like, in finding ways to process arrays.
+Once the procedure has been correctly defined you can call it, passing the 'Countries' array like this:
 
 EchoArray(Countries())
 
-Notice when we pass our ‘Countries()’ array we only use its name with brackets on the end, almost like a procedure call itself. No types, indices or dimensions are necessary when actually passing an array in a procedure call.
+Notice when we pass our 'Countries()' array we only use its name with brackets on the end, almost like a procedure call itself. No types, indices or dimensions are necessary when actually passing an array in a procedure call.
 
 If you run this example, you should see the four countries of the United Kingdom echoed to the Debug Output window.
 
@@ -567,7 +567,7 @@ EndProcedure
 
 EchoArray(Countries())
 
-Even though this is a two dimensional array we still use the same rules as before when defining a procedure to handle this array as a parameter. You will notice that in this array parameter definition we use ‘2’ within the brackets to specify that the expected array will be a two dimensional array, like this:
+Even though this is a two dimensional array we still use the same rules as before when defining a procedure to handle this array as a parameter. You will notice that in this array parameter definition we use '2' within the brackets to specify that the expected array will be a two dimensional array, like this:
 
 MyArray.s(2)
 
@@ -605,11 +605,11 @@ EndProcedure
 
 EchoArray(Countries())
 
-Here I’ve used a structured array, defined using the ‘COUNTRY’ structure. In order for this type of array to be passed to a procedure, you have to make sure you define the array parameter to use the same structure that was used when defining the expected array, in this case it was the ‘COUNTRY’ structure. You can see this parameter for yourself in the above procedure definition:
+Here I've used a structured array, defined using the 'COUNTRY' structure. In order for this type of array to be passed to a procedure, you have to make sure you define the array parameter to use the same structure that was used when defining the expected array, in this case it was the 'COUNTRY' structure. You can see this parameter for yourself in the above procedure definition:
 
 MyArray.COUNTRY(1)
 
-This shows the parameter name, the structured array type suffix and then the dimensions in the passed array. If all of this is coded correctly as above, then a one dimensional, ‘COUNTRY’ structured array will pass into this procedure just fine.
+This shows the parameter name, the structured array type suffix and then the dimensions in the passed array. If all of this is coded correctly as above, then a one dimensional, 'COUNTRY' structured array will pass into this procedure just fine.
 
 
 Passing Linked Lists To Procedures
@@ -635,11 +635,11 @@ EndProcedure
 
 EchoList(Numbers())
 
-Here, I’ve created a standard linked list called ‘Numbers’ which will contain Long type elements. After adding three elements to this list, I’ve defined the ‘EchoList()’ procedure that this linked list will be passed into. The linked list parameter is coded very similarly to an array parameter, in that it starts with the parameter name, followed by the list type suffix and finally a set of brackets. Linked lists don’t use indices like arrays, so you don’t need to type a number inside the brackets. Once this is all done, you can then call the procedure, passing the linked list just like an array, without any type, etc. Like this:
+Here, I've created a standard linked list called 'Numbers' which will contain Long type elements. After adding three elements to this list, I've defined the 'EchoList()' procedure that this linked list will be passed into. The linked list parameter is coded very similarly to an array parameter, in that it starts with the parameter name, followed by the list type suffix and finally a set of brackets. Linked lists don't use indices like arrays, so you don't need to type a number inside the brackets. Once this is all done, you can then call the procedure, passing the linked list just like an array, without any type, etc. Like this:
 
 EchoList(Numbers())
 
-Of course inside the ‘EchoList()’ procedure the ‘MyList()’ linked list now contains all of the information that the passed linked list had and can be used in exactly the same as any other standard linked list. You can see inside the ‘EchoList()’ procedure, I’ve used a standard ‘ForEach’ loop to quickly iterate through the linked list and echo its values to the Debug Output window.
+Of course inside the 'EchoList()' procedure the 'MyList()' linked list now contains all of the information that the passed linked list had and can be used in exactly the same as any other standard linked list. You can see inside the 'EchoList()' procedure, I've used a standard 'ForEach' loop to quickly iterate through the linked list and echo its values to the Debug Output window.
 
 Passing Structured linked lists
 Structured linked lists can also be passed easily as procedure parameters. Again, similar to passing structured arrays into procedures, you must remember to define the structure in the procedure parameter to be the same as the structure used to define the linked list that is expected to be passed.
@@ -675,13 +675,13 @@ Notice from the above example, the linked list parameter looks like this:
 
 MyList.FLAGS()
 
-I’ve made sure that the linked list parameter now includes the ‘FLAGS’ type in order for the structured linked list to be passed correctly.
+I've made sure that the linked list parameter now includes the 'FLAGS' type in order for the structured linked list to be passed correctly.
 
 <<Box 9>>
 
 Returning A Value From Procedures
 
-Another great feature of procedures is that they can return a value. This value can be of any of PureBasic’s built-in types. Returning a value from a procedure is a great way to be able to calculate or manipulate data within a procedure and then return something useful. This could be a calculation result, an error code or even a descriptive String of what the procedure has just done or achieved. See Fig.2 and Fig.3 for a list of types that can be returned by procedures.
+Another great feature of procedures is that they can return a value. This value can be of any of PureBasic's built-in types. Returning a value from a procedure is a great way to be able to calculate or manipulate data within a procedure and then return something useful. This could be a calculation result, an error code or even a descriptive String of what the procedure has just done or achieved. See Fig.2 and Fig.3 for a list of types that can be returned by procedures.
 
 The syntax for returning a value from a procedure is simplicity itself. First you need to define what type is to be returned from the procedure, this is done by slightly extending the procedure definition. Look at this example:
 
@@ -691,11 +691,11 @@ EndProcedure
 
 Debug AddTogether(7, 5)
 
-The above procedure definition has been given a new type suffix on the end of the ‘Procedure’ keyword. This is where you define the type to be returned by this procedure. The above definition has been given the ‘.l’ suffix, meaning that this procedure will return a Long type value. To actually make the procedure return a value we need to use the ‘ProcedureReturn’ keyword. The value or expression following this keyword is the one that is returned. In this case the resulting value evaluated from ‘a + b’ is returned.
+The above procedure definition has been given a new type suffix on the end of the 'Procedure' keyword. This is where you define the type to be returned by this procedure. The above definition has been given the '.l' suffix, meaning that this procedure will return a Long type value. To actually make the procedure return a value we need to use the 'ProcedureReturn' keyword. The value or expression following this keyword is the one that is returned. In this case the resulting value evaluated from 'a + b' is returned.
 
-You can also see demonstrated, that when we call the above procedure using ‘AddTogether(7, 5)’, a value is returned directly from this call, and itself can be used in an expression or statement. In this case I’ve used it as an expression for a ‘Debug’ statement. The value ‘12’ is returned from the procedure call and directly echoed to the Debug Output window using the ‘Debug’ keyword.
+You can also see demonstrated, that when we call the above procedure using 'AddTogether(7, 5)', a value is returned directly from this call, and itself can be used in an expression or statement. In this case I've used it as an expression for a 'Debug' statement. The value '12' is returned from the procedure call and directly echoed to the Debug Output window using the 'Debug' keyword.
 
-If we want a procedure to return a String we just switch the return type to ‘.s’. As shown here:
+If we want a procedure to return a String we just switch the return type to '.s'. As shown here:
 
 Procedure.s JoinString(a.s, b.s)
 	ProcedureReturn a + b
@@ -704,7 +704,7 @@ EndProcedure
 Debug JoinString("Red ", "Lorry")
 Debug JoinString("Yellow ", "Lorry")
 
-Notice the return type is specified in the ‘Procedure.s’ keyword. This now specifies that this procedure will return a String. In this new example, I pass two Strings into the procedure, which are then concatenated and returned from the line ‘ProcedureReturn a + b’. I call this procedure three times using it with the ‘Debug’ keyword again to echo the returned values to the Debug Output window and to demonstrate the returned values.
+Notice the return type is specified in the 'Procedure.s' keyword. This now specifies that this procedure will return a String. In this new example, I pass two Strings into the procedure, which are then concatenated and returned from the line 'ProcedureReturn a + b'. I call this procedure three times using it with the 'Debug' keyword again to echo the returned values to the Debug Output window and to demonstrate the returned values.
 
 Procedures that return values can be used anywhere where expressions are. For example, they could be used in another procedure call, like this:
 
@@ -714,10 +714,10 @@ EndProcedure
 
 Debug AddTogether(AddTogether(2, 3), AddTogether(4, 1))
 
-Here I’ve used the ‘AddTogether(a.l, b.l)’ procedure to return values added together from two separate calls to the same procedure. First the ‘AddTogether(2, 3)’ is called and this returns ‘5’ then ‘AddTogether(4, 1)’ is called and this returns ‘5’ too. Both of these procedure calls are being used as parameters within another procedure call. This final call adds together both of the returned values and returns that value to be echoed to the Debug Output window.
+Here I've used the 'AddTogether(a.l, b.l)' procedure to return values added together from two separate calls to the same procedure. First the 'AddTogether(2, 3)' is called and this returns '5' then 'AddTogether(4, 1)' is called and this returns '5' too. Both of these procedure calls are being used as parameters within another procedure call. This final call adds together both of the returned values and returns that value to be echoed to the Debug Output window.
 
 Parameters Do Not Affect Return Types
-One thing to remember when using procedure return types is that they don’t have to be the same as defined parameter types. For example:
+One thing to remember when using procedure return types is that they don't have to be the same as defined parameter types. For example:
 
 Procedure.s DisplayValue(a.l, b.s)
 	ProcedureReturn Str(a) + b
@@ -729,9 +729,9 @@ While x >= 0
 	x - 1
 Wend
 
-Even though I’ve used a Long type and a String type parameter in the ‘DisplayValue(a.l, b.s)’ procedure, it can still return a String as defined by the type suffix on the ‘Procedure.s’ keyword. Return types and parameter types can mixed as much as you like.
+Even though I've used a Long type and a String type parameter in the 'DisplayValue(a.l, b.s)' procedure, it can still return a String as defined by the type suffix on the 'Procedure.s' keyword. Return types and parameter types can mixed as much as you like.
 
-Return types are very strict though, just as much as variable types. If you have defined a procedure to return a String and you wish to return a Long type value from it, you must convert that value into the correct return type (String) before returning it, otherwise you will get a syntax error. You can see this in action in the above example. I’ve used the built-in ‘Str()’ command to convert ‘a’ to a String before concatenating and returning it correctly.
+Return types are very strict though, just as much as variable types. If you have defined a procedure to return a String and you wish to return a Long type value from it, you must convert that value into the correct return type (String) before returning it, otherwise you will get a syntax error. You can see this in action in the above example. I've used the built-in 'Str()' command to convert 'a' to a String before concatenating and returning it correctly.
 
 Limitations Of Returning Results
 While using procedures to return results there are however two limitations. First, procedures can only return one result per call. Meaning that you cannot return two or more values in one procedure call. Second, you cannot return arrays, linked lists or any user defined type from procedures. You can only return built-in PureBasic types. It is however, possible to get around these limitations, by returning a pointer. See Chapter 13 (Pointers) for an explanation of this technique.

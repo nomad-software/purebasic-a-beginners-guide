@@ -2,6 +2,6 @@ What Is The Bit Depth Of An Image?
 
 Each pixel on a computer display or in a digital image is described by binary numbers, as you would expect on a computer. The greater, the number of bits (or binary digits) used to describe a single pixel allows that pixel to express a broader range of colors. The number of bits describing a single pixel in any given digital image or a computer display is called its bit depth. Common bit depths are 1 bit, 8 bit, 16 bit, 24 bit, and 32 bit.
 
-1 bit images can only describe black and white (2 color) images since the one single bit that describes each pixel can either have a value of ‘1’ or ‘0’.
+1 bit images can only describe black and white (2 color) images since the one single bit that describes each pixel can either have a value of '1' or '0'.
 
 32 bit pixels on the other hand are capable of displaying more colors than the human eye can see, so this format is regularly used in images for digital film, digital photos, realistic computer games, etc. Modern computers nowadays tend to only use 32 bits per pixel.

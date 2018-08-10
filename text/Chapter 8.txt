@@ -2,23 +2,23 @@
 
 Good Programming Style
 
-Until now I’ve concentrated on explaining core essentials of PureBasic programming. Its built-in types, statements and expressions, etc. I think it’s now time that I mention something about the style of how a program should be written.
+Until now I've concentrated on explaining core essentials of PureBasic programming. Its built-in types, statements and expressions, etc. I think it's now time that I mention something about the style of how a program should be written.
 
-In this chapter, I’m going to talk about something that all programmers should recognize and use and that’s good programming style. Learning to program can be great fun but that fun can soon erode away when you are confronted with (and trying to understand) poorly written code, especially if you are the author. Writing neatly formatted code not only makes it look more professional, but it actually helps you to read and understand it better.
+In this chapter, I'm going to talk about something that all programmers should recognize and use and that's good programming style. Learning to program can be great fun but that fun can soon erode away when you are confronted with (and trying to understand) poorly written code, especially if you are the author. Writing neatly formatted code not only makes it look more professional, but it actually helps you to read and understand it better.
 
-In the following paragraphs I’m going to describe ways in which you can format your code for maximum readability. This is not necessarily the right or wrong way to do so, just the way I usually work. Hopefully after reading further you will settle into your own style and stick to it.
+In the following paragraphs I'm going to describe ways in which you can format your code for maximum readability. This is not necessarily the right or wrong way to do so, just the way I usually work. Hopefully after reading further you will settle into your own style and stick to it.
 
-Later in this chapter, I go on to show you tips and tricks to help you avoid errors in your code and give you examples on how to handle them when they do happen. I’ve also included some guidance on how to use the PureBasic debugger to track down where problems may be occurring in your code.
+Later in this chapter, I go on to show you tips and tricks to help you avoid errors in your code and give you examples on how to handle them when they do happen. I've also included some guidance on how to use the PureBasic debugger to track down where problems may be occurring in your code.
 
 Why Bother Formatting Code Neatly?
 
 This question is sometimes asked by beginners and should be addressed. One answer would be, if I were to write this book without headings, subheadings, paragraphs or capitalization and flow the text into one big block, would it be as easy to read as it is now?
 
-Formatting code neatly has absolutely nothing to do with program compilation and it doesn’t alter the function or execution of the compiled program either, it’s purely done to make code easily readable. So why bother? Well I can guarantee that in the future you will work on source code that you will revisit time and time again. Sometimes because you might not finish what you are doing in one day or you might revise an old program to include new functionality. Each time, you will have to re-read your code and understand what it does. If you have ugly, unorganized code then I guarantee you will have difficulty in reading it and carrying on with your project.
+Formatting code neatly has absolutely nothing to do with program compilation and it doesn't alter the function or execution of the compiled program either, it's purely done to make code easily readable. So why bother? Well I can guarantee that in the future you will work on source code that you will revisit time and time again. Sometimes because you might not finish what you are doing in one day or you might revise an old program to include new functionality. Each time, you will have to re-read your code and understand what it does. If you have ugly, unorganized code then I guarantee you will have difficulty in reading it and carrying on with your project.
 
 If a bug appears in your program and the program code is not very well organized you will also have a harder time trying to track down where the error is in your code. A program that is perfectly clear to understand today may not be clear tomorrow. If it takes you a while to figure it out, how long would it take someone else to figure it out?
 
-Working in teams is another good reason for writing well formatted code. If you are working on a project within a team and amending other people’s code, as well as writing new stuff, it is essential that the whole team uses the same formatting standard. This is so all team members can quickly and easily understand any programmer’s code and carry on with the project effectively.
+Working in teams is another good reason for writing well formatted code. If you are working on a project within a team and amending other people's code, as well as writing new stuff, it is essential that the whole team uses the same formatting standard. This is so all team members can quickly and easily understand any programmer's code and carry on with the project effectively.
 
 The Value Of Comments
 
@@ -26,7 +26,7 @@ The very first thing to talk about when mentioning good programming style is the
 
 To put simply, comments are just lines of text included within your program that are used to describe or document what you are doing with your code. They are never compiled into the final executable or have any other bearing on the program. You can use as many as you like as they will never interfere with program performance.
 
-Comments are a way to provide a more detailed explanation of what you are writing as well as provide an overview on how different parts of your program are meant to work and how they interact with the rest of the code. Here’s a brief example:
+Comments are a way to provide a more detailed explanation of what you are writing as well as provide an overview on how different parts of your program are meant to work and how they interact with the rest of the code. Here's a brief example:
 
 ;The procedure Pi() is called to return the value of Pi.
 ;This calculation is only accurate to six decimal places.
@@ -40,9 +40,9 @@ CircleDiameter.l = 150
 Debug "A circle which has a diameter of " + Str(CircleDiameter) + "mm"
 Debug "has a circumference of " + StrF(CircleDiameter * Pi()) + "mm."
 
-Here I’ve used comments within this example to describe the function of the ‘Pi()’ procedure and more importantly explain its limitation of only being accurate to six decimal places.
+Here I've used comments within this example to describe the function of the 'Pi()' procedure and more importantly explain its limitation of only being accurate to six decimal places.
 
-Creation of comments is simple because all comments start with a semi-colon (‘;’) and that’s it:
+Creation of comments is simple because all comments start with a semi-colon (';') and that's it:
 
 ;This is a comment
 
@@ -54,7 +54,7 @@ EndProcedure
 
 You have to remember is the semi-colon at the beginning, this defines where the comment starts. The comment will then be as long as the current line and when a new line is encountered the comment ends. If you want a comment to continue onto a new line then you have to start that new line with another semi colon.
 
-To properly comment code, make every comment significant and fight the temptation of just repeating your code with the comment. Comments shouldn’t be too lengthy but long enough to explain what you need to. The general rule of thumb while writing comments is to imagine that you are clarifying the more complicated parts of your code to another person. In six month’s time when you revisit your code, you will be glad comments are there to help you understand your work.
+To properly comment code, make every comment significant and fight the temptation of just repeating your code with the comment. Comments shouldn't be too lengthy but long enough to explain what you need to. The general rule of thumb while writing comments is to imagine that you are clarifying the more complicated parts of your code to another person. In six month's time when you revisit your code, you will be glad comments are there to help you understand your work.
 
 Comments can be used for:
 
@@ -66,10 +66,10 @@ Comments can be used for:
 
 My Coding Format
 
-The general layout of my code and the way I structure certain bits and bobs is based on the standard code format of several programming languages. This entire book has been written in this style, which I personally feel is an easy to read and learn format. Here, I’m going to explain why, and show you how I write code, to give you a head start in writing neat and readable programs. Hopefully you will find this style helpful and continue to use it.
+The general layout of my code and the way I structure certain bits and bobs is based on the standard code format of several programming languages. This entire book has been written in this style, which I personally feel is an easy to read and learn format. Here, I'm going to explain why, and show you how I write code, to give you a head start in writing neat and readable programs. Hopefully you will find this style helpful and continue to use it.
 
 Variables, Arrays, Linked Lists And Procedures
-I usually name these with clear, accurate, pronounceable and descriptive names based on ‘CamelHump’ notation. This notation is easy to understand, you capitalize the first letter of the name and then capitalize any other words that follow. The capital letters act as a separator for these words as no spaces can be used. This capitalization format makes these words look as if they have humps running along them, hence the name ‘CamelHump’ notation. This how is how I prefer to format all variables, arrays and linked lists as I find this makes them easier to read.
+I usually name these with clear, accurate, pronounceable and descriptive names based on 'CamelHump' notation. This notation is easy to understand, you capitalize the first letter of the name and then capitalize any other words that follow. The capital letters act as a separator for these words as no spaces can be used. This capitalization format makes these words look as if they have humps running along them, hence the name 'CamelHump' notation. This how is how I prefer to format all variables, arrays and linked lists as I find this makes them easier to read.
 Example:
 
 NumberOfDays.l = 365
@@ -96,7 +96,7 @@ EndStructure
 Indentation
 Indents provide a way to structure code and make it easy to see the beginning and end of procedures, loops and conditional statements. Indents are very often used to give purely visual aids to reading code. Here are examples of good indentation:
 
-; Returns a String containing a floating point number that’s been rounded up.
+; Returns a String containing a floating point number that's been rounded up.
 ; 'Number' = Number to round up and return as a String.
 ; 'DecimalPlaces' = Number of decimal places to round up to.
 
@@ -113,7 +113,7 @@ EndProcedure
 
 Debug StrFRound(3.1415927, 4)
 
-In this example, you can see, I’ve indented the code using tabs. This clearly defines code between the beginning and ending keywords of a code block such as a procedure or an ‘If’ statement. I also indent code this way for loops, procedures, ‘If’ and ‘Select’ statements and ‘Enumeration’ blocks. Indentation is especially helpful in nested statements, like this:
+In this example, you can see, I've indented the code using tabs. This clearly defines code between the beginning and ending keywords of a code block such as a procedure or an 'If' statement. I also indent code this way for loops, procedures, 'If' and 'Select' statements and 'Enumeration' blocks. Indentation is especially helpful in nested statements, like this:
 
 For x = 0 To 2
 	For y = 0 To 2
@@ -125,37 +125,37 @@ For x = 0 To 2
 	Next y
 Next x
 
-Here, you can see the start and end keywords of each loop statement clearly and see all the code contained within. Only one tab to the right is used per code block so the code contained within a particular block isn’t too far away from the beginning and end keywords, which could also make code harder to read.
+Here, you can see the start and end keywords of each loop statement clearly and see all the code contained within. Only one tab to the right is used per code block so the code contained within a particular block isn't too far away from the beginning and end keywords, which could also make code harder to read.
 
-If you look at the line: ‘For y = 0 To 2’ you can easily track down in the code and find the line: ‘Next y’. This is the beginning and end of an ‘If’ statement. By looking at this we know that all code indented to the right, is inside this block. This will become more useful the larger your programs get.
+If you look at the line: 'For y = 0 To 2' you can easily track down in the code and find the line: 'Next y'. This is the beginning and end of an 'If' statement. By looking at this we know that all code indented to the right, is inside this block. This will become more useful the larger your programs get.
 
 Multiple Commands On The Same Line
-I sometimes write multiple commands on the same line to make some source code smaller. This is easily done using the colon (‘:’) character. The colon character when used, tells the compiler that a new line has started and treats the next command as if it appears on its own separate line. Look at this:
+I sometimes write multiple commands on the same line to make some source code smaller. This is easily done using the colon (':') character. The colon character when used, tells the compiler that a new line has started and treats the next command as if it appears on its own separate line. Look at this:
 
 Dim Birds.s(3)
 Birds(0)="Sparrow" : Birds(1)="Wren" : Birds(2)="Cuckoo" : Birds(3)="Owl"
 
-Some programmers frown on this kind of formatting as it can impede readability. I feel sometimes it can help, while it’s not over used.
+Some programmers frown on this kind of formatting as it can impede readability. I feel sometimes it can help, while it's not over used.
 
 Breaking Source Code Up
-When I’m writing a program and it’s starting to get big, I tend to break it up into many separate source code files. These files are standard PureBasic files but have either the ‘*.pb’ or ‘*.pbi’ extension. ‘*.pb’ files are standard PureBasic code files while ‘*.pbi’ files are PureBasic Include files. These two types of file are exactly the same and both are associated with the IDE for opening correctly. The ‘*.pbi’ extension however is purely cosmetic to be able to identify quickly included files from the main program file when grouped together in a folder.
+When I'm writing a program and it's starting to get big, I tend to break it up into many separate source code files. These files are standard PureBasic files but have either the '*.pb' or '*.pbi' extension. '*.pb' files are standard PureBasic code files while '*.pbi' files are PureBasic Include files. These two types of file are exactly the same and both are associated with the IDE for opening correctly. The '*.pbi' extension however is purely cosmetic to be able to identify quickly included files from the main program file when grouped together in a folder.
 
-In these separate files I hold different parts of the main program and then include them all into the main source code file by using the ‘IncludeFile’ or ‘XIncludeFile’ keyword.
+In these separate files I hold different parts of the main program and then include them all into the main source code file by using the 'IncludeFile' or 'XIncludeFile' keyword.
 
-For example, if I am defining a lot of procedures I might create a separate source file called ‘Procedures.pbi’ where all my procedures will be defined. Then at the top of my main source code file I will include the procedures code like this:
+For example, if I am defining a lot of procedures I might create a separate source file called 'Procedures.pbi' where all my procedures will be defined. Then at the top of my main source code file I will include the procedures code like this:
 
 IncludeFile "Procedures.pbi"
 
-This has the effect of taking all lines of code from the "Procedures.pbi" file and pasting them into my main source code starting from this line. Wherever the ‘IncludeFile’ command appears, this is where the code from the included file will be added into your main code. This is done before compilation so all the compiler sees is one big file to compile.
+This has the effect of taking all lines of code from the "Procedures.pbi" file and pasting them into my main source code starting from this line. Wherever the 'IncludeFile' command appears, this is where the code from the included file will be added into your main code. This is done before compilation so all the compiler sees is one big file to compile.
 
-If you add an ‘IncludeFile’ line many times within your main code using the same file name, you will get duplicate pieces of code inserted into your main code file. If, however you want to avoid this you must use the ‘XIncludeFile’ keyword. This is used in the same way as above:
+If you add an 'IncludeFile' line many times within your main code using the same file name, you will get duplicate pieces of code inserted into your main code file. If, however you want to avoid this you must use the 'XIncludeFile' keyword. This is used in the same way as above:
 
 XIncludeFile "Procedures.pbi"
 
-The ‘XIncludeFile’ line will include the code from the ‘Procedures.pbi’ file, only if this line has not been used before. I seldom use the ‘IncludeFile’ command as you only usually need one of each include file including in any given program. I prefer to use ‘XIncludeFile’ for everything, as it cuts down on errors occurring.
+The 'XIncludeFile' line will include the code from the 'Procedures.pbi' file, only if this line has not been used before. I seldom use the 'IncludeFile' command as you only usually need one of each include file including in any given program. I prefer to use 'XIncludeFile' for everything, as it cuts down on errors occurring.
 
 Correctly Ending A Program
-To end a program properly you should always use the ‘End’ keyword. This closes everything correctly within your program and frees any memory used by it. An optional exit code can also be used with the ‘End’ keyword if needed. The syntax for use is simple, just use this keyword where you would like your program to end. Multiple ‘End’ statements can also appear in any one program if you need to potentially end your program in more than one place in your code.
+To end a program properly you should always use the 'End' keyword. This closes everything correctly within your program and frees any memory used by it. An optional exit code can also be used with the 'End' keyword if needed. The syntax for use is simple, just use this keyword where you would like your program to end. Multiple 'End' statements can also appear in any one program if you need to potentially end your program in more than one place in your code.
 
 Without exit code:
 
@@ -175,19 +175,19 @@ Here is a list of golden rules I follow while writing a program. I stick to thes
 4). Use indentation to show code structure.
 5). Use parentheses (brackets) in expressions to avoid any evaluation confusion.
 6). Use blank lines to separate different procedures and other blocks of code.
-7). Try not to use the ‘Goto’ or ‘Gosub’ keyword.
+7). Try not to use the 'Goto' or 'Gosub' keyword.
 8). Use comments to help people (or you) understand your code more clearly.
 9). Try not to document bad code with comments, re-write the code properly.
 10). When working in a team, agree a formatting style before starting, then stick to it.
 
 How To Minimize And Handle Errors
 
-In this chapter I’m going to talk about methods that will help you catch errors in your code. Even the most experienced and dedicated programmer can make mistakes or forget to handle common ones or maybe even overlook them altogether. Here I reveal good working practices along with some valuable tips and tricks, enabling you to be more vigilant in your programming, minimizing the chance of any problems occurring.
+In this chapter I'm going to talk about methods that will help you catch errors in your code. Even the most experienced and dedicated programmer can make mistakes or forget to handle common ones or maybe even overlook them altogether. Here I reveal good working practices along with some valuable tips and tricks, enabling you to be more vigilant in your programming, minimizing the chance of any problems occurring.
 
 Use An Error Handler Procedure
-If your using PureBasic for large projects you might find that you’ll be making many tests to confirm a true value. This is because a great deal of commands return a value. This value is nearly always an integer and always above ‘0’ if things have gone right. Some programmers use ‘If’ statements to test commands for a true value before proceeding, because if you remember from Chapter 4, everything above ‘0’ is considered a true value in PureBasic.
+If your using PureBasic for large projects you might find that you'll be making many tests to confirm a true value. This is because a great deal of commands return a value. This value is nearly always an integer and always above '0' if things have gone right. Some programmers use 'If' statements to test commands for a true value before proceeding, because if you remember from Chapter 4, everything above '0' is considered a true value in PureBasic.
 
-While some people use ‘If’ statements to check things have gone right before proceeding, I find this approach is only useful for small programs as it can lead to a lot of confusing nested ‘If’ statements when used for larger ones. What I tend to do is use a procedure as an error handler instead of an ‘If’ statement. This not only makes your source code much more easy to read but you can pass user defined messages to this procedure to inform users of where exactly in your program things have gone wrong and with what command. To see both sides, here is an example of using an ‘If’ statement to test a command:
+While some people use 'If' statements to check things have gone right before proceeding, I find this approach is only useful for small programs as it can lead to a lot of confusing nested 'If' statements when used for larger ones. What I tend to do is use a procedure as an error handler instead of an 'If' statement. This not only makes your source code much more easy to read but you can pass user defined messages to this procedure to inform users of where exactly in your program things have gone wrong and with what command. To see both sides, here is an example of using an 'If' statement to test a command:
 
 #TEXTFILE = 1
 
@@ -198,7 +198,7 @@ Else
 	MessageRequester("Error", "Could not open the file: 'TextFile.txt'.")
 EndIf
 
-Here I test to make sure I can read the file ‘TextFile.txt’ if I can then I read a String from it. While this method is fine for small programs, I prefer this way for bigger projects:
+Here I test to make sure I can read the file 'TextFile.txt' if I can then I read a String from it. While this method is fine for small programs, I prefer this way for bigger projects:
 
 #TEXTFILE = 1
 
@@ -209,32 +209,32 @@ Procedure HandleError(Result.l, Text.s)
 	EndIf
 EndProcedure
 
-HandleError(ReadFile(#TEXTFILE,"TextFile.txt"),"Couldn’t open: 'TextFile.txt'.")
+HandleError(ReadFile(#TEXTFILE,"TextFile.txt"),"Couldn't open: 'TextFile.txt'.")
 Debug ReadString(#TEXTFILE)
 CloseFile(#TEXTFILE)
 
-Here I’ve used a procedure called ‘HandleError()’ to take care of testing return values of any commands passed to it. The first parameter called ‘Result’, is where the return value from a command is passed. If a command is passed like this to a procedure, that command will always be executed before the procedure is called. This is to make sure any return values are passed correctly. The second parameter ‘Text.s’, is the String you wish to be displayed if the passed command returns ‘0’. Let’s break this down a little more.
+Here I've used a procedure called 'HandleError()' to take care of testing return values of any commands passed to it. The first parameter called 'Result', is where the return value from a command is passed. If a command is passed like this to a procedure, that command will always be executed before the procedure is called. This is to make sure any return values are passed correctly. The second parameter 'Text.s', is the String you wish to be displayed if the passed command returns '0'. Let's break this down a little more.
 
-When I pass this command to the ‘HandleError()’ procedure:
+When I pass this command to the 'HandleError()' procedure:
 
 ReadFile(#TEXTFILE, "TextFile.txt")
 
-If the file ‘TextFile.txt’ does not exist on your hard drive or something else goes wrong, the ‘ReadFile()’ command will return ‘0’. This value of ‘0’ is then passed to the first parameter of the error handling procedure. Inside the procedure this parameter is tested to see if its value is equal to ‘0’, if it is then the error message passed in the second parameter will be displayed using a message requester and the program will end. This is handy to give clear and concise error messages for every command that raises an error.
+If the file 'TextFile.txt' does not exist on your hard drive or something else goes wrong, the 'ReadFile()' command will return '0'. This value of '0' is then passed to the first parameter of the error handling procedure. Inside the procedure this parameter is tested to see if its value is equal to '0', if it is then the error message passed in the second parameter will be displayed using a message requester and the program will end. This is handy to give clear and concise error messages for every command that raises an error.
 
-If the command passed to the error handling procedure returns a value above ‘0’, then this command is considered to have been successful and the error handling procedure takes no action.
+If the command passed to the error handling procedure returns a value above '0', then this command is considered to have been successful and the error handling procedure takes no action.
 
-The procedure demonstrated in the above example may look like overkill for such a small example but this kind of thing is not what it would mainly be used for. Using an error handling procedure really becomes useful in larger programs, where many commands need to be tested one after another. Once the procedure is defined you can use it to test as many commands as you like and each can be tested on one line, unlike an ‘If’ statement. Look at this example of testing multiple commands:
+The procedure demonstrated in the above example may look like overkill for such a small example but this kind of thing is not what it would mainly be used for. Using an error handling procedure really becomes useful in larger programs, where many commands need to be tested one after another. Once the procedure is defined you can use it to test as many commands as you like and each can be tested on one line, unlike an 'If' statement. Look at this example of testing multiple commands:
 
 HandleError(InitEngine3D(), "InitEngine3D() failed to initialized!")
 HandleError(InitSprite(), "InitSprite() failed to initialized!")
 HandleError(InitKeyboard(), "InitKeyboard() failed to initialized!")
 HandleError(OpenScreen(1024, 768, 32, "Game"), "A screen could not be opened!")
 
-Can you image using ‘If’ statements to test all these commands? It would be a nested ‘If’ nightmare, and this isn’t even a full program yet! Using error handling procedures makes your code look neater, cleaner and more readable.
-Working like this, you will find mistakes are easier to spot and unexpected problems are more simple to handle. The only problem with this approach is that ‘HandleError’ appears at the start of every line, which some people find intrusive.
+Can you image using 'If' statements to test all these commands? It would be a nested 'If' nightmare, and this isn't even a full program yet! Using error handling procedures makes your code look neater, cleaner and more readable.
+Working like this, you will find mistakes are easier to spot and unexpected problems are more simple to handle. The only problem with this approach is that 'HandleError' appears at the start of every line, which some people find intrusive.
 
-Use The ‘EnableExplicit’ Command
-This command is a godsend for some people and a hindrance to others and that’s why it is completely optional to use. This command enables explicit variable definition within the whole of your program. So what does this mean? Well, in Chapter 2, I explained that if you didn’t specify a type suffix for a variable, then that variable’s type will default to the current default type, which is normally a Long. If the ‘Define’ keyword has been used to define another default type then any un-typed variables will use that instead. The ‘EnableExplicit’ command stops this behavior and requires after use that all new variables have their scope and type strictly defined. Let me show you how this command could prove useful.
+Use The 'EnableExplicit' Command
+This command is a godsend for some people and a hindrance to others and that's why it is completely optional to use. This command enables explicit variable definition within the whole of your program. So what does this mean? Well, in Chapter 2, I explained that if you didn't specify a type suffix for a variable, then that variable's type will default to the current default type, which is normally a Long. If the 'Define' keyword has been used to define another default type then any un-typed variables will use that instead. The 'EnableExplicit' command stops this behavior and requires after use that all new variables have their scope and type strictly defined. Let me show you how this command could prove useful.
 
 Say for example, I have a procedure which needs to be passed a variable of some crucial value and then the result of this procedure needs to be used, I could write it like this:
 
@@ -247,11 +247,11 @@ EndProcedure
 
 Debug CalculateYearlyAmount(WeaklyAmount)
 
-Now, this looks okay and if you quickly scan through this example you don’t see any problems. If you run it however, the ‘CalculateYearlyAmount()’ procedure returns ‘0’. This is obviously not right as we are supposed to be passing it the ‘WeeklyAmount’ variable which has a value of ‘1024’. If you look closely at the procedure call you can see that I actually pass a variable called ‘WeaklyAmount’. Notice that this variable is spelt incorrectly and so it’s treated as a new variable. When passing variables like this, if they haven’t been defined before then PureBasic creates a new variable automatically and passes that. Variables that haven’t had their type or value defined during creation are always assigned the default type, and given a null value. This new variable named ‘WeaklyAmount’ in the above example, therefore has a value of ‘0’.
+Now, this looks okay and if you quickly scan through this example you don't see any problems. If you run it however, the 'CalculateYearlyAmount()' procedure returns '0'. This is obviously not right as we are supposed to be passing it the 'WeeklyAmount' variable which has a value of '1024'. If you look closely at the procedure call you can see that I actually pass a variable called 'WeaklyAmount'. Notice that this variable is spelt incorrectly and so it's treated as a new variable. When passing variables like this, if they haven't been defined before then PureBasic creates a new variable automatically and passes that. Variables that haven't had their type or value defined during creation are always assigned the default type, and given a null value. This new variable named 'WeaklyAmount' in the above example, therefore has a value of '0'.
 
-Automatically defining variables that have been typed like this is considered by some programmers to be careless and very error prone. This default behavior can be turned off and the compiler told to be more strict about variable definition by using the ‘EnableExplicit’ command. If we used this command in the above example we would get a few messages informing us that some variables need to be more strictly defined. This means that all variables used after the ‘EnableExplicit’ command must be defined using any one of the variable definition keywords. These are ‘Define’, ‘Global’, ‘Protected’, ‘Static’ and ‘Shared’, as explained in Chapters 2 and 6.
+Automatically defining variables that have been typed like this is considered by some programmers to be careless and very error prone. This default behavior can be turned off and the compiler told to be more strict about variable definition by using the 'EnableExplicit' command. If we used this command in the above example we would get a few messages informing us that some variables need to be more strictly defined. This means that all variables used after the 'EnableExplicit' command must be defined using any one of the variable definition keywords. These are 'Define', 'Global', 'Protected', 'Static' and 'Shared', as explained in Chapters 2 and 6.
 
-If we go through the above example, strictly defining all variables and then re-launching the program, the compiler would bring our attention to the last line and would show a message informing us that the variable ‘WeaklyAmount’ needs to be defined more strictly too. This would be a bit strange as it should already be done earlier in the program. On further investigation it would then be noticed that this variable is spelt wrong and needs correcting. Here’s what the above example would look like using the ‘EnableExplicit’ command and all variables defined in a more explicit way.
+If we go through the above example, strictly defining all variables and then re-launching the program, the compiler would bring our attention to the last line and would show a message informing us that the variable 'WeaklyAmount' needs to be defined more strictly too. This would be a bit strange as it should already be done earlier in the program. On further investigation it would then be noticed that this variable is spelt wrong and needs correcting. Here's what the above example would look like using the 'EnableExplicit' command and all variables defined in a more explicit way.
 
 EnableExplicit
 
@@ -264,47 +264,47 @@ EndProcedure
 
 Debug CalculateYearlyAmount(WeeklyAmount)
 
-Hopefully using this command should prevent many more variable based spelling mistakes because every time a spelling mistake is encountered the compiler will treat it as a separate variable name and you will be asked to clarify this variable’s scope and definition. Giving you chance to correct the variable, thus restoring any values that may be lost through these errors.
+Hopefully using this command should prevent many more variable based spelling mistakes because every time a spelling mistake is encountered the compiler will treat it as a separate variable name and you will be asked to clarify this variable's scope and definition. Giving you chance to correct the variable, thus restoring any values that may be lost through these errors.
 
-At anytime if you want to revert to default PureBasic behavior, you can switch off the ‘EnableExplicit’ command’s influence by using the ‘DisableExplicit’ command.
+At anytime if you want to revert to default PureBasic behavior, you can switch off the 'EnableExplicit' command's influence by using the 'DisableExplicit' command.
 
 <<Box 14>>
 
 Introducing The PureBasic Debugger
-PureBasic provides a full featured debugger that helps find errors and bugs within your code. This debugger is invaluable as it gives you the ability to control program flow and take a look at the values of variables, arrays and linked lists at any time during the running of your program. It also provides advanced functions for assembly programmers to examine and modify CPU registers or view values stored in associated memory addresses. It’s also possible to view the CPU usage of your program using the built-in CPU monitor.
+PureBasic provides a full featured debugger that helps find errors and bugs within your code. This debugger is invaluable as it gives you the ability to control program flow and take a look at the values of variables, arrays and linked lists at any time during the running of your program. It also provides advanced functions for assembly programmers to examine and modify CPU registers or view values stored in associated memory addresses. It's also possible to view the CPU usage of your program using the built-in CPU monitor.
 
-If you run your program and the debugger encounters an error, the program will halt and the line where the error occurred will be marked in the IDE (using red) and the error will be displayed in the IDE Error Log and IDE status bar. When an error is caught like this, you can use the program control functions or end the running program. To end the running program use the ‘Kill Program’ menu item (Menu:Debugger->Kill Program) or its associated toolbar button. If the debugger is disabled, no errors will be caught and could lead to a program crash.
+If you run your program and the debugger encounters an error, the program will halt and the line where the error occurred will be marked in the IDE (using red) and the error will be displayed in the IDE Error Log and IDE status bar. When an error is caught like this, you can use the program control functions or end the running program. To end the running program use the 'Kill Program' menu item (Menu:Debugger->Kill Program) or its associated toolbar button. If the debugger is disabled, no errors will be caught and could lead to a program crash.
 
-While writing a program in the IDE, the debugger is enabled by default. This you can see at a glance by looking at the debugger toggle button located in the IDE’s toolbar, see Fig.23. If this button is shown as pressed down then the debugger is enabled, if it is shown as being up, the debugger is disabled. This button is also a shortcut to the ‘Use Debugger’ menu item, (Menu:Debugger->Use Debugger) which is also a toggle. The debugger can also be enabled in the compiler options for your program too, (Menu:Compiler->Compiler Options...->Compiler Options->Enable Debugger). All these different ways of toggling the status of the debugger are linked. If one is used, the others mirror its status.
+While writing a program in the IDE, the debugger is enabled by default. This you can see at a glance by looking at the debugger toggle button located in the IDE's toolbar, see Fig.23. If this button is shown as pressed down then the debugger is enabled, if it is shown as being up, the debugger is disabled. This button is also a shortcut to the 'Use Debugger' menu item, (Menu:Debugger->Use Debugger) which is also a toggle. The debugger can also be enabled in the compiler options for your program too, (Menu:Compiler->Compiler Options...->Compiler Options->Enable Debugger). All these different ways of toggling the status of the debugger are linked. If one is used, the others mirror its status.
 
-The Windows PureBasic package comes with three different kinds of debugger to be used. These can all be used to debug your program but some don’t have the same functionality. The first is the built-in debugger which is the most feature rich among the different ones and is used by default because it’s integrated directly into the IDE. The PureBasic IDE running on some operating systems doesn’t support this built-in version so a stand-alone debugger is also supplied with the installation. This stand-alone version has almost the same feature set as the built-in debugger but because it’s separate from the IDE, some of the efficiency of direct access from the IDE is lost. The third debugger runs in a console only. This version’s primary use is for non-graphical environments such as text based Linux operating systems or remotely developed applications working with clients using the SSH protocol. The available debuggers can be selected as default in the IDE preferences, (Menu:File->Preferences->Debugger).
+The Windows PureBasic package comes with three different kinds of debugger to be used. These can all be used to debug your program but some don't have the same functionality. The first is the built-in debugger which is the most feature rich among the different ones and is used by default because it's integrated directly into the IDE. The PureBasic IDE running on some operating systems doesn't support this built-in version so a stand-alone debugger is also supplied with the installation. This stand-alone version has almost the same feature set as the built-in debugger but because it's separate from the IDE, some of the efficiency of direct access from the IDE is lost. The third debugger runs in a console only. This version's primary use is for non-graphical environments such as text based Linux operating systems or remotely developed applications working with clients using the SSH protocol. The available debuggers can be selected as default in the IDE preferences, (Menu:File->Preferences->Debugger).
 
-Even though the debugger is a great tool to use to track down problems, all this debugging functionality however comes at a price. You will find that programs running while the debugger is enabled will be a great deal slower than running them with it disabled. This shouldn’t pose any problems though, because the vast majority of final executables are compiled without the debugger for maximum speed and compactness. This must be kept in mind if you are developing speed critical programs or need to time certain bits of code, etc.
+Even though the debugger is a great tool to use to track down problems, all this debugging functionality however comes at a price. You will find that programs running while the debugger is enabled will be a great deal slower than running them with it disabled. This shouldn't pose any problems though, because the vast majority of final executables are compiled without the debugger for maximum speed and compactness. This must be kept in mind if you are developing speed critical programs or need to time certain bits of code, etc.
 
-If you need to use the debugger to debug your code but in some sections you could do with it being disabled, you can use the built-in debugger commands, ‘DisableDebugger’ and ‘EnableDebugger’. These are pretty self explanatory to use, the ‘DisableDebugger’ command disabled the debugger from then on in your code and the ‘EnableDebugger’ command re-enables it. If you disable the debugger you will also notice that this disables any ‘Debug’ commands. This is because ‘Debug’ commands are also part of the debugger and they are not compiled if the debugger is disabled.
+If you need to use the debugger to debug your code but in some sections you could do with it being disabled, you can use the built-in debugger commands, 'DisableDebugger' and 'EnableDebugger'. These are pretty self explanatory to use, the 'DisableDebugger' command disabled the debugger from then on in your code and the 'EnableDebugger' command re-enables it. If you disable the debugger you will also notice that this disables any 'Debug' commands. This is because 'Debug' commands are also part of the debugger and they are not compiled if the debugger is disabled.
 
 Using The Debugger
 The debugger functions can be used at any time while your program is running, these can be accessed from the debugger menu as well as using the associated toolbar buttons. The Error Log (Menu:Debugger->Error Log) and the CPU monitor (Menu:Debugger->CPU Monitor) are always accessible too. While you are using the debugger, all source code files that are connected to your running program are immediately switched to read-only until the program has ended. This makes sure that the currently used code is not modified in any way, to provide a simple version control on your code.
 
-To give you an overview of the debugger I’m going to start by explaining the program control functions it provides. These controls let you stop the program at any given time and examine any variable, array or linked list value. It also allows you to step through your program a line at a time to examine exactly how your program executes. The state of any program while using the debugger will be shown in the IDE status bar and in the Error Log. The debugger’s program control toolbar buttons are shown in Fig.23, these are also mirrored by commands in the ‘Debugger’ menu.
+To give you an overview of the debugger I'm going to start by explaining the program control functions it provides. These controls let you stop the program at any given time and examine any variable, array or linked list value. It also allows you to step through your program a line at a time to examine exactly how your program executes. The state of any program while using the debugger will be shown in the IDE status bar and in the Error Log. The debugger's program control toolbar buttons are shown in Fig.23, these are also mirrored by commands in the 'Debugger' menu.
 
 <<Fig 23>>
 
-To halt your program at any time and use the debugger controls, you can either use the ‘CallDebugger’ keyword in your code, use ‘Stop’ from the debugger menu (Menu:Debugger->Stop) or press the ‘Stop’ toolbar button while your program is running. You can also use Breakpoints to halt the program’s execution. To use a breakpoint within the IDE, put the cursor on the line where you would like the program to halt and switch control to the debugger. Then choose the ‘Breakpoint’ menu command (Menu:Debugger->Breakpoint) to add a breakpoint. You will notice that a small circle appears in the line numbering gutter of the IDE. This is a visual indication to show where breakpoints are defined. When this program is next run, it will halt on that line where the breakpoint is defined and then the debugger program control functions will be available. You are then able to examine any data values or step through your program to analyze your code more closely. Here is a short description of the program control functions:
+To halt your program at any time and use the debugger controls, you can either use the 'CallDebugger' keyword in your code, use 'Stop' from the debugger menu (Menu:Debugger->Stop) or press the 'Stop' toolbar button while your program is running. You can also use Breakpoints to halt the program's execution. To use a breakpoint within the IDE, put the cursor on the line where you would like the program to halt and switch control to the debugger. Then choose the 'Breakpoint' menu command (Menu:Debugger->Breakpoint) to add a breakpoint. You will notice that a small circle appears in the line numbering gutter of the IDE. This is a visual indication to show where breakpoints are defined. When this program is next run, it will halt on that line where the breakpoint is defined and then the debugger program control functions will be available. You are then able to examine any data values or step through your program to analyze your code more closely. Here is a short description of the program control functions:
 
-‘Stop’
+'Stop'
 This halts the program and displays the current line. 
 
-‘Continue’
+'Continue'
 This continues the program execution until another halt command is met.
 
-‘Step’
+'Step'
 This executes one line of source code and then stops the execution again. 
 
-‘Kill Program’
+'Kill Program'
 This forces the program to end, and closes all associated debugger windows. 
 
-Here is a brief example of halting program execution using the ‘CallDebugger’ command:
+Here is a brief example of halting program execution using the 'CallDebugger' command:
 
 CallDebugger
 For x.l = 1 To 10
@@ -312,12 +312,12 @@ For x.l = 1 To 10
 Next x
 End
 
-Once the above program has been halted using the ‘CallDebugger’ command. You can step through it, a line at a time using the ‘Step’ toolbar button. Click it ten times and you will see the value of ‘x’ echoed to the Debug Output window, incremented by one each time this button is pressed. While a program is halted in this way you can view any variable, array or linked list value by opening the Variable Viewer (Menu:Debugger->Variable Viewer). This small overview should be enough for you to learn the basics of the debugger. For more advanced information of what it is capable of, see the PureBasic Helpfile.
+Once the above program has been halted using the 'CallDebugger' command. You can step through it, a line at a time using the 'Step' toolbar button. Click it ten times and you will see the value of 'x' echoed to the Debug Output window, incremented by one each time this button is pressed. While a program is halted in this way you can view any variable, array or linked list value by opening the Variable Viewer (Menu:Debugger->Variable Viewer). This small overview should be enough for you to learn the basics of the debugger. For more advanced information of what it is capable of, see the PureBasic Helpfile.
 
-The ‘OnError’ Library
-The built-in ‘OnError’ library enables you to perform error checking in your final executable when the debugger is not available. Normally you would use the debugger during development to help catch errors, but when you compile your final executable for distribution, you disable the debugger in order to compile the smallest and fastest executable possible. The speed gain for disabling the debugger is about six times than with it enabled. Using the ‘OnError’ library it is easy to implement advanced error checking and handling into a final executable and still have the full speed of PureBasic available.
+The 'OnError' Library
+The built-in 'OnError' library enables you to perform error checking in your final executable when the debugger is not available. Normally you would use the debugger during development to help catch errors, but when you compile your final executable for distribution, you disable the debugger in order to compile the smallest and fastest executable possible. The speed gain for disabling the debugger is about six times than with it enabled. Using the 'OnError' library it is easy to implement advanced error checking and handling into a final executable and still have the full speed of PureBasic available.
 
-There are many very advanced commands that can be used from this library but these are beyond the scope of this book, so I’ll just focus on the more commonly used and easily understood ones. First, I’ll show you how to effectively catch and describe an error without using the debugger. Take a look at the following example:
+There are many very advanced commands that can be used from this library but these are beyond the scope of this book, so I'll just focus on the more commonly used and easily understood ones. First, I'll show you how to effectively catch and describe an error without using the debugger. Take a look at the following example:
 
 ;Set the error handler
 OnErrorGoto(?ErrorHandler)
@@ -336,38 +336,38 @@ Text.s + "Error occurred in module:" + #TAB$ + GetErrorModuleName() + #CRLF$
 MessageRequester("ERROR", Text)
 End
 
-Here, I use the ‘OnErrorGoto()’ command to specify where to jump to if an error is encountered. The parameter of this command is a label destination of where to jump. If you look closely at the label that I have passed as a parameter, you will notice I have appended a question mark to the beginning of the label name. This is because the ‘OnErrorGoto()’ command actually needs a pointer of the label passing instead of just a label. Using a question mark like this returns the label’s memory address. A pointer is a variable which contains a memory address of where something is stored, see Chapter 13 (Pointers) for a more complete explanation. Like the ‘Goto’ and ‘Gosub’ command we also omit the colon on the end of the label when we pass the label name to this command.
+Here, I use the 'OnErrorGoto()' command to specify where to jump to if an error is encountered. The parameter of this command is a label destination of where to jump. If you look closely at the label that I have passed as a parameter, you will notice I have appended a question mark to the beginning of the label name. This is because the 'OnErrorGoto()' command actually needs a pointer of the label passing instead of just a label. Using a question mark like this returns the label's memory address. A pointer is a variable which contains a memory address of where something is stored, see Chapter 13 (Pointers) for a more complete explanation. Like the 'Goto' and 'Gosub' command we also omit the colon on the end of the label when we pass the label name to this command.
 
-After the label has been specified using the ‘OnErrorGoto()’ command, then other ‘OnError’ library commands help us to understand what went wrong and where. In the above example I’ve used these commands:
+After the label has been specified using the 'OnErrorGoto()' command, then other 'OnError' library commands help us to understand what went wrong and where. In the above example I've used these commands:
 
-‘GetErrorCounter()’
+'GetErrorCounter()'
 This command returns the number of errors that have occurred in your program since it was started.
 
-‘GetErrorNumber()’
+'GetErrorNumber()'
 This command returns the unique error number of the last error that occurred.
 
-‘GetErrorDescription()’
+'GetErrorDescription()'
 This command returns a String fully describing the error that has occurred.
 
-‘GetErrorLineNR()’
-This command returns the line number of where the error has occurred in your source code, either in the main source file or in any included files. For this command to work properly you must switch on the ‘Enable OnError Lines Support’ compiler option before compiling your program.
+'GetErrorLineNR()'
+This command returns the line number of where the error has occurred in your source code, either in the main source file or in any included files. For this command to work properly you must switch on the 'Enable OnError Lines Support' compiler option before compiling your program.
 
-‘GetErrorModuleName()’
-This command returns a String telling you in which source code file the error occurred in. This is very useful if you are using a lot of included source code files. For this command to work properly you must switch on the ‘Enable OnError Lines Support’ compiler option before compiling your program.
+'GetErrorModuleName()'
+This command returns a String telling you in which source code file the error occurred in. This is very useful if you are using a lot of included source code files. For this command to work properly you must switch on the 'Enable OnError Lines Support' compiler option before compiling your program.
 
-The last two commands listed here require that you switch on the ‘Enable OnError Lines Support’ compiler option before compiling your program. This is located in the compiler options within the IDE, (Menu:Compiler->Compiler Options...->Compiler Options->Enable OnError Lines Support).
+The last two commands listed here require that you switch on the 'Enable OnError Lines Support' compiler option before compiling your program. This is located in the compiler options within the IDE, (Menu:Compiler->Compiler Options...->Compiler Options->Enable OnError Lines Support).
 
-To actually demonstrate the ‘OnError’ commands catching and handling an error, I’ve created a reproducible error in the code. This error is a simple ‘divide by zero’ error and is coded like this:
+To actually demonstrate the 'OnError' commands catching and handling an error, I've created a reproducible error in the code. This error is a simple 'divide by zero' error and is coded like this:
 
 ;Trigger a classic 'divide by zero' error.
 Null.l = 0
 TestVariable.l = 100 / Null
 
-If the debugger is enabled then it would catch this easily but if we disabled it this error is missed. We can use the ‘OnError’ library to catch this error without the need for the debugger. To run the example and see it working properly, you need to first disable the debugger and enable the ‘Enable OnError Lines Support’ compiler option. Now when you compile the program, it should now catch the ‘divide by zero’ error and give you some detailed feedback, all without the help of the debugger. Fig.24 shows this example in action and shows the information collected by the other ‘OnError’ commands.
+If the debugger is enabled then it would catch this easily but if we disabled it this error is missed. We can use the 'OnError' library to catch this error without the need for the debugger. To run the example and see it working properly, you need to first disable the debugger and enable the 'Enable OnError Lines Support' compiler option. Now when you compile the program, it should now catch the 'divide by zero' error and give you some detailed feedback, all without the help of the debugger. Fig.24 shows this example in action and shows the information collected by the other 'OnError' commands.
 
 <<Fig 24>>
 
-In the last example, I used the ‘OnErrorGoto()’ command to specify a label to jump to if an error occurs. This command, however does not let you return from that label and continue with the program, even if you use the ‘Return’ keyword. This is where the ‘OnErrorGosub()’ command comes in handy. Using this command you can specify a label or a procedure as the error handler and this command does let you return from these with the appropriate keyword. Here’s an example of using a procedure:
+In the last example, I used the 'OnErrorGoto()' command to specify a label to jump to if an error occurs. This command, however does not let you return from that label and continue with the program, even if you use the 'Return' keyword. This is where the 'OnErrorGosub()' command comes in handy. Using this command you can specify a label or a procedure as the error handler and this command does let you return from these with the appropriate keyword. Here's an example of using a procedure:
 
 ;Handle any system error that occurs
 Procedure ErrorHandler()
@@ -394,15 +394,15 @@ TestVariable.l = 100 / Null
 MessageRequester("STATUS", "The program was allowed to continue running.")
 End
 
-Here I demonstrate how to resume the program execution after an error, something which you can’t do using the ‘OnErrorGoto()’ command. There is however one problem with this approach and that is if you choose to continue with the program execution, the error that occurred, may make this program unstable and crash. That’s why, if you give your program the ability to resume after an error, depending on how serious the error was, you should inform the user what has happened and encourage them to restart the program. Resuming program execution should ideally be used if you think your user may lose work after a program crash. Resuming gives them a chance to save what they was doing in your program (if it has this functionality) before they restart it.
+Here I demonstrate how to resume the program execution after an error, something which you can't do using the 'OnErrorGoto()' command. There is however one problem with this approach and that is if you choose to continue with the program execution, the error that occurred, may make this program unstable and crash. That's why, if you give your program the ability to resume after an error, depending on how serious the error was, you should inform the user what has happened and encourage them to restart the program. Resuming program execution should ideally be used if you think your user may lose work after a program crash. Resuming gives them a chance to save what they was doing in your program (if it has this functionality) before they restart it.
 
 <<Box 15>>
 
-Say for example, you have written a text editor and Bob is using it to write a letter. If after an hour of writing an unexplained error occurs and the program throws up an error message, Bob doesn’t want to have wasted that last hour and lose his letter due to an error. In this case, Bob can be informed of what has happened and be given the choice to resume the program execution to save his letter to a file before restarting the program. An email address could even be displayed in the error message for Bob to contact and explain what went wrong in order for the program writer to correct it.
+Say for example, you have written a text editor and Bob is using it to write a letter. If after an hour of writing an unexplained error occurs and the program throws up an error message, Bob doesn't want to have wasted that last hour and lose his letter due to an error. In this case, Bob can be informed of what has happened and be given the choice to resume the program execution to save his letter to a file before restarting the program. An email address could even be displayed in the error message for Bob to contact and explain what went wrong in order for the program writer to correct it.
 
 Raising And Catching User Defined Errors
-So far I’ve shown you a way of catching and documenting system errors that can occur in your program and this way will catch almost any serious system error you may encounter. Sometimes however you may want to raise your own error for the sake of customization. If this is the case you can use the ‘SetErrorNumber()’ command to create and fire an error of your own.
-The ‘SetErrorNumber()’ command needs one parameter in order to work properly and this parameter is a Long type number that identifies this error. I usually use constants to define custom error numbers then I can refer to these by name, like this:
+So far I've shown you a way of catching and documenting system errors that can occur in your program and this way will catch almost any serious system error you may encounter. Sometimes however you may want to raise your own error for the sake of customization. If this is the case you can use the 'SetErrorNumber()' command to create and fire an error of your own.
+The 'SetErrorNumber()' command needs one parameter in order to work properly and this parameter is a Long type number that identifies this error. I usually use constants to define custom error numbers then I can refer to these by name, like this:
 
 #ERROR_READFILE = 1
 #ERROR_WRITEFILE = 2
@@ -433,6 +433,6 @@ Text.s + "Error occurred in module:" + #TAB$ + GetErrorModuleName() + #CRLF$
 MessageRequester("ERROR", Text)
 End
 
-In the above example if the file ‘Report.txt’ cannot be read using the ‘ReadFile()’ command, I raise a custom error using the ‘SetErrorNumber()’ command. This error is identified by the constant ‘#ERROR_READFILE’ which has a value of ‘1’. Once an error has been triggered in this way the error handler label or procedure is called. In the error handler you can check to see what error number has been raised by using the ‘GetErrorNumber()’ command. Depending on what the result is of this command you can then tailor the error description to your hearts content. Here I’m testing the ‘GetErrorNumber()’ command with a ‘Select’ statement and using different description Strings depending on its value. The pop-up error message then displays this description.
+In the above example if the file 'Report.txt' cannot be read using the 'ReadFile()' command, I raise a custom error using the 'SetErrorNumber()' command. This error is identified by the constant '#ERROR_READFILE' which has a value of '1'. Once an error has been triggered in this way the error handler label or procedure is called. In the error handler you can check to see what error number has been raised by using the 'GetErrorNumber()' command. Depending on what the result is of this command you can then tailor the error description to your hearts content. Here I'm testing the 'GetErrorNumber()' command with a 'Select' statement and using different description Strings depending on its value. The pop-up error message then displays this description.
 
-As you can see from these examples, using the ‘OnError’ library gives you advanced error checking but using a very simple syntax.
+As you can see from these examples, using the 'OnError' library gives you advanced error checking but using a very simple syntax.

@@ -2,6 +2,6 @@ I
 
 The Core Language
 
-In this section, we will study the PureBasic language itself. I call this part ‘The Core Language’, because our focus will be on the essentials of PureBasic programming: its built-in types, statements and expressions. By the time you finish reading this section and studying the examples, you’ll be ready to write programs yourself.
+In this section, we will study the PureBasic language itself. I call this part 'The Core Language', because our focus will be on the essentials of PureBasic programming: its built-in types, statements and expressions. By the time you finish reading this section and studying the examples, you'll be ready to write programs yourself.
 
-The word ‘Core’ in the title is used on purpose, because this section is not an exhaustive document on every minute detail of PureBasic. While I may skip certain things along the way, the basics you learn here will stand you in very good stead for when the unknown pops up. There is also a mention of the history and development philosophy of PureBasic for those who are interested.
+The word 'Core' in the title is used on purpose, because this section is not an exhaustive document on every minute detail of PureBasic. While I may skip certain things along the way, the basics you learn here will stand you in very good stead for when the unknown pops up. There is also a mention of the history and development philosophy of PureBasic for those who are interested.

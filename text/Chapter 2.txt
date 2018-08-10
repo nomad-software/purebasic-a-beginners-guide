@@ -2,23 +2,23 @@
 
 Data Types
 
-Now that the introductions are over let’s begin this chapter with more substance, namely Data Types. As you may know, in computer programs you manipulate and process data. Data types are the descriptions of the containers of this data. In this chapter I will show you all the available built-in data types and explain fully how and when to use them.
+Now that the introductions are over let's begin this chapter with more substance, namely Data Types. As you may know, in computer programs you manipulate and process data. Data types are the descriptions of the containers of this data. In this chapter I will show you all the available built-in data types and explain fully how and when to use them.
 
 To enable you to get up and running as soon as possible, I have included many of examples and everything is explained using plain speech.
 
 Built-In Data Types
 
-Data types (or sometimes just called ‘types’) can be thought of as a way of giving stored data a description. The basic idea of typing data is to give some useful meaning to what is ultimately just binary digits. Be it text or numbers, describing this data using types makes it easier to understand, manipulate or retrieve. Data is held within the computers RAM until needed by the program. The amount of RAM needed to hold each data type depends on what type of data type is being used.
+Data types (or sometimes just called 'types') can be thought of as a way of giving stored data a description. The basic idea of typing data is to give some useful meaning to what is ultimately just binary digits. Be it text or numbers, describing this data using types makes it easier to understand, manipulate or retrieve. Data is held within the computers RAM until needed by the program. The amount of RAM needed to hold each data type depends on what type of data type is being used.
 
 Numbers
 
-The first data types to be introduced are the numbers types. Numbers can be used to store anything from a date, a length or even the result from a lengthy calculation. Anything you use numbers for in the real world, you can also use PureBasic’s numeric types to store that data.
+The first data types to be introduced are the numbers types. Numbers can be used to store anything from a date, a length or even the result from a lengthy calculation. Anything you use numbers for in the real world, you can also use PureBasic's numeric types to store that data.
 
-Numbers come in two flavors in PureBasic, Integers and Floating Point Numbers. Integers are numbers which don’t have a decimal point and can either be positive or negative. Here are a few examples of integers:
+Numbers come in two flavors in PureBasic, Integers and Floating Point Numbers. Integers are numbers which don't have a decimal point and can either be positive or negative. Here are a few examples of integers:
 
 16543     -1951434     100     -1066     0
 
-Floating Point Numbers (or ‘Floats’) on the other hand are numbers which do contain a decimal point and can also be either positive or negative. Here are a few examples of floating point numbers:
+Floating Point Numbers (or 'Floats') on the other hand are numbers which do contain a decimal point and can also be either positive or negative. Here are a few examples of floating point numbers:
 
 52.887     -11.0005     1668468.1     -0.000004     0.0
 
@@ -27,9 +27,9 @@ PureBasic provides seven numeric data types for you to use in your programming, 
 <<Fig 2>>
 
 Numerical Limits
-In Fig.2 you can see that many types have a numerical limit, this is directly linked to the amount of RAM that particular type is allocated. The amount of RAM allocated and the names of the numerical types are more or less the same as the C language. Note in C you will find there are many more types than listed here but PureBasic is about keeping things simple, not bending your head with hundreds of advanced types. For beginners, all you need to remember is the numerical limits of each type and understand that this can’t be exceeded. To explain why the memory allocated to each type affects the numerical limit, I’ll need to explain how the numbers are stored in RAM using Binary, this you can find in Chapter 13 (A Closer Look At Numeric Data Types).
+In Fig.2 you can see that many types have a numerical limit, this is directly linked to the amount of RAM that particular type is allocated. The amount of RAM allocated and the names of the numerical types are more or less the same as the C language. Note in C you will find there are many more types than listed here but PureBasic is about keeping things simple, not bending your head with hundreds of advanced types. For beginners, all you need to remember is the numerical limits of each type and understand that this can't be exceeded. To explain why the memory allocated to each type affects the numerical limit, I'll need to explain how the numbers are stored in RAM using Binary, this you can find in Chapter 13 (A Closer Look At Numeric Data Types).
 
-If a numeric data type is exceeded numerically then that numeric value will wrap around the lower numeric level. For example, if you assigned the value of ‘129’ to a Byte variable, then that value has exceeded the numerical limit for a Byte and will be wrapped to ‘-127’.
+If a numeric data type is exceeded numerically then that numeric value will wrap around the lower numeric level. For example, if you assigned the value of '129' to a Byte variable, then that value has exceeded the numerical limit for a Byte and will be wrapped to '-127'.
 
 Strings
 
@@ -45,7 +45,7 @@ Strings are probably the simplest data type to understand because they are so ea
 
 <<Fig 3>>
 
-Strings can be made up from any character in the ASCII character set, including the control characters (See Appendix B (Helpful Charts) for a full listing of ASCII characters) except the null character as that is used to signify the end of a String. Strings that use the null character to define its end are referred to as ‘Zero Terminated Strings’.
+Strings can be made up from any character in the ASCII character set, including the control characters (See Appendix B (Helpful Charts) for a full listing of ASCII characters) except the null character as that is used to signify the end of a String. Strings that use the null character to define its end are referred to as 'Zero Terminated Strings'.
 
 Variables And Constants
 
@@ -54,9 +54,9 @@ To store and manipulate data in any program you need to use the correct data typ
 Variables
 Typically, the name of a variable is bound to a particular area and amount of RAM (defined by its data type), and any operations on a variable will manipulate that associated area of memory. Variable names can be named anything you want, but many people like to keep them as descriptive as possible to convey what the actual value is that the variable holds. Variables are the building blocks of any computer program as they hold data that can be manipulated, referred to and ultimately displayed. Variables are essential for the organization and storage of your data.
 
-Okay, let’s get playing with PureBasic. Open the PureBasic IDE and let’s create a variable of our own. When you want to create a variable the syntax is very simple. You enter a variable name followed by a type suffix to define what type of variable it is to be, followed by an operation you wish to perform on it. This operation is primarily a value definition.
+Okay, let's get playing with PureBasic. Open the PureBasic IDE and let's create a variable of our own. When you want to create a variable the syntax is very simple. You enter a variable name followed by a type suffix to define what type of variable it is to be, followed by an operation you wish to perform on it. This operation is primarily a value definition.
 
-In the following statement, we assign the value of ‘1’ to the name ‘NumberOfLinesOfCode’, using the equals operator (=) and using a Byte as its data type.
+In the following statement, we assign the value of '1' to the name 'NumberOfLinesOfCode', using the equals operator (=) and using a Byte as its data type.
 
 NumberOfLinesOfCode.b = 1
 
@@ -64,22 +64,22 @@ Look at this statement a little more closely. You will see that the variable nam
 
 Number_Of_Lines_Of_Code.b = 1
 
-You can use any name you want for a variable but there are few rules. Variable names must not start with a number and must not contain any operators (see Fig.15 for a complete list of operators). Also no special characters are allowed such as accented characters (ß, ä, ö, ü). The ‘.b’ added to the end of the variable name is a suffix to tell the compiler that this variable is to be a Byte and as such will use the associated amount of memory and impose the associated numerical limit. Fig.2. shows all the suffixes you need to use for the number types, while Fig.3. shows the suffixes necessary for the String types. If a type suffix is not used like this:
+You can use any name you want for a variable but there are few rules. Variable names must not start with a number and must not contain any operators (see Fig.15 for a complete list of operators). Also no special characters are allowed such as accented characters (ÃŸ, Ã¤, Ã¶, Ã¼). The '.b' added to the end of the variable name is a suffix to tell the compiler that this variable is to be a Byte and as such will use the associated amount of memory and impose the associated numerical limit. Fig.2. shows all the suffixes you need to use for the number types, while Fig.3. shows the suffixes necessary for the String types. If a type suffix is not used like this:
 
 NumberOfLinesOfCode = 1
 
-The variable is declared as a Long as this is the default type of PureBasic. This is important to understand because if you forget the suffix on a variable you will create a Long type variable and possible bugs could occur. PureBasic does provide a way to change the default type by using the ‘Define’ keyword like this:
+The variable is declared as a Long as this is the default type of PureBasic. This is important to understand because if you forget the suffix on a variable you will create a Long type variable and possible bugs could occur. PureBasic does provide a way to change the default type by using the 'Define' keyword like this:
 
 Define.b
 NumberOfLinesOfCode = 1
 TodaysDate = 11
 
-The ‘Define’ keyword is given a suffix of its own and every variable after that is declared as that newly designated type. The above two variables for instance are both declared as Bytes because of the ‘.b’ suffix on the end of the ‘Define’ keyword. If this keyword is not used in a PureBasic program then the default type remains as a Long.
-If you want to declare a few variables for later use but don’t want to give them a value just yet, you could also use this style syntax:
+The 'Define' keyword is given a suffix of its own and every variable after that is declared as that newly designated type. The above two variables for instance are both declared as Bytes because of the '.b' suffix on the end of the 'Define' keyword. If this keyword is not used in a PureBasic program then the default type remains as a Long.
+If you want to declare a few variables for later use but don't want to give them a value just yet, you could also use this style syntax:
 
 Define.w Day, Month, Year
 
-This code switches the default type to a Word and declares three variables, ‘Day’, ‘Month’ and ‘Year’ as Words but because these variables have no value assigned to them, they are given the value of zero (0). Here is an example showing the creation of all variable types using PureBasic code:
+This code switches the default type to a Word and declares three variables, 'Day', 'Month' and 'Year' as Words but because these variables have no value assigned to them, they are given the value of zero (0). Here is an example showing the creation of all variable types using PureBasic code:
 
 ByteVariable.b = 123
 CharVariable.c = 222
@@ -93,19 +93,19 @@ StringVariableTwo$ = "Test String Two"
 StringVariableThree.s{6} = "abcdef"
 StringVariableFour${3} = "abc"
 
-You will notice the last four variables are Strings but are all defined by slightly different suffixes. The first two are unlimited length Strings while the last two are defined as fixed length Strings. Each one of these types can be defined by using two suffixes. These two different suffixes are ‘.s’ and ‘$’. Both of which are identical in every way, it’s just that the ‘$’ suffix is an old style, kept to appease Basic purists who like using the old style String suffix. Both can be used in the same program but the two suffixes are not interchangeable. For example, these two variables are different:
+You will notice the last four variables are Strings but are all defined by slightly different suffixes. The first two are unlimited length Strings while the last two are defined as fixed length Strings. Each one of these types can be defined by using two suffixes. These two different suffixes are '.s' and '$'. Both of which are identical in every way, it's just that the '$' suffix is an old style, kept to appease Basic purists who like using the old style String suffix. Both can be used in the same program but the two suffixes are not interchangeable. For example, these two variables are different:
 
 StringVariable.s = "Test String One"
 StringVariable$ = "Test String Two"
 
-Even though they have the same name, the different suffixes mean they are different variables all together. Don’t believe me? Well this can be tested by using the ‘Debug’ keyword.
+Even though they have the same name, the different suffixes mean they are different variables all together. Don't believe me? Well this can be tested by using the 'Debug' keyword.
 
 StringVariable.s = "Test String One"
 StringVariable$ = "Test String Two"
 Debug StringVariable.s
 Debug StringVariable$
 
-In this example the ‘Debug’ keyword is used to echo the values of the two variables to the Debug Output window. Type this example into the IDE and hit the ‘Compile/Run’ button (F5). You will see two lines appear in the Debug Output window showing the values of the two variables that we used ‘Debug’ with. This keyword is probably the most used keyword in the whole of the PureBasic language as it is used to test values and echo other useful text to the Debug Output window during program development. When a final executable is made all the ‘Debug’ commands are removed from the final program, leaving a small executable size.
+In this example the 'Debug' keyword is used to echo the values of the two variables to the Debug Output window. Type this example into the IDE and hit the 'Compile/Run' button (F5). You will see two lines appear in the Debug Output window showing the values of the two variables that we used 'Debug' with. This keyword is probably the most used keyword in the whole of the PureBasic language as it is used to test values and echo other useful text to the Debug Output window during program development. When a final executable is made all the 'Debug' commands are removed from the final program, leaving a small executable size.
 
 <<Box 3>>
 
@@ -116,7 +116,7 @@ testvariable = "Test String Two"
 TeStVaRiAbLe = "Test String Three"
 Debug tEsTvArIaBlE
 
-Here it looks as if I am assigning values to three different variables but in truth I am re-assigning a value to the same variable, it’s just that each time I do it, I’m using different a capitalization for the variable name. As you can see, letter case means nothing to a variable as this example outputs the text ‘Test String Three’. This example also demonstrates another feature of PureBasic’s variables, in that once a variable has been declared using a given data type, that data type remains assigned to that variable throughout the programs life. For example, once a variable has been declared as a String then from then on you can never store an integer or floating point number in that variable. Let me show you a bad example:
+Here it looks as if I am assigning values to three different variables but in truth I am re-assigning a value to the same variable, it's just that each time I do it, I'm using different a capitalization for the variable name. As you can see, letter case means nothing to a variable as this example outputs the text 'Test String Three'. This example also demonstrates another feature of PureBasic's variables, in that once a variable has been declared using a given data type, that data type remains assigned to that variable throughout the programs life. For example, once a variable has been declared as a String then from then on you can never store an integer or floating point number in that variable. Let me show you a bad example:
 
 StringVariable.s = "Test String One"
 StringVariable = 100
@@ -126,18 +126,18 @@ This example will never compile and if you try to, you will get a polite message
 StringVariable.s = "Test String One"
 StringVariable = "One Hundred"
 
-Because the variable ‘StringVariable’ was originally declared as a String, only Strings can be given as values to that variable from then on. When we change its value to ‘One Hundred’ it works fine because we change a String for a String. So let’s recap on the main variable rules.
+Because the variable 'StringVariable' was originally declared as a String, only Strings can be given as values to that variable from then on. When we change its value to 'One Hundred' it works fine because we change a String for a String. So let's recap on the main variable rules.
 
 1).  Variables must not contain spaces.
 2).  Variable names must not start with a number but can contain them.
 3).  Variable names must not contain any operators (See Fig.15).
-4).  Variable names must not contain any special or accented characters (ß, ä, ö, ü).
+4).  Variable names must not contain any special or accented characters (ÃŸ, Ã¤, Ã¶, Ã¼).
 5).  By default if no suffix is given to a variable then its data type is a Long.
 6).  Once a variable has been declared, its data type can never be changed during runtime.
 7).  Once a variable is declared you can use it freely without a suffix, the compiler remembers its type.
 
 Constants
-Constants are similar to variables in that they provide an easy way to reference data and can be called whatever you want, but that’s where the similarity ends. Constants are used when you want to give a particular piece of data a name while knowing that value will never change. Look at this example:
+Constants are similar to variables in that they provide an easy way to reference data and can be called whatever you want, but that's where the similarity ends. Constants are used when you want to give a particular piece of data a name while knowing that value will never change. Look at this example:
 
 #DAYS_IN_THE_YEAR = "365"
 
@@ -152,12 +152,12 @@ Before this example is compiled into your program, it really looks like this to 
 
 Debug "There are 365 days in the year."
 
-because the constant is replaced by the value it was assigned, in this case ‘365’, and then compiled.
+because the constant is replaced by the value it was assigned, in this case '365', and then compiled.
 
-All constants follow exactly the same naming rules as variables except for the suffixes, constants don’t use them regardless of what type of data you assign to a constant, because there is no memory allocation needed. All constants are declared using a prefix rather than a suffix. The prefix is a hash character (#).
+All constants follow exactly the same naming rules as variables except for the suffixes, constants don't use them regardless of what type of data you assign to a constant, because there is no memory allocation needed. All constants are declared using a prefix rather than a suffix. The prefix is a hash character (#).
 
 Enumerating Constants
-If you need a block of constants all of which are assigned numeric values enumerated one after the other, then you can use the ‘Enumeration’ keyword.
+If you need a block of constants all of which are assigned numeric values enumerated one after the other, then you can use the 'Enumeration' keyword.
 
 Enumeration
 	#ZERO
@@ -171,7 +171,7 @@ Debug #ONE
 Debug #TWO
 Debug #THREE
 
-You will see in the Debug Output window, each constant has a greater value than the one preceding it, starting at ‘0’. If you want to start the enumeration at a number other than ‘0’, you can use an optional numeric parameter with the ‘Enumeration’ keyword, like this:
+You will see in the Debug Output window, each constant has a greater value than the one preceding it, starting at '0'. If you want to start the enumeration at a number other than '0', you can use an optional numeric parameter with the 'Enumeration' keyword, like this:
 
 Enumeration 10
 	#TEN
@@ -183,7 +183,7 @@ Debug #TEN
 Debug #ELEVEN
 Debug #TWELVE
 
-Now you can see the constant ‘#TEN’ has the value of ‘10’ and the rest are incremented from then on. You can even use the ‘Step’ keyword after the numeric parameter to change the increment value within an enumeration block. Look at this example:
+Now you can see the constant '#TEN' has the value of '10' and the rest are incremented from then on. You can even use the 'Step' keyword after the numeric parameter to change the increment value within an enumeration block. Look at this example:
 
 Enumeration 10 Step 5
 	#TEN
@@ -195,7 +195,7 @@ Debug #TEN
 Debug #FIFTEEN
 Debug #TWENTY
 
-Now the constants are incremented by ‘5’, starting at ‘10’.
+Now the constants are incremented by '5', starting at '10'.
 
 If you assign a value at any time to a constant within an enumeration block, this sets a new value to be enumerated from. Just like this:
 
@@ -211,6 +211,6 @@ Debug #ONE_HUNDRED
 Debug #ONE_HUNDRED_AND_ONE
 Debug #ONE_HUNDRED_AND_TWO
 
-Here you can see demonstrated, after the line: ‘#ONE_HUNDRED = 100’, all the constants are then enumerated from ‘100’.
+Here you can see demonstrated, after the line: '#ONE_HUNDRED = 100', all the constants are then enumerated from '100'.
 
 Enumerated constants are used mostly in graphical user interface programing (See Chapter 9) where each window or gadget needs its own ID, enumerated constants are a great way to provide these IDs and enumerated blocks take all the hassle out of assigning incremented values to a lot of constants.

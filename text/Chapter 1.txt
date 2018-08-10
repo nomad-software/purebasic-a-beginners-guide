@@ -2,26 +2,26 @@
 
 Getting Started
 
-This first chapter starts with a brief history of PureBasic and then takes a quick look at how to run PureBasic programs. Its main goal is to get you set up to compile and run PureBasic programs on your own computer, so you can work along with the examples and tutorials given in this book. Along the way we’ll study different ways you can compile from within PureBasic - just enough to get you started.
+This first chapter starts with a brief history of PureBasic and then takes a quick look at how to run PureBasic programs. Its main goal is to get you set up to compile and run PureBasic programs on your own computer, so you can work along with the examples and tutorials given in this book. Along the way we'll study different ways you can compile from within PureBasic - just enough to get you started.
 
-We’ll also take a look at the included IDE that comes with the standard installation of PureBasic. It looks a little daunting for new users but after an overview and a little tutorial, things will look less scary
+We'll also take a look at the included IDE that comes with the standard installation of PureBasic. It looks a little daunting for new users but after an overview and a little tutorial, things will look less scary
 
 The History Of PureBasic
 
-PureBasic started life in 1995 as a command-set expansion for BlitzBasic after PureBasic’s author, Frédéric Laboureur hit many limitations with BlitzBasic while programming an application called ‘TheBoss’, a powerful application launcher for the Commodore Amiga. The expansion named ‘NCS’ (NewCommandSet) was entirely coded using 68000 assembly, as all new commands had to be coded in assembly at this time of Blitz’s development. Fred’s progress was quite slow to begin with as good documentation was hard to find for assembly programming and of course online forums didn’t then exist for BlitzBasic plug-in programming.
+PureBasic started life in 1995 as a command-set expansion for BlitzBasic after PureBasic's author, FrÃ©dÃ©ric Laboureur hit many limitations with BlitzBasic while programming an application called 'TheBoss', a powerful application launcher for the Commodore Amiga. The expansion named 'NCS' (NewCommandSet) was entirely coded using 68000 assembly, as all new commands had to be coded in assembly at this time of Blitz's development. Fred's progress was quite slow to begin with as good documentation was hard to find for assembly programming and of course online forums didn't then exist for BlitzBasic plug-in programming.
 
-Development of ‘NCS’ continued for about a year after which Fred received very positive comments regarding his work, through which he became very familiar with assembly programming and debugging. He was also astonished with the incredible things that could be achieved with an old 68000 processor if everything was programmed correctly.
+Development of 'NCS' continued for about a year after which Fred received very positive comments regarding his work, through which he became very familiar with assembly programming and debugging. He was also astonished with the incredible things that could be achieved with an old 68000 processor if everything was programmed correctly.
 
 Around this time, IBM PowerPC based processor cards for the Amiga started to appear and were a very powerful alternative to the Motorola 68000 processor. They were very fast and sold at a relatively cheap cost, even compared to the high-end 68060 processors. With the arrival of these new chips, people wanted a native version of Blitz to support them, as it was an extremely popular language at this time, but everyone knew that all development had been put on hold for the Amiga platform in favor of the Intel x86 based PCs. An opportunity had presented itself for the creation of a new language which would be the logical replacement and enhancement of BlitzBasic, which also would have full support for the 680x0 and PowerPC processors.
 
 Enter PureBasic!
-The early design and the first version of PureBasic started in 1998. The main differences between PureBasic and ‘normal’ compilers then was the inclusion of a ‘virtual processor’ (which actually used the 680x0 assembly mnemonics) right from the start to allow different kinds of assembly output (or any language) possible without changing the compiler core. After the initial design was finished and programming began, things started to move very fast. Fred fully dedicated all his time to program the compiler and learned a great deal including the C language to be able eventually to produce a fully portable compiler.
+The early design and the first version of PureBasic started in 1998. The main differences between PureBasic and 'normal' compilers then was the inclusion of a 'virtual processor' (which actually used the 680x0 assembly mnemonics) right from the start to allow different kinds of assembly output (or any language) possible without changing the compiler core. After the initial design was finished and programming began, things started to move very fast. Fred fully dedicated all his time to program the compiler and learned a great deal including the C language to be able eventually to produce a fully portable compiler.
 
-The first version of PureBasic was initially released for the Amiga and (even if it was badly bugged) had an integrated and fully cross platform editor, an integrated debugger and a huge internal command-set, you guessed it, taken directly from the former ‘NCS’ Blitz package.
+The first version of PureBasic was initially released for the Amiga and (even if it was badly bugged) had an integrated and fully cross platform editor, an integrated debugger and a huge internal command-set, you guessed it, taken directly from the former 'NCS' Blitz package.
 
 While refining and bug testing, Fred also studied other programming languages to give him a firm grounding in other areas and to give him the best foundation to make better, more informed decisions about the internal design and how PureBasic should grow and expand in the future.
 
-During the fourth year of Fred’s computer science diploma, the Amiga was starting to be considered a dead platform and many of Fred’s fellow students asked why wasn’t he working on a Windows based version. Fred of course defended himself saying that it would be a piece of cake to port PureBasic to a new system, but he had to prove it!
+During the fourth year of Fred's computer science diploma, the Amiga was starting to be considered a dead platform and many of Fred's fellow students asked why wasn't he working on a Windows based version. Fred of course defended himself saying that it would be a piece of cake to port PureBasic to a new system, but he had to prove it!
 
 <<BOX 1>>
 
@@ -38,86 +38,86 @@ Version 4 is the latest incarnation of PureBasic which has nearly all been rewri
 
 The Development Philosophy Of PureBasic
 
-The development philosophy of PureBasic is slightly different from that of other languages in many respects. Here is a list of some of PureBasic’s development goals and policies.
+The development philosophy of PureBasic is slightly different from that of other languages in many respects. Here is a list of some of PureBasic's development goals and policies.
 
 After the initial purchase of a PureBasic license, all future updates are free of charge for life.
 All Programs compiled using PureBasic can be sold commercially free of any further cost or royalties.
 All programs should compile at the minimum file size they can be and contain no bloated code.
-All compiled programs should not rely on any runtimes and be completely ‘stand-alone’ executables.
+All compiled programs should not rely on any runtimes and be completely 'stand-alone' executables.
 
 The above list is a big selling point in itself and contrary to many development philosophies of rival companies. Can you imagine Microsoft giving you free version upgrades of VB.NET for life? Me neither.
 
-PureBasic’s development philosophy is one of creating a programming environment that is both fun and functional to use. It’s all about giving the users the power to create the programs they need in the simplest way possible. With all past version upgrades there has been included bug fixes, new commands plus brand new IDEs and a Visual Designer, the last two of which are covered in later areas of this book. So not only are bug fixes a feature of future upgrades, there are also additions to the language command-set along with the addition of useful tools and updates to the actual development environment itself.
+PureBasic's development philosophy is one of creating a programming environment that is both fun and functional to use. It's all about giving the users the power to create the programs they need in the simplest way possible. With all past version upgrades there has been included bug fixes, new commands plus brand new IDEs and a Visual Designer, the last two of which are covered in later areas of this book. So not only are bug fixes a feature of future upgrades, there are also additions to the language command-set along with the addition of useful tools and updates to the actual development environment itself.
 
 A First Look At The IDE
 
-PureBasic’s Integrated Development Environment consists of a source code editor, a visual form designer and a compiler. The visual form designer will be given an overview later in Chapter 9 (A First Look At The New Visual Designer), so only the source code editor and compiler will be mentioned here. In the PureBasic community the source code editor is usually referred to as the ‘IDE’, while the visual form designer is usually given the dubious name of the ‘VD’. This is mainly due to save typing long names in the forums while asking questions or participating in a discussion, so I’ll use that convention here.
+PureBasic's Integrated Development Environment consists of a source code editor, a visual form designer and a compiler. The visual form designer will be given an overview later in Chapter 9 (A First Look At The New Visual Designer), so only the source code editor and compiler will be mentioned here. In the PureBasic community the source code editor is usually referred to as the 'IDE', while the visual form designer is usually given the dubious name of the 'VD'. This is mainly due to save typing long names in the forums while asking questions or participating in a discussion, so I'll use that convention here.
 
 <<Fig 1>>
 
-The IDE (Fig. 1) is written entirely in PureBasic and is the main tool used to write PureBasic programs, so let’s take a tour around the main interface of the editor. At the top is the menu bar giving access to the menu commands, below that is a customizable toolbar which can be configured to hold many different icons each triggering a pre-defined menu command. Underneath the toolbar on the left is the main editor pane, here all PureBasic code is entered. On the right of the editor pane is another user customized pane which can contain a procedure viewer, a variable viewer, a file explorer, etc... Also by default the error log will be shown as a pane attached to the bottom of the editor pane, this can be turned off and on via a menu command (Menu:Debugger->Error Log->Show Error Log). Below the panes there is the status bar which shows information on what row and column is being edited and displays the quick help.
+The IDE (Fig. 1) is written entirely in PureBasic and is the main tool used to write PureBasic programs, so let's take a tour around the main interface of the editor. At the top is the menu bar giving access to the menu commands, below that is a customizable toolbar which can be configured to hold many different icons each triggering a pre-defined menu command. Underneath the toolbar on the left is the main editor pane, here all PureBasic code is entered. On the right of the editor pane is another user customized pane which can contain a procedure viewer, a variable viewer, a file explorer, etc... Also by default the error log will be shown as a pane attached to the bottom of the editor pane, this can be turned off and on via a menu command (Menu:Debugger->Error Log->Show Error Log). Below the panes there is the status bar which shows information on what row and column is being edited and displays the quick help.
 
-This editor is a ‘front-end’ to the actual PureBasic compiler. Once code has been entered into the editor pane and the ‘Compile/Run’ toolbar button has been pressed (Shortcut Key: F5) the code is then passed to the compiler for the creation of an executable. Any plain text editor could be used to write source code for PureBasic but I recommend using the official editor as it has been written from the ground up to only support the PureBasic compiler. Not only that but other editors require some configuration to correctly pass the file to the PureBasic compiler which some users find a little too complicated to begin with.
+This editor is a 'front-end' to the actual PureBasic compiler. Once code has been entered into the editor pane and the 'Compile/Run' toolbar button has been pressed (Shortcut Key: F5) the code is then passed to the compiler for the creation of an executable. Any plain text editor could be used to write source code for PureBasic but I recommend using the official editor as it has been written from the ground up to only support the PureBasic compiler. Not only that but other editors require some configuration to correctly pass the file to the PureBasic compiler which some users find a little too complicated to begin with.
 
 <<Box 2>>
 
 How To Run PureBasic Programs
 
-Right, let’s get started to learn how to run programs. Before they are compiled, PureBasic programs are just plain text files (usually containing the suffix ‘*.pb’) that contain the actual PureBasic code. All that needs to be done to compile these text files into an executable program is to pass them to the compiler for processing. There are many ways of doing this such as:
+Right, let's get started to learn how to run programs. Before they are compiled, PureBasic programs are just plain text files (usually containing the suffix '*.pb') that contain the actual PureBasic code. All that needs to be done to compile these text files into an executable program is to pass them to the compiler for processing. There are many ways of doing this such as:
 
 In the IDE:
-	Press the ‘F5’ keyboard shortcut for ‘Compile/Run’.
-	Press the ‘Compile/Run’ toolbar button.
-	Select the menu command: ‘Compiler->Compile/Run’.
-	Select the menu command: ‘Compiler->Create Executable...’.
+	Press the 'F5' keyboard shortcut for 'Compile/Run'.
+	Press the 'Compile/Run' toolbar button.
+	Select the menu command: 'Compiler->Compile/Run'.
+	Select the menu command: 'Compiler->Create Executable...'.
 
 Using the command line:
-	Enter the command: ‘PBCompiler filename’ where ‘filename’ is the name of the text file.
+	Enter the command: 'PBCompiler filename' where 'filename' is the name of the text file.
 
 After reading the above list it seems that there is many different ways of achieving the same result, but some of these are slightly different and should be explained more clearly.
 
-The first three IDE methods mentioned above, achieve the same result and any one of these three can be used while actually writing and testing the current program (it doesn’t matter which one). The purpose of these three commands is in the name, ‘Compile/Run’.
+The first three IDE methods mentioned above, achieve the same result and any one of these three can be used while actually writing and testing the current program (it doesn't matter which one). The purpose of these three commands is in the name, 'Compile/Run'.
 
-When selected the text file is immediately compiled into a temporary executable file called ‘purebasic0.exe’ within the ‘/PureBasic/Compilers’ folder and that executable file is then run. This is handy when you need to see immediately how your program runs, without specifying a proper name for the compiled executable. If this temporary program file is still running while another program is compiled and run, then a new temporary file will be created called ‘purebasic1.exe’, and so on. If, however the first program has ended while using the ‘Compile/Run’ method, then the compiler re-uses old numbers on the temporary files and keeps on using ‘purebasic0.exe’ as the temporary name. This makes sure that there aren’t huge numbers of temporary executable files within the ‘/PureBasic/Compilers’ folder.
+When selected the text file is immediately compiled into a temporary executable file called 'purebasic0.exe' within the '/PureBasic/Compilers' folder and that executable file is then run. This is handy when you need to see immediately how your program runs, without specifying a proper name for the compiled executable. If this temporary program file is still running while another program is compiled and run, then a new temporary file will be created called 'purebasic1.exe', and so on. If, however the first program has ended while using the 'Compile/Run' method, then the compiler re-uses old numbers on the temporary files and keeps on using 'purebasic0.exe' as the temporary name. This makes sure that there aren't huge numbers of temporary executable files within the '/PureBasic/Compilers' folder.
 
-The last IDE method, using the ‘Compiler->Create Executable...’ menu command is for when all development is finished on the current program and you are ready to compile and deploy your executable file. Once this menu command has been selected a dialog box appears asking you to specify a name and location for your final executable program file.
+The last IDE method, using the 'Compiler->Create Executable...' menu command is for when all development is finished on the current program and you are ready to compile and deploy your executable file. Once this menu command has been selected a dialog box appears asking you to specify a name and location for your final executable program file.
 
 The Windows Command Prompt method is for more advanced users and enables you to manually type in commands to pass the text file to the PureBasic compiler as a parameter. Other parameters can be passed along with the filename to further customize the compilation. These other parameters will be discussed later in Chapter 13 (Advanced Compiler Options).
 
-That is all there is to compile and run your first program. After the commands are entered into the editor pane just hit ‘F5’ and you’re away!
+That is all there is to compile and run your first program. After the commands are entered into the editor pane just hit 'F5' and you're away!
 
 The Debugger
 
-The PureBasic debugger is a tool which controls the execution of the program you’re working on. It controls and keeps track of all variables and procedure parameters, etc. as the program is running. It is a second pair of eyes on your code to highlight errors and to avoid potential program crashes such as zero division, illegal array offset access and data overflow errors. It can also be used as a brake to halt the program at any given time to see what actual variable values are. The program execution can be stopped and forwarded step by step to locate any faults or strange behavior. This can be very useful especially if a program falls into an endless loop or you are unsure of what value a particular variable holds at any given time.
+The PureBasic debugger is a tool which controls the execution of the program you're working on. It controls and keeps track of all variables and procedure parameters, etc. as the program is running. It is a second pair of eyes on your code to highlight errors and to avoid potential program crashes such as zero division, illegal array offset access and data overflow errors. It can also be used as a brake to halt the program at any given time to see what actual variable values are. The program execution can be stopped and forwarded step by step to locate any faults or strange behavior. This can be very useful especially if a program falls into an endless loop or you are unsure of what value a particular variable holds at any given time.
 
-The Debugger can be toggled on and off at any time by pressing the ‘Enable Debugger’ toolbar button or by selecting the menu command (Menu:Debugger->Enable Debugger). Careful when developing a program with the debugger off, you could crash your computer if a problem isn’t recognized and is allowed to execute.
+The Debugger can be toggled on and off at any time by pressing the 'Enable Debugger' toolbar button or by selecting the menu command (Menu:Debugger->Enable Debugger). Careful when developing a program with the debugger off, you could crash your computer if a problem isn't recognized and is allowed to execute.
 
 A Note On Program Structure
 
-The structure of a PureBasic program is quite easy to understand. The compiler processes the text file from the top to the bottom. It’s that easy. Commands written at the top of the file are processed before the ones written below, just as if you were reading the file yourself. If the debugger spots a problem the compilation is stopped and an error is raised. Take this pseudo-code as an example:
+The structure of a PureBasic program is quite easy to understand. The compiler processes the text file from the top to the bottom. It's that easy. Commands written at the top of the file are processed before the ones written below, just as if you were reading the file yourself. If the debugger spots a problem the compilation is stopped and an error is raised. Take this pseudo-code as an example:
 
 1 PRINT "THIS LINE IS EXECUTED FIRST"
 2 PRINT "THIS LINE IS EXECUTED SECOND"
 3 PRINT "THIS LINE IS EXECUTED THIRD"
 
-The output of this pseudo-code example would be three lines of text displayed in the order that they were written (1-3). This is exactly how the compiler processes the text file. This is important to understand and remember, because you will run into errors if, for example, you try to gain access to a file that hasn’t been opened yet. This all seems pretty straightforward but you may run into this at sometime, especially when you start to use procedures (these will be explained fully in Chapter 6). There is more to a program’s structure than this little snippet but this will become apparent as your journey continues and I expand more on using statements and procedures.
+The output of this pseudo-code example would be three lines of text displayed in the order that they were written (1-3). This is exactly how the compiler processes the text file. This is important to understand and remember, because you will run into errors if, for example, you try to gain access to a file that hasn't been opened yet. This all seems pretty straightforward but you may run into this at sometime, especially when you start to use procedures (these will be explained fully in Chapter 6). There is more to a program's structure than this little snippet but this will become apparent as your journey continues and I expand more on using statements and procedures.
 
 Introducing The PureBasic Helpfile
 
 With every PureBasic installation, a complete helpfile is installed alongside. This helpfile is a fantastic reference for the entire PureBasic language but can be a little daunting for new users to refer to because sometimes things are not explained fully. If they were, then it would be a very sizable document and not very printer friendly. As it stands though, it is an invaluable resource for looking up keywords, checking syntax and it integrates nicely with the IDE. In fact, every time I personally create a program using the PureBasic IDE, I like to keep the helpfile open at all times to quickly flick between the two. This simple habit could save hours of valuable time.
 
 IDE Integration
-At anytime when you are using the IDE to create your program, you can press the ‘F1’ key on your keyboard to trigger the launching of the PureBasic helpfile. Also, if you happen to have your cursor within the IDE upon a PureBasic keyword while pressing ‘F1’, then the helpfile is brought to the front and that keyword will be highlighted within the helpfile, giving you an explanation of that command. This integration between the IDE and helpfile is invaluable once you start to gain speed while programming.
+At anytime when you are using the IDE to create your program, you can press the 'F1' key on your keyboard to trigger the launching of the PureBasic helpfile. Also, if you happen to have your cursor within the IDE upon a PureBasic keyword while pressing 'F1', then the helpfile is brought to the front and that keyword will be highlighted within the helpfile, giving you an explanation of that command. This integration between the IDE and helpfile is invaluable once you start to gain speed while programming.
 
-Let’s try a small example to show this in action, type this (exactly) into the IDE:
+Let's try a small example to show this in action, type this (exactly) into the IDE:
 
 OpenConsole()
 Print("Press enter to exit")
 Input()
 End
 
-After running this little program it opens a console window, then prints a line of text to it informing the user in order to exit he or she must press ‘enter’, during which we wait for input. After the enter key is pressed then we then end the program nicely.
+After running this little program it opens a console window, then prints a line of text to it informing the user in order to exit he or she must press 'enter', during which we wait for input. After the enter key is pressed then we then end the program nicely.
 
-If you place the flashing IDE cursor upon any keywords that are used in this program, then press ‘F1’, the helpfile is brought to the front and flipped to the page that describes that command. For example, place your flashing cursor anywhere within the ‘OpenConsole()’ keyword and hit ‘F1’. You will now see the ‘OpenConsole()’ help page appear like magic!
+If you place the flashing IDE cursor upon any keywords that are used in this program, then press 'F1', the helpfile is brought to the front and flipped to the page that describes that command. For example, place your flashing cursor anywhere within the 'OpenConsole()' keyword and hit 'F1'. You will now see the 'OpenConsole()' help page appear like magic!
 
 If you want to learn more about using the built-in PureBasic helpfile, refer to Chapter 7 (Using The PureBasic Helpfile).

@@ -2,22 +2,22 @@
 
 Conditional Statements And Loops
 
-In this chapter I’ll introduce conditional statements and loops. These are major parts of any program and help define the program flow. I start by explaining what boolean values are and how PureBasic handles them. I then move on to conditional statements such as ‘If’ and ‘Select’ which are used to tell the program how to proceed when a particular condition is met. I then finish the chapter with explanations and examples of the different loops that are available for use in PureBasic. As always full explanations are given along with many examples.
+In this chapter I'll introduce conditional statements and loops. These are major parts of any program and help define the program flow. I start by explaining what boolean values are and how PureBasic handles them. I then move on to conditional statements such as 'If' and 'Select' which are used to tell the program how to proceed when a particular condition is met. I then finish the chapter with explanations and examples of the different loops that are available for use in PureBasic. As always full explanations are given along with many examples.
 
 Boolean Logic
 
-First let’s dig out the history books. George Boole was a mathematician and philosopher who invented a form of algebra now called Boolean algebra. The logic behind this form of algebra has been named Boolean Logic in honor of George Boole. This form has grown to be the basis of all modern computer arithmetic. What is astonishing is that George Boole invented this form roughly seventy years before the creation of the first computer that used it!
+First let's dig out the history books. George Boole was a mathematician and philosopher who invented a form of algebra now called Boolean algebra. The logic behind this form of algebra has been named Boolean Logic in honor of George Boole. This form has grown to be the basis of all modern computer arithmetic. What is astonishing is that George Boole invented this form roughly seventy years before the creation of the first computer that used it!
 
-In a nutshell, the entire system revolves around two values, True and False. These two values (or states) are tested using logic operations to determine a result. It really is as simple as that. The three most basic logic operations were (and still are) AND, OR and NOT. It was these three operators that formed the basis of Boole’s algebra form, and were the only operations necessary to perform comparisons or basic mathematics. (You can see these logical operators implemented in PureBasic and read how to use them in Chapter 3).
+In a nutshell, the entire system revolves around two values, True and False. These two values (or states) are tested using logic operations to determine a result. It really is as simple as that. The three most basic logic operations were (and still are) AND, OR and NOT. It was these three operators that formed the basis of Boole's algebra form, and were the only operations necessary to perform comparisons or basic mathematics. (You can see these logical operators implemented in PureBasic and read how to use them in Chapter 3).
 
-PureBasic does not have a boolean data type (as you can see from Fig.2 and Fig.3), unlike some languages such as C++. So in PureBasic to express a true or false value we use numbers. ‘1’ equaling True and ‘0’ equaling False, keep this in mind when testing for a true or false result. If you are using these numeric values to represent true and false, then it would be a good idea to use PureBasic’s built-in constants instead, to make your program code easier to read and understand later on.
+PureBasic does not have a boolean data type (as you can see from Fig.2 and Fig.3), unlike some languages such as C++. So in PureBasic to express a true or false value we use numbers. '1' equaling True and '0' equaling False, keep this in mind when testing for a true or false result. If you are using these numeric values to represent true and false, then it would be a good idea to use PureBasic's built-in constants instead, to make your program code easier to read and understand later on.
 
 Here are the two constants:
 
 #True
 #False
 
-‘#True’ has the value of ‘1’ and ‘#False’ has the value of ‘0’.
+'#True' has the value of '1' and '#False' has the value of '0'.
 
 Nearly all commands in PureBasic return a value. Sometimes this is the value of a mathematical function or it may be the status of a window you have just created. These values are returned to be tested if needed and sometimes they are required to make sure certain actions take place. Look at this piece of pseudo-code:
 
@@ -27,16 +27,16 @@ else
 	tell the user there has been a problem
 	end the program
 
-This is not real compilable code but you get the idea. Here I’m testing to make sure my window has been created. Once I have tested that it has been created then I can draw my stuff on it. If, however, it has not been created, then I end the program after informing the user something went wrong. If I don’t test the window creation, I might run the risk of a bad program crash if I try to draw buttons and graphics on something that doesn’t exist.
+This is not real compilable code but you get the idea. Here I'm testing to make sure my window has been created. Once I have tested that it has been created then I can draw my stuff on it. If, however, it has not been created, then I end the program after informing the user something went wrong. If I don't test the window creation, I might run the risk of a bad program crash if I try to draw buttons and graphics on something that doesn't exist.
 
-This is a first glimpse of the value of having true and false tests. This also leads us nicely into the next section which explains the ‘If’ keyword in more detail.
+This is a first glimpse of the value of having true and false tests. This also leads us nicely into the next section which explains the 'If' keyword in more detail.
 
-The ‘If’ Statement
+The 'If' Statement
 
-An ‘If’ keyword is used to construct statements which effect the flow of the program. It affects which path to choose when a certain condition arises or is met. Sometimes when programs are running, you may get unusual input or errors and is nice to be able to direct the flow of the program to handle such things, if and when they occur.
+An 'If' keyword is used to construct statements which effect the flow of the program. It affects which path to choose when a certain condition arises or is met. Sometimes when programs are running, you may get unusual input or errors and is nice to be able to direct the flow of the program to handle such things, if and when they occur.
 
-Constructing ‘If’ Statements
-An ‘If’ statement is used to test for a true value, if it receives this true value, then it immediately executes the piece of code after the first line of the ‘If’ statement. If it doesn’t receive this true value, then it will execute another separate piece of code immediately after the ‘Else’ keyword further along in the statement. Let’s take a look at an example.
+Constructing 'If' Statements
+An 'If' statement is used to test for a true value, if it receives this true value, then it immediately executes the piece of code after the first line of the 'If' statement. If it doesn't receive this true value, then it will execute another separate piece of code immediately after the 'Else' keyword further along in the statement. Let's take a look at an example.
 
 a.l = 5
 If a = 5
@@ -44,11 +44,11 @@ If a = 5
 Else
 	Debug "No true value was found"
 EndIf
-Here the ‘If’ operator is testing that the variable ‘a’ equals ‘5’. It does, and returns a true value, so the first line after the ‘If’ keyword is executed. If this comparison returned false then the code after the ‘Else’ keyword would of been executed. To finished the ‘If’ statement off, you must use the ‘EndIf’ keyword, as this defines the end of the ‘If’ statement.
+Here the 'If' operator is testing that the variable 'a' equals '5'. It does, and returns a true value, so the first line after the 'If' keyword is executed. If this comparison returned false then the code after the 'Else' keyword would of been executed. To finished the 'If' statement off, you must use the 'EndIf' keyword, as this defines the end of the 'If' statement.
 
 <<Box 4>>
 
-The first thing to take notice of when learning about ‘If’ statements is the expression that directly follows the ‘If’ keyword. This expression is being tested to see if it evaluates as true. This expression could be a simple variable or a very long expression. The ‘Else’ keyword is also completely optional and is only used here to present a complete example. We could omit it completely and re-type the above example as this:
+The first thing to take notice of when learning about 'If' statements is the expression that directly follows the 'If' keyword. This expression is being tested to see if it evaluates as true. This expression could be a simple variable or a very long expression. The 'Else' keyword is also completely optional and is only used here to present a complete example. We could omit it completely and re-type the above example as this:
 
 a.l = 5
 
@@ -56,9 +56,9 @@ If a = 5
 	Debug "A true value was found"
 EndIf
 
-The only drawback with this smaller example is that it doesn’t provide any feedback when a false result is encountered. There is no rule to say that you must use the ‘Else’ keyword within an ‘If’ statement but sometimes it’s nice to provide a way of handling a false result for the sake of completeness.
+The only drawback with this smaller example is that it doesn't provide any feedback when a false result is encountered. There is no rule to say that you must use the 'Else' keyword within an 'If' statement but sometimes it's nice to provide a way of handling a false result for the sake of completeness.
 
-Let’s look at a simple ‘If’ statement to test to see if a variable has a value.
+Let's look at a simple 'If' statement to test to see if a variable has a value.
 
 Beads.l = 5
 
@@ -68,9 +68,9 @@ Else
 	Debug "The variable does not have a value"
 EndIf
 
-Here, after the ‘If’ keyword I have used just one variable as the expression to test. This variable is tested to see if it returns a value, which in this case it does. The value is not ‘0’, so it is considered true (See the info box ‘Everything Is True?’) and the relevant piece of code is executed. Try changing the value of ‘Beads’ to ‘0’ and run again to see a false result.
+Here, after the 'If' keyword I have used just one variable as the expression to test. This variable is tested to see if it returns a value, which in this case it does. The value is not '0', so it is considered true (See the info box 'Everything Is True?') and the relevant piece of code is executed. Try changing the value of 'Beads' to '0' and run again to see a false result.
 
-Let’s take a look at a more complicated example of an expression inside an ‘If’ statement. Re-read Chapter 3 if you need to understand fully all the operators used in this expression.
+Let's take a look at a more complicated example of an expression inside an 'If' statement. Re-read Chapter 3 if you need to understand fully all the operators used in this expression.
 
 Value1.l = 10
 Value2.l = 5
@@ -82,10 +82,10 @@ Else
 	Debug "The expression evaluates as false"
 EndIf
 
-This ‘If’ statement is testing to see if ‘Value1’ is greater than or equal to ‘10’ and that ‘Value2’ divided by ‘5’ is equal to ‘Value3’. As you can see the expressions that can be tested can be quite complicated and be very specific about what values you are testing for.
+This 'If' statement is testing to see if 'Value1' is greater than or equal to '10' and that 'Value2' divided by '5' is equal to 'Value3'. As you can see the expressions that can be tested can be quite complicated and be very specific about what values you are testing for.
 
-The ‘ElseIf’ Keyword
-Another keyword that can be used within an ‘If’ statement is the ‘ElseIf’ keyword. The ‘ElseIf’ keyword, as its name suggests, is a combination of ‘Else’ and ‘If’. Like ‘Else’, it extends an ‘If’ statement to execute a different piece of code if the original ‘If’ expression evaluates as false. However, unlike the ‘Else’ keyword, it will execute an alternative piece of code only if the ‘ElseIf’ conditional expression evaluates as true. Confused? Here’s an example:
+The 'ElseIf' Keyword
+Another keyword that can be used within an 'If' statement is the 'ElseIf' keyword. The 'ElseIf' keyword, as its name suggests, is a combination of 'Else' and 'If'. Like 'Else', it extends an 'If' statement to execute a different piece of code if the original 'If' expression evaluates as false. However, unlike the 'Else' keyword, it will execute an alternative piece of code only if the 'ElseIf' conditional expression evaluates as true. Confused? Here's an example:
 
 NumberOfBeads.l = 10
 
@@ -97,17 +97,17 @@ Else
 	Debug "The variable has a value of '5'"
 EndIf
 
-Here we test the value of the ‘NumberOfBeads’ variable. The first ‘If’ tests to see if this value is less than ‘5’. Because this returns false the program then moves onto the ‘ElseIf’ part. Here the ‘ElseIf’ line returns true because ‘NumberOfBeads’ is greater than ‘5’.
+Here we test the value of the 'NumberOfBeads' variable. The first 'If' tests to see if this value is less than '5'. Because this returns false the program then moves onto the 'ElseIf' part. Here the 'ElseIf' line returns true because 'NumberOfBeads' is greater than '5'.
 
-The ‘ElseIf’ statement is a great way to extend an ‘If’ to check for multiple values and there is an unlimited number of ‘ElseIf’ checks you can make within an ‘If’ statement. The only drawback is that when a large number of these statements are used, things can get a little complicated while deciding the order with which they are typed in. When a great deal of checks are needed sometimes a ‘Select’ statement is preferred.
+The 'ElseIf' statement is a great way to extend an 'If' to check for multiple values and there is an unlimited number of 'ElseIf' checks you can make within an 'If' statement. The only drawback is that when a large number of these statements are used, things can get a little complicated while deciding the order with which they are typed in. When a great deal of checks are needed sometimes a 'Select' statement is preferred.
 
 Statement Skipping
-At anytime during the execution of an ‘If’ statement, if any part of the statement returns true then the rest of the ‘If’ statement is skipped and not executed. Because of this behavior some care is needed when designing an ‘If’ statement.
-The last example showed this skipping in action, the ‘Else’ part is completely skipped because the ‘ElseIf’ part returns true.
+At anytime during the execution of an 'If' statement, if any part of the statement returns true then the rest of the 'If' statement is skipped and not executed. Because of this behavior some care is needed when designing an 'If' statement.
+The last example showed this skipping in action, the 'Else' part is completely skipped because the 'ElseIf' part returns true.
 
-The ‘Select’ Statement
+The 'Select' Statement
 
-‘Select’ statements are a direct complement to ‘If’s. In that they provide a way of combining several tests of the same variable or expression into a single block of statements. While ‘If’s are very powerful in what they do, sometimes it’s better to use a ‘Select’ when things are starting to get complicated and a great deal of conditions are needed to be tested for. Let me show you an example of the correct syntax and explain its use.
+'Select' statements are a direct complement to 'If's. In that they provide a way of combining several tests of the same variable or expression into a single block of statements. While 'If's are very powerful in what they do, sometimes it's better to use a 'Select' when things are starting to get complicated and a great deal of conditions are needed to be tested for. Let me show you an example of the correct syntax and explain its use.
 
 Days.l = 2
 
@@ -122,12 +122,12 @@ Select Days
 		Debug "Over 2 Days"
 EndSelect
 
-The ‘Select’ statement starts with the ‘Select’ keyword, which basically selects an expression or variable to be tested, in this case it is the variable ‘Days’. The ‘Case’ keywords that follow are branches that could potentially be executed should the value of ‘Days’ be equal to the variable or expression following that particular ‘Case’ statement. In our example here, if the variable ‘Days’ has the value ‘0’ then the code immediately following ‘Case 0’ is executed, if the variable ‘Days’ has the value ‘1’ then the code immediately following ‘Case 1’ is executed and so on.
+The 'Select' statement starts with the 'Select' keyword, which basically selects an expression or variable to be tested, in this case it is the variable 'Days'. The 'Case' keywords that follow are branches that could potentially be executed should the value of 'Days' be equal to the variable or expression following that particular 'Case' statement. In our example here, if the variable 'Days' has the value '0' then the code immediately following 'Case 0' is executed, if the variable 'Days' has the value '1' then the code immediately following 'Case 1' is executed and so on.
 
-You will notice that in the last place where there would normally be a ‘Case’ statement, there is another keyword named ‘Default’. This is the piece of code that executes if all other ‘Case’s return false, kind of like the ‘Else’ within an ‘If’ statement.
+You will notice that in the last place where there would normally be a 'Case' statement, there is another keyword named 'Default'. This is the piece of code that executes if all other 'Case's return false, kind of like the 'Else' within an 'If' statement.
 
 Checking For Multiple Values
-‘Select’ statements can check for lots of different values and can be neatly presented to produce clear concise code. To facilitate this nice and clean approach of testing lots of values, a ‘Select’ statement can use a few shortcuts when defining the ‘Case’ statements within. Here is an example:
+'Select' statements can check for lots of different values and can be neatly presented to produce clear concise code. To facilitate this nice and clean approach of testing lots of values, a 'Select' statement can use a few shortcuts when defining the 'Case' statements within. Here is an example:
 
 Weight.l = 12
 
@@ -144,9 +144,9 @@ Select Weight
 		Debug "Massive"
 EndSelect
 
-Here you can see shortcuts that can be used to specify a range of cases. Using the ‘To’ keyword to specify a range or specify several numbers in one ‘Case’ statement using commas. When specifying ranges using the ‘To’ keyword, the second number must always be larger than the first. In this example I’ve used numbers but these can be replaced by expressions or variables for more precise handling of the potential values that the selected variable or expression might have.
+Here you can see shortcuts that can be used to specify a range of cases. Using the 'To' keyword to specify a range or specify several numbers in one 'Case' statement using commas. When specifying ranges using the 'To' keyword, the second number must always be larger than the first. In this example I've used numbers but these can be replaced by expressions or variables for more precise handling of the potential values that the selected variable or expression might have.
 
-Here’s another fun example using a ‘Select’ statement within a console program:
+Here's another fun example using a 'Select' statement within a console program:
 
 If OpenConsole()
 	PrintN("1. Official PureBasic Home")
@@ -166,30 +166,30 @@ If OpenConsole()
 EndIf
 End
 
-In this example I’ve used a few new commands that you will not be familiar with but I think this simple program neatly demonstrates one use of the ‘Select’ statement. These new commands will be explained a little later but I think you can gather what’s going on by their descriptive names.
+In this example I've used a few new commands that you will not be familiar with but I think this simple program neatly demonstrates one use of the 'Select' statement. These new commands will be explained a little later but I think you can gather what's going on by their descriptive names.
 
-The main thing to notice about this example is that the ‘Select’ statement is testing the ‘Destination’ variable. This variable is assigned a String value which is returned from the ‘Input()’ command after the Return key is pushed. The ‘Case’ statements are then also defined using Strings to match correctly the variable’s value. Any PureBasic type or any type resulting from an expression can be tested using a ‘Select’ or ‘Case’ statement.
+The main thing to notice about this example is that the 'Select' statement is testing the 'Destination' variable. This variable is assigned a String value which is returned from the 'Input()' command after the Return key is pushed. The 'Case' statements are then also defined using Strings to match correctly the variable's value. Any PureBasic type or any type resulting from an expression can be tested using a 'Select' or 'Case' statement.
 
-As a side note, you can also see in this last example that I’ve used an ‘If’ statement to test that ‘OpenConsole()’ returns true and correctly opens a console window.
+As a side note, you can also see in this last example that I've used an 'If' statement to test that 'OpenConsole()' returns true and correctly opens a console window.
 
 Loops
 
 To be able continuously to receive and process data you need loops. All programs that use graphical user interfaces employ loops to manage the drawing of the interface and to continuously monitor for input from the user. For example, the PureBasic IDE uses many loops within its code, to monitor for keypresses and mouse clicks, to update displays, etc. Loops are also a great way of processing large amounts of data within arrays or linked lists by iterating through them, one element at a time.
 
-‘For’ Loops
-The first loop I will talk about is probably the most well known and maybe the most used loop of all, it is the ‘For’ loop. These loops, sometimes called ‘For/Next’ loops, are a great way of looping through data when you need an incrementing variable available to be used as a counter or as an index for an individual element of a looping array. Here’s an example to get things started.
+'For' Loops
+The first loop I will talk about is probably the most well known and maybe the most used loop of all, it is the 'For' loop. These loops, sometimes called 'For/Next' loops, are a great way of looping through data when you need an incrementing variable available to be used as a counter or as an index for an individual element of a looping array. Here's an example to get things started.
 
 For x.l = 1 To 10
 	Debug x
 Next x
 
-In this example we construct a loop using the ‘For’ keyword. A user defined Long variable must be entered immediately following this keyword, which in this example I’ve called ‘x’. The value assigned to ‘x’ is the start value of our loop, here I’ve assigned it the value of ‘1’. After this variable assignment the ‘To’ keyword is used to define a range, so I’ve entered ‘10’ as the upper limit that ‘x’ should reach during our loop. This completes the beginning of the loop, all we need to do now is specify the end point of the loop. We do this using the line ‘Next x’. This last line tells the compiler that after every single step of the loop, move on to the next value of ‘x’ specified in the range in the first line, then start the loop again.
+In this example we construct a loop using the 'For' keyword. A user defined Long variable must be entered immediately following this keyword, which in this example I've called 'x'. The value assigned to 'x' is the start value of our loop, here I've assigned it the value of '1'. After this variable assignment the 'To' keyword is used to define a range, so I've entered '10' as the upper limit that 'x' should reach during our loop. This completes the beginning of the loop, all we need to do now is specify the end point of the loop. We do this using the line 'Next x'. This last line tells the compiler that after every single step of the loop, move on to the next value of 'x' specified in the range in the first line, then start the loop again.
 
-The code between these two lines is repeated in a loop depending on how many steps there are between the start and end value in the range specified. Once the value of ‘x’ reaches the upper limit specified after the ‘To’ keyword, the loop exits and normal program flow is resumed.
+The code between these two lines is repeated in a loop depending on how many steps there are between the start and end value in the range specified. Once the value of 'x' reaches the upper limit specified after the 'To' keyword, the loop exits and normal program flow is resumed.
 
-You will notice if you run the above example, the Debug Output window shows the different values that ‘x’ has during the loop. You will see that the loop is repeated ten times as each time the ‘x’ variable is incremented according to the specified range.
+You will notice if you run the above example, the Debug Output window shows the different values that 'x' has during the loop. You will see that the loop is repeated ten times as each time the 'x' variable is incremented according to the specified range.
 
-Here’s another example of using a loop to easily traverse an array.
+Here's another example of using a loop to easily traverse an array.
 
 Dim Names.s(3)
 
@@ -202,9 +202,9 @@ For x.l = 0 To 3
 	Debug Names(x)
 Next x
 
-Because all array values are accessed using indices, and these indices always start from zero, ‘For’ loops are fantastic for performing operations on all the elements within an array using just a small amount of code. As you can see from the last example, it just takes three lines of code to echo all of the array’s element values to the Debug Output window, no matter what size the array. A bigger array just needs a bigger range in the first line of the ‘For’ loop definition.
+Because all array values are accessed using indices, and these indices always start from zero, 'For' loops are fantastic for performing operations on all the elements within an array using just a small amount of code. As you can see from the last example, it just takes three lines of code to echo all of the array's element values to the Debug Output window, no matter what size the array. A bigger array just needs a bigger range in the first line of the 'For' loop definition.
 
-‘For’ loops can also be constructed using expressions too:
+'For' loops can also be constructed using expressions too:
 
 StartVar.l = 5
 StopVar.l = 10
@@ -233,18 +233,18 @@ For x = 0 To 2
 	Next y
 Next x
 
-As long as the counter variables are different names, you can nest as many ‘For’ loops as you wish. The unique configurability of ‘For’ loops make them powerful to use and extremely useful for looping code a user defined amount of times.
+As long as the counter variables are different names, you can nest as many 'For' loops as you wish. The unique configurability of 'For' loops make them powerful to use and extremely useful for looping code a user defined amount of times.
 
-Until now you’ve seen how ‘For’ loops increment the counter variable by ‘1’ on every iteration of the loop but the incremental step can be configured manually using the optional ‘Step’ keyword. Here is another example:
+Until now you've seen how 'For' loops increment the counter variable by '1' on every iteration of the loop but the incremental step can be configured manually using the optional 'Step' keyword. Here is another example:
 
 For x.l = 0 To 10 Step 2
 	Debug x
 Next x
 
-You’ll notice the ‘Step’ keyword appears on the first line of the ‘For’ loop. This keyword can only be used in a ‘For’ loop and this is the only place in the loop that it can be used. Immediately after the ‘Step’ keyword you specify the amount that the counter variable should be incremented by on each iteration of the loop. In this case I’ve used the number ‘2’, this increments the variable ‘x’ by ‘2’ on every iteration. If you run this example and look at the Debug Output window you will see the values echoed are all multiples of ‘2’.
+You'll notice the 'Step' keyword appears on the first line of the 'For' loop. This keyword can only be used in a 'For' loop and this is the only place in the loop that it can be used. Immediately after the 'Step' keyword you specify the amount that the counter variable should be incremented by on each iteration of the loop. In this case I've used the number '2', this increments the variable 'x' by '2' on every iteration. If you run this example and look at the Debug Output window you will see the values echoed are all multiples of '2'.
 
-‘ForEach’ Loops
-This type of loop is different from all the others in that it only works with linked lists. The syntax is very similar to the ‘For’ loop except it doesn’t need a counter variable setting up. Here is a simple example.
+'ForEach' Loops
+This type of loop is different from all the others in that it only works with linked lists. The syntax is very similar to the 'For' loop except it doesn't need a counter variable setting up. Here is a simple example.
 
 NewList Shopping.s()
 
@@ -261,9 +261,9 @@ ForEach Shopping()
 	Debug Shopping()
 Next
 
-In this example after the linked list is defined and a few elements added, I use a ‘ForEach’ loop to echo the list’s contents to the Debug Output window. As you can see the syntax is very clear and very simple. The loop starts with the ‘ForEach’ keyword followed by the linked list name. Then the end of the loop is defined by using the ‘Next’ keyword. The code that sits between these two lines is the code that’s repeated for the length of the linked list. Once the end of the linked list is reached the loop will exit. A ‘ForEach’ loops works on all type of linked list, even structured linked lists. I will talk more about linked lists a little later on in Chapter 5.
+In this example after the linked list is defined and a few elements added, I use a 'ForEach' loop to echo the list's contents to the Debug Output window. As you can see the syntax is very clear and very simple. The loop starts with the 'ForEach' keyword followed by the linked list name. Then the end of the loop is defined by using the 'Next' keyword. The code that sits between these two lines is the code that's repeated for the length of the linked list. Once the end of the linked list is reached the loop will exit. A 'ForEach' loops works on all type of linked list, even structured linked lists. I will talk more about linked lists a little later on in Chapter 5.
 
-‘While’ Loops
+'While' Loops
 This particular loop uses an expression to determine wether it should start and how long it should continue. If this expression returns true then the loop will start. After each individual iteration through the loop, the expression is tested again for a true value, if this expression still returns true, the loop continues. If this expression returns false at any time, the loop ends. Look at this example:
 
 Monkeys.l = 0
@@ -273,9 +273,9 @@ While Monkeys < 10
 	Monkeys + 1
 Wend
 
-This loop is very simple to construct. It starts with the ‘While’ keyword, then an expression is used to control the loop, in this case I’ve used ‘Monkeys < 10’. The loop is then completed using the ‘Wend’ keyword. The initial expression checks to see if the variable ‘Monkeys’ is below ‘10’, if it is the loop will enter and start. The code within this loop is then repeated until ‘Monkeys < 10’ returns false. If you look at the output in the Debug Output window you will see that when ‘Monkeys’ equals ‘10’ the expression returns false (because it is no longer less than ‘10’) and the loop ends.
+This loop is very simple to construct. It starts with the 'While' keyword, then an expression is used to control the loop, in this case I've used 'Monkeys < 10'. The loop is then completed using the 'Wend' keyword. The initial expression checks to see if the variable 'Monkeys' is below '10', if it is the loop will enter and start. The code within this loop is then repeated until 'Monkeys < 10' returns false. If you look at the output in the Debug Output window you will see that when 'Monkeys' equals '10' the expression returns false (because it is no longer less than '10') and the loop ends.
 
-One thing to keep in mind when using ‘While’ loops is that if the initial expression returns false then the loop will never be entered and started. This can be demonstrated in this example:
+One thing to keep in mind when using 'While' loops is that if the initial expression returns false then the loop will never be entered and started. This can be demonstrated in this example:
 
 Monkeys.l = 20
 
@@ -283,8 +283,8 @@ While Monkeys < 10
 	Debug "This code is never executed"
 Wend
 
-‘Repeat’ Loops
-These types of loops are pretty much the opposite of ‘While’ loops. ‘Repeat’ loops begin with the ‘Repeat’ keyword and end in one of two ways. The first way is using the ‘Until’ keyword preceding an expression and the second way is using the ‘Forever’ keyword. I’ll fully explain both ways, starting with the ‘Until’ keyword.
+'Repeat' Loops
+These types of loops are pretty much the opposite of 'While' loops. 'Repeat' loops begin with the 'Repeat' keyword and end in one of two ways. The first way is using the 'Until' keyword preceding an expression and the second way is using the 'Forever' keyword. I'll fully explain both ways, starting with the 'Until' keyword.
 
 Look at this example:
 
@@ -295,9 +295,9 @@ Repeat
 	Bananas + 1
 Until Bananas > 10
 
-Opposite to ‘While’ loops, the controlling expression is at the end of the loop and this is evaluated to see if it returns false. If it does, the loop continues, if it returns true, the loop ends. As you can see from the above example, when ‘Bananas’ value is greater than ‘10’ the loop ends.
+Opposite to 'While' loops, the controlling expression is at the end of the loop and this is evaluated to see if it returns false. If it does, the loop continues, if it returns true, the loop ends. As you can see from the above example, when 'Bananas' value is greater than '10' the loop ends.
 
-Another point to take notice of is that unlike ‘While’ loops, a ‘Repeat’ loop always enters and runs at least once before the expression on the end is evaluated. This is demonstrated here:
+Another point to take notice of is that unlike 'While' loops, a 'Repeat' loop always enters and runs at least once before the expression on the end is evaluated. This is demonstrated here:
 
 Bananas.l = 20
 
@@ -305,9 +305,9 @@ Repeat
 	Debug Bananas
 Until Bananas > 10
 
-You can see that even thought ‘Bananas’ is greater than ‘10’ the loop is started and run once before evaluating the expression at the end of the loop. Once this expression is evaluated, ‘Bananas’ is greater than ‘10’ so the expression returns true and the loop ends.
+You can see that even thought 'Bananas' is greater than '10' the loop is started and run once before evaluating the expression at the end of the loop. Once this expression is evaluated, 'Bananas' is greater than '10' so the expression returns true and the loop ends.
 
-‘Repeat’ loops also have an alternative side to them, they can be used with another keyword in order to make fully continuous loops. To construct a continuous loop just use the ‘Forever’ keyword instead of the ‘Until’ keyword and an expression, like this:
+'Repeat' loops also have an alternative side to them, they can be used with another keyword in order to make fully continuous loops. To construct a continuous loop just use the 'Forever' keyword instead of the 'Until' keyword and an expression, like this:
 
 Counter.l = 0
 
@@ -316,14 +316,14 @@ Repeat
 	Counter + 1
 ForEver
 
-This is handy if you want to keep a loop going forever or you are not sure what condition is to be met in order to exit it, or you may have multiple conditions that all need to be met in order jump out of the loop. Use the ‘Kill Program’ menu command (Menu:Debugger->Kill Program) to exit this example.
+This is handy if you want to keep a loop going forever or you are not sure what condition is to be met in order to exit it, or you may have multiple conditions that all need to be met in order jump out of the loop. Use the 'Kill Program' menu command (Menu:Debugger->Kill Program) to exit this example.
 
 <<Box 5>>
 
-Controlling Loops Using ‘Break’ and ‘Continue’
-At any time all these different types of loop can be controlled by two common keywords. These two keywords are ‘Break’ and ‘Continue’. I’ll explain ‘Break’ first.
+Controlling Loops Using 'Break' and 'Continue'
+At any time all these different types of loop can be controlled by two common keywords. These two keywords are 'Break' and 'Continue'. I'll explain 'Break' first.
 
-If the ‘Break’ keyword is used anywhere within any type of loop then that loop is immediately exited as soon as this keyword is encountered. In the case of nested loops, there is an optional parameter that can be added to the end of the ‘Break’ keyword which specifies how many loops to exit out of. Let’s have a look at an example of the ‘Break’ keyword:
+If the 'Break' keyword is used anywhere within any type of loop then that loop is immediately exited as soon as this keyword is encountered. In the case of nested loops, there is an optional parameter that can be added to the end of the 'Break' keyword which specifies how many loops to exit out of. Let's have a look at an example of the 'Break' keyword:
 
 For x = 1 To 10
 	If x = 5
@@ -332,7 +332,7 @@ For x = 1 To 10
 	Debug x
 Next x
 
-Here in this ‘For’ loop I’ve prematurely broken out of the loop using the ‘Break’ keyword when ‘x’ equals ‘5’. You will notice the loop exits even before ‘5’ is echoed to the Debug Output window. Here is an example of breaking out of nested loops using the optional level parameter of the ‘Break’ keyword:
+Here in this 'For' loop I've prematurely broken out of the loop using the 'Break' keyword when 'x' equals '5'. You will notice the loop exits even before '5' is echoed to the Debug Output window. Here is an example of breaking out of nested loops using the optional level parameter of the 'Break' keyword:
 
 For x.l = 1 To 10
 	Counter = 0
@@ -345,9 +345,9 @@ For x.l = 1 To 10
 	Debug x
 Next
 
-Here, once ‘x’ equals ‘5’ then both loops are exited by using the command ‘Break 2’.
+Here, once 'x' equals '5' then both loops are exited by using the command 'Break 2'.
 
-Next up is the ‘Continue’ keyword. This enables you at anytime to jump out of the current iteration and continue to the next one inside the current loop. This is more simple than it sounds:
+Next up is the 'Continue' keyword. This enables you at anytime to jump out of the current iteration and continue to the next one inside the current loop. This is more simple than it sounds:
 
 For x.l = 1 To 10
 	If x = 5
@@ -356,6 +356,6 @@ For x.l = 1 To 10
 	Debug x
 Next
 
-Here you can see that when ‘x’ equals ‘5’ (on the fifth iteration) the ‘Continue’ keyword is used. This jumps out of the loop and continues from the top at the beginning of the sixth iteration where ‘x’ now equals ‘6’. Because of this jump and continuation of the loop, you will notice in the Debug Output window that ‘5’ was never echoed because on that iteration it jumped out of the loop before the ‘Debug x’ line was executed.
+Here you can see that when 'x' equals '5' (on the fifth iteration) the 'Continue' keyword is used. This jumps out of the loop and continues from the top at the beginning of the sixth iteration where 'x' now equals '6'. Because of this jump and continuation of the loop, you will notice in the Debug Output window that '5' was never echoed because on that iteration it jumped out of the loop before the 'Debug x' line was executed.
 
 Loops can be used for a variety of things in computer programming, mainly to reduce tedious code and to iterate quickly through vast amounts of data. Hopefully, you should now have an insight to how they can be used.

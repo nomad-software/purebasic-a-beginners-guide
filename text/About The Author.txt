@@ -6,4 +6,4 @@ Gary Willoughby is a professional graphic artist, Internet web developer and sof
 
 After using C++ for a while and noticing the massive marathon of programming needed for even a simple piece of software, a search began for a simpler, more intuitive and elegant programming language to realize well designed software within a shorter time frame. All of these wishes were fulfilled by a little known French company called Fantaisie Software. The programming language they developed and marketed was PureBasic.
 
-Since the summer of 2002, Gary has been an active community member of the official online PureBasic forum (under the pseudonym of ‘Kale’) and has written several pieces of successful commercial software using PureBasic.
+Since the summer of 2002, Gary has been an active community member of the official online PureBasic forum (under the pseudonym of 'Kale' and has written several pieces of successful commercial software using PureBasic.

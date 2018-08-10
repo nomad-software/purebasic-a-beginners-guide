@@ -13,24 +13,24 @@ I.	The Core Language	1
 	A Note On Program Structure	8
 	Introducing The PureBasic Help File	9
 
-2.	Data Types	10               
+2.	Data Types	10
 	Built-In Data Types	10
 	Numbers	10
 	Strings	12
 	Variables And Constants	12
 
-3.	Operators	18               
+3.	Operators	18
 	An Introduction To Operators	18
 	Operator Precedence	33
 	Expression Notes	34
 
 4.	Conditional Statements And Loops	37
 	Boolean Logic	37
-	The ‘If’ Statement	38
-	The ‘Select’ Statement	41
+	The 'If' Statement	38
+	The 'Select' Statement	41
 	Loops	43
 
-5.	Other Data Structures	49               
+5.	Other Data Structures	49
 	Structures	49
 	Arrays	52
 	Linked Lists	62
@@ -41,10 +41,10 @@ I.	The Core Language	1
 	Subroutines	71
 	Procedure Basics	74
 	Program Scope 	76
-	The ‘Global’ Keyword	78
-	The ‘Protected’ Keyword	79
-	The ‘Shared’ Keyword	80
-	The ‘Static’ Keyword	82
+	The 'Global' Keyword	78
+	The 'Protected' Keyword	79
+	The 'Shared' Keyword	80
+	The 'Static' Keyword	82
 	Passing Variables To Procedures	83
 	Passing Arrays To Procedures	86
 	Passing Linked Lists To Procedures	88
@@ -89,12 +89,12 @@ III	Graphics And Sound	165
 	A Gentle Beginning	206
 	A Simple First Person Camera	215
 	A Little More Advanced	221
-	What’s Next?	226
+	What's Next?	226
 
 12.	Sound	227
 	Wave Files	227
 	Module Files	231	
-	Mp3’s	233
+	Mp3's	233
 	CD Audio	237 
 
 IV	Advanced Topics	243

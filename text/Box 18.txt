@@ -1,3 +1,3 @@
 What Is A Gadget?
 
-In PureBasic a gadget is a graphical user interface object that provides some sort of interactivity for your program. Microsoft Windows calls these ‘Controls’ and some Linux distributions calls these ‘Widgets’. Gadgets are buttons, tick boxes, sliders, input fields, tabs, frames, progress bars, etc. All the different interactive components that make up an interface, PureBasic calls gadgets.
+In PureBasic a gadget is a graphical user interface object that provides some sort of interactivity for your program. Microsoft Windows calls these 'Controls' and some Linux distributions calls these 'Widgets'. Gadgets are buttons, tick boxes, sliders, input fields, tabs, frames, progress bars, etc. All the different interactive components that make up an interface, PureBasic calls gadgets.
